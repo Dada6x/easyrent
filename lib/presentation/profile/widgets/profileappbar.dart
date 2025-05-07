@@ -1,5 +1,6 @@
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 AppBar profileAppbar() {
   return AppBar(
@@ -13,9 +14,13 @@ AppBar profileAppbar() {
     ),
     actions: [
       Padding(
-        padding: const EdgeInsets.all(8.0),
-        child:
-            IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
+        padding: EdgeInsets.all(8.0.r),
+        child: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.notifications,
+              size: 30.r,
+            )),
       )
     ],
   );

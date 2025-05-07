@@ -1,6 +1,6 @@
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/assets.dart';
-import 'package:easyrent/presentation/view/navigator.dart';
+import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';

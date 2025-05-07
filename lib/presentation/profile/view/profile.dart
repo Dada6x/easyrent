@@ -1,8 +1,9 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/presentation/widgets/profileappbar.dart';
+import 'package:easyrent/presentation/profile/widgets/profileappbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -17,16 +18,19 @@ class Profile extends StatelessWidget {
         child: Column(
           children: [
             // image
+            SizedBox(
+              height: 26.r,
+            ),
             Center(
               child: Stack(children: [
-                const CircleAvatar(
-                  radius: 80, //!
-                  backgroundImage: AssetImage(avatar),
+                CircleAvatar(
+                  radius: 80.r,
+                  backgroundImage: const AssetImage(avatar),
                 ),
                 Positioned(
-                    bottom: 1,
-                    right: -10, //!
-                    height: 49, //!
+                    bottom: 1.r,
+                    right: -10.r, //!
+                    height: 49.r, //!
                     child: RawMaterialButton(
                       onPressed: () {
                         //! image Picker Dialog
@@ -64,17 +68,18 @@ class Profile extends StatelessWidget {
                       },
                       elevation: 2,
                       fillColor: Colors.white,
-                      padding: const EdgeInsets.all(15.0),
+                      padding: EdgeInsets.all(10.r),
                       shape: const CircleBorder(),
-                      child: const Icon(
+                      child: Icon(
                         Icons.camera_alt_outlined,
                         color: primaryBlue,
+                        size: 28.r,
                       ),
                     )),
               ]),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.r),
               child: Text(
                   textAlign: TextAlign.center,
                   "Yahea Dada",
@@ -133,17 +138,20 @@ Widget customListTile(
   String string,
   IconData? leading,
 ) {
-  return Material(
+  return RawMaterialButton(
+    onPressed: () {
+      // destination to go 🌃
+    },
     child: ListTile(
       leading: Icon(
         leading,
         color: primaryBlue,
-        size: 28, //!
+        size: 29.r, //!
       ),
       title: Text(string, style: AppTextStyles.h18medium),
-      trailing: const Icon(
+      trailing: Icon(
         Icons.arrow_forward_ios,
-        size: 15, //!
+        size: 15.r, //!
       ),
     ),
   );

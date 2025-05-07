@@ -1,4 +1,4 @@
-import 'package:easyrent/presentation/widgets/searcappbar.dart';
+import 'package:easyrent/presentation/search/widgets/searcappbar.dart';
 import 'package:flutter/material.dart';
 
 class Search extends StatelessWidget {

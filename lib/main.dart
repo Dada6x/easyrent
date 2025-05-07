@@ -1,15 +1,27 @@
-import 'package:easyrent/presentation/view/introduction_screen.dart';
+import 'package:easyrent/presentation/navigation/navigator.dart';
+import 'package:easyrent/presentation/profile/view/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
-  runApp(const GetMaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: IntroductionScreen(),
+  runApp(ScreenUtilInit(
+    designSize: const Size(430, 932),// from Figma
+    minTextAdapt: true,
+    splitScreenMode: true,
+    builder: (context, child) {
+      return GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const HomeScreenNavigator(),
+      );
+    },
   ));
 }
 
@@ -63,7 +75,11 @@ lib/
 * Theming (Dark/Light)
 * Navigation through routes
 
+TODO ask GPT where to put theme, localization , internet connection, and middlewares for introScreens
+
+.w → width scaling
+.h → height scaling
+.sp → font scaling
+.r → general radius/size scaling
+
 */
-//TODO ask GPT where to put theme, localization , internet connection, and middlewares for introScreens
-// do more application with res API's 
-// 

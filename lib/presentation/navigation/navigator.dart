@@ -1,9 +1,10 @@
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/presentation/view/homePage.dart';
-import 'package:easyrent/presentation/view/profile.dart';
-import 'package:easyrent/presentation/view/search.dart';
+import 'package:easyrent/presentation/home/views/homePage.dart';
+import 'package:easyrent/presentation/profile/view/profile.dart';
+import 'package:easyrent/presentation/search/views/search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreenNavigator extends StatefulWidget {
   const HomeScreenNavigator({super.key});
@@ -46,7 +47,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
           unselectedLabelStyle: AppTextStyles.h12medium,
           selectedItemColor: primaryBlue,
           unselectedItemColor: grey,
-          iconSize: 24, //!
+          iconSize: 30.r, //!
           onTap: _onItemTapped,
           items: const [
             BottomNavigationBarItem(
@@ -63,7 +64,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
                 label: 'Profile'),
           ],
           elevation: 2,
-          type: BottomNavigationBarType.shifting,
+          type: BottomNavigationBarType.fixed,
         ),
       ),
     );

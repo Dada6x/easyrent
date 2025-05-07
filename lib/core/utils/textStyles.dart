@@ -1,112 +1,113 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextStyles {
   //! 32
-  static TextStyle h32light = const TextStyle(
-      fontSize: 32, fontFamily: "Rubik", fontWeight: FontWeight.w300);
-  static TextStyle h32regular = const TextStyle(
-      fontSize: 32, fontFamily: "Rubik", fontWeight: FontWeight.w400);
-  static TextStyle h32medium = const TextStyle(
-      fontSize: 32, fontFamily: "Rubik", fontWeight: FontWeight.w500);
-  static TextStyle h32semi = const TextStyle(
-      fontSize: 32, fontFamily: "Rubik", fontWeight: FontWeight.w600);
-  static TextStyle h32bold = const TextStyle(
-      fontSize: 32, fontFamily: "Rubik", fontWeight: FontWeight.w900);
-  static TextStyle h32extrabold = const TextStyle(
-      fontSize: 32, fontFamily: "Rubik", fontWeight: FontWeight.w800);
+  static TextStyle h32light = TextStyle(
+      fontSize: 32.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
+  static TextStyle h32regular = TextStyle(
+      fontSize: 32.sp, fontFamily: "Rubik", fontWeight: FontWeight.w400);
+  static TextStyle h32medium = TextStyle(
+      fontSize: 32.sp, fontFamily: "Rubik", fontWeight: FontWeight.w500);
+  static TextStyle h32semi = TextStyle(
+      fontSize: 32.sp, fontFamily: "Rubik", fontWeight: FontWeight.w600);
+  static TextStyle h32bold = TextStyle(
+      fontSize: 32.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
+  static TextStyle h32extrabold = TextStyle(
+      fontSize: 32.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
   //! 24
-  static TextStyle h24light = const TextStyle(
-      fontSize: 24, fontFamily: "Rubik", fontWeight: FontWeight.w300);
-  static TextStyle h24regular = const TextStyle(
-      fontSize: 24, fontFamily: "Rubik", fontWeight: FontWeight.w400);
-  static TextStyle h24medium = const TextStyle(
-      fontSize: 24, fontFamily: "Rubik", fontWeight: FontWeight.w500);
-  static TextStyle h24semi = const TextStyle(
-      fontSize: 24, fontFamily: "Rubik", fontWeight: FontWeight.w600);
-  static TextStyle h24bold = const TextStyle(
-      fontSize: 24, fontFamily: "Rubik", fontWeight: FontWeight.w900);
-  static TextStyle h24extrabold = const TextStyle(
-      fontSize: 24, fontFamily: "Rubik", fontWeight: FontWeight.w800);
+  static TextStyle h24light = TextStyle(
+      fontSize: 24.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
+  static TextStyle h24regular = TextStyle(
+      fontSize: 24.sp, fontFamily: "Rubik", fontWeight: FontWeight.w400);
+  static TextStyle h24medium = TextStyle(
+      fontSize: 24.sp, fontFamily: "Rubik", fontWeight: FontWeight.w500);
+  static TextStyle h24semi = TextStyle(
+      fontSize: 24.sp, fontFamily: "Rubik", fontWeight: FontWeight.w600);
+  static TextStyle h24bold = TextStyle(
+      fontSize: 24.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
+  static TextStyle h24extrabold = TextStyle(
+      fontSize: 24.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
   //!20
-  static TextStyle h20light = const TextStyle(
-      fontSize: 20, fontFamily: "Rubik", fontWeight: FontWeight.w300);
-  static TextStyle h20regular = const TextStyle(
-      fontSize: 20, fontFamily: "Rubik", fontWeight: FontWeight.w400);
-  static TextStyle h20medium = const TextStyle(
-      fontSize: 20, fontFamily: "Rubik", fontWeight: FontWeight.w500);
-  static TextStyle h20semi = const TextStyle(
-      fontSize: 20, fontFamily: "Rubik", fontWeight: FontWeight.w600);
-  static TextStyle h20bold = const TextStyle(
-      fontSize: 20, fontFamily: "Rubik", fontWeight: FontWeight.w900);
-  static TextStyle h20extrabold = const TextStyle(
-      fontSize: 20, fontFamily: "Rubik", fontWeight: FontWeight.w800);
+  static TextStyle h20light = TextStyle(
+      fontSize: 20.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
+  static TextStyle h20regular = TextStyle(
+      fontSize: 20.sp, fontFamily: "Rubik", fontWeight: FontWeight.w400);
+  static TextStyle h20medium = TextStyle(
+      fontSize: 20.sp, fontFamily: "Rubik", fontWeight: FontWeight.w500);
+  static TextStyle h20semi = TextStyle(
+      fontSize: 20.sp, fontFamily: "Rubik", fontWeight: FontWeight.w600);
+  static TextStyle h20bold = TextStyle(
+      fontSize: 20.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
+  static TextStyle h20extrabold = TextStyle(
+      fontSize: 20.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
 
   //! 18
-  static TextStyle h18light = const TextStyle(
-      fontSize: 18, fontFamily: "Rubik", fontWeight: FontWeight.w300);
-  static TextStyle h18regular = const TextStyle(
-      fontSize: 18, fontFamily: "Rubik", fontWeight: FontWeight.w400);
-  static TextStyle h18medium = const TextStyle(
-      fontSize: 18, fontFamily: "Rubik", fontWeight: FontWeight.w500);
-  static TextStyle h18semi = const TextStyle(
-      fontSize: 18, fontFamily: "Rubik", fontWeight: FontWeight.w600);
-  static TextStyle h18bold = const TextStyle(
-      fontSize: 18, fontFamily: "Rubik", fontWeight: FontWeight.w900);
-  static TextStyle h18extrabold = const TextStyle(
-      fontSize: 18, fontFamily: "Rubik", fontWeight: FontWeight.w800);
+  static TextStyle h18light = TextStyle(
+      fontSize: 18.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
+  static TextStyle h18regular = TextStyle(
+      fontSize: 18.sp, fontFamily: "Rubik", fontWeight: FontWeight.w400);
+  static TextStyle h18medium = TextStyle(
+      fontSize: 18.sp, fontFamily: "Rubik", fontWeight: FontWeight.w500);
+  static TextStyle h18semi = TextStyle(
+      fontSize: 18.sp, fontFamily: "Rubik", fontWeight: FontWeight.w600);
+  static TextStyle h18bold = TextStyle(
+      fontSize: 18.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
+  static TextStyle h18extrabold = TextStyle(
+      fontSize: 18.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
   //!16
-  static TextStyle h16light = const TextStyle(
-      fontSize: 16, fontFamily: "Rubik", fontWeight: FontWeight.w300);
-  static TextStyle h16regular = const TextStyle(
-      fontSize: 16, fontFamily: "Rubik", fontWeight: FontWeight.w400);
-  static TextStyle h16medium = const TextStyle(
-      fontSize: 16, fontFamily: "Rubik", fontWeight: FontWeight.w500);
-  static TextStyle h16semi = const TextStyle(
-      fontSize: 16, fontFamily: "Rubik", fontWeight: FontWeight.w600);
-  static TextStyle h16bold = const TextStyle(
-      fontSize: 16, fontFamily: "Rubik", fontWeight: FontWeight.w900);
-  static TextStyle h16extrabold = const TextStyle(
-      fontSize: 16, fontFamily: "Rubik", fontWeight: FontWeight.w800);
-  //!14
-  static TextStyle h14light = const TextStyle(
-      fontSize: 14, fontFamily: "Rubik", fontWeight: FontWeight.w300);
-  static TextStyle h14regular = const TextStyle(
-      fontSize: 14, fontFamily: "Rubik", fontWeight: FontWeight.w400);
-  static TextStyle h14medium = const TextStyle(
-      fontSize: 14, fontFamily: "Rubik", fontWeight: FontWeight.w500);
-  static TextStyle h14semi = const TextStyle(
-      fontSize: 14, fontFamily: "Rubik", fontWeight: FontWeight.w600);
-  static TextStyle h14bold = const TextStyle(
-      fontSize: 14, fontFamily: "Rubik", fontWeight: FontWeight.w900);
-  static TextStyle h14extrabold = const TextStyle(
-      fontSize: 14, fontFamily: "Rubik", fontWeight: FontWeight.w800);
+  static TextStyle h16light = TextStyle(
+      fontSize: 16.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
+  static TextStyle h16regular = TextStyle(
+      fontSize: 16.sp, fontFamily: "Rubik", fontWeight: FontWeight.w400);
+  static TextStyle h16medium = TextStyle(
+      fontSize: 16.sp, fontFamily: "Rubik", fontWeight: FontWeight.w500);
+  static TextStyle h16semi = TextStyle(
+      fontSize: 16.sp, fontFamily: "Rubik", fontWeight: FontWeight.w600);
+  static TextStyle h16bold = TextStyle(
+      fontSize: 16.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
+  static TextStyle h16extrabold = TextStyle(
+      fontSize: 16.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
+  //!14.sp
+  static TextStyle h14light = TextStyle(
+      fontSize: 14.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
+  static TextStyle h14regular = TextStyle(
+      fontSize: 14.sp, fontFamily: "Rubik", fontWeight: FontWeight.w400);
+  static TextStyle h14medium = TextStyle(
+      fontSize: 14.sp, fontFamily: "Rubik", fontWeight: FontWeight.w500);
+  static TextStyle h14semi = TextStyle(
+      fontSize: 14.sp, fontFamily: "Rubik", fontWeight: FontWeight.w600);
+  static TextStyle h14bold = TextStyle(
+      fontSize: 14.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
+  static TextStyle h14extrabold = TextStyle(
+      fontSize: 14.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
   //! 12
-  static TextStyle h12light = const TextStyle(
-      fontSize: 12, fontFamily: "Rubik", fontWeight: FontWeight.w300);
-  static TextStyle h12regular = const TextStyle(
-      fontSize: 12, fontFamily: "Rubik", fontWeight: FontWeight.w400);
-  static TextStyle h12medium = const TextStyle(
-      fontSize: 12, fontFamily: "Rubik", fontWeight: FontWeight.w500);
-  static TextStyle h12semi = const TextStyle(
-      fontSize: 12, fontFamily: "Rubik", fontWeight: FontWeight.w600);
-  static TextStyle h12bold = const TextStyle(
-      fontSize: 12, fontFamily: "Rubik", fontWeight: FontWeight.w900);
-  static TextStyle h12extrabold = const TextStyle(
-      fontSize: 12, fontFamily: "Rubik", fontWeight: FontWeight.w800);
+  static TextStyle h12light = TextStyle(
+      fontSize: 12.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
+  static TextStyle h12regular = TextStyle(
+      fontSize: 12.sp, fontFamily: "Rubik", fontWeight: FontWeight.w400);
+  static TextStyle h12medium = TextStyle(
+      fontSize: 12.sp, fontFamily: "Rubik", fontWeight: FontWeight.w500);
+  static TextStyle h12semi = TextStyle(
+      fontSize: 12.sp, fontFamily: "Rubik", fontWeight: FontWeight.w600);
+  static TextStyle h12bold = TextStyle(
+      fontSize: 12.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
+  static TextStyle h12extrabold = TextStyle(
+      fontSize: 12.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
   // ! 10
-  static TextStyle h10light = const TextStyle(
-      fontSize: 10, fontFamily: "Rubik", fontWeight: FontWeight.w300);
-  static TextStyle h10regular = const TextStyle(
-      fontSize: 10, fontFamily: "Rubik", fontWeight: FontWeight.w400);
-  static TextStyle h10medium = const TextStyle(
-      fontSize: 10, fontFamily: "Rubik", fontWeight: FontWeight.w500);
-  static TextStyle h10semi = const TextStyle(
-      fontSize: 10, fontFamily: "Rubik", fontWeight: FontWeight.w600);
-  static TextStyle h10bold = const TextStyle(
-      fontSize: 10, fontFamily: "Rubik", fontWeight: FontWeight.w900);
-  static TextStyle h10extrabold = const TextStyle(
-      fontSize: 10, fontFamily: "Rubik", fontWeight: FontWeight.w800);
+  static TextStyle h10light = TextStyle(
+      fontSize: 10.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
+  static TextStyle h10regular = TextStyle(
+      fontSize: 10.sp, fontFamily: "Rubik", fontWeight: FontWeight.w400);
+  static TextStyle h10medium = TextStyle(
+      fontSize: 10.sp, fontFamily: "Rubik", fontWeight: FontWeight.w500);
+  static TextStyle h10semi = TextStyle(
+      fontSize: 10.sp, fontFamily: "Rubik", fontWeight: FontWeight.w600);
+  static TextStyle h10bold = TextStyle(
+      fontSize: 10.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
+  static TextStyle h10extrabold = TextStyle(
+      fontSize: 10.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
 }
 
 /*

@@ -1,21 +1,23 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 AppBar homePageAppbar() {
   return AppBar(
-      scrolledUnderElevation: 1.0,
+    scrolledUnderElevation: 1.0,
     surfaceTintColor: Colors.transparent,
     forceMaterialTransparency: true,
     elevation: 0,
-    title: const Row(
+    title: Row(
       children: [
         CircleAvatar(
-          radius: 20,
+          radius: 20.r,
           backgroundColor: primaryBlue,
-          backgroundImage: AssetImage(avatar),
+          backgroundImage: const AssetImage(avatar),
         ),
-        SizedBox(width: 12),
+        SizedBox(width: 12.r),
         Expanded(
           // Ensures the column doesn't overflow
           child: Column(
@@ -24,13 +26,12 @@ AppBar homePageAppbar() {
             children: [
               Text(
                 "Good morning",
-                style: TextStyle(fontSize: 14, color: grey),
+                style: AppTextStyles.h12regular,
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
                 "Yahea Dada",
-                style: TextStyle(
-                    fontSize: 16, fontWeight: FontWeight.bold, color: black),
+                style: AppTextStyles.h16medium,
                 overflow: TextOverflow.ellipsis,
               ),
             ],
@@ -39,7 +40,15 @@ AppBar homePageAppbar() {
       ],
     ),
     actions: [
-      IconButton(onPressed: () {}, icon: const Icon(Icons.notifications))
+      Padding(
+        padding: EdgeInsets.all(8.0.r),
+        child: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.notifications,
+              size: 30.r,
+            )),
+      )
     ],
   );
 }
