@@ -10,7 +10,7 @@ const apartment2 = "assets/images/apartment2.png";
 // const avatar = "assets/images/avatar.png";
 // const avatar = "assets/images/avatar.png";
 //! -----------icons-------------------------
-const calendar = "assets/icons/calendar.png";//? profile
+const calendar = "assets/icons/calendar.png"; //? profile
 const info = "assets/icons/info.png";
 const back = "assets/icons/back-arrow.png";
 const language = "assets/icons/language.png";
@@ -42,5 +42,9 @@ const heart = "assets/icons/heart.png";
 const logOut = "assets/icons/logout.png";
 const google = "assets/icons/google.png";
 const star = "assets/icons/star.png";
+const paypal = "assets/icons/Paypal.png";
+const masterCard = "assets/icons/MasterCard.png";
+const googlePay = "assets/icons/GooglePay.png";
+const chip = "assets/icons/Chip.png";
 //! --------------animations-----------------
 const easyRent = "assets/animations/EeasyRent.json";

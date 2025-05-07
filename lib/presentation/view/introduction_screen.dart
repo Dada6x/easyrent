@@ -1,8 +1,8 @@
-import 'package:easyrent/constants/colors.dart';
-import 'package:easyrent/constants/assets_paths.dart';
+import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/constants/assets.dart';
+import 'package:easyrent/presentation/view/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 
 const items = [
@@ -20,6 +20,8 @@ const texts = [
 ];
 
 class IntroductionScreen extends StatefulWidget {
+  const IntroductionScreen({super.key});
+
   @override
   _IntroductionScreenState createState() => _IntroductionScreenState();
 }
@@ -107,7 +109,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                 onTap: () {
                   int currentPage = _notifier.value.round();
                   if (currentPage == items.length - 1) {
-                    Get.off(() => const NextPage());
+                    Get.off(() => const HomeScreenNavigator());
                   } else {
                     _pageController.nextPage(
                       duration: const Duration(milliseconds: 800),
@@ -242,21 +244,4 @@ class FlowPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
-}
-
-class NextPage extends StatelessWidget {
-  const NextPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home Page')),
-      body: const Center(
-        child: Text(
-          'home page',
-          style: TextStyle(fontSize: 24),
-        ),
-      ),
-    );
-  }
 }
