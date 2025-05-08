@@ -29,8 +29,8 @@ class Profile extends StatelessWidget {
                 ),
                 Positioned(
                     bottom: 1.r,
-                    right: -10.r, //!
-                    height: 49.r, //!
+                    right: -10.r,
+                    height: 49.r,
                     child: RawMaterialButton(
                       onPressed: () {
                         //! image Picker Dialog
@@ -39,7 +39,6 @@ class Profile extends StatelessWidget {
                             title: const Center(
                               child: Text(
                                 'Choose ',
-                                // style: klasikHeader,
                               ),
                             ),
                             actions: <Widget>[
@@ -85,10 +84,10 @@ class Profile extends StatelessWidget {
                   "Yahea Dada",
                   style: AppTextStyles.h24semi),
             ),
-            const Divider(
-              color: lightPrimary,
-              indent: 20, //!
-              endIndent: 20, //!
+            Divider(
+              color: border,
+              indent: 20.w,
+              endIndent: 20.w,
             ),
             customListTile(
               "My Booking ",
@@ -98,10 +97,14 @@ class Profile extends StatelessWidget {
               "Payments ",
               Icons.payment,
             ),
-            const Divider(
-              color: lightPrimary,
-              indent: 20, //!
-              endIndent: 20, //!
+            customListTile(
+              "My Favorite ",
+              Icons.favorite,
+            ),
+            Divider(
+              color: border,
+              indent: 20.w, //!
+              endIndent: 20.w, //!
             ),
             customListTile(
               "Notifications ",

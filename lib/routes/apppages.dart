@@ -1,4 +1,4 @@
-import 'package:easyrent/presentation/home/views/homePage.dart';
+import 'package:easyrent/presentation/property_homepage/views/homePage.dart';
 import 'package:easyrent/presentation/search/views/search.dart';
 import 'package:easyrent/routes/routes.dart';
 import 'package:get/get.dart';

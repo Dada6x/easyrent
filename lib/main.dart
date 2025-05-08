@@ -1,5 +1,4 @@
-import 'package:easyrent/presentation/navigation/navigator.dart';
-import 'package:easyrent/presentation/profile/view/profile.dart';
+import 'package:easyrent/presentation/navigation/introduction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +9,7 @@ void main() {
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
   runApp(ScreenUtilInit(
-    designSize: const Size(430, 932),// from Figma
+    designSize: const Size(430, 932), // from Figma
     minTextAdapt: true,
     splitScreenMode: true,
     builder: (context, child) {
@@ -19,7 +18,7 @@ void main() {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const HomeScreenNavigator(),
+        home: const IntroductionScreen(),
       );
     },
   ));
