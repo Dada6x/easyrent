@@ -82,6 +82,7 @@ class PropertyDetailsPage extends StatelessWidget {
                     ],
                   ),
                 ),
+                //!SECTION
               ],
             ),
             //!  details
