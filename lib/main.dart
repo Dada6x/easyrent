@@ -1,4 +1,5 @@
 import 'package:easyrent/presentation/navigation/introduction_screen.dart';
+import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +19,7 @@ void main() {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const IntroductionScreen(),
+        home: const HomeScreenNavigator(),
       );
     },
   ));

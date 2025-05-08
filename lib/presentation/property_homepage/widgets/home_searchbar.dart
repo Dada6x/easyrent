@@ -8,7 +8,7 @@ final Widget searchBar = SearchBar(
   leading: const Icon(Icons.search),
   hintText: "Search Something",
   hintStyle: WidgetStatePropertyAll(AppTextStyles.h14regular),
-  backgroundColor: WidgetStatePropertyAll(Colors.grey.shade200),
+  backgroundColor: const WidgetStatePropertyAll(lightPrimary2),
   shape: WidgetStatePropertyAll(RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(6.r),
     side: const BorderSide(color: border),

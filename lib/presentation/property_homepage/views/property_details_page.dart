@@ -4,6 +4,7 @@ import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/agent_tile.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/comment_widget.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/gallery_widget.dart';
+import 'package:easyrent/presentation/property_homepage/widgets/location_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -21,9 +22,9 @@ class PropertyDetailsPage extends StatelessWidget {
   final String overview;
   final List<String> gallery;
   // faceliteis //!enums
-  // location 
-  // AGENT name , image , role 
-  // COMMENT name , date , comment ,image 
+  // location longtude latudie
+  // AGENT name , image , role
+  // COMMENT name , date , comment ,image
 
   PropertyDetailsPage(
       {super.key,
@@ -128,8 +129,8 @@ class PropertyDetailsPage extends StatelessWidget {
                   ),
                   Divider(
                     color: border,
-                    indent: 10.w, 
-                    endIndent: 10.w, 
+                    indent: 10.w,
+                    endIndent: 10.w,
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -207,11 +208,10 @@ class PropertyDetailsPage extends StatelessWidget {
                       style: AppTextStyles.h20semi,
                     ),
                   ),
-                  Container(
-                    height: 300,
-                    color: Colors.amber,
+                  SizedBox(
+                    height: 300.h,
+                    child: const CurrentLocationMap(lat: 33.5138, lng: 36.2765),
                   ),
-
                   //! COMMENTS
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -294,6 +294,7 @@ class PropertyDetailsPage extends StatelessWidget {
       child: Icon(
         icon,
         size: 28.sp,
+        color: white,
       ),
     );
   }
