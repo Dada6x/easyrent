@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/home_searchbar.dart';
@@ -14,6 +15,7 @@ class Search extends StatefulWidget {
   State<Search> createState() => _SearchState();
 }
 
+//! this is done with filtering so i dont know what to do , must see the restapi course to find out
 class _SearchState extends State<Search> {
   final List<String> filters = [
     'All',
@@ -28,28 +30,28 @@ class _SearchState extends State<Search> {
   List<Map<String, dynamic>> properties = [];
   bool isLoading = true;
 
-  final PropertyService propertyService = PropertyService();
+  // final PropertyService propertyService = PropertyService();
 
   @override
   void initState() {
     super.initState();
-    fetchProperties();
+    // fetchProperties();
   }
 
-  Future<void> fetchProperties() async {
-    setState(() => isLoading = true);
-    try {
-      final data =
-          await propertyService.fetchProperties(filters[selectedIndex]);
-      setState(() {
-        properties = data;
-        isLoading = false;
-      });
-    } catch (e) {
-      print(e);
-      setState(() => isLoading = false);
-    }
-  }
+  // Future<void> fetchProperties() async {
+  //   setState(() => isLoading = true);
+  //   try {
+  //     final data =
+  //         await propertyService.fetchProperties(filters[selectedIndex]);
+  //     setState(() {
+  //       properties = data;
+  //       isLoading = false;
+  //     });
+  //   } catch (e) {
+  //     print(e);
+  //     setState(() => isLoading = false);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +90,7 @@ class _SearchState extends State<Search> {
                         onSelected: (_) {
                           if (selectedIndex != index) {
                             setState(() => selectedIndex = index);
-                            fetchProperties();
+                            // fetchProperties();
                           }
                         },
                       ),
@@ -98,25 +100,26 @@ class _SearchState extends State<Search> {
               ),
             ),
             Text(
-              "Found ${properties.length} Properties",
+              // "Found ${properties.length} Properties",
+              "Found 1284 Properties",
               style: AppTextStyles.h20semi,
             ),
             SizedBox(height: 16.h),
             Expanded(
-              child: isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : ListView.builder(
-                      itemCount: properties.length,
-                      itemBuilder: (context, index) {
-                        final property = properties[index];
-                        return PropertyWidgetSearch(
-                          title: property['title'],
-                          location: property['location'],
-                          imagePath: property['image'],
-                          price: 5000,
-                        );
-                      },
-                    ),
+              child:
+                  // ? const Center(child: CircularProgressIndicator())
+                  ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  // final property = properties[index];
+                  return const PropertyWidgetSearch(
+                    title: 'Lucky Lake Apartments',
+                    location: 'Tokyo, Japan',
+                    imagePath: apartment,
+                    price: 5000,
+                  );
+                },
+              ),
             )
           ],
         ),
@@ -125,23 +128,23 @@ class _SearchState extends State<Search> {
   }
 }
 
-class PropertyService {
-  final Dio _dio = Dio();
-  Future<List<Map<String, dynamic>>> fetchProperties(String category) async {
-    try {
-      final response = await _dio
-          .get("https://run.mocky.io/v3/27571361-d572-4a96-8507-b0fdef45091e");
-      List<Map<String, dynamic>> allProperties =
-          List<Map<String, dynamic>>.from(response.data);
-      if (category == 'All') return allProperties;
-      return allProperties
-          .where((property) =>
-              property['category'] != null &&
-              property['category'].toString().toLowerCase() ==
-                  category.toLowerCase())
-          .toList();
-    } catch (e) {
-      throw Exception('Failed to fetch properties: $e');
-    }
-  }
-}
+// class PropertyService {
+//   final Dio _dio = Dio();
+//   Future<List<Map<String, dynamic>>> fetchProperties(String category) async {
+//     try {
+//       final response = await _dio
+//           .get("https://run.mocky.io/v3/27571361-d572-4a96-8507-b0fdef45091e");
+//       List<Map<String, dynamic>> allProperties =
+//           List<Map<String, dynamic>>.from(response.data);
+//       if (category == 'All') return allProperties;
+//       return allProperties
+//           .where((property) =>
+//               property['category'] != null &&
+//               property['category'].toString().toLowerCase() ==
+//                   category.toLowerCase())
+//           .toList();
+//     } catch (e) {
+//       throw Exception('Failed to fetch properties: $e');
+//     }
+//   }
+// }

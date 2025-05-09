@@ -9,7 +9,6 @@ AppBar searchAppbar() {
     forceMaterialTransparency: true,
     elevation: 0,
     centerTitle: true,
-    leading: const BackButton(),
     title: Text("Search for Your Ideal Home", style: AppTextStyles.h16medium),
     actions: [
       Padding(
