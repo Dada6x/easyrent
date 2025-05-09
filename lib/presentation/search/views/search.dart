@@ -4,7 +4,7 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/home_searchbar.dart';
 import 'package:easyrent/presentation/search/widgets/property_widget_search.dart';
-import 'package:easyrent/presentation/search/widgets/searcappbar.dart';
+import 'package:easyrent/presentation/search/widgets/search_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
