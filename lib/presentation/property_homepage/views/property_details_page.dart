@@ -7,6 +7,7 @@ import 'package:easyrent/presentation/property_homepage/widgets/agent_tile_widge
 import 'package:easyrent/presentation/property_homepage/widgets/comments_section_widget.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/gallery_widget.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/location_widget.dart';
+import 'package:easyrent/presentation/property_homepage/widgets/panorama_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -27,7 +28,6 @@ class PropertyDetailsPage extends StatelessWidget {
   final String overview;
   final List<String> gallery;
   // facilities //!enums
-  // location longtude latudie double double
   final double lng;
   final double lat;
   //@ for every property agent and couple of Comments ??
@@ -107,7 +107,7 @@ class PropertyDetailsPage extends StatelessWidget {
                           //         AppTextStyles.h16regular.copyWith(color: white),
                           //   );
                           // },
-                          ),                      //
+                          ), //
                       _circleButton(Icons.share, () {}),
                       SizedBox(width: 12.w),
                     ],
@@ -122,9 +122,19 @@ class PropertyDetailsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //! property title
-                  Text(
-                    title,
-                    style: AppTextStyles.h24semi,
+                  Row(
+                    children: [
+                      Text(
+                        title,
+                        style: AppTextStyles.h24semi,
+                      ),
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {
+                            Get.to(panorama());
+                          },
+                          icon: Icon(Icons.panorama_horizontal_select))
+                    ],
                   ),
                   SizedBox(height: 8.h),
                   //! property genre and rating
@@ -174,7 +184,7 @@ class PropertyDetailsPage extends StatelessWidget {
                     agentName: agent.name,
                     agentRole: agent.role,
                   ),
-                  //! Overview 
+                  //! Overview
                   const _Headers(text: "Overview"),
                   Padding(
                     padding: EdgeInsets.all(8.0.r),
@@ -191,7 +201,7 @@ class PropertyDetailsPage extends StatelessWidget {
                       style: AppTextStyles.h20semi,
                     ),
                   ),
-                  //!Facilities 
+                  //!Facilities
                   GridView.count(
                     crossAxisCount: 4,
                     shrinkWrap: true,
@@ -212,17 +222,34 @@ class PropertyDetailsPage extends StatelessWidget {
                       );
                     }),
                   ),
-                  //! GALLERY 
+                  //! GALLERY
                   const _Headers(text: "Gallery"),
                   GalleryWidget(images: gallery),
                   const _Headers(text: "Location"),
-                  //! Location 
-                  Text("Grand City St. 100, New York, United States"),
+                  //! Location
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.location_on,
+                          color: primaryBlue,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        const Text(
+                          "Grand City St., New York,United States ",
+                          overflow: TextOverflow.clip,
+                        ),
+                      ],
+                    ),
+                  ),
                   SizedBox(
                     height: 300.h,
                     child: CurrentLocationMap(latitude: lat, longitude: lng),
                   ),
-                  //! COMMENTS 
+                  //! COMMENTS
                   // const _Headers(text: "Comment"),
                   CommentSection(comments: [
                     comment,
