@@ -58,7 +58,7 @@ class Homepage extends StatelessWidget {
                     itemCount: 3,
                     itemBuilder: (context, index) {
                       return const PropertyCardBig(
-                        imagePath: "assets/images/apartment3.png",
+                        imagePath: apartment3,
                         location: "New York , US",
                         price: 1920,
                         rating: 4.5,
@@ -95,7 +95,7 @@ class Homepage extends StatelessWidget {
                             "location": "Tokyo, Japan",
                             "price": 12219,
                             "rating": 4.8,
-                            "image": apartment2,
+                            "image": apartment,
                           },
                         );
                       },

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-const items = [
+const items = [//TODO this need sto be fixed 
   Colors.white,
   primaryBlue,
   Colors.white,

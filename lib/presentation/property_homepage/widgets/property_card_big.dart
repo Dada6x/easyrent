@@ -2,6 +2,7 @@ import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/property_homepage/views/property_details_page.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -51,7 +52,6 @@ class PropertyCardBig extends StatelessWidget {
               ],
               lat: 33.5138,
               lng: 36.2765,
-              
               panoramaImages: const [
                 {'name': 'Living Room', 'imagePath': panorama1},
                 {'name': 'Kitchen', 'imagePath': panorama2},
@@ -73,11 +73,18 @@ class PropertyCardBig extends StatelessWidget {
               child: Stack(
                 children: [
                   // Background Image
-                  Image.asset(
-                    imagePath,
+                  // Image.asset(
+                  //   imagePath,
+                  //   height: 340.h,
+                  //   width: 250.w,
+                  //   fit: BoxFit.cover,
+                  // ),
+                  FancyShimmerImage(
                     height: 340.h,
                     width: 250.w,
-                    fit: BoxFit.cover,
+                    boxFit: BoxFit.cover,
+                    imageUrl:
+                        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c',
                   ),
                   // Gradient Overlay
                   Positioned.fill(

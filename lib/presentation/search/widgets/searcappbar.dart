@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 AppBar searchAppbar() {
   return AppBar(
+    
     scrolledUnderElevation: 1.0,
     surfaceTintColor: Colors.transparent,
     forceMaterialTransparency: true,

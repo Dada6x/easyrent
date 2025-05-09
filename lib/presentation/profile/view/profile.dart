@@ -81,7 +81,7 @@ class Profile extends StatelessWidget {
               padding: EdgeInsets.all(8.r),
               child: Text(
                   textAlign: TextAlign.center,
-                  "Yahea Dada",
+                  "User Name",
                   style: AppTextStyles.h24semi),
             ),
             Divider(

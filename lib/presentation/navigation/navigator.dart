@@ -33,6 +33,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        drawer: Drawer(),
         body: _pages[_selectedIndex],
         bottomNavigationBar: Container(
           decoration: const BoxDecoration(
