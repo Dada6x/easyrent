@@ -17,6 +17,7 @@ import 'package:like_button/like_button.dart';
 
 class PropertyDetailsPage extends StatelessWidget {
   final List<String> previewImages;
+  final List<Map<String, String>> panoramaImages;
   final String title;
   final int price;
   final String genre; //! should be enum
@@ -26,7 +27,7 @@ class PropertyDetailsPage extends StatelessWidget {
   final int baths;
   final int area;
   final String overview;
-  final List<String> gallery;
+  final List<String> galleryImages;
   // facilities //!enums
   final double lng;
   final double lat;
@@ -51,9 +52,10 @@ class PropertyDetailsPage extends StatelessWidget {
     required this.overview,
     required this.previewImages,
     required this.price,
-    required this.gallery,
+    required this.galleryImages,
     required this.lng,
     required this.lat,
+    required this.panoramaImages,
   });
 
   @override
@@ -97,7 +99,7 @@ class PropertyDetailsPage extends StatelessWidget {
                       const LikeButton(
                           // onTap: (){
                           // },
-                          // if yall wanted an counter
+                          //$ if yall wanted an counter
                           // likeCount: 5,
                           // countPostion: CountPostion.left,
                           // countBuilder: (likeCount, isLiked, text) {
@@ -131,9 +133,13 @@ class PropertyDetailsPage extends StatelessWidget {
                       const Spacer(),
                       IconButton(
                           onPressed: () {
-                            Get.to(panorama());
+                            Get.to(PanoramaPage(rooms: panoramaImages));
                           },
-                          icon: Icon(Icons.panorama_horizontal_select))
+                          icon: Icon(
+                            Icons.panorama_horizontal_select,
+                            color: primaryBlue,
+                            size: 28.r,
+                          ))
                     ],
                   ),
                   SizedBox(height: 8.h),
@@ -224,7 +230,7 @@ class PropertyDetailsPage extends StatelessWidget {
                   ),
                   //! GALLERY
                   const _Headers(text: "Gallery"),
-                  GalleryWidget(images: gallery),
+                  GalleryWidget(images: galleryImages),
                   const _Headers(text: "Location"),
                   //! Location
                   Padding(

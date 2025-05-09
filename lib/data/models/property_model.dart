@@ -7,6 +7,8 @@ class Property {
   final int price;
   final String genre; // Later you can replace this with an enum.
   //
+  final List<Map<String, String>> panoramaImages;
+
   final double ratings;
   final int reviews;
   //
@@ -16,7 +18,7 @@ class Property {
   //
   final Agent agent;
   final String overview;
-  //! faccelites 
+  //! faccelites
   final List<String> gallery;
   //
   final double latitude;
@@ -24,7 +26,8 @@ class Property {
   //
   final List<Comment> comments;
 
-  Property({
+  Property(
+    this.panoramaImages, {
     required this.title,
     required this.price,
     required this.genre,
@@ -41,23 +44,23 @@ class Property {
     required this.comments,
   });
 
-  factory Property.fromJson(Map<String, dynamic> json) {
-    return Property(
-      title: json['title'],
-      price: json['price'],
-      genre: json['genre'],
-      ratings: json['ratings'],
-      reviews: json['reviews'],
-      beds: json['beds'],
-      baths: json['baths'],
-      area: json['area'],
-      overview: json['overview'],
-      gallery: List<String>.from(json['gallery']),
-      latitude: json['latitude'],
-      longitude: json['longitude'],
-      agent: Agent.fromJson(json['agent']),
-      comments:
-          (json['comments'] as List).map((c) => Comment.fromJson(c)).toList(),
-    );
-  }
+  // factory Property.fromJson(Map<String, dynamic> json) {
+  //   return Property(
+  //     title: json['title'],
+  //     price: json['price'],
+  //     genre: json['genre'],
+  //     ratings: json['ratings'],
+  //     reviews: json['reviews'],
+  //     beds: json['beds'],
+  //     baths: json['baths'],
+  //     area: json['area'],
+  //     overview: json['overview'],
+  //     gallery: List<String>.from(json['gallery']),
+  //     latitude: json['latitude'],
+  //     longitude: json['longitude'],
+  //     agent: Agent.fromJson(json['agent']),
+  //     comments:
+  //         (json['comments'] as List).map((c) => Comment.fromJson(c)).toList(),
+  //   );
+  // }
 }

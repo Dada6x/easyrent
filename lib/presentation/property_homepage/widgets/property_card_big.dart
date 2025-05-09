@@ -40,7 +40,7 @@ class PropertyCardBig extends StatelessWidget {
               overview:
                   "Consequatur porro impedit alias odio voluptatem qui qui rerum aspernatur. Facere mollitia fugit perferendis deleniti quam neque voluptatem repellendus natus. Omnis ipsum culpa qui minima.",
               previewImages: const [apartment, apartment2, japan],
-              gallery: const [
+              galleryImages: const [
                 apartment3,
                 japan,
                 apartment2,
@@ -51,6 +51,12 @@ class PropertyCardBig extends StatelessWidget {
               ],
               lat: 33.5138,
               lng: 36.2765,
+              
+              panoramaImages: const [
+                {'name': 'Living Room', 'imagePath': panorama1},
+                {'name': 'Kitchen', 'imagePath': panorama2},
+                {'name': 'Bedroom', 'imagePath': panorama3},
+              ],
             ));
       },
       child: Container(

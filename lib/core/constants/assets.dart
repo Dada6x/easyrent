@@ -47,3 +47,7 @@ const googlePay = "assets/icons/GooglePay.png";
 const chip = "assets/icons/Chip.png";
 //!-----------animations----------------------
 const easyRent = "assets/animations/EeasyRent.json";
+//!-----------Panoramas ----------------------
+const panorama1 = "assets/panorama/panoramaPartment1.jpg";
+const panorama2 = "assets/panorama/panoramaPartment2.jpg";
+const panorama3 = "assets/panorama/panoramaPartment3.jpg";
