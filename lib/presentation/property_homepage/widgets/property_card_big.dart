@@ -1,4 +1,5 @@
 import 'package:easyrent/core/constants/assets.dart';
+import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/property_homepage/views/property_details_page.dart';
 import 'package:flutter/material.dart';
@@ -6,13 +7,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class PropertyCard extends StatelessWidget {
+class PropertyCardBig extends StatelessWidget {
   final String imagePath;
   final String title;
   final String location;
   final int price;
   final double rating;
-  const PropertyCard(
+  const PropertyCardBig(
       {super.key,
       required this.imagePath,
       required this.title,
@@ -24,27 +25,33 @@ class PropertyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return RawMaterialButton(
       onPressed: () {
-        Get.to(PropertyDetailsPage(
-            title: "MODERNISM VILLA",
-            genre: "Villa",
-            ratings: 4.5,
-            reviews: 1221,
-            beds: 3,
-            baths: 4,
-            area: 500,
-            overview:
-                "Consequatur porro impedit alias odio voluptatem qui qui rerum aspernatur. Facere mollitia fugit perferendis deleniti quam neque voluptatem repellendus natus. Omnis ipsum culpa qui minima.",
-            imageUrls: const [apartment, apartment2, japan],
-            price: 19322,
-            gallery: const [
-              apartment3,
-              japan,
-              apartment2,
-              japan,
-              apartment,
-              japan,
-              apartment
-            ]));
+        Get.to(
+            transition: Transition.fadeIn,
+            duration: const Duration(milliseconds: 520),
+            PropertyDetailsPage(
+              title: "MODERNISM VILLA",
+              genre: "Villa",
+              ratings: 4.5,
+              reviews: 1221,
+              beds: 3,
+              baths: 4,
+              area: 2000,
+              price: 19322,
+              overview:
+                  "Consequatur porro impedit alias odio voluptatem qui qui rerum aspernatur. Facere mollitia fugit perferendis deleniti quam neque voluptatem repellendus natus. Omnis ipsum culpa qui minima.",
+              previewImages: const [apartment, apartment2, japan],
+              gallery: const [
+                apartment3,
+                japan,
+                apartment2,
+                japan,
+                apartment,
+                japan,
+                apartment
+              ],
+              lat: 33.5138,
+              lng: 36.2765,
+            ));
       },
       child: Container(
         width: 250.w,
@@ -131,7 +138,7 @@ class PropertyCard extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.star, color: Colors.orange, size: 16.sp),
+                    Icon(Icons.star_rounded, color: orange, size: 20.r),
                     SizedBox(width: 4.w),
                     Text(
                       rating.toString(),

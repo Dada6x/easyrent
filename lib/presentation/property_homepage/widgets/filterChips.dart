@@ -38,7 +38,7 @@ class _PropertyFilterChipsState extends State<PropertyFilterChips> {
                   borderRadius: BorderRadius.circular(20.r),
                   side: const BorderSide(color: border)),
               onSelected: (_) {
-                //! BUT NOT SET STATE
+                //TODO
                 setState(() {
                   selectedIndex = index;
                   // new Request of the vertical list view

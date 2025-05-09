@@ -1,4 +1,5 @@
-import 'package:easyrent/presentation/navigation/introduction_screen.dart';
+// import 'package:easyrent/presentation/navigation/introduction_screen.dart';
+import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,8 +19,13 @@ void main() {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          // brightness: Brightness.light
+          fontFamily: "Rubik",
+          // scaffoldBackgroundColor: white
         ),
+        // darkTheme: ThemeData.dark(),
         home: const HomeScreenNavigator(),
+        
       );
     },
   ));
@@ -37,7 +43,7 @@ lib/
 │   └── repositories/        # API calls and implementations
 │
 ├── //? presentation/
-│   ├── //$home/
+│   ├── //$home/ 
 │   │   ├── views/
 │   │   │   └── home_page.dart
 │   │   └── //~bloc/            # Optional if home needs dynamic state
@@ -77,9 +83,55 @@ lib/
 
 TODO ask GPT where to put theme, localization , internet connection, and middlewares for introScreens
 
+?Screen Util pkg
 .w → width scaling
 .h → height scaling
 .sp → font scaling
 .r → general radius/size scaling
+
+*/
+
+
+
+
+
+//############################# fetching SHit 
+/*
+! Fetch from Backend
+Use Dio or http to fetch the property data.
+Example using Dio:
+
+Future<Property> fetchPropertyDetails(int propertyId) async {
+  final response = await Dio().get('https://your-api.com/properties/$propertyId');
+
+  if (response.statusCode == 200) {
+    return Property.fromJson(response.data);
+  } else {
+    throw Exception('Failed to load property');
+  }
+}
+
+! display in the detailsPage 
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<Property>(
+      future: _futureProperty,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+
+        final property = snapshot.data!;
+        return Scaffold(
+          appBar: AppBar(title: Text(property.title)),
+          body: ListView(
+            children: [
+             ? Use property.imageUrls, property.agent, property.comments, etc.
+            ],
+          ),
+        );
+
 
 */

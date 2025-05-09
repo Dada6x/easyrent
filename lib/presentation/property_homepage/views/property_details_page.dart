@@ -1,16 +1,21 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/presentation/property_homepage/widgets/agent_tile.dart';
-import 'package:easyrent/presentation/property_homepage/widgets/comment_widget.dart';
+import 'package:easyrent/data/models/agent_model.dart';
+import 'package:easyrent/data/models/comment_model.dart';
+import 'package:easyrent/presentation/property_homepage/widgets/agent_tile_widget.dart';
+import 'package:easyrent/presentation/property_homepage/widgets/comments_section_widget.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/gallery_widget.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/location_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:like_button/like_button.dart';
 
 class PropertyDetailsPage extends StatelessWidget {
-  final List<String> imageUrls;
+  final List<String> previewImages;
   final String title;
   final int price;
   final String genre; //! should be enum
@@ -21,24 +26,35 @@ class PropertyDetailsPage extends StatelessWidget {
   final int area;
   final String overview;
   final List<String> gallery;
-  // faceliteis //!enums
-  // location longtude latudie
-  // AGENT name , image , role
-  // COMMENT name , date , comment ,image
+  // facilities //!enums
+  // location longtude latudie double double
+  final double lng;
+  final double lat;
+  //@ for every property agent and couple of Comments ??
+  final agent = const Agent("Quinten nolds ", "Owner", avatar);
+  final comment = const Comment(
+    "charlottie Hanilin ",
+    "Et asperiores dolorem dolor est rerum quis possimus. Quos ullam et ea nostrum eos possimus. Dolores excepturi quis enim.",
+    "10/8/2025",
+    avatar,
+  );
 
-  PropertyDetailsPage(
-      {super.key,
-      required this.title,
-      required this.genre,
-      required this.ratings,
-      required this.reviews,
-      required this.beds,
-      required this.baths,
-      required this.area,
-      required this.overview,
-      required this.imageUrls,
-      required this.price,
-      required this.gallery});
+  PropertyDetailsPage({
+    super.key,
+    required this.title,
+    required this.genre,
+    required this.ratings,
+    required this.reviews,
+    required this.beds,
+    required this.baths,
+    required this.area,
+    required this.overview,
+    required this.previewImages,
+    required this.price,
+    required this.gallery,
+    required this.lng,
+    required this.lat,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -46,16 +62,16 @@ class PropertyDetailsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            //! image
+            //! preview images
             Stack(
               children: [
                 SizedBox(
                   height: 450.h,
                   width: double.infinity,
                   child: Swiper(
-                    itemCount: imageUrls.length,
+                    itemCount: previewImages.length,
                     itemBuilder: (context, index) => Image.asset(
-                      imageUrls[index],
+                      previewImages[index],
                       fit: BoxFit.cover,
                     ),
                     pagination: SwiperPagination(
@@ -67,35 +83,51 @@ class PropertyDetailsPage extends StatelessWidget {
                     autoplay: true,
                   ),
                 ),
-                //! share
+
+                //! share buttons and favorite
                 Padding(
-                  padding: const EdgeInsets.only(top: 60, left: 15, right: 15),
+                  padding: const EdgeInsets.only(
+                      top: 60, left: 15, right: 15), //TODO
                   child: Row(
                     children: [
                       _circleButton(Icons.arrow_back, () {
-                        Navigator.pop(context);
+                        Get.back();
                       }),
                       const Spacer(),
+                      const LikeButton(
+                          // onTap: (){
+                          // },
+                          // if yall wanted an counter
+                          // likeCount: 5,
+                          // countPostion: CountPostion.left,
+                          // countBuilder: (likeCount, isLiked, text) {
+                          //   return Text(
+                          //     likeCount.toString(),
+                          //     style:
+                          //         AppTextStyles.h16regular.copyWith(color: white),
+                          //   );
+                          // },
+                          ),                      //
                       _circleButton(Icons.share, () {}),
                       SizedBox(width: 12.w),
-                      _circleButton(Icons.favorite_border, () {}),
                     ],
                   ),
                 ),
-                //!SECTION
               ],
             ),
-            //!  details
+            //details
             Padding(
               padding: EdgeInsets.all(16.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  //! property title
                   Text(
                     title,
                     style: AppTextStyles.h24semi,
                   ),
                   SizedBox(height: 8.h),
+                  //! property genre and rating
                   Row(
                     children: [
                       Container(
@@ -109,9 +141,10 @@ class PropertyDetailsPage extends StatelessWidget {
                             style: AppTextStyles.h10semi
                                 .copyWith(color: primaryBlue),
                           )),
-                      const Icon(
+                      Icon(
                         Icons.star_rounded,
-                        color: Colors.orange,
+                        color: orange,
+                        size: 25.r,
                       ),
                       Text(
                         "$ratings ($reviews reviews)",
@@ -120,6 +153,7 @@ class PropertyDetailsPage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 16.h),
+                  //! beds and baths and area
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -133,27 +167,15 @@ class PropertyDetailsPage extends StatelessWidget {
                     indent: 10.w,
                     endIndent: 10.w,
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.h),
-                    child: Text(
-                      "Agent",
-                      style: AppTextStyles.h20semi,
-                    ),
+                  //! Agent Widget
+                  const _Headers(text: "Agent"),
+                  AgentWidget(
+                    agentImage: agent.avatar,
+                    agentName: agent.name,
+                    agentRole: agent.role,
                   ),
-                  //! agent Widget
-                  const AgentTile(
-                    agentImage: avatar,
-                    agentName: "Natasya Wilodra",
-                    agentRole: "Owner",
-                  ),
-                  //! Overview
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.h),
-                    child: Text(
-                      "Overview",
-                      style: AppTextStyles.h20semi,
-                    ),
-                  ),
+                  //! Overview 
+                  const _Headers(text: "Overview"),
                   Padding(
                     padding: EdgeInsets.all(8.0.r),
                     child: Text(
@@ -161,14 +183,15 @@ class PropertyDetailsPage extends StatelessWidget {
                       style: AppTextStyles.h16medium.copyWith(color: grey),
                     ),
                   ),
+                  // const _Headers(text: "Facilities"),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.h),
+                    padding: EdgeInsets.only(top: 10.h),
                     child: Text(
                       "Facilities",
                       style: AppTextStyles.h20semi,
                     ),
                   ),
-                  //!Facilities
+                  //!Facilities 
                   GridView.count(
                     crossAxisCount: 4,
                     shrinkWrap: true,
@@ -176,62 +199,47 @@ class PropertyDetailsPage extends StatelessWidget {
                         const NeverScrollableScrollPhysics(), // Prevent nested scroll
                     children: List.generate(8, (index) {
                       return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const CircleAvatar(
+                          CircleAvatar(
                             backgroundColor: lightPrimary2,
-                            child:
-                                Icon(Icons.star, size: 30, color: primaryBlue),
+                            child: Icon(Icons.star,
+                                size: 30.r, color: primaryBlue),
                           ),
-                          const SizedBox(height: 8),
-                          Text('Label $index', style: TextStyle(fontSize: 14)),
+                          SizedBox(height: 8.h),
+                          Text('Label $index',
+                              style: const TextStyle(fontSize: 14)),
                         ],
                       );
                     }),
                   ),
-
-                  //! GALLERY
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.h),
-                    child: Text(
-                      "Gallery",
-                      style: AppTextStyles.h20semi,
-                    ),
-                  ),
+                  //! GALLERY 
+                  const _Headers(text: "Gallery"),
                   GalleryWidget(images: gallery),
-
-                  //! LOCATION
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.h),
-                    child: Text(
-                      "Location",
-                      style: AppTextStyles.h20semi,
-                    ),
-                  ),
+                  const _Headers(text: "Location"),
+                  //! Location 
+                  Text("Grand City St. 100, New York, United States"),
                   SizedBox(
                     height: 300.h,
-                    child: const CurrentLocationMap(lat: 33.5138, lng: 36.2765),
+                    child: CurrentLocationMap(latitude: lat, longitude: lng),
                   ),
-                  //! COMMENTS
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.h),
-                    child: Text(
-                      "Comments",
-                      style: AppTextStyles.h20semi,
-                    ),
-                  ),
-                  const CommentWidget(
-                      imagePath: avatar,
-                      name: ' Charolette Hanlin',
-                      date: "10/8/2025",
-                      comment:
-                          "The apartment is very clean and modern. I really like the interior design. Looks like I'll feel at home 😍"),
-
+                  //! COMMENTS 
+                  // const _Headers(text: "Comment"),
+                  CommentSection(comments: [
+                    comment,
+                    comment,
+                    comment,
+                  ]),
                   SizedBox(
                     height: 10.h,
                   ),
+                  Divider(
+                    color: border,
+                    indent: 10.w,
+                    endIndent: 10.w,
+                  ),
+                  //! property Price
                   Padding(
+                    //TODO
                     padding: EdgeInsets.symmetric(horizontal: 8.h),
                     child: Row(
                       children: [
@@ -301,6 +309,24 @@ class PropertyDetailsPage extends StatelessWidget {
   }
 }
 
+class _Headers extends StatelessWidget {
+  final String text;
+  const _Headers({
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 10.h),
+      child: Text(
+        text,
+        style: AppTextStyles.h20semi,
+      ),
+    );
+  }
+}
+
 Widget _featureIcon(IconData icon, String label) {
   return Row(
     children: [
@@ -312,7 +338,7 @@ Widget _featureIcon(IconData icon, String label) {
         ),
         child: Icon(
           icon,
-          size: 20.sp,
+          size: 23.r,
           color: primaryBlue,
         ),
       ),
@@ -333,8 +359,8 @@ class ConnectedDotsPagination extends SwiperPlugin {
   ConnectedDotsPagination({
     this.dotSize = 8.0,
     this.activeWidth = 24.0,
-    this.activeColor = Colors.blue,
-    this.inactiveColor = Colors.grey,
+    this.activeColor = primaryBlue,
+    this.inactiveColor = grey,
   });
 
   @override

@@ -19,7 +19,6 @@ class GalleryWidget extends StatelessWidget {
           (index) {
             double randomWidth = Random().nextInt(101) + 100.0.w;
             double randomHeight = Random().nextInt(101) + 100.0.h;
-
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(

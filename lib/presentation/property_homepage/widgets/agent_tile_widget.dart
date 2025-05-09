@@ -3,11 +3,11 @@ import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AgentTile extends StatelessWidget {
+class AgentWidget extends StatelessWidget {
   final String agentName;
   final String agentRole;
   final String agentImage;
-  const AgentTile(
+  const AgentWidget(
       {super.key,
       required this.agentName,
       required this.agentRole,
@@ -20,7 +20,7 @@ class AgentTile extends StatelessWidget {
         radius: 23.r,
         backgroundImage: AssetImage(agentImage),
       ),
-      title: Text(
+      title: Text(//TODO its overflowing 
         agentName,
         style: AppTextStyles.h18semi,
       ),
@@ -33,11 +33,11 @@ class AgentTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             IconButton(
-              icon:  Icon(Icons.chat, size: 25.r,color: primaryBlue),
+              icon: Icon(Icons.chat, size: 25.r, color: primaryBlue),
               onPressed: () {},
             ),
             IconButton(
-              icon:  Icon(Icons.phone_enabled,size: 25.r, color: primaryBlue),
+              icon: Icon(Icons.phone_enabled, size: 25.r, color: primaryBlue),
               onPressed: () {
                 //! Call PHONE NUMBER
               },

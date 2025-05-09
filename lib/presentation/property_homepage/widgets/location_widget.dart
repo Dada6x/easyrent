@@ -5,18 +5,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:latlong2/latlong.dart';
 
 class CurrentLocationMap extends StatelessWidget {
-  final double lat;
-  final double lng;
+  final double latitude;
+  final double longitude;
   const CurrentLocationMap(
-      {super.key, latlng, required this.lat, required this.lng});
+      {super.key, latlng, required this.latitude, required this.longitude});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.r),
       child: FlutterMap(
+        mapController: MapController(),
         options: MapOptions(
-          initialCenter: LatLng(lat, lng),
+          initialCenter: LatLng(latitude, longitude),
           initialZoom: 14,
         ),
         children: [
@@ -28,7 +29,7 @@ class CurrentLocationMap extends StatelessWidget {
           MarkerLayer(
             markers: [
               Marker(
-                point: LatLng(lat, lng),
+                point: LatLng(latitude, longitude),
                 width: 40.w,
                 height: 40.h,
                 child:
