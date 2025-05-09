@@ -24,35 +24,37 @@ class PropertyWidgetSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return RawMaterialButton(
       onPressed: () {
-        Get.to(PropertyDetailsPage(
-          title: "MODERNISM VILLA",
-          genre: "Villa",
-          ratings: 4.5,
-          reviews: 1221,
-          beds: 3,
-          baths: 4,
-          area: 2000,
-          price: 19322,
-          overview:
-              "Consequatur porro impedit alias odio voluptatem qui qui rerum aspernatur. Facere mollitia fugit perferendis deleniti quam neque voluptatem repellendus natus. Omnis ipsum culpa qui minima.",
-          previewImages: const [apartment, apartment2, japan],
-          galleryImages: const [
-            apartment3,
-            japan,
-            apartment2,
-            japan,
-            apartment,
-            japan,
-            apartment
-          ],
-          lat: 33.5138,
-          lng: 36.2765,
-          panoramaImages: const [
-            {'name': 'Living Room', 'imagePath': panorama1},
-            {'name': 'Kitchen', 'imagePath': panorama2},
-            {'name': 'Bedroom', 'imagePath': panorama3},
-          ],
-        ));
+        Get.to(
+          PropertyDetailsPage(
+            title: "MODERNISM VILLA",
+            genre: "Villa",
+            ratings: 4.5,
+            reviews: 1221,
+            beds: 3,
+            baths: 4,
+            area: 2000,
+            price: 19322,
+            overview:
+                "Consequatur porro impedit alias odio voluptatem qui qui rerum aspernatur. Facere mollitia fugit perferendis deleniti quam neque voluptatem repellendus natus. Omnis ipsum culpa qui minima.",
+            previewImages: const [apartment, apartment2, japan],
+            galleryImages: const [
+              apartment3,
+              japan,
+              apartment2,
+              japan,
+              apartment,
+              japan,
+              apartment
+            ],
+            lat: 33.5138,
+            lng: 36.2765,
+            panoramaImages: const [
+              {'name': 'Living Room', 'imagePath': panorama1},
+              {'name': 'Kitchen', 'imagePath': panorama2},
+              {'name': 'Bedroom', 'imagePath': panorama3},
+            ],
+          ),
+        );
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
@@ -69,23 +71,23 @@ class PropertyWidgetSearch extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  // Image.asset(
-                  //   imagePath,
-                  //   height: 100.h,
-                  //   width: 100.w,
-                  //   fit: BoxFit.cover,
-                  // ),
-                  FancyShimmerImage(
+                  Image.asset(
+                    imagePath,
                     height: 120.h,
                     width: 120.w,
-                    boxFit: BoxFit.cover,
-                    imageUrl:
-                        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c',
-                    errorWidget: const Icon(
-                      Icons.error,
-                      color: grey,
-                    ),
+                    fit: BoxFit.cover,
                   ),
+                  // FancyShimmerImage(
+                  //   height: 120.h,
+                  //   width: 120.w,
+                  //   boxFit: BoxFit.cover,
+                  //   imageUrl:
+                  //       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c',
+                  //   errorWidget: const Icon(
+                  //     Icons.error,
+                  //     color: grey,
+                  //   ),
+                  // ),
                   Positioned(
                     top: 4.h,
                     left: 70.w,
