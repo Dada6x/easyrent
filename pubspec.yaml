@@ -35,15 +35,14 @@ dependencies:
     sdk: flutter
   flutter_map: ^7.0.2
   flutter_screenutil: ^5.9.3
-  get: ^4.7.2
-  #! location
   geocoding: ^2.0.4
+  get: ^4.7.2
   latlong2: ^0.9.1
   like_button: ^2.0.5
   lottie: any
+  panorama_viewer: ^2.0.4
   photo_view: ^0.15.0
   shared_preferences: ^2.3.3
-  panorama_viewer: ^2.0.4
 dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_test:

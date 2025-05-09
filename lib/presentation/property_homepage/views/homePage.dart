@@ -26,6 +26,7 @@ class Homepage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 10.r),
                   child: searchBar,
                 ),
+              
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.r),
                   child: Row(

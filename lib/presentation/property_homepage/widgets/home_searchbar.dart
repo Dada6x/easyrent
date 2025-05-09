@@ -1,23 +1,29 @@
-import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-final Widget searchBar = SearchBar(
-  elevation: const WidgetStatePropertyAll(0),
-  leading: const Icon(Icons.search),
-  hintText: "Search Something",
-  hintStyle: WidgetStatePropertyAll(AppTextStyles.h14regular),
-  backgroundColor: const WidgetStatePropertyAll(lightPrimary2),
-  shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(6.r),
-    side: const BorderSide(color: border),
-  )),
-  textStyle: WidgetStatePropertyAll(AppTextStyles.h16regular),
-  trailing: [
-    IconButton(
-      icon: const Icon(Icons.airline_seat_legroom_reduced_rounded),
-      onPressed: () {},
+final Widget searchBar = Row(
+  children: [
+    Expanded(
+      child: TextField(
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.search),
+          hintText: "Search Something",
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      ),
     ),
+    const SizedBox(width: 10),
+    Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: const Icon(Icons.tune),
+    )
   ],
 );

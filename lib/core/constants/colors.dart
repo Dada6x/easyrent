@@ -5,6 +5,7 @@ const primaryBlue = Color(0xFF0061FF);
 const red = Color(0xFFF75555);
 const green = Color(0xFF4CD964);
 const white = Colors.white;
+// const background = grey.shade100;
 const black = Colors.black;
 const orange = Colors.orange;
 const grey = Color(0xFF666876);

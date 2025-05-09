@@ -3,7 +3,7 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/data/models/agent_model.dart';
 import 'package:easyrent/data/models/comment_model.dart';
-import 'package:easyrent/presentation/property_homepage/widgets/agent_tile_widget.dart';
+import 'package:easyrent/presentation/property_homepage/widgets/agent_widget.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/comments_section_widget.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/gallery_widget.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/location_widget.dart';
