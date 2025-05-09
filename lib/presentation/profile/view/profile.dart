@@ -1,5 +1,7 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/services/app/controller/app_controller.dart';
+import 'package:easyrent/core/services/app/theme/themes.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/profile/widgets/profileappbar.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,8 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppController _AppController = Get.put(AppController());
+
     return Scaffold(
       appBar: profileAppbar(),
       body: SingleChildScrollView(
@@ -90,15 +94,15 @@ class Profile extends StatelessWidget {
               endIndent: 20.w,
             ),
             customListTile(
-              "My Booking ",
+              "My Booking".tr,
               Icons.call_to_action_rounded,
             ),
             customListTile(
-              "Payments ",
+              "Payments".tr,
               Icons.payment,
             ),
             customListTile(
-              "My Favorite ",
+              "My Favorite".tr,
               Icons.favorite,
             ),
             Divider(
@@ -107,29 +111,46 @@ class Profile extends StatelessWidget {
               endIndent: 20.w, //!
             ),
             customListTile(
-              "Notifications ",
+              "Notifications".tr,
               Icons.notifications,
             ),
             customListTile(
-              "Security ",
+              "Security".tr,
               Icons.security,
             ),
             customListTile(
-              "Language ",
+              "Language".tr,
               Icons.language,
             ),
             customListTile(
-              "Help Center ",
+              "Help Center".tr,
               Icons.help,
             ),
             customListTile(
-              "Invite Friends ",
+              "Invite Friends".tr,
               Icons.people,
             ),
             customListTile(
-              "Logout ",
+              "Logout".tr,
               Icons.logout,
             ),
+            Switch(
+              value: _AppController.isDarkMode.value,
+              onChanged: (value) {
+                _AppController.isDarkMode.value = value;
+                Get.changeTheme(_AppController.isDarkMode.value
+                    ? Themes().darkMode
+                    : Themes().lightMode);
+              },
+            ),
+            TextButton(
+                onPressed: () {
+                  _AppController.isArabic = !_AppController.isArabic;
+                  _AppController.isArabic
+                      ? _AppController.changeLang("en")
+                      : _AppController.changeLang("ar");
+                },
+                child: const Text("Change Language"))
           ],
         ),
       ),

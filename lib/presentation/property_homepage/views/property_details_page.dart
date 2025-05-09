@@ -173,7 +173,7 @@ class PropertyDetailsPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _featureIcon(Icons.safety_check, "$beds Beds"),
+                      _featureIcon(Icons.safety_check, "$beds Beds".tr),
                       _featureIcon(Icons.bathroom, "$baths Baths"),
                       _featureIcon(Icons.aspect_ratio_rounded, "$area sqft"),
                     ],
@@ -184,14 +184,14 @@ class PropertyDetailsPage extends StatelessWidget {
                     endIndent: 10.w,
                   ),
                   //! Agent Widget
-                  const _Headers(text: "Agent"),
+                  _Headers(text: "Agent".tr),
                   AgentWidget(
                     agentImage: agent.avatar,
                     agentName: agent.name,
                     agentRole: agent.role,
                   ),
                   //! Overview
-                  const _Headers(text: "Overview"),
+                  _Headers(text: "Overview".tr),
                   Padding(
                     padding: EdgeInsets.all(8.0.r),
                     child: Text(
@@ -203,7 +203,7 @@ class PropertyDetailsPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 10.h),
                     child: Text(
-                      "Facilities",
+                      "Facilities".tr,
                       style: AppTextStyles.h20semi,
                     ),
                   ),
@@ -229,9 +229,9 @@ class PropertyDetailsPage extends StatelessWidget {
                     }),
                   ),
                   //! GALLERY
-                  const _Headers(text: "Gallery"),
+                   _Headers(text: "Gallery".tr),
                   GalleryWidget(images: galleryImages),
-                  const _Headers(text: "Location"),
+                   _Headers(text: "Location".tr),
                   //! Location
                   Padding(
                     padding: EdgeInsets.all(8.0),
@@ -280,7 +280,7 @@ class PropertyDetailsPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Price",
+                              "Price".tr,
                               style:
                                   AppTextStyles.h12medium.copyWith(color: grey),
                             ),
@@ -305,7 +305,7 @@ class PropertyDetailsPage extends StatelessWidget {
                               ),
                               onPressed: () {},
                               child: Text(
-                                "Book Now",
+                                "Book Now".tr,
                                 style: AppTextStyles.h16semi
                                     .copyWith(color: white),
                               ),

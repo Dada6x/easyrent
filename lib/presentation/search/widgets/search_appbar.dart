@@ -1,6 +1,7 @@
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 AppBar searchAppbar() {
   return AppBar(
@@ -10,7 +11,7 @@ AppBar searchAppbar() {
     forceMaterialTransparency: true,
     elevation: 0,
     centerTitle: true,
-    title: Text("Search for Your Ideal Home", style: AppTextStyles.h16medium),
+    title: Text("Search for Your Ideal Home".tr, style: AppTextStyles.h16medium),
     actions: [
       Padding(
         padding: EdgeInsets.all(8.0.r),

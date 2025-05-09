@@ -1,4 +1,6 @@
 // import 'package:easyrent/presentation/navigation/introduction_screen.dart';
+import 'package:easyrent/core/services/app/controller/app_controller.dart';
+import 'package:easyrent/core/services/app/language/locale.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,26 +12,26 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
-
   runApp(ScreenUtilInit(
     designSize: const Size(430, 932), // from Figma
     minTextAdapt: true,
     splitScreenMode: true,
     builder: (context, child) {
+      Get.put(AppController());
       return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
-           extensions: const [
-          SkeletonizerConfigData(),
-        ],
+          extensions: const [
+            SkeletonizerConfigData(),
+          ],
           // brightness: Brightness.light
           fontFamily: "Rubik",
           // scaffoldBackgroundColor: white
         ),
         // darkTheme: ThemeData.dark(),
+        translations: MyLocale(),
         home: const HomeScreenNavigator(),
-        
       );
     },
   ));

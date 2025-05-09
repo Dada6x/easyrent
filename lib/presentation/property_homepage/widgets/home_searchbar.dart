@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 final Widget searchBar = Row(
   children: [
@@ -6,7 +7,7 @@ final Widget searchBar = Row(
       child: TextField(
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.search),
-          hintText: "Search Something",
+          hintText: "Search Something".tr,
           filled: true,
           fillColor: Colors.white,
           border: OutlineInputBorder(
@@ -17,13 +18,16 @@ final Widget searchBar = Row(
       ),
     ),
     const SizedBox(width: 10),
-    Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+    GestureDetector(
+      onTap: () {},
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: const Icon(Icons.tune),
       ),
-      child: const Icon(Icons.tune),
     )
   ],
 );

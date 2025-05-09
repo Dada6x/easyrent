@@ -26,7 +26,7 @@ class PropertyCardBig extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Skeletonizer(
-      enabled: true,
+      enabled: false,
       enableSwitchAnimation: true,
       child: RawMaterialButton(
         onPressed: () {

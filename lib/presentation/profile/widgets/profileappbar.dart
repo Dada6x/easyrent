@@ -1,6 +1,7 @@
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 AppBar profileAppbar() {
   return AppBar(
@@ -9,7 +10,7 @@ AppBar profileAppbar() {
     forceMaterialTransparency: true,
     elevation: 0,
     title: Text(
-      "Profile",
+      "Profile".tr,
       style: AppTextStyles.h20semi,
     ),
     actions: [

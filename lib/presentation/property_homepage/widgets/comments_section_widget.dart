@@ -4,6 +4,7 @@ import 'package:easyrent/data/models/comment_model.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/comment_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class CommentSection extends StatefulWidget {
   final List<Comment> comments; // Make sure you define a Comment model
@@ -29,7 +30,7 @@ class _CommentSectionState extends State<CommentSection> {
           Row(
             children: [
               Text(
-                "Comments",
+                "Comments".tr,
                 style: AppTextStyles.h20semi,
               ),
               const Spacer(),
@@ -41,7 +42,7 @@ class _CommentSectionState extends State<CommentSection> {
                   });
                 },
                 child: Text(
-                  showAllComments ? "See Less" : "See All",
+                  showAllComments ? "See Less".tr : "See All".tr,
                   style: AppTextStyles.h16semi.copyWith(color: primaryBlue),
                 ),
               ),
@@ -56,10 +57,11 @@ class _CommentSectionState extends State<CommentSection> {
             return Column(
               children: [
                 CommentWidget(
+                  userRating: 3.2,
                   imagePath: comment.avatar,
-                  name: comment.username,
+                  userName: comment.username,
                   date: comment.date,
-                  comment: comment.commentMessage,
+                  commentMessage: comment.commentMessage,
                 ),
                 SizedBox(height: 10.h),
               ],

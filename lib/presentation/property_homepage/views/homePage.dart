@@ -3,11 +3,12 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/filterChips.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/home_searchbar.dart';
-import 'package:easyrent/presentation/property_homepage/widgets/homeappbar.dart';
+import 'package:easyrent/presentation/property_homepage/widgets/home_appbar.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/property_card_smoll.dart';
 import 'package:easyrent/presentation/property_homepage/widgets/property_card_big.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -32,14 +33,14 @@ class Homepage extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        "Featured",
+                        "Featured".tr,
                         style: AppTextStyles.h24semi,
                       ),
                       const Spacer(),
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "See All",
+                          "See All".tr,
                           style: AppTextStyles.h16semi
                               .copyWith(color: primaryBlue),
                         ),

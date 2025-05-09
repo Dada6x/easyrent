@@ -2,6 +2,7 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:panorama_viewer/panorama_viewer.dart';
 
 class PanoramaPage extends StatefulWidget {
@@ -77,7 +78,7 @@ class _PanoramaPageState extends State<PanoramaPage> {
                     borderRadius: BorderRadius.circular(20.r),
                   ),
                 ),
-                child: Text("Next Room",
+                child: Text("Next Room".tr,
                     style: AppTextStyles.h20semi.copyWith(color: primaryBlue)),
               ),
             ),

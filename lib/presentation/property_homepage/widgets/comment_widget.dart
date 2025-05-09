@@ -6,15 +6,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CommentWidget extends StatelessWidget {
   final String imagePath;
-  final String name;
+  final String userName;
   final String date;
-  final String comment;
+  final String commentMessage;
+  final double userRating;
   const CommentWidget(
       {super.key,
       required this.imagePath,
-      required this.name,
+      required this.userName,
       required this.date,
-      required this.comment});
+      required this.commentMessage,
+      required this.userRating});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class CommentWidget extends StatelessWidget {
               backgroundImage: const AssetImage(avatar),
             ),
             title: Text(
-              name,
+              userName,
               style: AppTextStyles.h16semi,
             ),
             subtitle: Column(
@@ -49,7 +51,7 @@ class CommentWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "4.5 ",
+                      userRating.toString(),
                       style: AppTextStyles.h14regular.copyWith(color: grey),
                     ),
                     Icon(
@@ -66,7 +68,7 @@ class CommentWidget extends StatelessWidget {
             padding: EdgeInsets.all(8.0.r),
             child: Text(
               style: AppTextStyles.h16regular.copyWith(color: grey),
-              comment,
+              commentMessage,
             ),
           )
         ],

@@ -7,6 +7,7 @@ import 'package:easyrent/presentation/search/widgets/property_widget_search.dart
 import 'package:easyrent/presentation/search/widgets/search_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -18,12 +19,12 @@ class Search extends StatefulWidget {
 //! this is done with filtering so i dont know what to do , must see the restapi course to find out
 class _SearchState extends State<Search> {
   final List<String> filters = [
-    'All',
-    'House',
-    'Villa',
-    'Apartments',
-    'Lands',
-    'Other'
+    'All'.tr,
+    'House'.tr,
+    'Villa'.tr,
+    'Apartments'.tr,
+    'Lands'.tr,
+    'Other'.tr
   ];
   int selectedIndex = 0;
 

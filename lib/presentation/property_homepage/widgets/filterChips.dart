@@ -2,6 +2,7 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class PropertyFilterChips extends StatefulWidget {
   const PropertyFilterChips({super.key});
@@ -11,7 +12,7 @@ class PropertyFilterChips extends StatefulWidget {
 }
 
 class _PropertyFilterChipsState extends State<PropertyFilterChips> {
-  final List<String> filters = ['All', 'House', 'Villa', 'Apartments','Lands','Other'];
+  final List<String> filters = ['All'.tr, 'House'.tr, 'Villa'.tr, 'Apartments'.tr,'Lands'.tr,'Other'.tr];
   int selectedIndex = 0;
 
   @override
