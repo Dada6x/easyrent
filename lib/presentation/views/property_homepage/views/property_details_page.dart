@@ -1,5 +1,6 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/utils/divider.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/data/models/agent_model.dart';
 import 'package:easyrent/data/models/comment_model.dart';
@@ -149,7 +150,7 @@ class PropertyDetailsPage extends StatelessWidget {
                       Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: lightSecondary,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: Text(
@@ -173,16 +174,19 @@ class PropertyDetailsPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _featureIcon(Icons.safety_check, "$beds Beds".tr),
-                      _featureIcon(Icons.bathroom, "$baths Baths"),
-                      _featureIcon(Icons.aspect_ratio_rounded, "$area sqft"),
+                      //TODO
+                      _featureIcon(
+                          Icons.safety_check, "$beds Beds".tr, context),
+                      _featureIcon(Icons.bathroom, "$baths Baths", context),
+                      _featureIcon(
+                          Icons.aspect_ratio_rounded, "$area sqft", context),
                     ],
                   ),
-                  Divider(
-                    color: lightBorder,
-                    indent: 10.w,
-                    endIndent: 10.w,
+                  SizedBox(
+                    height: 20.h,
                   ),
+                  const CustomDivider(),
+
                   //! Agent Widget
                   _Headers(text: "Agent".tr),
                   AgentWidget(
@@ -199,7 +203,7 @@ class PropertyDetailsPage extends StatelessWidget {
                       style: AppTextStyles.h16medium.copyWith(color: grey),
                     ),
                   ),
-                  // const _Headers(text: "Facilities"),
+                  const CustomDivider(),
                   Padding(
                     padding: EdgeInsets.only(top: 10.h),
                     child: Text(
@@ -207,6 +211,7 @@ class PropertyDetailsPage extends StatelessWidget {
                       style: AppTextStyles.h20semi,
                     ),
                   ),
+
                   //!Facilities
                   GridView.count(
                     crossAxisCount: 4,
@@ -217,7 +222,8 @@ class PropertyDetailsPage extends StatelessWidget {
                       return Column(
                         children: [
                           CircleAvatar(
-                            backgroundColor: lightSecondary,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
                             child: Icon(Icons.star,
                                 size: 30.r, color: primaryBlue),
                           ),
@@ -229,10 +235,14 @@ class PropertyDetailsPage extends StatelessWidget {
                     }),
                   ),
                   //! GALLERY
+                  const CustomDivider(),
+
                   _Headers(text: "Gallery".tr),
                   GalleryWidget(images: galleryImages),
                   _Headers(text: "Location".tr),
                   //! Location
+                  const CustomDivider(),
+
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Row(
@@ -256,7 +266,11 @@ class PropertyDetailsPage extends StatelessWidget {
                     child: CurrentLocationMap(latitude: lat, longitude: lng),
                   ),
                   //! COMMENTS
-                  // const _Headers(text: "Comment"),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  const CustomDivider(),
+
                   CommentSection(comments: [
                     comment,
                     comment,
@@ -265,11 +279,7 @@ class PropertyDetailsPage extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Divider(
-                    color: lightBorder,
-                    indent: 10.w,
-                    endIndent: 10.w,
-                  ),
+                  const CustomDivider(),
                   //! property Price
                   Padding(
                     //TODO
@@ -360,13 +370,13 @@ class _Headers extends StatelessWidget {
   }
 }
 
-Widget _featureIcon(IconData icon, String label) {
+Widget _featureIcon(IconData icon, String label, BuildContext context) {
   return Row(
     children: [
       Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: lightSecondary,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(30),
         ),
         child: Icon(

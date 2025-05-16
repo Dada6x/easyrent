@@ -11,7 +11,7 @@ class Theme_languageRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppController _AppController = Get.put(AppController());
+    final AppController _AppController = Get.find<AppController>();
 
     return Row(
       children: [

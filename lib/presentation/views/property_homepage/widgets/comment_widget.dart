@@ -24,7 +24,7 @@ class CommentWidget extends StatelessWidget {
       decoration: BoxDecoration(
         // border: Border.all(color: border),
         borderRadius: BorderRadius.circular(8.r),
-        color: white,
+        color: Theme.of(context).colorScheme.secondary,
       ),
       child: Column(
         children: [

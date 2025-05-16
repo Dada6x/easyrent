@@ -67,7 +67,7 @@ class Profile extends StatelessWidget {
                         );
                       },
                       elevation: 2,
-                      fillColor: Colors.white,
+                      fillColor: Theme.of(context).colorScheme.secondary,
                       padding: EdgeInsets.all(10.r),
                       shape: const CircleBorder(),
                       child: Icon(
