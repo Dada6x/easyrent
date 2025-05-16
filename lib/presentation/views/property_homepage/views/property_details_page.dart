@@ -3,11 +3,11 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/data/models/agent_model.dart';
 import 'package:easyrent/data/models/comment_model.dart';
-import 'package:easyrent/presentation/property_homepage/widgets/agent_widget.dart';
-import 'package:easyrent/presentation/property_homepage/widgets/comments_section_widget.dart';
-import 'package:easyrent/presentation/property_homepage/widgets/gallery_widget.dart';
-import 'package:easyrent/presentation/property_homepage/widgets/location_widget.dart';
-import 'package:easyrent/presentation/property_homepage/widgets/panorama_images.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/agent_widget.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/comments_section_widget.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/gallery_widget.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/location_widget.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/panorama_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -179,7 +179,7 @@ class PropertyDetailsPage extends StatelessWidget {
                     ],
                   ),
                   Divider(
-                    color: border,
+                    color: lightBorder,
                     indent: 10.w,
                     endIndent: 10.w,
                   ),
@@ -229,9 +229,9 @@ class PropertyDetailsPage extends StatelessWidget {
                     }),
                   ),
                   //! GALLERY
-                   _Headers(text: "Gallery".tr),
+                  _Headers(text: "Gallery".tr),
                   GalleryWidget(images: galleryImages),
-                   _Headers(text: "Location".tr),
+                  _Headers(text: "Location".tr),
                   //! Location
                   Padding(
                     padding: EdgeInsets.all(8.0),
@@ -266,7 +266,7 @@ class PropertyDetailsPage extends StatelessWidget {
                     height: 10.h,
                   ),
                   Divider(
-                    color: border,
+                    color: lightBorder,
                     indent: 10.w,
                     endIndent: 10.w,
                   ),

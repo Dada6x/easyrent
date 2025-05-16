@@ -1,4 +1,4 @@
-abstract class ApiConumer {
+abstract class ApiConsumer {
   get(
     String path, {
     Object? data,
@@ -23,5 +23,5 @@ abstract class ApiConumer {
     bool isFormData = false,
   });
 
-  const ApiConumer();
+  const ApiConsumer();
 }

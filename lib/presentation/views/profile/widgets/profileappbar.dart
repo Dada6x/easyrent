@@ -1,4 +1,5 @@
 import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/presentation/views/profile/widgets/test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -16,12 +17,17 @@ AppBar profileAppbar() {
     actions: [
       Padding(
         padding: EdgeInsets.all(8.0.r),
-        child: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.notifications,
-              size: 30.r,
-            )),
+        child: Row(
+          children: [
+           telegramSwitchButton(),
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.notifications,
+                  size: 30.r,
+                )),
+          ],
+        ),
       )
     ],
   );

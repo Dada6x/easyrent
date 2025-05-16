@@ -1,7 +1,7 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/presentation/property_homepage/views/property_details_page.dart';
+import 'package:easyrent/presentation/views/property_homepage/views/property_details_page.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

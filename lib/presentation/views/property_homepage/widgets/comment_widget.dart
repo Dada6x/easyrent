@@ -23,7 +23,7 @@ class CommentWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         // border: Border.all(color: border),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         color: white,
       ),
       child: Column(

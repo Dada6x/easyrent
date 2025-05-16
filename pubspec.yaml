@@ -41,6 +41,7 @@ dependencies:
   latlong2: ^0.9.1
   like_button: ^2.0.5
   lottie: any
+  animated_theme_switcher: ^2.0.10
   panorama_viewer: ^2.0.4
   photo_view: ^0.15.0
   internet_connection_checker_plus: ^2.6.0

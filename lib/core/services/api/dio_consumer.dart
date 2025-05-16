@@ -3,8 +3,7 @@ import 'package:easyrent/core/services/api/api_consumer.dart';
 import 'package:easyrent/core/services/api/api_interceptor.dart';
 import 'package:easyrent/core/services/errors/exceptions.dart';
 
-
-class DioConsumer extends ApiConumer {
+class DioConsumer extends ApiConsumer {
   final Dio dio;
   DioConsumer(this.dio) {
     dio.options.baseUrl = "API PATH HERE";

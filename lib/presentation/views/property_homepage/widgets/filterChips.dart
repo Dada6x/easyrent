@@ -12,7 +12,14 @@ class PropertyFilterChips extends StatefulWidget {
 }
 
 class _PropertyFilterChipsState extends State<PropertyFilterChips> {
-  final List<String> filters = ['All'.tr, 'House'.tr, 'Villa'.tr, 'Apartments'.tr,'Lands'.tr,'Other'.tr];
+  final List<String> filters = [
+    'All'.tr,
+    'House'.tr,
+    'Villa'.tr,
+    'Apartments'.tr,
+    'Lands'.tr,
+    'Other'.tr
+  ];
   int selectedIndex = 0;
 
   @override
@@ -37,7 +44,7 @@ class _PropertyFilterChipsState extends State<PropertyFilterChips> {
               backgroundColor: lightPrimary2,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.r),
-                  side: const BorderSide(color: border)),
+                  side: const BorderSide(color: lightBorder)),
               onSelected: (_) {
                 //TODO
                 setState(() {

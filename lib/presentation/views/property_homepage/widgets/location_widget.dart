@@ -9,7 +9,6 @@ class CurrentLocationMap extends StatelessWidget {
   final double longitude;
   const CurrentLocationMap(
       {super.key, latlng, required this.latitude, required this.longitude});
-
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -24,7 +23,7 @@ class CurrentLocationMap extends StatelessWidget {
           TileLayer(
             urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             subdomains: const ['a', 'b', 'c'],
-            userAgentPackageName: 'com.example.easyrent',
+            // userAgentPackageName: 'com.example.easyrent',
           ),
           MarkerLayer(
             markers: [

@@ -1,7 +1,8 @@
-// import 'package:easyrent/presentation/navigation/introduction_screen.dart';
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easyrent/core/services/app/controller/app_controller.dart';
 import 'package:easyrent/core/services/app/language/locale.dart';
-import 'package:easyrent/presentation/navigation/navigator.dart';
+import 'package:easyrent/core/services/app/theme/themes.dart';
+import 'package:easyrent/presentation/navigation/introduction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,39 +11,43 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+    const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+  );
 
   runApp(ScreenUtilInit(
-    designSize: const Size(430, 932), // from Figma
+    designSize: const Size(430, 932), // design ratio in Figma
     minTextAdapt: true,
     splitScreenMode: true,
     builder: (context, child) {
+      // Put AppController before building the app
       Get.put(AppController());
-      return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          extensions: const [
-            SkeletonizerConfigData(),
-          ],
-          // brightness: Brightness.light
-          fontFamily: "Rubik",
-          // scaffoldBackgroundColor: white
-        ),
-        // darkTheme: ThemeData.dark(),
-        translations: MyLocale(),
-        home: const HomeScreenNavigator(),
+
+      return ThemeProvider(
+        initTheme: Themes().lightMode, // or load from storage
+        builder: (_, theme) {
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: theme,
+            translations: MyLocale(),
+            home: const IntroductionScreen(),
+            // You kept this for skeleton loading config
+          );
+        },
       );
     },
   ));
 }
 
 /*
+design architecture
 lib/
 ├── //! core/
-│   ├── services/            # Dio setup, API client
-│   ├── constants/           # App-wide constants like colors, images paths
-│   └── utils/               # Helpers, formatters, etc.
+│   ├── constants/           # App-wide colors, images paths.
+│   ├── utils/               # textStyles.
+│   └── services/            
+│       ├── api/             # api consumer , api interceptor , dio consumer , end points
+│       ├── app/             # controller for theme , language , internet connection 
+│       └── errors/          # error model , exceptions 
 │
 ├── //@ data/
 │   ├── models/              # Shared models (e.g., User, Location)
@@ -52,12 +57,12 @@ lib/
 │   ├── //$home/ 
 │   │   ├── views/
 │   │   │   └── home_page.dart
-│   │   └── //~bloc/            # Optional if home needs dynamic state
+│   │   └── //~bloc/
 │   │
 │   ├── //$auth/
 │   │   ├── views/
 │   │   │   └── login_page.dart
-│   │   ├── //~bloc/
+│   │   ├── bloc/
 │   │   │   ├── auth_bloc.dart
 │   │   │   ├── auth_event.dart
 │   │   │   └── auth_state.dart
@@ -72,12 +77,22 @@ lib/
 │   │   │   ├── property_event.dart
 │   │   │   └── property_state.dart
 │   │   ├── widgets/         # PropertyCard, PriceTag, etc.
+│   │   └── models/  \        # Optional feature-specific models
+│   │
+│   ├── //$profile/
+│   │   ├── views/
+│   │   │   ├── property_list_page.dart
+│   │   │   └── property_detail_page.dart
+│   │   ├── //~bloc/
+│   │   │   ├── profile.dart
+│   │   │   └── profile_state.dart
+│   │   ├── widgets/         # PropertyCard, PriceTag, etc.
 │   │   └── models/          # Optional feature-specific models
 │   │
 ├── //# routes/
 │   └── app_routes.dart      # Route names and navigation logic
 │
-└── main.dart
+└── //?main.dart
 -------------------------------------------------------------------------------------
 ?BLoC :
 @For business logic and state management (clean, testable, scalable)

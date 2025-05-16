@@ -47,7 +47,7 @@ class _PanoramaPageState extends State<PanoramaPage> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      border: Border.all(color: border),
+                      border: Border.all(color: lightBorder),
                       color: const Color.fromARGB(22, 60, 59, 58),
                       shape: BoxShape.circle,
                     ),

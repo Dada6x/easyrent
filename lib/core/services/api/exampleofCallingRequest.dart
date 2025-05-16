@@ -4,7 +4,7 @@ import 'package:easyrent/core/services/errors/exceptions.dart';
 import 'package:flutter/material.dart';
 
 class Exampleofcallingrequest {
-  late final ApiConumer api;
+  late final ApiConsumer api;
   TextEditingController controller = TextEditingController();
 
   signInRequest() {

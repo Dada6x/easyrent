@@ -1,7 +1,7 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/presentation/property_homepage/views/property_details_page.dart';
+import 'package:easyrent/presentation/views/property_homepage/views/property_details_page.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +26,7 @@ class PropertyCardBig extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Skeletonizer(
-      enabled: false,
+      enabled: true,
       enableSwitchAnimation: true,
       child: RawMaterialButton(
         onPressed: () {
@@ -76,7 +76,7 @@ class PropertyCardBig extends StatelessWidget {
                 elevation: 1,
                 child: Stack(
                   children: [
-                    // Background Image
+                    // !Background Image
                     // Image.asset(
                     //   imagePath,
                     //   height: 340.h,
@@ -87,7 +87,16 @@ class PropertyCardBig extends StatelessWidget {
                       height: 340.h,
                       width: 250.w,
                       boxFit: BoxFit.cover,
-                      imageUrl: onlineImageUrl,
+                      imageUrl: "https://images.unsplash.com/photo-ss",
+                      errorWidget: const Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.wifi_off_rounded),
+                            Text("you're offline"),
+                          ],
+                        ),
+                      ),
                     ),
                     // Gradient Overlay
                     Positioned.fill(

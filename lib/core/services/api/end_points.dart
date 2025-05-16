@@ -1,7 +1,12 @@
 class EndPoints {
   static String baseUrl = "";
-  static String Signin = "";
-  static String Logout = "";
+  static String Signin = "/login";
+  static String Logout = "/logOut";
+  static String signUp = "/logOut";
+  static String fetchAllProperties = "/logOut";
+  // static String Logout = "/logOut";
+  // static String Logout = "/logOut";
+
   static String getUserData(id) {
     return "apiURL/user/$id";
   }

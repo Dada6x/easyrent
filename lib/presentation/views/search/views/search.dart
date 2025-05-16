@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/presentation/property_homepage/widgets/home_searchbar.dart';
-import 'package:easyrent/presentation/search/widgets/property_widget_search.dart';
-import 'package:easyrent/presentation/search/widgets/search_appbar.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/home_searchbar.dart';
+import 'package:easyrent/presentation/views/search/widgets/property_widget_search.dart';
+import 'package:easyrent/presentation/views/search/widgets/search_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -87,7 +87,7 @@ class _SearchState extends State<Search> {
                         backgroundColor: lightPrimary2,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.r),
-                            side: const BorderSide(color: border)),
+                            side: const BorderSide(color: lightBorder)),
                         onSelected: (_) {
                           if (selectedIndex != index) {
                             setState(() => selectedIndex = index);
