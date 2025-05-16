@@ -1,5 +1,5 @@
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/presentation/views/profile/widgets/test.dart';
+import 'package:easyrent/presentation/views/profile/widgets/them_language_buttons%20widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -19,7 +19,7 @@ AppBar profileAppbar() {
         padding: EdgeInsets.all(8.0.r),
         child: Row(
           children: [
-           telegramSwitchButton(),
+            const Theme_languageRow(),
             IconButton(
                 onPressed: () {},
                 icon: Icon(

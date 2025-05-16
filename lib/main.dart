@@ -7,10 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-bool isOffline = !Get.find<AppController>().isOffline.value;
-void main() {
+// bool isOffline = !Get.find<AppController>().isOffline.value;
+bool isOffline = false;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferences.getInstance();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
   );
@@ -20,11 +25,9 @@ void main() {
     minTextAdapt: true,
     splitScreenMode: true,
     builder: (context, child) {
-      // Put AppController before building the app
       Get.put(AppController());
-
       return ThemeProvider(
-        initTheme: Themes().lightMode, // or load from storage
+        initTheme: Themes().lightMode,
         builder: (_, theme) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,

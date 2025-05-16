@@ -7,14 +7,16 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 //! this controller manage three things theme , language , and internet connection
 class AppController extends GetxController {
   RxBool isDarkMode = false.obs;
-  bool isArabic = true;
+  RxBool isArabic = true.obs;
+  RxBool isOffline = true.obs;
+
+  // change language
   void changeLang(String codeLang) {
     Locale locale = Locale(codeLang);
     Get.updateLocale(locale);
   }
 
-
-  RxBool isOffline = true.obs;
+  // check internet connection
   StreamSubscription? _internetConnectionStreamSubscription;
   void _checkInternetConnection() {
     _internetConnectionStreamSubscription =
