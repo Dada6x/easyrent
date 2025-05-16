@@ -1,8 +1,11 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/utils/error_loading_mssg.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/property_details_page.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+// import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,19 +16,21 @@ class PropertyWidgetSearch extends StatelessWidget {
   final String title;
   final String location;
   final String imagePath;
+  final double rating;
   final int price;
   const PropertyWidgetSearch(
       {super.key,
       required this.title,
       required this.location,
       required this.imagePath,
-      required this.price});
+      required this.price,
+      required this.rating});
 
   @override
   Widget build(BuildContext context) {
     return Skeletonizer(
-        enabled: true,
-        enableSwitchAnimation: true,
+      enabled: isOffline,
+      enableSwitchAnimation: true,
       child: RawMaterialButton(
         onPressed: () {
           Get.to(
@@ -64,7 +69,7 @@ class PropertyWidgetSearch extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           child: Row(
             children: [
@@ -75,31 +80,29 @@ class PropertyWidgetSearch extends StatelessWidget {
                 ),
                 child: Stack(
                   children: [
-                    Image.asset(
-                      imagePath,
-                      height: 120.h,
-                      width: 120.w,
-                      fit: BoxFit.cover,
-                    ),
-                    // FancyShimmerImage(
+                    //# test
+                    // Image.asset(
+                    //   imagePath,
                     //   height: 120.h,
                     //   width: 120.w,
-                    //   boxFit: BoxFit.cover,
-                    //   imageUrl:
-                    //       onlineImageUrl,
-                    //   errorWidget: const Icon(
-                    //     Icons.error,
-                    //     color: grey,
-                    //   ),
+                    //   fit: BoxFit.cover,
                     // ),
+
+                    FancyShimmerImage(
+                      height: 120.h,
+                      width: 120.w,
+                      boxFit: BoxFit.cover,
+                      imageUrl: onlineImageUrl,
+                      errorWidget: const ErrorLoadingWidget(),
+                    ),
                     Positioned(
                       top: 4.h,
                       left: 70.w,
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 6.w, vertical: 2.h),
                         decoration: BoxDecoration(
-                          color: white,
+                          color: Theme.of(context).colorScheme.secondary,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Row(
@@ -110,7 +113,7 @@ class PropertyWidgetSearch extends StatelessWidget {
                               color: orange,
                             ),
                             SizedBox(width: 2.w),
-                            Text("4.8", style: AppTextStyles.h10light),
+                            Text("$rating", style: AppTextStyles.h10light),
                           ],
                         ),
                       ),
@@ -118,24 +121,24 @@ class PropertyWidgetSearch extends StatelessWidget {
                   ],
                 ),
               ),
-      
-              // Details
+              //! Details
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(title, style: AppTextStyles.h18semi),
                       SizedBox(height: 4.h),
                       Text(location,
-                          style: AppTextStyles.h14regular.copyWith(color: grey)),
+                          style:
+                              AppTextStyles.h14regular.copyWith(color: grey)),
                     ],
                   ),
                 ),
               ),
-      
-              // Price & Favorite Icon
+
               Padding(
                 padding: EdgeInsets.only(right: 12.r),
                 child: Column(

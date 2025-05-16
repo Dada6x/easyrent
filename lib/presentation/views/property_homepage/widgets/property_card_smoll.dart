@@ -1,6 +1,8 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/utils/error_loading_mssg.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/property_details_page.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +19,9 @@ class PropertyCardSmall extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Skeletonizer(
-      ignoreContainers: true,
-      effect: const ShimmerEffect(),
-      enabled: false,
+      enabled: isOffline,
       enableSwitchAnimation: true,
+      containersColor: Theme.of(context).colorScheme.onTertiary,
       child: RawMaterialButton(
         onPressed: () {
           Get.to(
@@ -57,7 +58,7 @@ class PropertyCardSmall extends StatelessWidget {
               ));
         },
         child: Card(
-          color: white,
+          color: Theme.of(context).colorScheme.secondary,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.r),
@@ -70,17 +71,19 @@ class PropertyCardSmall extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(16.r)),
                     child:
+                        //# test
                         // Image.asset(
                         //   property["image"],
                         //   height: 140.h,
                         //   width: double.infinity,
                         //   fit: BoxFit.cover,
                         // ),
+
                         FancyShimmerImage(
                       height: 140.h,
                       boxFit: BoxFit.cover,
-                      imageUrl:
-                          onlineImageUrl,
+                      imageUrl: onlineImageUrl,
+                      errorWidget: const ErrorLoadingWidget(),
                     ),
                   ),
                   Positioned(
@@ -90,19 +93,18 @@ class PropertyCardSmall extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
                       decoration: BoxDecoration(
-                        color: white,
+                        color: Theme.of(context).colorScheme.secondary,
                         borderRadius: BorderRadius.circular(12.r),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.star_rounded, size: 14.sp, color: orange),
+                          Icon(Icons.star_rounded, size: 12.r, color: orange),
                           SizedBox(width: 2.w),
                           Text(
                             "${property["rating"]}",
                             style: AppTextStyles.h10semi.copyWith(
                               fontSize: 10.sp,
-                              color: primaryBlue,
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,

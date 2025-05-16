@@ -149,7 +149,7 @@ class PropertyDetailsPage extends StatelessWidget {
                       Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: lightPrimary2,
+                            color: lightSecondary,
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: Text(
@@ -217,7 +217,7 @@ class PropertyDetailsPage extends StatelessWidget {
                       return Column(
                         children: [
                           CircleAvatar(
-                            backgroundColor: lightPrimary2,
+                            backgroundColor: lightSecondary,
                             child: Icon(Icons.star,
                                 size: 30.r, color: primaryBlue),
                           ),
@@ -366,7 +366,7 @@ Widget _featureIcon(IconData icon, String label) {
       Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: lightPrimary2,
+          color: lightSecondary,
           borderRadius: BorderRadius.circular(30),
         ),
         child: Icon(

@@ -16,7 +16,7 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: lightPrimary,
+        // backgroundColor: lightPrimary,
         appBar: homePageAppbar(),
         body: SingleChildScrollView(
           child: Padding(
@@ -25,9 +25,9 @@ class Homepage extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.r),
-                  child: searchBar,
+                  child: const CustomSearchBar(),
                 ),
-              
+
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.r),
                   child: Row(

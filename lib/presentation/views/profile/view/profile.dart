@@ -1,5 +1,6 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/utils/divider.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
 import 'package:flutter/material.dart';
@@ -84,30 +85,21 @@ class Profile extends StatelessWidget {
                   "User Name",
                   style: AppTextStyles.h24semi),
             ),
-            Divider(
-              color: lightBorder,
-              indent: 20.w,
-              endIndent: 20.w,
-            ),
+            const CustomDivider(),
+
             customListTile(
                 "My Booking".tr, Icons.call_to_action_rounded, () {}),
             customListTile("Payments".tr, Icons.payment, () {}),
             customListTile("My Favorite".tr, Icons.favorite, () {}),
-            Divider(
-              color: lightBorder,
-              indent: 20.w, //!
-              endIndent: 20.w, //!
-            ),
+            const CustomDivider(),
+
             customListTile("Notifications".tr, Icons.notifications, () {}),
             customListTile("Security".tr, Icons.security, () {}),
             customListTile("Language".tr, Icons.language, () {}),
             customListTile("Help Center".tr, Icons.help, () {}),
             customListTile("Invite Friends".tr, Icons.people, () {}),
-            Divider(
-              color: lightBorder,
-              indent: 20.w,
-              endIndent: 20.w,
-            ),
+            const CustomDivider(),
+
             customListRedTile("Logout".tr, Icons.logout, () {}),
           ],
         ),

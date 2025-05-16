@@ -35,18 +35,15 @@ class _PropertyFilterChipsState extends State<PropertyFilterChips> {
             padding: EdgeInsets.only(right: 12.w),
             child: ChoiceChip(
               showCheckmark: false,
-              label: Text(filters[index],
-                  style: AppTextStyles.h14regular.copyWith(
-                    color: isSelected ? Colors.white : Colors.black,
-                  )),
+              label: Text(filters[index], style: AppTextStyles.h14regular),
               selected: isSelected,
               selectedColor: primaryBlue,
-              backgroundColor: lightPrimary2,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.r),
-                  side: const BorderSide(color: lightBorder)),
+                  side:
+                      BorderSide(color: Theme.of(context).colorScheme.outline)),
               onSelected: (_) {
-                //TODO
                 setState(() {
                   selectedIndex = index;
                   // new Request of the vertical list view

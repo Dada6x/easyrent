@@ -1,5 +1,5 @@
 import 'package:easyrent/presentation/views/property_homepage/views/homePage.dart';
-import 'package:easyrent/presentation/views/search/views/search.dart';
+import 'package:easyrent/presentation/views/search/views/search_page.dart';
 import 'package:easyrent/routes/routes.dart';
 import 'package:get/get.dart';
 

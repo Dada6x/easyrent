@@ -3,7 +3,7 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/homePage.dart';
 import 'package:easyrent/presentation/views/profile/view/profile.dart';
-import 'package:easyrent/presentation/views/search/views/search.dart';
+import 'package:easyrent/presentation/views/search/views/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -34,14 +34,15 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: ThemeSwitchingArea(
+        // for tele
         child: Scaffold(
           body: _pages[_selectedIndex],
           bottomNavigationBar: Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               border: Border(
                 top: BorderSide(
-                  color: lightPrimary,
-                  width: 1.0,
+                  color: Theme.of(context).colorScheme.outline,
+                  width: 1.5.r,
                 ),
               ),
             ),

@@ -8,11 +8,15 @@ class Themes {
       SkeletonizerConfigData(),
     ],
     fontFamily: "Rubik",
-    colorScheme: const ColorScheme.light(
-      primary: primaryBlue,
-      surface: lightBackground,
-      secondaryContainer: lightBorder,
-    ),
+    colorScheme: ColorScheme.light(
+        primary: primaryBlue,
+        surface: Colors.grey.shade100,
+        secondary: lightSecondary,
+        outline: lightBorder,
+        // for shimmer effect
+        onTertiary: lightshimerContainer
+        // secondaryContainer: lightBorder,
+        ),
   );
 
   final ThemeData darkMode = ThemeData(
@@ -23,6 +27,11 @@ class Themes {
     colorScheme: const ColorScheme.dark(
         primary: primaryBlue,
         surface: darkBackground,
-        secondaryContainer: darkBackground),
+        secondary: darkSecondary,
+        outline: darkBorder,
+        // for shimmer effect
+        onTertiary: shimmerContainer
+        // secondaryContainer: darkBackground,
+        ),
   );
 }

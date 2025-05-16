@@ -2,13 +2,14 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easyrent/core/services/app/controller/app_controller.dart';
 import 'package:easyrent/core/services/app/language/locale.dart';
 import 'package:easyrent/core/services/app/theme/themes.dart';
-import 'package:easyrent/presentation/navigation/introduction_screen.dart';
+import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+bool isOffline = false;
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
@@ -29,7 +30,7 @@ void main() {
             debugShowCheckedModeBanner: false,
             theme: theme,
             translations: MyLocale(),
-            home: const IntroductionScreen(),
+            home: const HomeScreenNavigator(),
             // You kept this for skeleton loading config
           );
         },

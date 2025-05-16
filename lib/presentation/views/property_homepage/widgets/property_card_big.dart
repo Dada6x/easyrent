@@ -1,6 +1,8 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/utils/error_loading_mssg.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/property_details_page.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +28,9 @@ class PropertyCardBig extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Skeletonizer(
-      enabled: true,
+      enabled: isOffline,
       enableSwitchAnimation: true,
+      containersColor: Theme.of(context).colorScheme.onTertiary,
       child: RawMaterialButton(
         onPressed: () {
           Get.to(
@@ -77,28 +80,20 @@ class PropertyCardBig extends StatelessWidget {
                 child: Stack(
                   children: [
                     // !Background Image
-                    // Image.asset(
-                    //   imagePath,
-                    //   height: 340.h,
-                    //   width: 250.w,
-                    //   fit: BoxFit.cover,
-                    // ),
-                    FancyShimmerImage(
+                    //# test
+                    Image.asset(
+                      imagePath,
                       height: 340.h,
                       width: 250.w,
-                      boxFit: BoxFit.cover,
-                      imageUrl: "https://images.unsplash.com/photo-ss",
-                      errorWidget: const Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.wifi_off_rounded),
-                            Text("you're offline"),
-                          ],
-                        ),
-                      ),
+                      fit: BoxFit.cover,
                     ),
-                    // Gradient Overlay
+                    // FancyShimmerImage(
+                    //     height: 340.h,
+                    //     width: 250.w,
+                    //     boxFit: BoxFit.cover,
+                    //     imageUrl: onlineImageUrl,
+                    //     errorWidget: const ErrorLoadingWidget()),
+                    //! Gradient Overlay
                     Positioned.fill(
                       child: Container(
                         decoration: BoxDecoration(
@@ -123,8 +118,8 @@ class PropertyCardBig extends StatelessWidget {
                         children: [
                           Text(
                             title,
-                            style: AppTextStyles.h20bold.copyWith(
-                              color: Colors.white,
+                            style: AppTextStyles.h20semi.copyWith(
+                              color: white,
                               fontSize: 18.sp,
                             ),
                           ),
@@ -132,7 +127,7 @@ class PropertyCardBig extends StatelessWidget {
                           Text(
                             location,
                             style: AppTextStyles.h16regular.copyWith(
-                              color: Colors.white70,
+                              color: white,
                               fontSize: 14.sp,
                             ),
                           ),
@@ -140,7 +135,7 @@ class PropertyCardBig extends StatelessWidget {
                           Text(
                             '\$$price',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: primaryBlue,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -158,12 +153,12 @@ class PropertyCardBig extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.circular(20.r),
                   ),
                   child: Row(
                     children: [
-                      Icon(Icons.star_rounded, color: orange, size: 20.r),
+                      Icon(Icons.star_rounded, color: orange, size: 18.r),
                       SizedBox(width: 4.w),
                       Text(
                         rating.toString(),
