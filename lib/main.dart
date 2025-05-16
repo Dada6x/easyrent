@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-bool isOffline = false;
+bool isOffline = !Get.find<AppController>().isOffline.value;
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
@@ -31,7 +31,6 @@ void main() {
             theme: theme,
             translations: MyLocale(),
             home: const HomeScreenNavigator(),
-            // You kept this for skeleton loading config
           );
         },
       );

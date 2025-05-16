@@ -14,9 +14,7 @@ class Themes {
         secondary: lightSecondary,
         outline: lightBorder,
         // for shimmer effect
-        onTertiary: lightshimerContainer
-        // secondaryContainer: lightBorder,
-        ),
+        onTertiary: lightshimerContainer),
   );
 
   final ThemeData darkMode = ThemeData(
@@ -30,8 +28,6 @@ class Themes {
         secondary: darkSecondary,
         outline: darkBorder,
         // for shimmer effect
-        onTertiary: shimmerContainer
-        // secondaryContainer: darkBackground,
-        ),
+        onTertiary: shimmerContainer),
   );
 }

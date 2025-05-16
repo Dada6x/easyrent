@@ -158,7 +158,7 @@ class PropertyCardBig extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Icon(Icons.star_rounded, color: orange, size: 18.r),
+                      Icon(Icons.star_rounded, color: orange, size: 18.sp),
                       SizedBox(width: 4.w),
                       Text(
                         rating.toString(),
