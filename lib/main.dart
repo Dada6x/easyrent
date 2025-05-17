@@ -2,7 +2,8 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easyrent/core/services/app/controller/app_controller.dart';
 import 'package:easyrent/core/services/app/language/locale.dart';
 import 'package:easyrent/core/services/app/theme/themes.dart';
-import 'package:easyrent/presentation/views/auth/views/login.dart';
+import 'package:easyrent/presentation/navigation/introduction_screen.dart';
+import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,7 +48,7 @@ void main() async {
             debugShowCheckedModeBanner: false,
             theme: theme,
             translations: MyLocale(),
-            home: LoginPage(),
+            home: const IntroductionScreen(),
           );
         },
       );

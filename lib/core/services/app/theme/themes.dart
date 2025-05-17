@@ -10,7 +10,7 @@ class Themes {
     fontFamily: "Rubik",
     colorScheme: ColorScheme.light(
         primary: primaryBlue,
-        surface: Colors.grey.shade100,
+        surface: Colors.grey.shade50,
         secondary: lightSecondary,
         outline: lightBorder,
         // for shimmer effect
