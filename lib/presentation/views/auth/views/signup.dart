@@ -3,6 +3,7 @@ import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';
+import 'package:easyrent/presentation/views/auth/widgets/empty_search_bar.dart';
 import 'package:easyrent/presentation/views/auth/widgets/greeting.dart';
 import 'package:easyrent/presentation/views/auth/widgets/textFields.dart';
 import 'package:flutter/material.dart';
@@ -24,13 +25,7 @@ class SignupPage extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          bottomOpacity: 0,
-          scrolledUnderElevation: 0.0,
-          surfaceTintColor: Colors.transparent,
-          forceMaterialTransparency: true,
-        ),
+        appBar: emptySearchBar(),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: SingleChildScrollView(
@@ -45,9 +40,11 @@ class SignupPage extends StatelessWidget {
                     controller: _nameController),
                 //! Email
                 CustomTextfield(
-                    hint: "Email",
-                    icon: const Icon(Icons.email),
-                    controller: _emailController),
+                  hint: "Phone Number ",
+                  icon: const Icon(Icons.phone),
+                  controller: _emailController,
+                  isPhoneNumber: true,
+                ),
                 //! Password
                 CustomTextfield(
                   hint: "Password",

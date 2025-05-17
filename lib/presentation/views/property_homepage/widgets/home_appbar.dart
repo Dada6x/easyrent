@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 AppBar homePageAppbar() {
   return AppBar(
-    scrolledUnderElevation: 1.0,
+    scrolledUnderElevation: 0.0,
     surfaceTintColor: Colors.transparent,
     forceMaterialTransparency: true,
     elevation: 0,

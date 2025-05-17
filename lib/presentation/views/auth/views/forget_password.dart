@@ -1,6 +1,7 @@
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/auth/views/verification_code_page.dart';
+import 'package:easyrent/presentation/views/auth/widgets/empty_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -16,13 +17,7 @@ class ForgetPasswordPage extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          bottomOpacity: 0,
-          scrolledUnderElevation: 0.0,
-          surfaceTintColor: Colors.transparent,
-          forceMaterialTransparency: true,
-        ),
+        appBar: emptySearchBar(),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Column(

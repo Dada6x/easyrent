@@ -4,6 +4,7 @@ import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/views/auth/views/forget_password.dart';
 import 'package:easyrent/presentation/views/auth/views/signup.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';
+import 'package:easyrent/presentation/views/auth/widgets/empty_search_bar.dart';
 import 'package:easyrent/presentation/views/auth/widgets/greeting.dart';
 import 'package:easyrent/presentation/views/auth/widgets/textFields.dart';
 import 'package:flutter/material.dart';
@@ -23,13 +24,7 @@ class LoginPage extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          bottomOpacity: 0,
-          scrolledUnderElevation: 0.0,
-          surfaceTintColor: Colors.transparent,
-          forceMaterialTransparency: true,
-        ),
+        appBar: emptySearchBar(),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: SingleChildScrollView(
@@ -39,9 +34,11 @@ class LoginPage extends StatelessWidget {
                 greetings("Welcome Back!", "Please login to your account"),
                 //! EMAIL
                 CustomTextfield(
-                    hint: "Email",
-                    icon: const Icon(Icons.email),
-                    controller: _emailController),
+                    hint: "Phone Number ",
+                    icon: const Icon(Icons.phone),
+                    controller: _emailController,
+                    isPhoneNumber: true,
+                    ),
                 //! PASSWORD
                 CustomTextfield(
                   hint: "Password ",

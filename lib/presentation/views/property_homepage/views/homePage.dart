@@ -16,68 +16,62 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // backgroundColor: lightPrimary,
-        appBar: homePageAppbar(),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.0.r),
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10.r),
-                  child: const CustomSearchBar(),
-                ),
-
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10.r),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Featured".tr,
-                        style: AppTextStyles.h24semi,
-                      ),
-                      const Spacer(),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "See All".tr,
-                          style: AppTextStyles.h16semi
-                              .copyWith(color: primaryBlue),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              pinned: false,
+              title: homePageAppbar()),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15.0.r),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10.r),
+                    child: const CustomSearchBar(),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10.r),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Featured".tr,
+                          style: AppTextStyles.h24semi,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ],
+                        const Spacer(),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            "See All".tr,
+                            style: AppTextStyles.h16semi
+                                .copyWith(color: primaryBlue),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                      ],
+                    ),
                   ),
-                ),
-                //! HORIZONTAL SHI
-                SizedBox(
-                  height: 320.h,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 3,
-                    itemBuilder: (context, index) {
-                      return const PropertyCardBig(
-                        imagePath: apartment3,
-                        location: "New York , US",
-                        price: 1920,
-                        rating: 4.5,
-                        title: "Moderincia",
-                      );
-                    },
+                  SizedBox(
+                    height: 320.h,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return const PropertyCardBig(
+                          imagePath: apartment3,
+                          location: "New York , US",
+                          price: 1920,
+                          rating: 4.5,
+                          title: "Moderincia",
+                        );
+                      },
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 12.h,
-                ),
-                //! CHIPS
-                const PropertyFilterChips(),
-                //! VERTICAL
-
-                SizedBox(
-                  // height: 300,
-                  child: Padding(
+                  SizedBox(height: 12.h),
+                  const PropertyFilterChips(),
+                  Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: GridView.builder(
                       shrinkWrap: true,
@@ -102,10 +96,12 @@ class Homepage extends StatelessWidget {
                       },
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ));
+        ],
+      ),
+    );
   }
 }
