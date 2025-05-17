@@ -2,6 +2,7 @@ import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/divider.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -86,21 +87,20 @@ class Profile extends StatelessWidget {
                   style: AppTextStyles.h24semi),
             ),
             const CustomDivider(),
-
             customListTile(
                 "My Booking".tr, Icons.call_to_action_rounded, () {}),
             customListTile("Payments".tr, Icons.payment, () {}),
             customListTile("My Favorite".tr, Icons.favorite, () {}),
             const CustomDivider(),
-
             customListTile("Notifications".tr, Icons.notifications, () {}),
             customListTile("Security".tr, Icons.security, () {}),
             customListTile("Language".tr, Icons.language, () {}),
             customListTile("Help Center".tr, Icons.help, () {}),
             customListTile("Invite Friends".tr, Icons.people, () {}),
             const CustomDivider(),
-
-            customListRedTile("Logout".tr, Icons.logout, () {}),
+            customListRedTile("Logout".tr, Icons.logout, () {
+              Get.off(LoginPage());
+            }),
           ],
         ),
       ),
@@ -139,7 +139,7 @@ Widget customListRedTile(
 ) {
   return RawMaterialButton(
     onPressed: () {
-      destination;
+      destination();
     },
     child: ListTile(
       leading: Icon(

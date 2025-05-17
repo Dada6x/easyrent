@@ -6,7 +6,7 @@ import 'package:easyrent/presentation/views/auth/views/signup.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';
 import 'package:easyrent/presentation/views/auth/widgets/empty_search_bar.dart';
 import 'package:easyrent/presentation/views/auth/widgets/greeting.dart';
-import 'package:easyrent/presentation/views/auth/widgets/textFields.dart';
+import 'package:easyrent/core/utils/textFields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -34,11 +34,11 @@ class LoginPage extends StatelessWidget {
                 greetings("Welcome Back!", "Please login to your account"),
                 //! EMAIL
                 CustomTextfield(
-                    hint: "Phone Number ",
-                    icon: const Icon(Icons.phone),
-                    controller: _emailController,
-                    isPhoneNumber: true,
-                    ),
+                  hint: "Phone Number ",
+                  icon: const Icon(Icons.phone),
+                  controller: _emailController,
+                  isPhoneNumber: true,
+                ),
                 //! PASSWORD
                 CustomTextfield(
                   hint: "Password ",
@@ -74,7 +74,8 @@ class LoginPage extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         Get.off(() => SignupPage(),
-                            transition: Transition.rightToLeftWithFade);
+                            transition: Transition.rightToLeft,
+                            curve: Curves.easeInOutCubicEmphasized);
                       },
                       child: Text('Sign Up', style: AppTextStyles.h16semi),
                     ),

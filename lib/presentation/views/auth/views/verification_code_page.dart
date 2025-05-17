@@ -153,7 +153,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                             snackPosition: SnackPosition.BOTTOM);
                       }
                     }),
-                SizedBox(height: 320.h),
+                SizedBox(height: 300.h),
                 Center(
                   child: SizedBox(
                     width: 180.w,

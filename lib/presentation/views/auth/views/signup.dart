@@ -5,7 +5,7 @@ import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';
 import 'package:easyrent/presentation/views/auth/widgets/empty_search_bar.dart';
 import 'package:easyrent/presentation/views/auth/widgets/greeting.dart';
-import 'package:easyrent/presentation/views/auth/widgets/textFields.dart';
+import 'package:easyrent/core/utils/textFields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -74,7 +74,8 @@ class SignupPage extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         Get.off(() => LoginPage(),
-                            transition: Transition.leftToRightWithFade);
+                            transition: Transition.leftToRight,
+                            curve: Curves.easeInOutCubicEmphasized);
                       },
                       child: Text('Login', style: AppTextStyles.h16semi),
                     ),

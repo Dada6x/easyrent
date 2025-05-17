@@ -78,6 +78,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
             decoration: InputDecoration(
               fillColor: Theme.of(context).colorScheme.secondary,
               filled: true,
+              counterText: "",
               prefixIcon: widget.icon,
               prefixIconColor: primaryBlue,
               labelText: widget.hint.tr,
