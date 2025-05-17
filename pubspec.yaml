@@ -39,6 +39,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   geocoding: ^2.0.4
   get: ^4.7.2
+  pin_code_fields: ^8.0.0
   internet_connection_checker_plus: ^2.6.0
   latlong2: ^0.9.1
   like_button: ^2.0.5

@@ -3,7 +3,6 @@ import 'package:easyrent/core/services/app/controller/app_controller.dart';
 import 'package:easyrent/core/services/app/language/locale.dart';
 import 'package:easyrent/core/services/app/theme/themes.dart';
 import 'package:easyrent/presentation/navigation/introduction_screen.dart';
-import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -44,13 +43,13 @@ void main() async {
       Get.put(AppController());
       debug.f("application Started");
       return ThemeProvider(
-        initTheme: Themes().darkMode,
+        initTheme: Themes().lightMode,
         builder: (_, theme) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             theme: theme,
             translations: MyLocale(),
-            home: const IntroductionScreen(),
+            home: LoginPage(),
           );
         },
       );

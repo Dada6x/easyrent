@@ -2,6 +2,7 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
+import 'package:easyrent/presentation/views/auth/widgets/button.dart';
 import 'package:easyrent/presentation/views/auth/widgets/greeting.dart';
 import 'package:easyrent/presentation/views/auth/widgets/textFields.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,13 @@ class SignupPage extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          elevation: 0,
+          bottomOpacity: 0,
+          scrolledUnderElevation: 0.0,
+          surfaceTintColor: Colors.transparent,
+          forceMaterialTransparency: true,
+        ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: SingleChildScrollView(
@@ -56,26 +63,11 @@ class SignupPage extends StatelessWidget {
                   isPassword: true,
                 ),
                 //! Register BUTTON :O
-                Padding(
-                  padding: EdgeInsets.only(top: 30.h, bottom: 20.h),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 52.h,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Get.off(() => const HomeScreenNavigator());
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryBlue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.r),
-                        ),
-                      ),
-                      child: Text('Register',
-                          style: AppTextStyles.h18semi.copyWith(color: white)),
-                    ),
-                  ),
-                ),
+                CustomeButton(
+                    hint: "Register",
+                    function: () {
+                      Get.off(() => const HomeScreenNavigator());
+                    }),
                 //! navigating to signup
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -95,29 +87,6 @@ class SignupPage extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  InputDecoration customeInputDecoration(
-    BuildContext context,
-    Icon icon,
-    String hint,
-  ) {
-    return InputDecoration(
-      fillColor: Theme.of(context).colorScheme.secondary,
-      filled: true,
-      prefixIcon: icon,
-      prefixIconColor: primaryBlue,
-      labelText: hint.tr,
-      labelStyle: AppTextStyles.h20regular.copyWith(color: grey),
-      enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Theme.of(context).colorScheme.outline),
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Theme.of(context).colorScheme.outline),
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
     );
   }
