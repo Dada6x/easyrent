@@ -20,9 +20,10 @@ class Property {
   final String overview;
   //! faccelites
   final List<String> gallery;
-  //
+  //location 
   final double latitude;
   final double longitude;
+  // location description maybe :D
   //
   final List<Comment> comments;
 

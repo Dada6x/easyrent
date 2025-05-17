@@ -2,13 +2,26 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easyrent/core/services/app/controller/app_controller.dart';
 import 'package:easyrent/core/services/app/language/locale.dart';
 import 'package:easyrent/core/services/app/theme/themes.dart';
+import 'package:easyrent/presentation/navigation/introduction_screen.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
+import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
+//! FOR DEBUGGING must erase it after the end of the application
+var debug = Logger(
+    printer: PrettyPrinter(
+  colors: true,
+  methodCount: 0,
+  errorMethodCount: 3,
+  // lineLength: 60,
+  printEmojis: true,
+));
 
 // bool isOffline = !Get.find<AppController>().isOffline.value;
 bool isOffline = false;
@@ -17,7 +30,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferences.getInstance();
   SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ),
   );
 
   runApp(ScreenUtilInit(
@@ -26,20 +42,25 @@ void main() async {
     splitScreenMode: true,
     builder: (context, child) {
       Get.put(AppController());
+      debug.f("application Started");
       return ThemeProvider(
-        initTheme: Themes().lightMode,
+        initTheme: Themes().darkMode,
         builder: (_, theme) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             theme: theme,
             translations: MyLocale(),
-            home: const HomeScreenNavigator(),
+            home: const IntroductionScreen(),
           );
         },
       );
     },
   ));
 }
+
+//! some mocky json
+// https://run.mocky.io/v3/0df94981-cbd5-431e-935f-fab6a2ef8675   single property
+//https://run.mocky.io/v3/2f457c10-6138-48c6-874b-02ae84e9c19f    two
 
 /*
 design architecture
@@ -97,6 +118,13 @@ lib/
 │
 └── //?main.dart
 -------------------------------------------------------------------------------------
+UI triggers an event (e.g., LoadProperties)
+BLoC receives the event and calls the repository
+Repository makes API call through DioConsumer
+API response is converted to model objects
+BLoC emits new state with the data
+UI rebuilds with the new state
+
 ?BLoC :
 @For business logic and state management (clean, testable, scalable)
 -----------------
@@ -115,47 +143,43 @@ TODO ask GPT where to put theme, localization , internet connection, and middlew
 
 */
 
-
-
-
-
-//############################# fetching SHit 
+//############################# fetching SHit
 /*
-! Fetch from Backend
-Use Dio or http to fetch the property data.
-Example using Dio:
 
-Future<Property> fetchPropertyDetails(int propertyId) async {
-  final response = await Dio().get('https://your-api.com/properties/$propertyId');
+//////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! when the boolean shared pref worked
+  final prefs = await SharedPreferences.getInstance();
+  final isDark = prefs.getBool('isDarkMode') ?? false;
+  final langCode = prefs.getString('language') ?? 'ar';
 
-  if (response.statusCode == 200) {
-    return Property.fromJson(response.data);
-  } else {
-    throw Exception('Failed to load property');
-  }
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+  );
+
+  runApp(ScreenUtilInit(
+    designSize: const Size(430, 932),
+    minTextAdapt: true,
+    splitScreenMode: true,
+    builder: (context, child) {
+      final appController = Get.put(AppController());
+
+      appController.isDarkMode.value = isDark;
+      appController.isArabic.value = langCode == 'en';
+
+      return ThemeProvider(
+        initTheme: isDark ? Themes().darkMode : Themes().lightMode,
+        builder: (_, theme) {
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: theme,
+            translations: MyLocale(),
+            locale: Locale(langCode),
+            fallbackLocale: const Locale('en'),
+            home: const HomeScreenNavigator(),
+          );
+        },
+      );
+    },
+  ));
 }
-
-! display in the detailsPage 
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<Property>(
-      future: _futureProperty,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        }
-
-        final property = snapshot.data!;
-        return Scaffold(
-          appBar: AppBar(title: Text(property.title)),
-          body: ListView(
-            children: [
-             ? Use property.imageUrls, property.agent, property.comments, etc.
-            ],
-          ),
-        );
-
 
 */

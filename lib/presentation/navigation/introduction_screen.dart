@@ -1,11 +1,13 @@
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
+import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-const items = [//TODO this need sto be fixed 
+const items = [
+  //TODO this need sto be fixed
   Colors.white,
   primaryBlue,
   Colors.white,
@@ -109,7 +111,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                 onTap: () {
                   int currentPage = _notifier.value.round();
                   if (currentPage == items.length - 1) {
-                    Get.off(() => const HomeScreenNavigator());
+                    Get.off(() => LoginPage());
                   } else {
                     _pageController.nextPage(
                       duration: const Duration(milliseconds: 800),

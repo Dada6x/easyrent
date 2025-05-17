@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextStyles {
-  //! 32
+  //!------------------------------32------------------------------------
   static TextStyle h32light = TextStyle(
       fontSize: 32.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
   static TextStyle h32regular = TextStyle(
@@ -16,7 +16,7 @@ class AppTextStyles {
       fontSize: 32.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
   static TextStyle h32extrabold = TextStyle(
       fontSize: 32.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
-  //! 24
+  //!------------------------------24------------------------------------
   static TextStyle h24light = TextStyle(
       fontSize: 24.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
   static TextStyle h24regular = TextStyle(
@@ -29,7 +29,7 @@ class AppTextStyles {
       fontSize: 24.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
   static TextStyle h24extrabold = TextStyle(
       fontSize: 24.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
-  //!20
+  //!------------------------------20------------------------------------
   static TextStyle h20light = TextStyle(
       fontSize: 20.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
   static TextStyle h20regular = TextStyle(
@@ -42,8 +42,7 @@ class AppTextStyles {
       fontSize: 20.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
   static TextStyle h20extrabold = TextStyle(
       fontSize: 20.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
-
-  //! 18
+  //!------------------------------18------------------------------------
   static TextStyle h18light = TextStyle(
       fontSize: 18.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
   static TextStyle h18regular = TextStyle(
@@ -56,7 +55,7 @@ class AppTextStyles {
       fontSize: 18.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
   static TextStyle h18extrabold = TextStyle(
       fontSize: 18.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
-  //!16
+  //!------------------------------16------------------------------------
   static TextStyle h16light = TextStyle(
       fontSize: 16.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
   static TextStyle h16regular = TextStyle(
@@ -69,7 +68,7 @@ class AppTextStyles {
       fontSize: 16.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
   static TextStyle h16extrabold = TextStyle(
       fontSize: 16.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
-  //!14.sp
+  //!------------------------------14------------------------------------
   static TextStyle h14light = TextStyle(
       fontSize: 14.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
   static TextStyle h14regular = TextStyle(
@@ -82,7 +81,7 @@ class AppTextStyles {
       fontSize: 14.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
   static TextStyle h14extrabold = TextStyle(
       fontSize: 14.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
-  //! 12
+  //!------------------------------12------------------------------------
   static TextStyle h12light = TextStyle(
       fontSize: 12.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
   static TextStyle h12regular = TextStyle(
@@ -95,7 +94,7 @@ class AppTextStyles {
       fontSize: 12.sp, fontFamily: "Rubik", fontWeight: FontWeight.w900);
   static TextStyle h12extrabold = TextStyle(
       fontSize: 12.sp, fontFamily: "Rubik", fontWeight: FontWeight.w800);
-  // ! 10
+  //!------------------------------10------------------------------------
   static TextStyle h10light = TextStyle(
       fontSize: 10.sp, fontFamily: "Rubik", fontWeight: FontWeight.w300);
   static TextStyle h10regular = TextStyle(
@@ -111,7 +110,7 @@ class AppTextStyles {
 }
 
 /*
-! dont override the colors of the fonts coz flutter wont change it dynamically when theme change
+! dont override the colors[black,white] of the fonts coz flutter wont change it dynamically when theme change
 Font weights for Rubik:
 300= Light
 400= Regular
