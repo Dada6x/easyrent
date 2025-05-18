@@ -67,6 +67,7 @@ void main() async {
 
 /*
 design architecture
+
 lib/
 ├── //! core/
 │   ├── constants/           # App-wide colors, images paths.
