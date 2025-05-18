@@ -1,6 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/presentation/navigation/notifications/notifications_drawer.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/homePage.dart';
 import 'package:easyrent/presentation/views/profile/view/profile.dart';
 import 'package:easyrent/presentation/views/search/views/search_page.dart';
@@ -12,6 +13,7 @@ class HomeScreenNavigator extends StatefulWidget {
 
   @override
   State<HomeScreenNavigator> createState() => _HomeScreenNavigatorState();
+  static GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 }
 
 class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
@@ -34,8 +36,9 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: ThemeSwitchingArea(
-        // for tele
         child: Scaffold(
+          key: HomeScreenNavigator.scaffoldKey,
+          endDrawer: const NotificationsView(),
           body: _pages[_selectedIndex],
           bottomNavigationBar: Container(
             decoration: BoxDecoration(

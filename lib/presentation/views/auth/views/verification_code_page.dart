@@ -50,13 +50,12 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
 
   void _onResendCode() {
     if (_canResend) {
-      // TODO: Trigger resend code API
       _startTimer();
     }
   }
 
   void _verifyCode(String code) async {
-    const correctCode = "1234";
+    const correctCode = "12345";
 
     if (code == correctCode) {
       setState(() {
@@ -112,7 +111,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                 PinCodeTextField(
                   appContext: context,
                   controller: _pinController,
-                  length: 4,
+                  length: 5,
                   obscureText: false,
                   animationType: AnimationType.fade,
                   textStyle: AppTextStyles.h20semi,

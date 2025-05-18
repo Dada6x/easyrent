@@ -19,8 +19,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   Future<void> _onRefresh() async {
-    // TODO: Add your refresh logic here (e.g. fetch new data)
-    
+    // TODO: Add your refresh logic here [e.g. fetch new data]
     await Future.delayed(const Duration(seconds: 1)); // Simulated delay
   }
 
@@ -122,7 +121,7 @@ class _HomepageState extends State<Homepage> {
 }
 
 /*
-//! THE OLDER WITHOUT INDICATOR 
+! THE OLDER WITHOUT INDICATOR 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
   @override
@@ -222,11 +221,11 @@ class _HomepageState extends State<Homepage> {
   }
 }
 */
-/*
-@ with the refresh indicator but its state
 
-*/
-//--------------------------------------------------------
+// @ with the refresh indicator but its state
+
+//-------------------------------------------------------->>
+
 /*
 ! old code 
 
