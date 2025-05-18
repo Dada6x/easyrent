@@ -5,7 +5,6 @@ import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:easyrent/presentation/views/payment/views/payment.dart';
-import 'package:easyrent/presentation/views/profile/view/favourite_page.dart';
 import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -95,10 +94,7 @@ class Profile extends StatelessWidget {
             customListTile("Payments".tr, Icons.payment, () {
               Get.to(() => const PaymentMethod());
             }),
-            customListTile("My Favorite".tr, Icons.favorite, () {
-              debug.w(" CLICKED ");
-              Get.to(() => const MyHomePage());
-            }),
+            customListTile("My Favorite".tr, Icons.favorite, () {}),
             const CustomDivider(),
             customListTile("Notifications".tr, Icons.notifications, () {}),
             customListTile("Security".tr, Icons.security, () {}),

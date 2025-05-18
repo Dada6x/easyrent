@@ -50,7 +50,6 @@ dependencies:
   photo_view: ^0.15.0
   shared_preferences: ^2.3.3
   logger: ^2.5.0
-  snappable_thanos: ^0.0.4
   skeletonizer: ^1.4.3
   motion: ^2.0.1
 dev_dependencies:
