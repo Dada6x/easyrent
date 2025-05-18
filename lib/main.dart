@@ -36,7 +36,7 @@ void main() async {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
-// the payment Card gyroscope 
+// the payment Card gyroscope 3D shi
   await Motion.instance.initialize();
   Motion.instance.setUpdateInterval(120.fps);
 
@@ -51,11 +51,10 @@ void main() async {
         initTheme: Themes().lightMode,
         builder: (_, theme) {
           return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: theme,
-            translations: MyLocale(),
-            home: const HomeScreenNavigator(),
-          );
+              debugShowCheckedModeBanner: false,
+              theme: theme,
+              translations: MyLocale(),
+              home: HomeScreenNavigator());
         },
       );
     },

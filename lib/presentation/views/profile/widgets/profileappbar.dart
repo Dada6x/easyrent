@@ -1,5 +1,5 @@
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/presentation/views/profile/widgets/them_language_buttons%20widget.dart';
+import 'package:easyrent/presentation/views/profile/widgets/theme_language_buttons%20widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

@@ -50,6 +50,7 @@ class PropertyCardBig extends StatelessWidget {
                 previewImages: const [apartment, apartment2, japan],
                 galleryImages: const [
                   apartment3,
+                  
                   japan,
                   apartment2,
                   japan,
