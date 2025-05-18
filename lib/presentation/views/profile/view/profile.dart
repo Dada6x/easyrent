@@ -4,6 +4,7 @@ import 'package:easyrent/core/utils/divider.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
+import 'package:easyrent/presentation/views/payment/views/payment.dart';
 import 'package:easyrent/presentation/views/profile/view/favourite_page.dart';
 import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
 import 'package:flutter/material.dart';
@@ -91,10 +92,12 @@ class Profile extends StatelessWidget {
             const CustomDivider(),
             customListTile(
                 "My Booking".tr, Icons.call_to_action_rounded, () {}),
-            customListTile("Payments".tr, Icons.payment, () {}),
+            customListTile("Payments".tr, Icons.payment, () {
+              Get.to(() => const PaymentMethod());
+            }),
             customListTile("My Favorite".tr, Icons.favorite, () {
               debug.w(" CLICKED ");
-              Get.to(const MyHomePage());
+              Get.to(() => const MyHomePage());
             }),
             const CustomDivider(),
             customListTile("Notifications".tr, Icons.notifications, () {}),
@@ -104,7 +107,7 @@ class Profile extends StatelessWidget {
             customListTile("Invite Friends".tr, Icons.people, () {}),
             const CustomDivider(),
             customListRedTile("Logout".tr, Icons.logout, () {
-              Get.off(LoginPage());
+              Get.off(() => LoginPage());
             }),
           ],
         ),

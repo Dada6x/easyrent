@@ -4,7 +4,7 @@ import 'package:easyrent/core/services/app/language/locale.dart';
 import 'package:easyrent/core/services/app/theme/themes.dart';
 import 'package:easyrent/presentation/navigation/introduction_screen.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
-import 'package:easyrent/presentation/views/payment/payment.dart';
+import 'package:easyrent/presentation/views/payment/views/payment.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/parallaxEffeect.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -54,7 +54,7 @@ void main() async {
             debugShowCheckedModeBanner: false,
             theme: theme,
             translations: MyLocale(),
-            home: const MotionCardPage(),
+            home: const HomeScreenNavigator(),
           );
         },
       );

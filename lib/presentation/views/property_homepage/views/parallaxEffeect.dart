@@ -18,7 +18,6 @@ class newHOMEPAGE extends StatefulWidget {
 }
 
 class _HomepageState extends State<newHOMEPAGE> {
-  final ScrollController _scrollController = ScrollController();
 
   @override
   void dispose() {
@@ -26,6 +25,7 @@ class _HomepageState extends State<newHOMEPAGE> {
     super.dispose();
   }
 
+  final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
