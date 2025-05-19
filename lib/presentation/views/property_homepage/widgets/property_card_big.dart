@@ -28,8 +28,6 @@ class PropertyCardBig extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debug.w("${Get.find<AppController>().isOffline.value} ❤️");
-
     return Obx(() {
       return Skeletonizer(
         enabled: !Get.find<AppController>().isOffline.value,

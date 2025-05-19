@@ -6,7 +6,6 @@ import 'package:easyrent/presentation/views/search/widgets/property_widget_searc
 import 'package:easyrent/presentation/views/search/widgets/search_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -15,15 +14,45 @@ class Search extends StatefulWidget {
   State<Search> createState() => _SearchState();
 }
 
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//! this is pagination or infinite scrolling , it primerly work with the API , to load even more data ,
+//! dont just set it up like this without understanding its concept ,
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 class _SearchState extends State<Search> {
-  final List<String> filters = [
-    'All'.tr,
-    'House'.tr,
-    'Villa'.tr,
-    'Apartments'.tr,
-    'Lands'.tr,
-    'Other'.tr
-  ];
+  final ScrollController _scrollController = ScrollController();
+  List<int> propertyList = List.generate(9, (index) => index);
+  bool isLoadingMore = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_scrollListener);
+  }
+
+  void _scrollListener() {
+    if (_scrollController.position.pixels >=
+            _scrollController.position.maxScrollExtent - 200 &&
+        !isLoadingMore) {
+      _loadMoreData();
+    }
+  }
+
+  Future<void> _loadMoreData() async {
+    setState(() => isLoadingMore = true);
+    await Future.delayed(const Duration(seconds: 2)); // simulate network delay
+
+    final nextItems = List.generate(6, (index) => propertyList.length + index);
+    setState(() {
+      propertyList.addAll(nextItems);
+      isLoadingMore = false;
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,29 +60,28 @@ class _SearchState extends State<Search> {
       appBar: searchAppbar(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const CustomSearchBar(),
-            // search bar
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 3.w),
-              child: const PropertyFilterChips(),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 6.h),
-              child: Text(
-                // "Found ${properties.length} Properties",
-                "Found 1284 Properties",
-                style: AppTextStyles.h20semi,
+        child: CustomScrollView(
+          controller: _scrollController,
+          slivers: [
+            SliverToBoxAdapter(child: CustomSearchBar()),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 3.w),
+                child: PropertyFilterChips(),
               ),
             ),
-            SizedBox(height: 16.h),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  // final property = properties[index];
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 6.h),
+                child: Text(
+                  "Found ${propertyList.length} Properties",
+                  style: AppTextStyles.h20semi,
+                ),
+              ),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
                   return const PropertyWidgetSearch(
                     title: 'Lucky Lake Apartments',
                     location: 'Tokyo, Japan',
@@ -62,8 +90,16 @@ class _SearchState extends State<Search> {
                     rating: 4.3,
                   );
                 },
+                childCount: propertyList.length,
               ),
-            )
+            ),
+            if (isLoadingMore)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+              ),
           ],
         ),
       ),
