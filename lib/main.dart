@@ -46,6 +46,7 @@ void main() async {
     splitScreenMode: true,
     builder: (context, child) {
       Get.put(AppController());
+      debug.i("$isOffline");
       debug.f("application Started");
       return ThemeProvider(
         initTheme: Themes().lightMode,
@@ -54,7 +55,7 @@ void main() async {
               debugShowCheckedModeBanner: false,
               theme: theme,
               translations: MyLocale(),
-              home: HomeScreenNavigator());
+              home: const HomeScreenNavigator());
         },
       );
     },

@@ -4,6 +4,7 @@ import 'package:easyrent/core/utils/divider.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
+import 'package:easyrent/presentation/views/auth/widgets/button.dart';
 import 'package:easyrent/presentation/views/payment/views/payment.dart';
 import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
 import 'package:flutter/material.dart';
@@ -149,13 +150,26 @@ Widget customListRedTile(
       leading: Icon(
         leading,
         color: red,
-        size: 29.r, //!
+        size: 29.r,
       ),
       title: Text(string, style: AppTextStyles.h18medium.copyWith(color: red)),
       trailing: Icon(
         Icons.arrow_forward_ios,
-        size: 15.r, //!
+        size: 15.r,
       ),
+    ),
+  );
+}
+
+void logoutDialog() {
+  Get.dialog(
+    const AlertDialog(
+      title: Center(
+        child: Text(
+          'are You Sure you want to logout',
+        ),
+      ),
+      actions: <Widget>[],
     ),
   );
 }

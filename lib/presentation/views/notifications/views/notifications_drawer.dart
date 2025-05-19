@@ -24,7 +24,7 @@ class NotificationsView extends StatelessWidget {
                   onPressed: () {
                     Get.back();
                   },
-                  icon: const Icon(Icons.close)),
+                  icon:  Icon(Icons.arrow_back_ios_new,size: 20.r,)),
               centerTitle: true,
               title: Text(
                 "Notifications ",
