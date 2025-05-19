@@ -1,7 +1,7 @@
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/divider.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/presentation/views/notifications/widgets/notification_widget.dart';
+import 'package:easyrent/presentation/views/profile/notifications/widgets/notification_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

@@ -1,7 +1,7 @@
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';
-import 'package:easyrent/presentation/views/payment/widgets/creditCard_widget.dart';
+import 'package:easyrent/presentation/views/profile/payment/widgets/creditCard_widget.dart';
 import 'package:easyrent/presentation/views/web_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

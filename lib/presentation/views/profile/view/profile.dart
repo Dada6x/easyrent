@@ -5,12 +5,13 @@ import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';
-import 'package:easyrent/presentation/views/payment/views/payment.dart';
+import 'package:easyrent/presentation/views/profile/payment/views/payment.dart';
 import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:motion/motion.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -27,68 +28,82 @@ class Profile extends StatelessWidget {
               height: 26.r,
             ),
             Center(
-              child: Stack(children: [
-                CircleAvatar(
-                  radius: 80.r,
-                  backgroundImage: const AssetImage(avatar),
-                ),
-                Positioned(
-                    bottom: 1.r,
-                    right: -10.r,
-                    height: 49.r,
-                    child: RawMaterialButton(
-                      onPressed: () {
-                        //! image Picker Dialog
-                        Get.dialog(
-                          AlertDialog(
-                            title: const Center(
-                              child: Text(
-                                'Choose ',
-                              ),
-                            ),
-                            actions: <Widget>[
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.camera,
-                                        color: primaryBlue,
-                                        semanticLabel: "camera",
-                                      )),
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.image,
-                                        color: primaryBlue,
-                                      )),
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                      elevation: 2,
-                      fillColor: Theme.of(context).colorScheme.secondary,
-                      padding: EdgeInsets.all(10.r),
-                      shape: const CircleBorder(),
-                      child: Icon(
-                        Icons.camera_alt_outlined,
-                        color: primaryBlue,
-                        size: 28.r,
+              child: Motion.elevated(
+                filterQuality: FilterQuality.high,
+                controller: MotionController(maxAngle: 250, damping: 0.2),
+                elevation: 90,
+                glare: true,
+                translation: true,
+                shadow: false,
+                borderRadius: BorderRadius.circular(80),
+                child: Column(
+                  children: [
+                    Stack(children: [
+                      CircleAvatar(
+                        radius: 80.r,
+                        backgroundImage: const AssetImage(avatar),
                       ),
-                    )),
-              ]),
+                      Positioned(
+                          bottom: 1.r,
+                          right: -10.r,
+                          height: 49.r,
+                          child: RawMaterialButton(
+                            onPressed: () {
+                              //! image Picker Dialog
+                              Get.dialog(
+                                AlertDialog(
+                                  title: const Center(
+                                    child: Text(
+                                      'Choose ',
+                                    ),
+                                  ),
+                                  actions: <Widget>[
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        IconButton(
+                                            onPressed: () {},
+                                            icon: const Icon(
+                                              Icons.camera,
+                                              color: primaryBlue,
+                                              semanticLabel: "camera",
+                                            )),
+                                        IconButton(
+                                            onPressed: () {},
+                                            icon: const Icon(
+                                              Icons.image,
+                                              color: primaryBlue,
+                                            )),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                            elevation: 2,
+                            fillColor: Theme.of(context).colorScheme.secondary,
+                            padding: EdgeInsets.all(10.r),
+                            shape: const CircleBorder(),
+                            child: Icon(
+                              Icons.camera_alt_outlined,
+                              color: primaryBlue,
+                              size: 28.r,
+                            ),
+                          )),
+                    ]),
+                    Padding(
+                      padding: EdgeInsets.all(8.r),
+                      child: Text(
+                          textAlign: TextAlign.center,
+                          "User Name",
+                          style: AppTextStyles.h24semi),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            Padding(
-              padding: EdgeInsets.all(8.r),
-              child: Text(
-                  textAlign: TextAlign.center,
-                  "User Name",
-                  style: AppTextStyles.h24semi),
-            ),
+
             const CustomDivider(),
             customListTile(
                 "My Booking".tr, Icons.call_to_action_rounded, () {}),
