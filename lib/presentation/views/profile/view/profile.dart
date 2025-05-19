@@ -27,14 +27,15 @@ class Profile extends StatelessWidget {
             SizedBox(
               height: 26.r,
             ),
-            Center(
-              child: Motion.elevated(
+            Material(
+              shadowColor: Colors.transparent,
+              child: Motion(
                 filterQuality: FilterQuality.high,
                 controller: MotionController(maxAngle: 250, damping: 0.2),
-                elevation: 90,
-                glare: true,
-                translation: true,
-                shadow: false,
+                glare: const GlareConfiguration(maxOpacity: 0),
+                shadow: const ShadowConfiguration(color: Colors.transparent),
+                // glare: true,
+                // translation: true,
                 borderRadius: BorderRadius.circular(80),
                 child: Column(
                   children: [
@@ -92,6 +93,7 @@ class Profile extends StatelessWidget {
                             ),
                           )),
                     ]),
+                    // image
                     Padding(
                       padding: EdgeInsets.all(8.r),
                       child: Text(
@@ -103,7 +105,9 @@ class Profile extends StatelessWidget {
                 ),
               ),
             ),
-
+            SizedBox(
+              height: 10.h,
+            ),
             const CustomDivider(),
             customListTile(
                 "My Booking".tr, Icons.call_to_action_rounded, () {}),
