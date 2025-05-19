@@ -77,7 +77,7 @@ class _HomepageState extends State<newHOMEPAGE> {
                         return ParallaxPropertyCardBig(
                           scrollController: _scrollController,
                           index: index,
-                          imagePath: apartment3,
+                          imagePath: apartment2,
                           location: "New York , US",
                           price: 1920,
                           rating: 4.5,

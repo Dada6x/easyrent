@@ -34,8 +34,8 @@ class Profile extends StatelessWidget {
                 controller: MotionController(maxAngle: 250, damping: 0.2),
                 glare: const GlareConfiguration(maxOpacity: 0),
                 shadow: const ShadowConfiguration(color: Colors.transparent),
-                // glare: true,
-                // translation: true,
+                translation:
+                    const TranslationConfiguration(maxOffset: Offset(150, 120)),
                 borderRadius: BorderRadius.circular(80),
                 child: Column(
                   children: [
