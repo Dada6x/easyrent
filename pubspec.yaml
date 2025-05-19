@@ -33,6 +33,7 @@ dependencies:
   # property details
   card_swiper: ^3.0.1
   cupertino_icons: ^1.0.8
+  webview_flutter: ^4.2.2 # or latest version
   dio: ^5.8.0+1
   fancy_shimmer_image: ^2.0.3
   flutter:

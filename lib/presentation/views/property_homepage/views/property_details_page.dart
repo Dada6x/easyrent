@@ -86,7 +86,6 @@ class PropertyDetailsPage extends StatelessWidget {
                     autoplay: true,
                   ),
                 ),
-
                 //! share buttons and favorite
                 Padding(
                   padding: const EdgeInsets.only(
@@ -270,7 +269,6 @@ class PropertyDetailsPage extends StatelessWidget {
                     height: 20.h,
                   ),
                   const CustomDivider(),
-
                   CommentSection(comments: [
                     comment,
                     comment,

@@ -43,17 +43,14 @@ AppBar homePageAppbar() {
       ],
     ),
     actions: [
-      Padding(
-        padding: EdgeInsets.all(8.0.r),
-        child: IconButton(
-            onPressed: () {
-              HomeScreenNavigator.scaffoldKey.currentState?.openEndDrawer();
-            },
-            icon: Icon(
-              Icons.notifications,
-              size: 30.r,
-            )),
-      )
+      IconButton(
+          onPressed: () {
+            HomeScreenNavigator.scaffoldKey.currentState?.openEndDrawer();
+          },
+          icon: Icon(
+            Icons.notifications,
+            size: 30.r,
+          )),
     ],
   );
 }

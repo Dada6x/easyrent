@@ -3,8 +3,11 @@ import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';
 import 'package:easyrent/presentation/views/auth/widgets/greeting.dart';
 import 'package:easyrent/presentation/views/payment/widgets/creditCard_widget.dart';
+import 'package:easyrent/presentation/views/web_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:motion/motion.dart';
 
 class PaymentMethod extends StatelessWidget {
@@ -22,16 +25,6 @@ class PaymentMethod extends StatelessWidget {
           padding: EdgeInsets.all(5.0.r),
           child: Column(
             children: [
-              // SizedBox(
-              //   height: 300.h,
-              // ),
-              Padding(
-                padding: EdgeInsets.all(20.r),
-                child: greetings(
-                  "add Your ",
-                  "Payment Method",
-                ),
-              ),
               Padding(
                 padding: EdgeInsets.all(8.0.r),
                 child: Text(
@@ -39,7 +32,7 @@ class PaymentMethod extends StatelessWidget {
                   style: AppTextStyles.h16regular.copyWith(color: grey),
                 ),
               ),
-               SizedBox(
+              SizedBox(
                 height: 20.h,
               ),
               Center(
@@ -53,7 +46,9 @@ class PaymentMethod extends StatelessWidget {
               ),
               CustomeButton(
                 hint: "Next",
-                function: () {},
+                function: () {
+                  Get.to(() => WebPage());
+                },
                 width: 200,
                 borderRadius: 24,
               )

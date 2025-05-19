@@ -80,7 +80,7 @@ class CreditCardWidget extends StatelessWidget {
                         )),
                     SizedBox(height: 2.h),
                     Text(
-                      '01/22',
+                      '01/26',
                       style: TextStyle(
                         fontSize: 13.sp,
                         color: Colors.white,
@@ -97,6 +97,7 @@ class CreditCardWidget extends StatelessWidget {
             ),
             const Spacer(),
             Text(
+              //! take the name of the User
               'Abuzer Firdousi',
               style: AppTextStyles.h20medium.copyWith(
                 fontFamily: "Courier",

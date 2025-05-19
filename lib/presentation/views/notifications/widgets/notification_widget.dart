@@ -25,3 +25,7 @@ class NotificationWidget extends StatelessWidget {
     );
   }
 }
+
+// dismiss all button to delete all buttons ,
+// after opening the notifications the opened notification been dismissed .
+// 

@@ -47,7 +47,7 @@ void main() async {
     builder: (context, child) {
       Get.put(AppController());
       debug.i("$isOffline");
-      debug.d("application Started \n dawdwad\ n dwad wad wa");
+      debug.d("application Started !!");
       return ThemeProvider(
         initTheme: Themes().lightMode,
         builder: (_, theme) {
