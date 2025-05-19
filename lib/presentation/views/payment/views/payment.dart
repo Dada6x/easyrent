@@ -1,7 +1,6 @@
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';
-import 'package:easyrent/presentation/views/auth/widgets/greeting.dart';
 import 'package:easyrent/presentation/views/payment/widgets/creditCard_widget.dart';
 import 'package:easyrent/presentation/views/web_page.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,7 @@ class PaymentMethod extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Your Payment Method'),
+        title: const Text('Payment Method'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -33,13 +32,29 @@ class PaymentMethod extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 20.h,
+                height: 30.h,
               ),
               Center(
                 child: Motion.elevated(
                     elevation: 90,
+                    shadow: true,
+                    translation: true,
+                    glare: false,
                     borderRadius: BorderRadius.circular(25),
                     child: const CreditCardWidget()),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 10.w),
+                child: SizedBox(
+                  height: 20.h,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      "move Your Phone !",
+                      style: AppTextStyles.h10light.copyWith(color: grey),
+                    ),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 180.h,
@@ -47,7 +62,7 @@ class PaymentMethod extends StatelessWidget {
               CustomeButton(
                 hint: "Next",
                 function: () {
-                  Get.to(() => WebPage());
+                  Get.to(() => StripeWebPage());
                 },
                 width: 200,
                 borderRadius: 24,

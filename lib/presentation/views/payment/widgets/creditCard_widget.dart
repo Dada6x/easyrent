@@ -10,7 +10,7 @@ class CreditCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.all(10.0.r),
+      padding: EdgeInsets.all(10.0.r),
       child: Container(
         width: 400.w,
         height: 220.h,
@@ -41,16 +41,20 @@ class CreditCardWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset(chip, height: 24.h),
+                Image.asset(
+                  chip,
+                  height: 32.h,
+                  width: 64.w,
+                ),
                 Flexible(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Image.asset(google, height: 16.h),
                       SizedBox(width: 6.w),
-                      Image.asset(googlePay, height: 16.h),
+                      Image.asset(googlePay, height: 30.h),
                       SizedBox(width: 6.w),
-                      Image.asset(googlePay, height: 16.h),
+                      Image.asset(googlePay, height: 30.h),
                     ],
                   ),
                 ),
@@ -91,13 +95,13 @@ class CreditCardWidget extends StatelessWidget {
                 ),
                 Image.asset(
                   masterCard,
-                  height: 26.h,
+                  height: 30.h,
                 ),
               ],
             ),
             const Spacer(),
             Text(
-              //! take the name of the User
+              //! take the name of the Use
               'Abuzer Firdousi',
               style: AppTextStyles.h20medium.copyWith(
                 fontFamily: "Courier",

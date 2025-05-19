@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:get/get.dart';
 
-class WebPage extends StatefulWidget {
+class StripeWebPage extends StatefulWidget {
   @override
-  _WebPageState createState() => _WebPageState();
+  _StripeWebPageState createState() => _StripeWebPageState();
 }
 
-class _WebPageState extends State<WebPage> {
+class _StripeWebPageState extends State<StripeWebPage> {
   late final WebViewController _controller;
 
   @override
@@ -14,14 +15,24 @@ class _WebPageState extends State<WebPage> {
     super.initState();
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageFinished: (url) {
+            if (url
+                .contains("https://dashboard.stripe.com/register/payments")) {
+              Get.snackbar("Success", "Your payment was completed!");
+            }
+          },
+        ),
+      )
       ..loadRequest(Uri.parse(
-          'https://stripe.com/en-nl?utm_campaign=EMEA_NL_en_Google_Search_Brand_Stripe_EXA-20981195258&utm_medium=cpc&utm_source=google&ad_content=689219303694&utm_term=stripe&utm_matchtype=e&utm_adposition=&utm_device=c&gad_source=1&gad_campaignid=20981195258&gclid=CjwKCAjwravBBhBjEiwAIr30VAWiHFuTgDz6EvSSXwEwnNftWNMUj-9AtaPKHL6U6XiMsQa3VIAj3BoCIrAQAvD_BwE '));
+          'https://buy.stripe.com')); // <-- Replace with your Stripe Checkout URL
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Payment  ')),
+      appBar: AppBar(),
       body: WebViewWidget(controller: _controller),
     );
   }
