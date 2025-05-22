@@ -134,14 +134,7 @@ UI rebuilds with the new state
 * Localization
 * Theming (Dark/Light)
 * Navigation through routes
-
-TODO ask GPT where to put theme, localization , internet connection, and middlewares for introScreens
-
-?Screen Util pkg
-.w → width scaling
-.h → height scaling
-.sp → font scaling
-.r → general radius/size scaling
+-----------------
 
 */
 
