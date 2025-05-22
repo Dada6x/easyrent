@@ -1,4 +1,3 @@
-import 'package:easyrent/core/services/app/controller/app_controller.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/views/profile/widgets/theme_language_buttons%20widget.dart';

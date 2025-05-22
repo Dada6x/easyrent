@@ -12,7 +12,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.search,
-      page: () =>  Search(),
+      page: () =>  const Search(),
       transition: Transition.rightToLeft,
     ),
     // GetPage(

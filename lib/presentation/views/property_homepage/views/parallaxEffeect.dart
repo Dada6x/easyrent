@@ -133,7 +133,7 @@ class ParallaxPropertyCardBig extends StatefulWidget {
   final String title;
 
   const ParallaxPropertyCardBig({
-    Key? key,
+    super.key,
     required this.scrollController,
     required this.index,
     required this.imagePath,
@@ -141,7 +141,7 @@ class ParallaxPropertyCardBig extends StatefulWidget {
     required this.price,
     required this.rating,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   State<ParallaxPropertyCardBig> createState() =>

@@ -8,7 +8,7 @@ import 'package:easyrent/presentation/views/property_homepage/widgets/agent_widg
 import 'package:easyrent/presentation/views/property_homepage/widgets/comments_section_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/gallery_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/location_widget.dart';
-import 'package:easyrent/presentation/views/property_homepage/widgets/panorama_images.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/panorama_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -41,7 +41,7 @@ class PropertyDetailsPage extends StatelessWidget {
     avatar,
   );
 
-  PropertyDetailsPage({
+  const PropertyDetailsPage({
     super.key,
     required this.title,
     required this.genre,
@@ -243,7 +243,7 @@ class PropertyDetailsPage extends StatelessWidget {
                   const CustomDivider(),
 
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
                         const Icon(

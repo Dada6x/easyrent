@@ -3,14 +3,12 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/services/app/controller/app_controller.dart';
 import 'package:easyrent/core/utils/error_loading_mssg.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/property_details_page.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 // import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class PropertyWidgetSearch extends StatelessWidget {
@@ -36,7 +34,7 @@ class PropertyWidgetSearch extends StatelessWidget {
         child: RawMaterialButton(
           onPressed: () {
             Get.to(
-              PropertyDetailsPage(
+              const PropertyDetailsPage(
                 title: "MODERNISM VILLA",
                 genre: "Villa",
                 ratings: 4.5,
@@ -47,8 +45,8 @@ class PropertyWidgetSearch extends StatelessWidget {
                 price: 19322,
                 overview:
                     "Consequatur porro impedit alias odio voluptatem qui qui rerum aspernatur. Facere mollitia fugit perferendis deleniti quam neque voluptatem repellendus natus. Omnis ipsum culpa qui minima.",
-                previewImages: const [apartment, apartment2, japan],
-                galleryImages: const [
+                previewImages: [apartment, apartment2, japan],
+                galleryImages: [
                   apartment3,
                   japan,
                   apartment2,
@@ -59,7 +57,7 @@ class PropertyWidgetSearch extends StatelessWidget {
                 ],
                 lat: 33.5138,
                 lng: 36.2765,
-                panoramaImages: const [
+                panoramaImages: [
                   {'name': 'Living Room', 'imagePath': panorama1},
                   {'name': 'Kitchen', 'imagePath': panorama2},
                   {'name': 'Bedroom', 'imagePath': panorama3},

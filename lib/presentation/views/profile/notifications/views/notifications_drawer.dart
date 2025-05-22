@@ -5,7 +5,6 @@ import 'package:easyrent/presentation/views/profile/notifications/widgets/notifi
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class NotificationsView extends StatelessWidget {
   const NotificationsView({super.key});

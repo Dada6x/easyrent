@@ -1,23 +1,24 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/services/app/controller/app_controller.dart';
 import 'package:easyrent/core/services/app/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+
+import 'package:easyrent/core/services/app/controller/app_controller.dart';
 
 class Theme_languageRow extends StatelessWidget {
   const Theme_languageRow({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final AppController _AppController = Get.find<AppController>();
+    final AppController appController = Get.find<AppController>();
 
     return Row(
       children: [
         RepaintBoundary(
           child: ThemeSwitcher(
-            clipper: const  ThemeSwitcherCircleClipper(),
+            clipper: const ThemeSwitcherCircleClipper(),
             builder: (context) {
               return IconButton(
                 icon: Icon(
@@ -44,10 +45,10 @@ class Theme_languageRow extends StatelessWidget {
         ),
         IconButton(
             onPressed: () {
-              _AppController.isArabic.value = !_AppController.isArabic.value;
-              _AppController.isArabic.value
-                  ? _AppController.changeLang("en")
-                  : _AppController.changeLang("ar");
+              appController.isArabic.value = !appController.isArabic.value;
+              appController.isArabic.value
+                  ? appController.changeLang("en")
+                  : appController.changeLang("ar");
             },
             icon: const Icon(
               Icons.translate,

@@ -3,6 +3,8 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:get/get.dart';
 
 class StripeWebPage extends StatefulWidget {
+  const StripeWebPage({super.key});
+
   @override
   _StripeWebPageState createState() => _StripeWebPageState();
 }

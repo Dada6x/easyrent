@@ -63,11 +63,11 @@ class _SearchState extends State<Search> {
         child: CustomScrollView(
           controller: _scrollController,
           slivers: [
-            SliverToBoxAdapter(child: CustomSearchBar()),
+            const SliverToBoxAdapter(child: CustomSearchBar()),
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 3.w),
-                child: PropertyFilterChips(),
+                child: const PropertyFilterChips(),
               ),
             ),
             SliverToBoxAdapter(
@@ -94,9 +94,9 @@ class _SearchState extends State<Search> {
               ),
             ),
             if (isLoadingMore)
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: EdgeInsets.all(16),
                   child: Center(child: CircularProgressIndicator()),
                 ),
               ),

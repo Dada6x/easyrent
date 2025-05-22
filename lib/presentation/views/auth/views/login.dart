@@ -10,7 +10,6 @@ import 'package:easyrent/core/utils/textFields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});

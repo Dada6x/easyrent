@@ -28,7 +28,7 @@ class _PanoramaPageState extends State<PanoramaPage> {
     final currentRoom = widget.rooms[currentIndex];
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.transparent,
       body: SafeArea(
         child: Stack(
           children: [
@@ -75,8 +75,8 @@ class _PanoramaPageState extends State<PanoramaPage> {
                   backgroundColor: white.withOpacity(0.03),
                   foregroundColor: Colors.black,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.r),
-                  ),
+                      borderRadius: BorderRadius.circular(20.r),
+                      side: const BorderSide(color: white)),
                 ),
                 child: Text("Next Room".tr,
                     style: AppTextStyles.h20semi.copyWith(color: primaryBlue)),

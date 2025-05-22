@@ -52,7 +52,7 @@ dependencies:
   shared_preferences: ^2.3.3
   logger: ^2.5.0
   skeletonizer: ^1.4.3
-  motion: ^2.0.1
+  motion: ^2.0.1  
 dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_test:

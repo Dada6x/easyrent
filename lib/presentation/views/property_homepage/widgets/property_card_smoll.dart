@@ -15,7 +15,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 class PropertyCardSmall extends StatelessWidget {
   final Map<String, dynamic> property;
 
-  const PropertyCardSmall({required this.property});
+  const PropertyCardSmall({super.key, required this.property});
 
   @override
   Widget build(BuildContext context) {

@@ -3,8 +3,6 @@ import 'package:easyrent/core/services/app/controller/app_controller.dart';
 import 'package:easyrent/core/services/app/language/locale.dart';
 import 'package:easyrent/core/services/app/theme/themes.dart';
 import 'package:easyrent/presentation/navigation/introduction_screen.dart';
-import 'package:easyrent/presentation/views/profile/payment/views/payment.dart';
-import 'package:easyrent/presentation/views/property_homepage/views/parallaxEffeect.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +10,6 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:motion/motion.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 //! FOR DEBUGGING must erase it after the end of the application
 var debug = Logger(
@@ -47,6 +44,7 @@ void main() async {
       Get.put(AppController());
       debug.i("$isOffline");
       debug.d("application Started !!");
+      debug.e("ERROR NGGAR");
       return ThemeProvider(
         initTheme: Themes().lightMode,
         builder: (_, theme) {

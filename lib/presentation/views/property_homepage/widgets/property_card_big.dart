@@ -1,15 +1,11 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/services/app/controller/app_controller.dart';
-import 'package:easyrent/core/utils/error_loading_mssg.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/property_details_page.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class PropertyCardBig extends StatelessWidget {
