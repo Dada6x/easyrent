@@ -8,6 +8,7 @@ class DioConsumer extends ApiConsumer {
   DioConsumer(this.dio) {
     dio.options.baseUrl = "API PATH HERE";
     dio.interceptors.add(const ApiInterceptor());
+    // to log shit
     dio.interceptors.add(LogInterceptor(
       request: true,
       requestHeader: true,
@@ -15,16 +16,14 @@ class DioConsumer extends ApiConsumer {
       error: true,
       responseBody: true,
       responseHeader: true,
-    )); // print the Log of the response or the request
+    ));
   }
 
   @override
-  delete(
-    String path, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    bool isFormData = false,
-  }) async {
+  delete(String path,
+      {dynamic data,
+      Map<String, dynamic>? queryParameters,
+      bool isFormData = false}) async {
     try {
       final response = await dio.delete(
         path,
@@ -36,13 +35,10 @@ class DioConsumer extends ApiConsumer {
       handleDioException(e);
     }
   }
-
+  
   @override
-  get(
-    String path, {
-    Object? data,
-    Map<String, dynamic>? queryParameters,
-  }) async {
+  get(String path,
+      {Object? data, Map<String, dynamic>? queryParameters}) async {
     try {
       final response = await dio.get(
         path,
@@ -56,12 +52,10 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  patch(
-    String path, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    bool isFormData = false,
-  }) async {
+  patch(String path,
+      {dynamic data,
+      Map<String, dynamic>? queryParameters,
+      bool isFormData = false}) async {
     try {
       final response = await dio.patch(
         path,
@@ -75,12 +69,10 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  post(
-    String path, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    bool isFormData = false,
-  }) async {
+  post(String path,
+      {dynamic data,
+      Map<String, dynamic>? queryParameters,
+      bool isFormData = false}) async {
     try {
       final response = await dio.post(
         path,

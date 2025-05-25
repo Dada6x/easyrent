@@ -1,5 +1,6 @@
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/data/repos/userRepo.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/views/auth/views/forget_password.dart';
 import 'package:easyrent/presentation/views/auth/views/signup.dart';
@@ -50,7 +51,7 @@ class LoginPage extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                       onPressed: () {
-                        //forget password
+                        //@forget password
                         Get.to(() => ForgetPasswordPage());
                       },
                       child: Text('Forgot Password?',

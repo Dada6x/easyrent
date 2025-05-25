@@ -4,7 +4,7 @@ import 'package:easyrent/core/utils/divider.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';
-import 'package:easyrent/presentation/views/profile/payment/views/payment.dart';
+import 'package:easyrent/presentation/views/profile/view/pages/payment/views/payment.dart';
 import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -183,7 +183,6 @@ void showDeleteDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return Dialog(
-        // backgroundColor: C,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -195,7 +194,7 @@ void showDeleteDialog(BuildContext context) {
               Text('Are You sure to logout ?', style: AppTextStyles.h20medium),
               SizedBox(height: 12.h),
               Text(
-                'You will be missed :(',
+                'You will be missed  🥺',
                 style: AppTextStyles.h14regular,
                 textAlign: TextAlign.center,
               ),

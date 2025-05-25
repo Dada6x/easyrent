@@ -6,8 +6,6 @@ const japan = "assets/images/japan.png";
 const apartment = "assets/images/apartment.png";
 const apartment2 = "assets/images/apartment2.png";
 const apartment3 = "assets/images/apartment3.png";
-// const avatar = "assets/images/avatar.png";
-// const avatar = "assets/images/avatar.png";
 //! -----------icons-------------------------
 const calendar = "assets/icons/calendar.png"; //? profile
 const info = "assets/icons/info.png";

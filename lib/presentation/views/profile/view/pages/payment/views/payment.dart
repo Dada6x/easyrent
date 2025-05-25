@@ -1,7 +1,7 @@
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';
-import 'package:easyrent/presentation/views/profile/payment/widgets/creditCard_widget.dart';
+import 'package:easyrent/presentation/views/profile/view/pages/payment/widgets/creditCard_widget.dart';
 import 'package:easyrent/presentation/views/web_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,18 +50,19 @@ class PaymentMethod extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: Text(
                       "move Your Phone !",
-                      style: AppTextStyles.h10light.copyWith(color: grey),
+                      style:
+                          AppTextStyles.h10light.copyWith(color: primaryBlue),
                     ),
                   ),
                 ),
               ),
               SizedBox(
-                height: 180.h,
+                height: 350.h,
               ),
               CustomeButton(
                 hint: "Next",
                 function: () {
-                  Get.to(() => StripeWebPage());
+                  Get.to(() => const StripeWebPage());
                 },
                 width: 200,
                 borderRadius: 24,

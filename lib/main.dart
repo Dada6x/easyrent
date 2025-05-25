@@ -2,6 +2,7 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easyrent/core/services/app/controller/app_controller.dart';
 import 'package:easyrent/core/services/app/language/locale.dart';
 import 'package:easyrent/core/services/app/theme/themes.dart';
+import 'package:easyrent/data/models/user_model.dart';
 import 'package:easyrent/presentation/navigation/introduction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,6 +25,8 @@ var debug = Logger(
 bool isOffline = false;
 
 void main() async {
+
+
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferences.getInstance();
   SystemChrome.setSystemUIOverlayStyle(

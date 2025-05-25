@@ -1,6 +1,6 @@
 class EndPoints {
   static String baseUrl = "";
-  static String Signin = "/login";
+  static String Login = "/login";
   static String Logout = "/logOut";
   static String signUp = "/logOut";
   static String fetchAllProperties = "/logOut";
@@ -22,3 +22,9 @@ class ApiKey {
   static String errorMessage = "errorMessage";
   const ApiKey();
 }
+// login 
+// register 
+// get code 
+// verify code 
+// logout 
+
