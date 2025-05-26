@@ -13,19 +13,19 @@ class User {
   final dynamic planId;
   final bool? hasUsedTrial;
   const User(
-      {this.id,
-      this.phone,
-      this.username,
-      this.location,
-      this.age,
-      this.userType,
-      this.isAccountVerified,
-      this.totalVoteScore,
-      this.createdAt,
-      this.updatedAt,
-      this.profileImage,
-      this.planId,
-      this.hasUsedTrial});
+      {required this.id,
+      required this.phone,
+      required this.username,
+      required this.location,
+      required this.age,
+      required this.userType,
+      required this.isAccountVerified,
+      required this.totalVoteScore,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.profileImage,
+      required this.planId,
+      required this.hasUsedTrial});
   User copyWith(
       {int? id,
       String? phone,
@@ -40,7 +40,6 @@ class User {
       dynamic profileImage,
       dynamic planId,
       bool? hasUsedTrial}) {
-        
     return User(
         id: id ?? this.id,
         phone: phone ?? this.phone,
@@ -120,7 +119,6 @@ hasUsedTrial:$hasUsedTrial
     ) ''';
   }
 
-
   // @override
   // int get hashCode {
   //   return Object.hash(
@@ -140,9 +138,7 @@ hasUsedTrial:$hasUsedTrial
   //       hasUsedTrial,
   //       );
   // }
-
 }
-
 
 class Location {
   final String? country;

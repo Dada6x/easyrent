@@ -5,10 +5,10 @@ import 'package:easyrent/core/services/errors/exceptions.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
+
   DioConsumer(this.dio) {
-    dio.options.baseUrl = "API PATH HERE";
+    dio.options.baseUrl = "";
     dio.interceptors.add(const ApiInterceptor());
-    // to log shit
     dio.interceptors.add(LogInterceptor(
       request: true,
       requestHeader: true,
@@ -20,10 +20,12 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  delete(String path,
-      {dynamic data,
-      Map<String, dynamic>? queryParameters,
-      bool isFormData = false}) async {
+  delete(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    bool isFormData = false, //! is format nigga shit 
+  }) async {
     try {
       final response = await dio.delete(
         path,
@@ -35,7 +37,7 @@ class DioConsumer extends ApiConsumer {
       handleDioException(e);
     }
   }
-  
+
   @override
   get(String path,
       {Object? data, Map<String, dynamic>? queryParameters}) async {

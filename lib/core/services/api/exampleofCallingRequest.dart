@@ -10,12 +10,13 @@ class Exampleofcallingrequest {
   signInRequest() {
     try {
       api.post(
-        EndPoints.Login, // the EndPoint
+        EndPoints.Login, 
         data: {
-          ApiKey.email: controller.text, // "email": controller
+          ApiKey.email: controller.text, 
           ApiKey.password: controller.text
         },
       );
+
     } on ServerException {
       rethrow;
     }

@@ -1,4 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/services/api/api_consumer.dart';
+import 'package:easyrent/core/services/api/dio_consumer.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/data/repos/userRepo.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
@@ -15,10 +18,10 @@ import 'package:get/get.dart';
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 //$----------------------text controllers------------------------->
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _numberController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 //$--------------------------------------------------------------->
-
+  var api = DioConsumer(Dio());
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -36,7 +39,7 @@ class LoginPage extends StatelessWidget {
                 CustomTextfield(
                   hint: "Phone Number ",
                   icon: const Icon(Icons.phone),
-                  controller: _emailController,
+                  controller: _numberController,
                   isPhoneNumber: true,
                 ),
                 //! PASSWORD
@@ -58,10 +61,14 @@ class LoginPage extends StatelessWidget {
                           style: AppTextStyles.h14regular
                               .copyWith(color: primaryBlue))),
                 ),
-                //! LOGIN BUTTON :O
+                //@ LOGIN BUTTON :O
                 CustomeButton(
                   hint: "login",
                   function: () {
+                    Userrepo(api).loginUser(
+                        number: _numberController.text,
+                        password: _passwordController.text);
+                    //!
                     Get.off(() => const HomeScreenNavigator());
                   },
                 ),

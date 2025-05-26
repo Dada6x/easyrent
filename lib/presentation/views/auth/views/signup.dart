@@ -1,4 +1,5 @@
 import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/data/repos/userRepo.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';

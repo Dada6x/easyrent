@@ -3,6 +3,7 @@ abstract class ApiConsumer {
     String path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
+    
   });
   post(
     String path, {
@@ -22,6 +23,5 @@ abstract class ApiConsumer {
     Map<String, dynamic>? queryParameters,
     bool isFormData = false,
   });
-
   const ApiConsumer();
 }
