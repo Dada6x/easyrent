@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:easyrent/core/services/api/api_consumer.dart';
 import 'package:easyrent/core/services/api/api_interceptor.dart';
+import 'package:easyrent/core/services/api/end_points.dart';
 import 'package:easyrent/core/services/errors/exceptions.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
 
   DioConsumer(this.dio) {
-    dio.options.baseUrl = "";
+    dio.options.baseUrl = EndPoints.baseUrl;
     dio.interceptors.add(const ApiInterceptor());
     dio.interceptors.add(LogInterceptor(
       request: true,

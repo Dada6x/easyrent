@@ -1,6 +1,6 @@
 class EndPoints {
-  static String baseUrl = "niggasBalls";
-  static String Login = "/login";
+  static String baseUrl = "https://dummyjson.com";
+  static String Login = "/users/7";
   static String Logout = "/logOut";
   static String signUp = "/SignUp";
   static String fetchAllProperties = "/getAllPropereties";

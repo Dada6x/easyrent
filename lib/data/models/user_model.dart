@@ -1,4 +1,5 @@
 class User {
+  
   final int? id;
   final String? phone;
   final String? username;
@@ -56,23 +57,23 @@ class User {
         hasUsedTrial: hasUsedTrial ?? this.hasUsedTrial);
   }
 
-  Map<String, Object?> toJson() {
-    return {
-      'id': id,
-      'phone': phone,
-      'username': username,
-      'location': location?.toJson(),
-      'age': age,
-      'userType': userType,
-      'isAccountVerified': isAccountVerified,
-      'totalVoteScore': totalVoteScore,
-      'createdAt': createdAt,
-      'updatedAt': updatedAt,
-      'profileImage': profileImage,
-      'planId': planId,
-      'hasUsedTrial': hasUsedTrial
-    };
-  }
+  // Map<String, Object?> toJson() {
+  //   return {
+  //     'id': id,
+  //     'phone': phone,
+  //     'username': username,
+  //     'location': location?.toJson(),
+  //     'age': age,
+  //     'userType': userType,
+  //     'isAccountVerified': isAccountVerified,
+  //     'totalVoteScore': totalVoteScore,
+  //     'createdAt': createdAt,
+  //     'updatedAt': updatedAt,
+  //     'profileImage': profileImage,
+  //     'planId': planId,
+  //     'hasUsedTrial': hasUsedTrial
+  //   };
+  // }
 
   static User fromJson(Map<String, Object?> json) {
     return User(
