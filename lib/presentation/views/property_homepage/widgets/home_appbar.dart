@@ -4,6 +4,7 @@ import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 AppBar homePageAppbar() {
@@ -15,9 +16,14 @@ AppBar homePageAppbar() {
     title: Row(
       children: [
         CircleAvatar(
-          radius: 20.r,
-          backgroundColor: primaryBlue,
-          backgroundImage: const AssetImage(avatar),
+          radius: 29.7.r,
+          foregroundColor: primaryBlue,
+          child: CircleAvatar(
+            foregroundColor: primaryBlue,
+            radius: 28.r,
+            backgroundColor: primaryBlue,
+            backgroundImage: const AssetImage(avatar),
+          ),
         ),
         SizedBox(width: 12.r),
         Expanded(
@@ -42,6 +48,7 @@ AppBar homePageAppbar() {
       ],
     ),
     actions: [
+      Flexible(child: SvgPicture.asset(width: 18, height: 28, househome)),
       IconButton(
           onPressed: () {
             HomeScreenNavigator.scaffoldKey.currentState?.openEndDrawer();
@@ -49,6 +56,7 @@ AppBar homePageAppbar() {
           icon: Icon(
             Icons.notifications,
             size: 30.r,
+            color: primaryBlue,
           )),
     ],
   );

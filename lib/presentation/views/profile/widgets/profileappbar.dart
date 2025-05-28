@@ -1,3 +1,4 @@
+import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/views/profile/widgets/theme_language_buttons%20widget.dart';
@@ -28,6 +29,7 @@ AppBar profileAppbar() {
                 icon: Icon(
                   Icons.notifications,
                   size: 30.r,
+                  color: primaryBlue,
                 )),
           ],
         ),

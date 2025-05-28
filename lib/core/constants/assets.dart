@@ -49,4 +49,13 @@ const easyRent = "assets/animations/EeasyRent.json";
 const panorama1 = "assets/panorama/panoramaPartment1.jpg";
 const panorama2 = "assets/panorama/panoramaPartment2.jpg";
 const panorama3 = "assets/panorama/panoramaPartment3.jpg";
-const onlineImageUrl = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c";
+const onlineImageUrl =
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c";
+
+//!-----------SVG ----------------------
+const intro1 = "assets/images/svg/property.svg";
+const intro2 = "assets/images/svg/interview.svg";
+const intro3 = "assets/images/svg/payment.svg";
+const intro4 = "assets/images/svg/houseapproved.svg";
+const searchHouse = "assets/images/svg/search_house.svg";
+const househome = "assets/images/svg/house.svg";

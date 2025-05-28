@@ -13,10 +13,10 @@ const items = [
   primaryBlue,
 ];
 const images = [
-  "assets/images/svg/property.svg",
-  "assets/images/svg/interview.svg",
-  "assets/images/svg/payment.svg",
-  "assets/images/svg/houseapproved.svg"
+  intro1,
+  intro2,
+  intro3,
+  intro4,
 ];
 const texts = [
   'Explore thousands of listings and find the perfect home that matches your lifestyle and budget',
@@ -57,7 +57,6 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          // Background Custom Painter
           AnimatedBuilder(
             animation: _notifier,
             builder: (_, __) => CustomPaint(
