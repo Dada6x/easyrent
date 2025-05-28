@@ -2,6 +2,8 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
@@ -12,7 +14,12 @@ const items = [
   Colors.white,
   primaryBlue,
 ];
-const lotties = [easyRent, easyRent, easyRent, easyRent];
+const images = [
+  easyRent,
+  "assets/images/svg/undraw_just-browsing_0rpb.svg",
+  "assets/images/svg/undraw_for-sale_7qjb.svg",
+  easyRent
+];
 const texts = [
   'Explore thousands of listings and find the perfect home that matches your lifestyle and budget',
   'Use smart filters to narrow your search by location, price, size, and amenities',
@@ -71,10 +78,10 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
             itemBuilder: (context, i) => Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: const EdgeInsets.only(top: 200),
+                padding:  EdgeInsets.only(top: 200.h),
                 child: SizedBox(
-                  width: 300,
-                  height: 400,
+                  width: 300.w,
+                  height: 400.h,
                   child: Column(
                     children: [
                       const SizedBox(height: 20),
@@ -102,7 +109,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 70, horizontal: 10),
+              padding:  EdgeInsets.symmetric(vertical: 70.h, horizontal: 10.w),
               child: GestureDetector(
                 onTap: () {
                   int currentPage = _notifier.value.round();
@@ -117,7 +124,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                   }
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(8.0.r),
                   child: AnimatedBuilder(
                     animation: _notifier,
                     builder: (_, __) {
@@ -143,8 +150,8 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                         key: _button,
                         // offset: Offset(0, 0),
                         child: Container(
-                          width: 180,
-                          height: 45,
+                          width: 180.w,
+                          height: 45.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
                             color: items[colorIndex],
@@ -255,7 +262,7 @@ class _FloatingWidgetState extends State<FloatingWidget>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     vsync: this,
-    duration: const Duration(seconds: 1000),
+    duration: const Duration(seconds: 7),
   )..repeat(reverse: true);
   late final Animation<Offset> _animation =
       Tween(begin: Offset.zero, end: const Offset(0, 0.20))
@@ -272,11 +279,16 @@ class _FloatingWidgetState extends State<FloatingWidget>
     int i = widget.i;
     return SlideTransition(
       position: _animation,
-      child: Column(
-        children: [
-          const SizedBox(height: 20),
-          Lottie.asset(lotties[i]),
-        ],
+      child: Flexible(
+        child: Padding(
+          padding:  EdgeInsets.symmetric(horizontal: 16.0.r),
+          child: SvgPicture.asset(
+            images[i],
+            fit: BoxFit.contain,
+            width: double.infinity,
+            height: 240.h,
+          ),
+        ),
       ),
     );
   }

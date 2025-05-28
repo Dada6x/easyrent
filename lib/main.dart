@@ -4,6 +4,7 @@ import 'package:easyrent/core/services/app/language/locale.dart';
 import 'package:easyrent/core/services/app/theme/themes.dart';
 import 'package:easyrent/data/models/user_model.dart';
 import 'package:easyrent/presentation/navigation/introduction_screen.dart';
+import 'package:easyrent/presentation/navigation/splachScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,8 +26,6 @@ var debug = Logger(
 bool isOffline = false;
 
 void main() async {
-
-
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferences.getInstance();
   SystemChrome.setSystemUIOverlayStyle(
@@ -45,9 +44,8 @@ void main() async {
     splitScreenMode: true,
     builder: (context, child) {
       Get.put(AppController());
-      debug.i("$isOffline");
+      debug.i("is the Application Offline : $isOffline");
       debug.d("application Started !!");
-      debug.e("ERROR NGGAR");
       return ThemeProvider(
         initTheme: Themes().lightMode,
         builder: (_, theme) {
@@ -55,7 +53,7 @@ void main() async {
               debugShowCheckedModeBanner: false,
               theme: theme,
               translations: MyLocale(),
-              home: const IntroductionScreen());
+              home: const Splashscreen());
         },
       );
     },
