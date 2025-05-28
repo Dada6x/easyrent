@@ -5,25 +5,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 const items = [
-  //TODO this need sto be fixed
-  Colors.white,
+  white,
   primaryBlue,
-  Colors.white,
+  white,
   primaryBlue,
 ];
 const images = [
-  easyRent,
-  "assets/images/svg/undraw_just-browsing_0rpb.svg",
-  "assets/images/svg/undraw_for-sale_7qjb.svg",
-  easyRent
+  "assets/images/svg/property.svg",
+  "assets/images/svg/interview.svg",
+  "assets/images/svg/payment.svg",
+  "assets/images/svg/houseapproved.svg"
 ];
 const texts = [
   'Explore thousands of listings and find the perfect home that matches your lifestyle and budget',
-  'Use smart filters to narrow your search by location, price, size, and amenities',
   'Get in touch with verified agents and schedule visits with a single tap',
+  'Enjoy flexible payment options and complete peace of mind with secure, trusted transactions',
   'Whether renting or buying, enjoy secure transactions and instant updates on your deal status',
 ];
 
@@ -71,17 +69,16 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
               ),
             ),
           ),
-
           PageView.builder(
             controller: _pageController,
             itemCount: items.length,
             itemBuilder: (context, i) => Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding:  EdgeInsets.only(top: 200.h),
+                padding: EdgeInsets.only(top: 200.h),
                 child: SizedBox(
-                  width: 300.w,
-                  height: 400.h,
+                  width: 400.w,
+                  height: 500.h,
                   child: Column(
                     children: [
                       const SizedBox(height: 20),
@@ -94,7 +91,9 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                           texts[i],
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                            fontSize: 18.sp,
+                            fontFamily: "Rubik",
+                            fontWeight: FontWeight.w600,
                             color: i % 2 == 0 ? primaryBlue : Colors.white,
                           ),
                         ),
@@ -109,7 +108,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding:  EdgeInsets.symmetric(vertical: 70.h, horizontal: 10.w),
+              padding: EdgeInsets.symmetric(vertical: 70.h, horizontal: 10.w),
               child: GestureDetector(
                 onTap: () {
                   int currentPage = _notifier.value.round();
@@ -124,7 +123,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                   }
                 },
                 child: Padding(
-                  padding:  EdgeInsets.all(8.0.r),
+                  padding: EdgeInsets.all(8.0.r),
                   child: AnimatedBuilder(
                     animation: _notifier,
                     builder: (_, __) {
@@ -150,8 +149,8 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                         key: _button,
                         // offset: Offset(0, 0),
                         child: Container(
-                          width: 180.w,
-                          height: 45.h,
+                          width: 188.w,
+                          height: 46.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
                             color: items[colorIndex],
@@ -162,7 +161,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                                   ? "Start Now"
                                   : "Next",
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 18.5.sp,
                                 fontFamily: "Rubik",
                                 // fontWeight: FontWeight.w8,
                                 color: colorIndex % 2 == 0
@@ -281,12 +280,12 @@ class _FloatingWidgetState extends State<FloatingWidget>
       position: _animation,
       child: Flexible(
         child: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 16.0.r),
+          padding: EdgeInsets.symmetric(horizontal: 16.0.r),
           child: SvgPicture.asset(
             images[i],
             fit: BoxFit.contain,
             width: double.infinity,
-            height: 240.h,
+            height: 250.h,
           ),
         ),
       ),
