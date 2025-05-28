@@ -78,11 +78,9 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                   child: Column(
                     children: [
                       const SizedBox(height: 20),
-                      Expanded(
-                        child: Lottie.asset(lotties[i]),
-                      ),
+                      Expanded(child: FloatingWidget(i: i)),
                       const SizedBox(
-                        height: 200,
+                        height: 100,
                       ),
                       Center(
                         child: Text(
@@ -100,7 +98,6 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
               ),
             ),
           ),
-
           // Interactive Button
           Align(
             alignment: Alignment.bottomCenter,
@@ -111,6 +108,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                   int currentPage = _notifier.value.round();
                   if (currentPage == items.length - 1) {
                     Get.off(() => LoginPage());
+                    // set the middle ware to never be here again
                   } else {
                     _pageController.nextPage(
                       duration: const Duration(milliseconds: 800),
@@ -127,7 +125,6 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                           _notifier.value - _notifier.value.floor();
                       double opacity = 0, iconPos = 0;
                       int colorIndex;
-
                       if (animatorVal < 0.5) {
                         opacity = (animatorVal - 0.5) * -2;
                         iconPos = 80 * -animatorVal;
@@ -144,7 +141,6 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                       int currentPage = _notifier.value.round();
                       return SizedBox(
                         key: _button,
-                        // child: Transform.translate(
                         // offset: Offset(0, 0),
                         child: Container(
                           width: 180,
@@ -245,4 +241,43 @@ class FlowPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
+
+class FloatingWidget extends StatefulWidget {
+  final int i;
+  const FloatingWidget({super.key, required this.i});
+
+  @override
+  State<FloatingWidget> createState() => _FloatingWidgetState();
+}
+
+class _FloatingWidgetState extends State<FloatingWidget>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 1000),
+  )..repeat(reverse: true);
+  late final Animation<Offset> _animation =
+      Tween(begin: Offset.zero, end: const Offset(0, 0.20))
+          .animate(_controller);
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    int i = widget.i;
+    return SlideTransition(
+      position: _animation,
+      child: Column(
+        children: [
+          const SizedBox(height: 20),
+          Lottie.asset(lotties[i]),
+        ],
+      ),
+    );
+  }
 }

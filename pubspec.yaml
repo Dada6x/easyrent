@@ -39,6 +39,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_map: ^7.0.2
+  flutter_svg: ^2.0.17
   flutter_screenutil: ^5.9.3
   geocoding: ^2.0.4
   get: ^4.7.2
