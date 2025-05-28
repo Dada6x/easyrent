@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:easyrent/core/services/api/api_consumer.dart';
 import 'package:easyrent/core/services/api/end_points.dart';
-import 'package:easyrent/core/services/errors/exceptions.dart';
+import 'package:easyrent/core/services/api/errors/exceptions.dart';
 import 'package:easyrent/data/models/user_model.dart';
 import 'package:easyrent/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +14,7 @@ class Userrepo {
   Future<Either<String, User>> loginUser(
       {required String number, required String password}) async {
     try {
-      //chng to post and the endpoint also
+      //chang to post and the endpoint also
       final response = await api.post(
         EndPoints.Login,
         data: {
@@ -22,7 +22,7 @@ class Userrepo {
           ApiKey.password: password,
         },
       );
-// ! save Token      // idk if i should save it in the User
+//! save Token       idk if i should save it in the User
       saveToken(response['token']);
 //! Call Profile
 /*
@@ -34,6 +34,7 @@ class Userrepo {
 // );
 //! making new User
       debug.i("User Created");
+      //! HOW TO ACCESS USER GLOBALLY 
       final user = User.fromJson(response);
       return Right(user);
     } on ServerException catch (e) {
@@ -58,8 +59,8 @@ class Userrepo {
           ApiKey.confirmPassword: confirmPassword,
         },
       );
+      saveToken(response['token']);
       final user = User.fromJson(response);
-      final token = response['token'];
       debug.i("New User Created");
       return Right(user);
     } on ServerException catch (e) {

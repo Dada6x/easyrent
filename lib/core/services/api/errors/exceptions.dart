@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:easyrent/core/services/errors/error_model.dart';
+import 'package:easyrent/core/services/api/errors/error_model.dart';
 
 class ServerException implements Exception {
   final ErrorModel errorModel;

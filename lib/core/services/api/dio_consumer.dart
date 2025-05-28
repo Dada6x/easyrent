@@ -2,12 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:easyrent/core/services/api/api_consumer.dart';
 import 'package:easyrent/core/services/api/api_interceptor.dart';
 import 'package:easyrent/core/services/api/end_points.dart';
-import 'package:easyrent/core/services/errors/exceptions.dart';
+import 'package:easyrent/core/services/api/errors/exceptions.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
 
   DioConsumer(this.dio) {
+    // dio.options.queryParameters={"LANG":'En'};  for language
     dio.options.baseUrl = EndPoints.baseUrl;
     dio.interceptors.add(const ApiInterceptor());
     dio.interceptors.add(LogInterceptor(
@@ -25,7 +26,7 @@ class DioConsumer extends ApiConsumer {
     String path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
-    bool isFormData = false, //! is format nigga shit 
+    bool isFormData = false, //! is format nigga shit
   }) async {
     try {
       final response = await dio.delete(
