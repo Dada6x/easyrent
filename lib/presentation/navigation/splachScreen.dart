@@ -24,28 +24,19 @@ class _SplashscreenState extends State<Splashscreen>
   @override
   void initState() {
     super.initState();
-    // if (userPref?.getBool("isFirst") == true) {
-    //   Get.off(() => LoginPage());
-    // } else if (userPref?.getBool("isLoggedIn") == true) {
-    //   Get.off(() => LoginPage());
-    // }
-
-// ! deciding where to go to login or to the introductionScreens  Or Main
 
     _controller = AnimationController(
       duration: const Duration(milliseconds: 1120),
       vsync: this,
     );
-
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
-
     Future.delayed(const Duration(seconds: 2), () {
       _controller.forward().whenComplete(() {
-        // ! just the introduction 
+        // ! just the introduction
         if (userPref?.getBool("isFirst") == true) {
-          Get.off(() => LoginPage());
+          Get.offNamed("/login");
         } else {
           Get.off(() => const IntroductionScreen());
         }
@@ -98,3 +89,7 @@ class CircleRevealClipper extends CustomClipper<Path> {
   bool shouldReclip(CircleRevealClipper oldClipper) =>
       radius != oldClipper.radius;
 }
+
+// ctrl + Q SideBar items (version ,search , notes and todos )
+// ctrl + E search in project (files )
+// ctrl + R change Projects 

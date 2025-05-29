@@ -65,10 +65,9 @@ void main() async {
                 name: '/',
                 page: () => const Splashscreen(),
               ),
-              GetPage(
-                name: '/login',
-                page: () => LoginPage(),
-              ),
+              GetPage(name: '/login', page: () => LoginPage(), middlewares: [
+                MiddlewareAuth(),
+              ]),
               GetPage(
                   name: '/homePage', page: () => const HomeScreenNavigator()),
             ],

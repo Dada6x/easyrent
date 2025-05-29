@@ -2,6 +2,7 @@ import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/divider.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';
 import 'package:easyrent/presentation/views/profile/view/pages/payment/views/payment.dart';
@@ -217,6 +218,7 @@ void showDeleteDialog(BuildContext context) {
                   Expanded(
                     child: TextButton(
                       onPressed: () {
+                        userPref?.setBool('isLoggedIn', false);
                         Get.off(() => LoginPage());
                         // Navigator.pop(context);
                       },
