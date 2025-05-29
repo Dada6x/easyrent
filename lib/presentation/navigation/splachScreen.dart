@@ -2,8 +2,6 @@ import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/introduction_screen.dart';
-import 'package:easyrent/presentation/navigation/navigator.dart';
-import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
