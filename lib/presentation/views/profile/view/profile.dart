@@ -4,12 +4,12 @@ import 'package:easyrent/core/utils/divider.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
-// import 'package:easyrent/presentation/views/auth/widgets/button.dart';
 import 'package:easyrent/presentation/views/profile/view/pages/payment/views/payment.dart';
 import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:motion/motion.dart';
 
 class Profile extends StatelessWidget {
@@ -30,51 +30,74 @@ class Profile extends StatelessWidget {
               shadowColor: Colors.transparent,
               child: Motion(
                 filterQuality: FilterQuality.high,
-                controller: MotionController(maxAngle: 250, damping: 0.2),
+                controller: MotionController(maxAngle: 50, damping: 0.2),
                 glare: const GlareConfiguration(maxOpacity: 0),
                 shadow: const ShadowConfiguration(color: Colors.transparent),
                 translation:
-                    const TranslationConfiguration(maxOffset: Offset(150, 120)),
+                    const TranslationConfiguration(maxOffset: Offset(50, 120)),
                 borderRadius: BorderRadius.circular(80),
                 child: Column(
                   children: [
-                    Stack(children: [
-                      CircleAvatar(
-                        radius: 80.r,
-                        backgroundImage: const AssetImage(avatar),
-                      ),
-                      Positioned(
+                    Stack(
+                      children: [
+                        CircleAvatar(
+                          radius: 80.r,
+                          backgroundImage: const AssetImage(avatar),
+                        ),
+                        Positioned(
                           bottom: 1.r,
                           right: -10.r,
                           height: 49.r,
                           child: RawMaterialButton(
                             onPressed: () {
-                              //! image Picker Dialog
                               Get.dialog(
                                 AlertDialog(
-                                  title: const Center(
-                                    child: Text(
-                                      'Choose ',
-                                    ),
-                                  ),
+                                  title:
+                                      const Center(child: Text('Choose Image')),
                                   actions: <Widget>[
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         IconButton(
-                                            onPressed: () {},
-                                            icon: const Icon(
-                                              Icons.camera,
-                                              color: primaryBlue,
-                                              semanticLabel: "camera",
-                                            )),
+                                          onPressed: () async {
+                                            Get.back(); 
+                                            final ImagePicker picker =
+                                                ImagePicker();
+                                            final XFile? image =
+                                                await picker.pickImage(
+                                              source: ImageSource.camera,
+                                            );
+                                            if (image != null) {
+                                              // Handle the selected image from camera
+                                              // You can set it to your CircleAvatar later when you're ready
+                                            }
+                                          },
+                                          icon: const Icon(
+                                            Icons.camera,
+                                            color: primaryBlue,
+                                            semanticLabel: "camera",
+                                          ),
+                                        ),
                                         IconButton(
-                                            onPressed: () {},
-                                            icon: const Icon(
-                                              Icons.image,
-                                              color: primaryBlue,
-                                            )),
+                                          onPressed: () async {
+                                            Get.back();
+                                            final ImagePicker picker =
+                                                ImagePicker();
+                                            final XFile? image =
+                                                await picker.pickImage(
+                                              source: ImageSource.gallery,
+                                            );
+                                            if (image != null) {
+                                              // Handle the selected image from gallery
+                                              // You can set it to your CircleAvatar later when you're ready
+                                            }
+                                          },
+                                          icon: const Icon(
+                                            Icons.image,
+                                            color: primaryBlue,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ],
@@ -90,8 +113,10 @@ class Profile extends StatelessWidget {
                               color: primaryBlue,
                               size: 28.r,
                             ),
-                          )),
-                    ]),
+                          ),
+                        ),
+                      ],
+                    ),
                     // image
                     Padding(
                       padding: EdgeInsets.all(8.r),
