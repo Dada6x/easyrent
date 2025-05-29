@@ -269,18 +269,12 @@ class PropertyDetailsPage extends StatelessWidget {
                     height: 20.h,
                   ),
                   const CustomDivider(),
-                  CommentSection(comments: [
-                    comment,
-                    comment,
-                    comment,
-                  ]),
                   SizedBox(
                     height: 10.h,
                   ),
                   const CustomDivider(),
                   //! property Price
                   Padding(
-                    //TODO
                     padding: EdgeInsets.symmetric(horizontal: 8.h),
                     child: Row(
                       children: [

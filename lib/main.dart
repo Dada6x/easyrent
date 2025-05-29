@@ -12,6 +12,7 @@ import 'package:motion/motion.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //! FOR DEBUGGING must erase it after the end of the application
+
 var debug = Logger(
     printer: PrettyPrinter(
   colors: true,
@@ -20,8 +21,10 @@ var debug = Logger(
   printEmojis: true,
 ));
 
-// bool isOffline = !Get.find<AppController>().isOffline.value;
-bool isOffline = false;
+SharedPreferences? userPref;
+
+
+bool isOffline = !Get.find<AppController>().isOffline.value;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,10 +35,9 @@ void main() async {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
-// the payment Card gyroscope 3D shi
+  // the payment Card gyroscope 3D shi
   await Motion.instance.initialize();
   Motion.instance.setUpdateInterval(120.fps);
-
   runApp(ScreenUtilInit(
     designSize: const Size(430, 932), // design ratio in Figma
     minTextAdapt: true,

@@ -16,11 +16,11 @@ AppBar homePageAppbar() {
     title: Row(
       children: [
         CircleAvatar(
-          radius: 29.7.r,
+          radius: 27.r,
           foregroundColor: primaryBlue,
           child: CircleAvatar(
             foregroundColor: primaryBlue,
-            radius: 28.r,
+            radius: 26.r,
             backgroundColor: primaryBlue,
             backgroundImage: const AssetImage(avatar),
           ),
