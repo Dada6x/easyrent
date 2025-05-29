@@ -1,5 +1,6 @@
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/assets.dart';
+import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -112,6 +113,8 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                 onTap: () {
                   int currentPage = _notifier.value.round();
                   if (currentPage == items.length - 1) {
+                    //@ middlewares
+                    userPref?.setBool('isFirst', true);
                     Get.off(() => LoginPage());
                     // set the middle ware to never be here again
                   } else {

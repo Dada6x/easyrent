@@ -1,8 +1,13 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easyrent/core/services/app/controller/app_controller.dart';
 import 'package:easyrent/core/services/app/language/locale.dart';
+import 'package:easyrent/core/services/app/middleware/middelware.dart';
 import 'package:easyrent/core/services/app/theme/themes.dart';
+import 'package:easyrent/presentation/navigation/introduction_screen.dart';
+import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/navigation/splachScreen.dart';
+import 'package:easyrent/presentation/views/auth/views/login.dart';
+import 'package:easyrent/test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,12 +28,12 @@ var debug = Logger(
 
 SharedPreferences? userPref;
 
-
 bool isOffline = !Get.find<AppController>().isOffline.value;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferences.getInstance();
+  userPref = await SharedPreferences.getInstance();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -50,10 +55,24 @@ void main() async {
         initTheme: Themes().lightMode,
         builder: (_, theme) {
           return GetMaterialApp(
-              debugShowCheckedModeBanner: false,
-              theme: theme,
-              translations: MyLocale(),
-              home: const Splashscreen());
+            debugShowCheckedModeBanner: false,
+            theme: theme,
+            translations: MyLocale(),
+            //! middlewares
+            initialRoute: '/',
+            getPages: [
+              GetPage(
+                name: '/',
+                page: () => const Splashscreen(),
+              ),
+              GetPage(
+                name: '/login',
+                page: () => LoginPage(),
+              ),
+              GetPage(
+                  name: '/homePage', page: () => const HomeScreenNavigator()),
+            ],
+          );
         },
       );
     },

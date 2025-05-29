@@ -1,7 +1,12 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/introduction_screen.dart';
+import 'package:easyrent/presentation/navigation/navigator.dart';
+import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 
 class Splashscreen extends StatefulWidget {
@@ -19,6 +24,13 @@ class _SplashscreenState extends State<Splashscreen>
   @override
   void initState() {
     super.initState();
+    // if (userPref?.getBool("isFirst") == true) {
+    //   Get.off(() => LoginPage());
+    // } else if (userPref?.getBool("isLoggedIn") == true) {
+    //   Get.off(() => LoginPage());
+    // }
+
+// ! deciding where to go to login or to the introductionScreens  Or Main
 
     _controller = AnimationController(
       duration: const Duration(milliseconds: 1120),
@@ -31,11 +43,12 @@ class _SplashscreenState extends State<Splashscreen>
 
     Future.delayed(const Duration(seconds: 2), () {
       _controller.forward().whenComplete(() {
-        Navigator.of(context).pushReplacement(
-          PageRouteBuilder(
-              transitionDuration: const Duration(milliseconds: 800),
-              pageBuilder: (_, __, ___) => const IntroductionScreen()),
-        );
+        // ! just the introduction 
+        if (userPref?.getBool("isFirst") == true) {
+          Get.off(() => LoginPage());
+        } else {
+          Get.off(() => const IntroductionScreen());
+        }
       });
     });
   }

@@ -4,6 +4,7 @@ import 'package:easyrent/core/services/api/api_consumer.dart';
 import 'package:easyrent/core/services/api/dio_consumer.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/data/repos/userRepo.dart';
+import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/views/auth/views/forget_password.dart';
 import 'package:easyrent/presentation/views/auth/views/signup.dart';
@@ -69,6 +70,8 @@ class LoginPage extends StatelessWidget {
                         number: _numberController.text,
                         password: _passwordController.text);
                     //!
+                    userPref?.setBool('isLoggedIn', true);
+                    // debug.e('${userPref?.getBool('isLoggedIn',)}');
                     Get.off(() => const HomeScreenNavigator());
                   },
                 ),
