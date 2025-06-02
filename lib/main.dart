@@ -1,8 +1,8 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:easyrent/core/services/app/controller/app_controller.dart';
-import 'package:easyrent/core/services/app/language/locale.dart';
-import 'package:easyrent/core/services/app/middleware/middelware.dart';
-import 'package:easyrent/core/services/app/theme/themes.dart';
+import 'package:easyrent/core/app/controller/app_controller.dart';
+import 'package:easyrent/core/app/language/locale.dart';
+import 'package:easyrent/core/app/middleware/middelware.dart';
+import 'package:easyrent/core/app/theme/themes.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/navigation/splachScreen.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';

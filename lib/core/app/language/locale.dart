@@ -4,6 +4,7 @@ class MyLocale implements Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         "ar": {
+          "English": "العربية",
           "Good Morning! 🌅": "🌅صباح العير",
           "Good Afternoon! 🌞": " 🌞ظهر الخير ",
           "Good Evening! 🌙": " 🌙مساء الخير ",
@@ -40,8 +41,28 @@ class MyLocale implements Translations {
           "Book Now": "احجز الان",
           "\$beds Beds": "اسره",
           "Comments": "التعليقات",
+          "Change Password": "تغيير كلمة المرور",
+          "Change Phone Number": "تغيير رقم الهاتف",
+          "Themes": "السمات",
+          "Light Mode": "الوضع الساطع",
+          "Dark Mode": "الوضع المظلم",
+          "": "",
+          " ": "",
+          "  ": "",
+          "   ": "",
         },
+        //! English 
         "en": {
+          "": "",
+          " ": "",
+          "  ": "",
+          "   ": "",
+          "Dark Mode": "Dark Mode",
+          "Light Mode": "Light Mode",
+          "Themes": "Themes",
+          "Change Password": "Change Password",
+          "Change Phone Number": "Change Phone Number",
+          "English": "English",
           "My Booking": "My Booking",
           "Payments": "Payments",
           "My Favorite": "My Favorite",

@@ -12,6 +12,7 @@ import 'package:easyrent/presentation/views/profile/view/pages/my_booking/my_boo
 import 'package:easyrent/presentation/views/profile/view/pages/notifications/widgets/notification_widget.dart';
 import 'package:easyrent/presentation/views/profile/view/pages/payment/views/payment.dart';
 import 'package:easyrent/presentation/views/profile/view/pages/security/security_page.dart';
+import 'package:easyrent/presentation/views/profile/view/pages/theme/theme_page.dart';
 import 'package:easyrent/presentation/views/profile/widgets/custome_list_tile.dart';
 import 'package:easyrent/presentation/views/profile/widgets/dialog/logout_dialog.dart';
 import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
@@ -130,7 +131,7 @@ class Profile extends StatelessWidget {
                       padding: EdgeInsets.all(8.r),
                       child: Text(
                           textAlign: TextAlign.center,
-                          "User Name",
+                          "User Name".tr,
                           style: AppTextStyles.h24semi),
                     ),
                   ],
@@ -143,9 +144,9 @@ class Profile extends StatelessWidget {
             const CustomDivider(),
             customListTile("My Booking".tr, Icons.call_to_action_rounded, () {
               Get.to(
-                () => const Scaffold_page(
-                  title: "MY Booking",
-                  widget: MyBooking(),
+                () => Scaffold_page(
+                  title: "My Booking".tr,
+                  widget: const MyBooking(),
                 ),
               );
             }),
@@ -156,9 +157,9 @@ class Profile extends StatelessWidget {
             //! favorite Page
             customListTile("My Favorite".tr, Icons.favorite, () {
               Get.to(
-                () => const Scaffold_page(
-                  title: "Favorite",
-                  widget: FavouritePage(),
+                () => Scaffold_page(
+                  title: "My Favorite".tr,
+                  widget: const MyFavouritePage(),
                 ),
               );
             }),
@@ -166,27 +167,36 @@ class Profile extends StatelessWidget {
             //! Notifications
             customListTile("Notifications".tr, Icons.notifications, () {
               Get.to(
-                () => const Scaffold_page(
-                  title: "NOTIFICATIONS",
-                  widget: NotificationWidget(),
+                () => Scaffold_page(
+                  title: "Notifications".tr,
+                  widget: const NotificationWidget(),
                 ),
               );
             }),
             //! security
             customListTile("Security".tr, Icons.security, () {
               Get.to(
-                () => const Scaffold_page(
-                  title: "Security",
-                  widget: SecurityPage(),
+                () => Scaffold_page(
+                  title: "Security".tr,
+                  widget: const SecurityPage(),
                 ),
               );
             }),
             //! language
             customListTile("Language".tr, Icons.language, () {
               Get.to(
-                () => const Scaffold_page(
-                  title: "Language",
-                  widget: Language(),
+                () => Scaffold_page(
+                  title: "Language".tr,
+                  widget: const Language(),
+                ),
+              );
+            }),
+            customListTile("Themes".tr,
+                Get.isDarkMode ? Icons.light_mode : Icons.dark_mode, () {
+              Get.to(
+                () => Scaffold_page(
+                  title: "Themes".tr,
+                  widget: const ThemePage(),
                 ),
               );
             }),
@@ -202,8 +212,8 @@ class Profile extends StatelessWidget {
             //! invite Friends
             customListTile("Invite Friends".tr, Icons.people, () {
               Get.to(
-                () => const Scaffold_page(
-                  title: "Invite Friends",
+                () => Scaffold_page(
+                  title: "Invite Friends".tr,
                   widget: InviteFriendPage(),
                 ),
               );
@@ -233,7 +243,7 @@ class Scaffold_page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(title.tr),
       ),
       body: widget,
     );

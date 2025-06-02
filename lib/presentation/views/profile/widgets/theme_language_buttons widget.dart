@@ -1,11 +1,11 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/services/app/theme/themes.dart';
+import 'package:easyrent/core/app/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import 'package:easyrent/core/services/app/controller/app_controller.dart';
+import 'package:easyrent/core/app/controller/app_controller.dart';
 
 class Theme_languageRow extends StatelessWidget {
   const Theme_languageRow({super.key});
@@ -37,7 +37,6 @@ class Theme_languageRow extends StatelessWidget {
                         : Themes().lightMode,
                     isReversed: brightness == Brightness.light,
                   );
-                  //!
                 },
               );
             },
