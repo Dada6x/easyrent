@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/services/api/api_consumer.dart';
 import 'package:easyrent/core/services/api/dio_consumer.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/data/repos/userRepo.dart';
@@ -16,13 +15,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 //$----------------------text controllers------------------------->
   final TextEditingController _numberController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 //$--------------------------------------------------------------->
-  var api = DioConsumer(Dio());
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -66,12 +65,33 @@ class LoginPage extends StatelessWidget {
                 CustomeButton(
                   hint: "login",
                   function: () {
+                    final phone = _numberController.text.trim();
+                    final password = _passwordController.text;
+                    if (phone.isEmpty ||
+                        password.isEmpty ||
+                        _numberController.text.length != 10 ||
+                        password.length < 6 ||
+                        !RegExp(r'[!@#\$&*~]').hasMatch(password)) {
+                      Get.snackbar(
+                        "Missing Information",
+                        "All fields are required",
+                        snackStyle: SnackStyle.FLOATING,
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: red,
+                        colorText: white,
+                        margin: EdgeInsets.all(12.w),
+                        borderRadius: 8.r,
+                      );
+                      return;
+                    }
+                    //! if all felids and passwords match still i need to handle data base shit
+                    var api = DioConsumer(Dio());
                     Userrepo(api).loginUser(
                         number: _numberController.text,
                         password: _passwordController.text);
-                    //!
+                    //@ middleware 
                     userPref?.setBool('isLoggedIn', true);
-                    // debug.e('${userPref?.getBool('isLoggedIn',)}');
+                    //! only if the status code is 200 
                     Get.off(() => const HomeScreenNavigator());
                   },
                 ),

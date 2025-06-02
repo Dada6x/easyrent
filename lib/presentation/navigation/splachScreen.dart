@@ -32,7 +32,7 @@ class _SplashscreenState extends State<Splashscreen>
     );
     Future.delayed(const Duration(seconds: 2), () {
       _controller.forward().whenComplete(() {
-        // ! just the introduction
+        // ! just the introduction is introduction
         if (userPref?.getBool("isFirst") == true) {
           Get.offNamed("/login");
         } else {
@@ -51,20 +51,23 @@ class _SplashscreenState extends State<Splashscreen>
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Stack(
-        children: [
-          AnimatedBuilder(
-            animation: _animation,
-            builder: (_, child) {
-              final radius = screenSize.longestSide * 1.5 * _animation.value;
-              return ClipPath(
-                  clipper: CircleRevealClipper(radius),
-                  child: Container(color: primaryBlue));
-            },
-          ),
-          Center(child: Lottie.asset(easyRent)),
-        ],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: Stack(
+          children: [
+            AnimatedBuilder(
+              animation: _animation,
+              builder: (_, child) {
+                final radius = screenSize.longestSide * 1.5 * _animation.value;
+                return ClipPath(
+                    clipper: CircleRevealClipper(radius),
+                    child: Container(color: primaryBlue));
+              },
+            ),
+            Center(child: Lottie.asset(easyRent)),
+          ],
+        ),
       ),
     );
   }
@@ -90,4 +93,4 @@ class CircleRevealClipper extends CustomClipper<Path> {
 
 // ctrl + Q SideBar items (version ,search , notes and todos )
 // ctrl + E search in project (files )
-// ctrl + R change Projects 
+// ctrl + R change Projects

@@ -1,4 +1,3 @@
-
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/main.dart';
@@ -48,7 +47,7 @@ void showDeleteDialog(BuildContext context) {
                     child: TextButton(
                       onPressed: () {
                         userPref?.setBool('isLoggedIn', false);
-                        Get.off(() => LoginPage());
+                        Get.offNamed("/login");
                         // Navigator.pop(context);
                       },
                       style: TextButton.styleFrom(
@@ -71,4 +70,3 @@ void showDeleteDialog(BuildContext context) {
     },
   );
 }
-

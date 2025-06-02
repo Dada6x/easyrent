@@ -1,5 +1,9 @@
+import 'package:dio/dio.dart';
+import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/services/api/dio_consumer.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/data/repos/userRepo.dart';
+import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';
@@ -13,7 +17,7 @@ import 'package:get/get.dart';
 class SignupPage extends StatelessWidget {
   SignupPage({super.key});
 //$----------------------text controllers------------------------->
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _confirmController = TextEditingController();
@@ -31,17 +35,21 @@ class SignupPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                greetings("Create Account", "Sign Up to get Started!"),
+                Padding(
+                  padding: EdgeInsets.all(5.0.r),
+                  child: greetings("Create Account", "Sign Up to get Started!"),
+                ),
                 //! Full Name
                 CustomTextfield(
-                    hint: "Full Name ",
-                    icon: const Icon(Icons.person),
-                    controller: _nameController),
+                  hint: "Full Name ",
+                  icon: const Icon(Icons.person),
+                  controller: _nameController,
+                ),
                 //! Email
                 CustomTextfield(
                   hint: "Phone Number ",
                   icon: const Icon(Icons.phone),
-                  controller: _emailController,
+                  controller: _phoneNumberController,
                   isPhoneNumber: true,
                 ),
                 //! Password
@@ -60,10 +68,62 @@ class SignupPage extends StatelessWidget {
                 ),
                 //! Register BUTTON :O
                 CustomeButton(
-                    hint: "Register",
-                    function: () {
-                      Get.off(() => const HomeScreenNavigator());
-                    }),
+                  hint: "Register",
+                  function: () {
+                    final name = _nameController.text.trim();
+                    final phone = _phoneNumberController.text.trim();
+                    final password = _passwordController.text;
+                    final confirmPassword = _confirmController.text;
+                    if (name.isEmpty ||
+                        phone.isEmpty ||
+                        password.isEmpty ||
+                        _phoneNumberController.text.length != 10 ||
+                        password.length < 6 ||
+                        name.length < 5 ||
+                        !RegExp(r'[!@#\$&*~]').hasMatch(password) ||
+                        confirmPassword.isEmpty) {
+                      Get.snackbar(
+                        "Missing Information",
+                        "All fields are required",
+                        snackStyle: SnackStyle.FLOATING,
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: red,
+                        colorText: white,
+                        margin: EdgeInsets.all(12.w),
+                        borderRadius: 8.r,
+                      );
+                      return;
+                    }
+                    if (password != confirmPassword) {
+                      Get.snackbar(
+                        "Error",
+                        "Passwords do not match",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: red,
+                        colorText: white,
+                        margin: EdgeInsets.all(12.w),
+                        borderRadius: 8.r,
+                      );
+                      return;
+                    }
+                    //! if all felids and passwords match still i need to handle data base shit
+                    var api = DioConsumer(Dio());
+                    Userrepo(api).signUpUser(
+                        userName: name,
+                        number: phone,
+                        password: password,
+                        latLang: {
+                          //! EDIT THIS SHIT LATER
+                          "lat": 33.53680665392176,
+                          "lon": 36.198938818542835,
+                        });
+                    //@ middleware thing in order to make the shit works
+                    userPref?.setBool('isLoggedIn', true);
+                    //! only if the status code is 200
+                    Get.off(() => const HomeScreenNavigator());
+                  },
+                ),
+
                 //! navigating to signup
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

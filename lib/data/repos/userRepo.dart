@@ -18,7 +18,7 @@ class Userrepo {
       final response = await api.post(
         EndPoints.Login,
         data: {
-          ApiKey.number: number,
+          ApiKey.phone: number,
           ApiKey.password: password,
         },
       );
@@ -32,9 +32,10 @@ class Userrepo {
 // final profileResponse = await api.get(
 //   EndPoints.fetchAllProperties,
 // );
-//! making new User
+
+      //! making new User
       debug.i("User Created");
-      //! HOW TO ACCESS USER GLOBALLY 
+      //! HOW TO ACCESS USER GLOBALLY
       final user = User.fromJson(response);
       return Right(user);
     } on ServerException catch (e) {
@@ -45,18 +46,18 @@ class Userrepo {
 //!-----------------------Sign Up---------------------------------->
   Future<Either<String, User>> signUpUser({
     required String number,
+    required String userName,
     required String password,
-    required String email,
-    required String confirmPassword,
+    required Map<String, double> latLang,
   }) async {
     try {
       final response = await api.post(
-        EndPoints.signUp,
+        EndPoints.registerUser,
         data: {
-          ApiKey.number: number,
-          ApiKey.email: email,
+          ApiKey.phone: number,
           ApiKey.password: password,
-          ApiKey.confirmPassword: confirmPassword,
+          ApiKey.userName: userName,
+          ApiKey.pointsDto: latLang,
         },
       );
       saveToken(response['token']);
@@ -94,5 +95,5 @@ Future<void> deleteToken() async {
   await prefs.remove('token');
 }
 
-// what to save about user 
-// token , user name, theme , language , role . just 
+// what to save about user
+// token , user name, theme , language , role . just

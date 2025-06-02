@@ -1,11 +1,14 @@
 class EndPoints {
-  static String baseUrl = "https://dummyjson.com";
-  static String Login = "/users/7";
+  static String baseUrl = "http://localhost:3000";
+  static String Login = "/auth/login";
   static String Logout = "/logOut";
-  static String signUp = "/SignUp";
+  static String registerUser = "/user/register";
+  static String verifyCode = "/user/verify///!code";
+
+  static String me = "/auth/me";
+  static String tokenTime = "/auth/tokenTime";
+
   static String fetchAllProperties = "/getAllPropereties";
-  // static String Logout = "/logOut";
-  // static String Logout = "/logOut";
 
   // static String getUserData(id) {
   //   return "ddwdwdwdwdwdwd/user/$id";
@@ -14,22 +17,22 @@ class EndPoints {
   const EndPoints();
 }
 
-
 class ApiKey {
   static String status = "status"; // must be the same with the response
   static String email = "email";
   static String password = "password";
-  static String confirmPassword = "password";
+  static String confirmPassword = "ConfirmPassword";
+  static String userName = "username";
+  static String phone = "phone";
+  static String pointsDto = "pointsDto";
+
+  static String lat = "lat";
+  static String lon = "lon";
+
+  // static String token = "token";
 
   static String token = "token";
   static String errorMessage = "errorMessage";
-  static String number = "number";
 
   const ApiKey();
 }
-// login 
-// register 
-// get code 
-// verify code 
-// logout 
-

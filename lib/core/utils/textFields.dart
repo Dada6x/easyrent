@@ -35,29 +35,39 @@ class _CustomTextfieldState extends State<CustomTextfield> {
   }
 
   void _validate(String value) {
+    String? error;
+
     if (widget.isPhoneNumber) {
       if (value.isEmpty) {
-        setState(() {
-          _errorText = "Phone number is required".tr;
-        });
+        error = "Phone number is required".tr;
       } else if (!value.startsWith('09')) {
-        setState(() {
-          _errorText = "Phone number must start with 09".tr;
-        });
+        error = "Phone number must start with 09".tr;
       } else if (value.length != 10) {
-        setState(() {
-          _errorText = "Phone number must be exactly 10 digits".tr;
-        });
+        error = "Phone number must be exactly 10 digits".tr;
       } else if (!RegExp(r'^\d{10}$').hasMatch(value)) {
-        setState(() {
-          _errorText = "Phone number must contain only digits".tr;
-        });
-      } else {
-        setState(() {
-          _errorText = null;
-        });
+        error = "Phone number must contain only digits".tr;
+      }
+    } else if (widget.isPassword) {
+      if (value.isEmpty) {
+        error = "Password field is required".tr;
+      } else if (value.length < 6) {
+        error = "Password must be at least 6 characters".tr;
+      } else if (value.length > 15) {
+        error = "Password cannot be more than 15 characters".tr;
+      } else if (!RegExp(r'[!@#\$&*~]').hasMatch(value)) {
+        error = "Password must contain one special !@#\$& #character".tr;
+      }
+    } else {
+      if (value.isEmpty) {
+        error = "This field is required".tr;
+      } else if (value.length < 5) {
+        error = "This field must contain at least 5 characters".tr;
       }
     }
+
+    setState(() {
+      _errorText = error;
+    });
   }
 
   @override
