@@ -1,21 +1,19 @@
 import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/app/controller/app_controller.dart';
 import 'package:easyrent/core/utils/divider.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
-class Language extends StatelessWidget {
-  const Language({super.key});
+class NotificationsPage extends StatelessWidget {
+  const NotificationsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final AppController appController = Get.find<AppController>();
+    // Temporary value since we're not using state management yet
+    bool notificationsEnabled = false;
 
     return Padding(
-      padding:  EdgeInsets.all(8.0.r),
+      padding: EdgeInsets.all(8.0.r),
       child: Column(
         children: [
           ListTile(
@@ -24,24 +22,25 @@ class Language extends StatelessWidget {
                 side: BorderSide(
                   color: Theme.of(context).colorScheme.outline,
                 )),
-            onTap: () {
-              appController.isArabic.value = !appController.isArabic.value;
-              appController.isArabic.value
-                  ? appController.changeLang("en")
-                  : appController.changeLang("ar");
-            },
             tileColor: Theme.of(context).colorScheme.secondary,
-            leading: const Icon(
-              Icons.translate,
-              color: primaryBlue,
-            ),
             title: Text(
-              // textAlign: TextAlign.center,
-              "English".tr,
+              "Enable Notifications",
               style: AppTextStyles.h18regular,
             ),
+            trailing: Switch(
+              value: notificationsEnabled,
+              onChanged: (value) {
+                // Will be connected to state management later
+                // For now, this does nothing
+              },
+              inactiveThumbColor: grey,
+              activeColor: primaryBlue,
+              inactiveTrackColor: Theme.of(context).colorScheme.secondary,
+            ),
           ),
-          SizedBox(height: 10.h,),
+          SizedBox(
+            height: 15.h,
+          ),
           const CustomDivider()
         ],
       ),

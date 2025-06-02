@@ -1,4 +1,4 @@
-import 'package:easyrent/presentation/views/profile/view/pages/Faq/widgets/faq_item_widget.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/Faq/widgets/faq_item_widget.dart';
 import 'package:flutter/material.dart';
 
 class FAQPage extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/presentation/views/profile/view/pages/notifications/views/notifications_drawer.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/notifications/views/notifications_drawer.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/homePage.dart';
 import 'package:easyrent/presentation/views/profile/view/profile.dart';
 import 'package:easyrent/presentation/views/search/views/search_page.dart';

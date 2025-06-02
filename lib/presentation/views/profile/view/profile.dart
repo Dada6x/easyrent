@@ -2,17 +2,15 @@ import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/divider.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/main.dart';
-import 'package:easyrent/presentation/views/auth/views/login.dart';
-import 'package:easyrent/presentation/views/profile/view/pages/Faq/view/faq.dart';
-import 'package:easyrent/presentation/views/profile/view/pages/favourite/favourite_page.dart';
-import 'package:easyrent/presentation/views/profile/view/pages/friends/invite_friend_page.dart';
-import 'package:easyrent/presentation/views/profile/view/pages/language/language.dart';
-import 'package:easyrent/presentation/views/profile/view/pages/my_booking/my_booking.dart';
-import 'package:easyrent/presentation/views/profile/view/pages/notifications/widgets/notification_widget.dart';
-import 'package:easyrent/presentation/views/profile/view/pages/payment/views/payment.dart';
-import 'package:easyrent/presentation/views/profile/view/pages/security/security_page.dart';
-import 'package:easyrent/presentation/views/profile/view/pages/theme/theme_page.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/Faq/view/faq.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/favourite/view/favourite_page.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/friends/invite_friend_page.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/language/view/language.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/my_booking/views/my_booking.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/notifications/views/notifications_page.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/payment/views/payment.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/security/view/security_page.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/theme/theme_page.dart';
 import 'package:easyrent/presentation/views/profile/widgets/custome_list_tile.dart';
 import 'package:easyrent/presentation/views/profile/widgets/dialog/logout_dialog.dart';
 import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
@@ -142,82 +140,53 @@ class Profile extends StatelessWidget {
               height: 10.h,
             ),
             const CustomDivider(),
-            customListTile("My Booking".tr, Icons.call_to_action_rounded, () {
-              Get.to(
-                () => Scaffold_page(
-                  title: "My Booking".tr,
-                  widget: const MyBooking(),
-                ),
-              );
-            }),
+            customListTile(
+              string: "My Booking".tr,
+              leading: Icons.call_to_action_rounded,
+              destination_widget: MyBooking(),
+            ),
             //! payment
-            customListTile("Payments".tr, Icons.payment, () {
-              Get.to(() => const PaymentMethod());
-            }),
+            customListTile(
+              string: "Payments".tr,
+              leading: Icons.payment,
+              destination_widget: const PaymentMethod(),
+            ),
             //! favorite Page
-            customListTile("My Favorite".tr, Icons.favorite, () {
-              Get.to(
-                () => Scaffold_page(
-                  title: "My Favorite".tr,
-                  widget: const MyFavouritePage(),
-                ),
-              );
-            }),
+            customListTile(
+                string: "My Favorite".tr,
+                leading: Icons.favorite,
+                destination_widget: const MyFavouritePage()),
             const CustomDivider(),
             //! Notifications
-            customListTile("Notifications".tr, Icons.notifications, () {
-              Get.to(
-                () => Scaffold_page(
-                  title: "Notifications".tr,
-                  widget: const NotificationWidget(),
-                ),
-              );
-            }),
+            customListTile(
+                string: "Notifications".tr,
+                leading: Icons.notifications,
+                destination_widget: const NotificationsPage()),
             //! security
-            customListTile("Security".tr, Icons.security, () {
-              Get.to(
-                () => Scaffold_page(
-                  title: "Security".tr,
-                  widget: const SecurityPage(),
-                ),
-              );
-            }),
+            customListTile(
+              string: "Security".tr,
+              leading: Icons.security,
+              destination_widget: const SecurityPage(),
+            ),
             //! language
-            customListTile("Language".tr, Icons.language, () {
-              Get.to(
-                () => Scaffold_page(
-                  title: "Language".tr,
-                  widget: const Language(),
-                ),
-              );
-            }),
-            customListTile("Themes".tr,
-                Get.isDarkMode ? Icons.light_mode : Icons.dark_mode, () {
-              Get.to(
-                () => Scaffold_page(
-                  title: "Themes".tr,
-                  widget: const ThemePage(),
-                ),
-              );
-            }),
+            customListTile(
+                string: "Language".tr,
+                leading: Icons.language,
+                destination_widget: const LanguagePage()),
+            customListTile(
+                string: "Themes".tr,
+                leading: Get.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                destination_widget: const ThemePage()),
             //! FAQ
-            customListTile("FAQ".tr, Icons.help, () {
-              Get.to(
-                () => const Scaffold_page(
-                  title: "FAQ",
-                  widget: FAQPage(),
-                ),
-              );
-            }),
+            customListTile(
+                string: "FAQ".tr,
+                leading: Icons.help,
+                destination_widget: const FAQPage()),
             //! invite Friends
-            customListTile("Invite Friends".tr, Icons.people, () {
-              Get.to(
-                () => Scaffold_page(
-                  title: "Invite Friends".tr,
-                  widget: InviteFriendPage(),
-                ),
-              );
-            }),
+            customListTile(
+                string: "Invite Friends".tr,
+                leading: Icons.people,
+                destination_widget: const InviteFriendPage()),
             const CustomDivider(),
             //! LogOut
             customListRedTile("Logout".tr, Icons.logout, () {
