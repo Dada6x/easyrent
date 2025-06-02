@@ -120,7 +120,6 @@ class SignupPage extends StatelessWidget {
                     //@ middleware thing in order to make the shit works
                     userPref?.setBool('isLoggedIn', true);
                     //! only if the status code is 200
-                    Get.off(() => const HomeScreenNavigator());
                   },
                 ),
 

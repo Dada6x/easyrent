@@ -4,7 +4,11 @@ import 'package:easyrent/core/services/api/end_points.dart';
 import 'package:easyrent/core/services/api/errors/exceptions.dart';
 import 'package:easyrent/data/models/user_model.dart';
 import 'package:easyrent/main.dart';
+import 'package:easyrent/presentation/navigation/navigator.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class Userrepo {
   Userrepo(this.api);
@@ -51,7 +55,11 @@ class Userrepo {
     required Map<String, double> latLang,
   }) async {
     try {
-      final response = await api.post(
+      //! I CANT DO ANYTHING WITH THE STATUS CODE IF IS IT 200 or any thing else
+      // if i used the http can i use the interceptor also ?
+      // the end Points and other things will still be the same
+      //there is nothing called qpi. status code 
+      final response = await api.get(
         EndPoints.registerUser,
         data: {
           ApiKey.phone: number,
@@ -60,11 +68,17 @@ class Userrepo {
           ApiKey.pointsDto: latLang,
         },
       );
-      saveToken(response['token']);
+      if (response.statusCode == 200) {
+        debug.t(response);
+
+        Get.off(() => const HomeScreenNavigator());
+        saveToken(response['token']);
+      }
       final user = User.fromJson(response);
       debug.i("New User Created");
       return Right(user);
     } on ServerException catch (e) {
+      debug.i("NIGGER Balls");
       return Left(e.errorModel.message);
     }
   }
