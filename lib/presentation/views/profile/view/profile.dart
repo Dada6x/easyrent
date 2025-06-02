@@ -4,7 +4,16 @@ import 'package:easyrent/core/utils/divider.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
+import 'package:easyrent/presentation/views/profile/view/pages/Faq/view/faq.dart';
+import 'package:easyrent/presentation/views/profile/view/pages/favourite/favourite_page.dart';
+import 'package:easyrent/presentation/views/profile/view/pages/friends/invite_friend_page.dart';
+import 'package:easyrent/presentation/views/profile/view/pages/language/language.dart';
+import 'package:easyrent/presentation/views/profile/view/pages/my_booking/my_booking.dart';
+import 'package:easyrent/presentation/views/profile/view/pages/notifications/widgets/notification_widget.dart';
 import 'package:easyrent/presentation/views/profile/view/pages/payment/views/payment.dart';
+import 'package:easyrent/presentation/views/profile/view/pages/security/security_page.dart';
+import 'package:easyrent/presentation/views/profile/widgets/custome_list_tile.dart';
+import 'package:easyrent/presentation/views/profile/widgets/dialog/logout_dialog.dart';
 import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +31,6 @@ class Profile extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // image
             SizedBox(
               height: 26.r,
             ),
@@ -61,7 +69,7 @@ class Profile extends StatelessWidget {
                                       children: [
                                         IconButton(
                                           onPressed: () async {
-                                            Get.back(); 
+                                            Get.back();
                                             final ImagePicker picker =
                                                 ImagePicker();
                                             final XFile? image =
@@ -133,19 +141,75 @@ class Profile extends StatelessWidget {
               height: 10.h,
             ),
             const CustomDivider(),
-            customListTile(
-                "My Booking".tr, Icons.call_to_action_rounded, () {}),
+            customListTile("My Booking".tr, Icons.call_to_action_rounded, () {
+              Get.to(
+                () => const Scaffold_page(
+                  title: "MY Booking",
+                  widget: MyBooking(),
+                ),
+              );
+            }),
+            //! payment
             customListTile("Payments".tr, Icons.payment, () {
               Get.to(() => const PaymentMethod());
             }),
-            customListTile("My Favorite".tr, Icons.favorite, () {}),
+            //! favorite Page
+            customListTile("My Favorite".tr, Icons.favorite, () {
+              Get.to(
+                () => const Scaffold_page(
+                  title: "Favorite",
+                  widget: FavouritePage(),
+                ),
+              );
+            }),
             const CustomDivider(),
-            customListTile("Notifications".tr, Icons.notifications, () {}),
-            customListTile("Security".tr, Icons.security, () {}),
-            customListTile("Language".tr, Icons.language, () {}),
-            customListTile("Help Center".tr, Icons.help, () {}),
-            customListTile("Invite Friends".tr, Icons.people, () {}),
+            //! Notifications
+            customListTile("Notifications".tr, Icons.notifications, () {
+              Get.to(
+                () => const Scaffold_page(
+                  title: "NOTIFICATIONS",
+                  widget: NotificationWidget(),
+                ),
+              );
+            }),
+            //! security
+            customListTile("Security".tr, Icons.security, () {
+              Get.to(
+                () => const Scaffold_page(
+                  title: "Security",
+                  widget: SecurityPage(),
+                ),
+              );
+            }),
+            //! language
+            customListTile("Language".tr, Icons.language, () {
+              Get.to(
+                () => const Scaffold_page(
+                  title: "Language",
+                  widget: Language(),
+                ),
+              );
+            }),
+            //! FAQ
+            customListTile("FAQ".tr, Icons.help, () {
+              Get.to(
+                () => const Scaffold_page(
+                  title: "FAQ",
+                  widget: FAQPage(),
+                ),
+              );
+            }),
+            //! invite Friends
+            customListTile("Invite Friends".tr, Icons.people, () {
+              Get.to(
+                () => const Scaffold_page(
+                  title: "Invite Friends",
+                  widget: InviteFriendPage(),
+                ),
+              );
+            }),
             const CustomDivider(),
+            //! LogOut
             customListRedTile("Logout".tr, Icons.logout, () {
               showDeleteDialog(context);
             }),
@@ -156,114 +220,22 @@ class Profile extends StatelessWidget {
   }
 }
 
-Widget customListTile(
-  String string,
-  IconData? leading,
-  Function destination,
-) {
-  return RawMaterialButton(
-    onPressed: () {
-      destination();
-    },
-    child: ListTile(
-      leading: Icon(
-        leading,
-        color: primaryBlue,
-        size: 29.r, //!
-      ),
-      title: Text(string, style: AppTextStyles.h18medium),
-      trailing: Icon(
-        Icons.arrow_forward_ios,
-        size: 15.r, //!
-      ),
-    ),
-  );
-}
+class Scaffold_page extends StatelessWidget {
+  final Widget widget;
+  final String title;
+  const Scaffold_page({
+    super.key,
+    required this.widget,
+    required this.title,
+  });
 
-Widget customListRedTile(
-  String string,
-  IconData? leading,
-  Function destination,
-) {
-  return RawMaterialButton(
-    onPressed: () {
-      destination();
-    },
-    child: ListTile(
-      leading: Icon(
-        leading,
-        color: red,
-        size: 29.r,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
       ),
-      title: Text(string, style: AppTextStyles.h18medium.copyWith(color: red)),
-      trailing: Icon(
-        Icons.arrow_forward_ios,
-        size: 15.r,
-      ),
-    ),
-  );
-}
-
-void showDeleteDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 24.w),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('Are You sure to logout ?', style: AppTextStyles.h20medium),
-              SizedBox(height: 12.h),
-              Text(
-                'You will be missed  🥺',
-                style: AppTextStyles.h14regular,
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 24.h),
-              Row(
-                children: [
-                  Expanded(
-                      child: TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          style: TextButton.styleFrom(
-                            backgroundColor: primaryBlue,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                            ),
-                          ),
-                          child: Text('Cancel',
-                              style: AppTextStyles.h16medium
-                                  .copyWith(color: white)))),
-                  SizedBox(width: 12.w),
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        userPref?.setBool('isLoggedIn', false);
-                        Get.off(() => LoginPage());
-                        // Navigator.pop(context);
-                      },
-                      style: TextButton.styleFrom(
-                        backgroundColor: red,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: Text('Yes, Logout',
-                          style:
-                              AppTextStyles.h16medium.copyWith(color: white)),
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-      );
-    },
-  );
+      body: widget,
+    );
+  }
 }
