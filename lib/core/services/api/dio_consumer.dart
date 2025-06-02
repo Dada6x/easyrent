@@ -34,7 +34,7 @@ class DioConsumer extends ApiConsumer {
         data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
-      return response.data;
+      return response;
     } on DioException catch (e) {
       handleDioException(e);
     }
@@ -49,7 +49,7 @@ class DioConsumer extends ApiConsumer {
         data: data,
         queryParameters: queryParameters,
       );
-      return response.data;
+      return response;
     } on DioException catch (e) {
       handleDioException(e);
     }
@@ -66,7 +66,7 @@ class DioConsumer extends ApiConsumer {
         data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
-      return response.data;
+      return response;
     } on DioException catch (e) {
       handleDioException(e);
     }
@@ -83,7 +83,7 @@ class DioConsumer extends ApiConsumer {
         data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
-      return response.data;
+      return response;
     } on DioException catch (e) {
       handleDioException(e);
     }

@@ -55,11 +55,8 @@ class Userrepo {
     required Map<String, double> latLang,
   }) async {
     try {
-      //! I CANT DO ANYTHING WITH THE STATUS CODE IF IS IT 200 or any thing else
-      // if i used the http can i use the interceptor also ?
-      // the end Points and other things will still be the same
-      //there is nothing called qpi. status code 
-      final response = await api.get(
+
+      final response = await api.post(
         EndPoints.registerUser,
         data: {
           ApiKey.phone: number,
@@ -70,6 +67,7 @@ class Userrepo {
       );
       if (response.statusCode == 200) {
         debug.t(response);
+        debug.i("Status Code is ${response.statusCode}");
 
         Get.off(() => const HomeScreenNavigator());
         saveToken(response['token']);
