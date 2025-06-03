@@ -28,8 +28,8 @@ class Userrepo {
       if (response.statusCode == 200) {
         debug.i("Status Code is ${response.statusCode}");
         userPref?.setBool('isLoggedIn', true);
-        Get.off(() => const HomeScreenNavigator());
         saveToken(response['token']);
+        Get.off(() => const HomeScreenNavigator());
       }
       debug.i("User Created");
       final user = User.fromJson(response);
@@ -81,15 +81,13 @@ class Userrepo {
       if (response.statusCode == 200) {
         debug.i("Status Code is ${response.statusCode}");
         userPref?.setBool('isLoggedIn', false);
-        Get.off(() => LoginPage());
         deleteToken();
+        Get.off(() => LoginPage());
       }
       debug.t("User Logged out ");
-      // i need to remove the User 
       return const Right('User Logged Out');
     } on ServerException catch (e) {
       debug.e("Exception $e");
-
       return Left(e.errorModel.message);
     }
   }
