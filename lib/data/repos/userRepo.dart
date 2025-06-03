@@ -71,21 +71,20 @@ class Userrepo {
       );
       if (response.statusCode == 200) {
         // userPref?.setBool('isLoggedIn', true);
-        final token = response['accessToken'];
-        await saveToken(token);
         Get.off(() => const VerificationCodePage());
         // it has to go to the verification  code page and then when its verify
-        //! ######################################         //@ Fetch full user profile
-        final profileResponse = await api.get(
-          EndPoints.me,
-        );
-        if (profileResponse.statusCode == 200) {
-          debug.w("New User Created !");
-          final user = User.fromJson(profileResponse);
-          //! ##########
-          return Right(user);
-        }
-        //! ######################################
+        
+        // //! ######################################         //@ Fetch full user profile
+        // final profileResponse = await api.get(
+        //   EndPoints.me,
+        // );
+        // if (profileResponse.statusCode == 200) {
+        //   debug.w("New User Created !");
+        //   final user = User.fromJson(profileResponse);
+        //   //! ##########
+        //   return Right(user);
+        // }
+        // //! ######################################
       }
       return const Left('Unexpected error');
     } on ServerException catch (e) {

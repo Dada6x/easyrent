@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:easyrent/core/services/api/api_consumer.dart';
 import 'package:easyrent/core/services/api/end_points.dart';
 import 'package:easyrent/core/services/api/errors/exceptions.dart';
+import 'package:easyrent/data/repos/userRepo.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/core/utils/button.dart';
@@ -34,19 +35,23 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
   @override
   void initState() {
     super.initState();
-    getCode();
     _startTimer();
   }
 
-  Future<void> getCode() async {
+//! get code
+  Future<void> sendVerificationCode() async {
     try {
-      final response = await Dio().get(
+      final response = await Dio().post(
         EndPoints.verifyCode,
+        data: {
+          "code": _pinController.text.trim(),
+        },
       );
       if (response.statusCode == 200) {
         debug.i("Status Code is ${response.statusCode}");
-        // final code = response['code'];
-        // if the code the user enter is the same as the code of the api Let him enter and Send Verification Code 
+        final token = response['accessToken'];
+        await saveToken(token);
+
       }
     } on ServerException catch (e) {
       debug.e("Exception $e");
@@ -165,15 +170,17 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                 ),
                 SizedBox(height: 30.h),
                 CustomeButton(
-                    hint: "Verify",
-                    function: () async {
-                      if (_pinController.text.length == 4) {
-                        _verifyCode(_pinController.text);
-                      } else {
-                        Get.snackbar("Error", "Please enter 4-digit code",
-                            snackPosition: SnackPosition.BOTTOM);
-                      }
-                    }),
+                  hint: "Verify",
+                  function: () async {
+                    if (_pinController.text.length == 4) {
+                      _verifyCode(_pinController.text);
+                    } else {
+                      Get.snackbar("Error", "Please enter 4-digit code",
+                          snackPosition: SnackPosition.BOTTOM);
+                    }
+                    //! send the Verified Code to the Data Base
+                  },
+                ),
                 SizedBox(height: 300.h),
                 Center(
                   child: SizedBox(
