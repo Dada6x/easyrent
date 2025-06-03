@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:easyrent/core/services/api/api_consumer.dart';
+import 'package:easyrent/core/services/api/dio_consumer.dart';
 import 'package:easyrent/core/services/api/end_points.dart';
-import 'package:easyrent/core/services/api/errors/exceptions.dart';
 import 'package:easyrent/data/repos/userRepo.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
@@ -23,9 +23,7 @@ class VerificationCodePage extends StatefulWidget {
 }
 
 class _VerificationCodePageState extends State<VerificationCodePage> {
-  //$----------------------text controllers------------------------->
   final TextEditingController _pinController = TextEditingController();
-  //$--------------------------------------------------------------->
 
   Timer? _timer;
   int _remainingTime = 60;
@@ -37,24 +35,46 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
     super.initState();
     _startTimer();
   }
+  //! its working but not clean , also i need to fetch the user at this point 
 
-//! get code
   Future<void> sendVerificationCode() async {
     try {
-      final response = await Dio().post(
+      //TODO ID
+      //TODO DIOCONSUMER API SHIT
+      final response = await DioConsumer(Dio()).post(
         EndPoints.verifyCode,
         data: {
-          "code": _pinController.text.trim(),
+          ApiKey.code: _pinController.text.trim(),
         },
       );
-      if (response.statusCode == 200) {
-        debug.i("Status Code is ${response.statusCode}");
-        final token = response['accessToken'];
-        await saveToken(token);
 
+      if (response.statusCode == 200) {
+        //! in order to transfer this into another repo i need the emit state of the shit here 
+        // like if status code is 200 emit succses state to the pin codes 
+        final token = response.data['accessToken'];
+        debug.i("$token");
+        await saveToken(token);
+        setState(() {
+          _isCodeValid = true;
+        });
+        // await Future.delayed(const Duration(milliseconds: 600));
+        userPref?.setBool('isLoggedIn', true);
+        Get.off(() => const HomeScreenNavigator());
+        //! WE MAKE AN NEW USER TO DO SHIT FOR US HEHEHE
+      } else {
+        setState(() {
+          _isCodeValid = false;
+        });
       }
-    } on ServerException catch (e) {
-      debug.e("Exception $e");
+    } catch (e) {
+      setState(() {
+        _isCodeValid = false;
+      });
+      Get.snackbar(
+        "Error",
+        "Invalid or expired verification code",
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 
@@ -77,26 +97,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
   void _onResendCode() {
     if (_canResend) {
       _startTimer();
-    }
-  }
-
-  void _verifyCode(String code) async {
-    const correctCode = "12345";
-
-    if (code == correctCode) {
-      setState(() {
-        _isCodeValid = true;
-      });
-      await Future.delayed(const Duration(milliseconds: 800));
-
-      if (mounted) {
-        userPref?.setBool('isLoggedIn', true);
-        Get.off(() => const HomeScreenNavigator());
-      }
-    } else {
-      setState(() {
-        _isCodeValid = false;
-      });
+      // Add resend API call here if needed
     }
   }
 
@@ -131,7 +132,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                 Text("Verification", style: AppTextStyles.h32semi),
                 SizedBox(height: 10.h),
                 Text(
-                  "Enter the 4-digit code sent to your email",
+                  "Enter the 5-digit code sent to your email",
                   style: AppTextStyles.h16light.copyWith(color: grey),
                 ),
                 SizedBox(height: 40.h),
@@ -147,10 +148,8 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                     borderRadius: BorderRadius.circular(10.r),
                     fieldHeight: 60.h,
                     fieldWidth: 60.w,
-                    activeColor:
-                        _isCodeValid == true ? Colors.green : statusColor,
-                    selectedColor:
-                        _isCodeValid == true ? Colors.green : statusColor,
+                    activeColor: statusColor,
+                    selectedColor: statusColor,
                     inactiveColor: Theme.of(context).colorScheme.outline,
                     activeFillColor: Theme.of(context).colorScheme.secondary,
                     selectedFillColor: Theme.of(context).colorScheme.secondary,
@@ -159,26 +158,27 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                   animationDuration: const Duration(milliseconds: 300),
                   enableActiveFill: true,
                   onChanged: (value) {
-                    // Reset color on change
                     setState(() {
                       _isCodeValid = null;
                     });
                   },
-                  onCompleted: (value) {
-                    _verifyCode(value);
+                  onCompleted: (value) async {
+                    if (value.length == 5) {
+                      await sendVerificationCode();
+                    }
                   },
                 ),
                 SizedBox(height: 30.h),
+                //! we can TRASH THE BUTTON COZ ITS NOT USEFUL ACTUALLY  ☝🤓 
                 CustomeButton(
                   hint: "Verify",
                   function: () async {
-                    if (_pinController.text.length == 4) {
-                      _verifyCode(_pinController.text);
+                    if (_pinController.text.length == 5) {
+                      await sendVerificationCode();
                     } else {
-                      Get.snackbar("Error", "Please enter 4-digit code",
+                      Get.snackbar("Error", "Please enter a 5-digit code",
                           snackPosition: SnackPosition.BOTTOM);
                     }
-                    //! send the Verified Code to the Data Base
                   },
                 ),
                 SizedBox(height: 300.h),
@@ -204,9 +204,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                             Icons.timer,
                             color: primaryBlue,
                           ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
+                          SizedBox(width: 10.w),
                           Text(
                             _canResend
                                 ? "Resend Code"

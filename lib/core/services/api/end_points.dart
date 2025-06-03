@@ -24,6 +24,8 @@ class ApiKey {
   static String confirmPassword = "ConfirmPassword";
   static String userName = "username";
   static String phone = "phone";
+  static String code = "code";
+
   static String pointsDto = "pointsDto";
 
   static String lat = "lat";

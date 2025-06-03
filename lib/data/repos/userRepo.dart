@@ -60,20 +60,20 @@ class Userrepo {
     required Map<String, double> latLang,
   }) async {
     try {
-      final response = await api.post(
-        EndPoints.registerUser,
-        data: {
-          ApiKey.phone: number,
-          ApiKey.password: password,
-          ApiKey.userName: userName,
-          ApiKey.pointsDto: latLang,
-        },
+      final response = await api.get(
+        // EndPoints.registerUser,
+        "https://run.mocky.io/v3/22e0a317-53d3-4836-85f4-ee698ef1b1da"
+        // data: {
+        //   ApiKey.phone: number,
+        //   ApiKey.password: password,
+        //   ApiKey.userName: userName,
+        //   ApiKey.pointsDto: latLang,
+        // },
       );
       if (response.statusCode == 200) {
         // userPref?.setBool('isLoggedIn', true);
         Get.off(() => const VerificationCodePage());
         // it has to go to the verification  code page and then when its verify
-        
         // //! ######################################         //@ Fetch full user profile
         // final profileResponse = await api.get(
         //   EndPoints.me,
