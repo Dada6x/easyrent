@@ -3,8 +3,6 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/services/api/dio_consumer.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/data/repos/userRepo.dart';
-import 'package:easyrent/main.dart';
-import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:easyrent/presentation/views/auth/widgets/button.dart';
 import 'package:easyrent/presentation/views/auth/widgets/empty_search_bar.dart';
@@ -70,6 +68,7 @@ class SignupPage extends StatelessWidget {
                 CustomeButton(
                   hint: "Register",
                   function: () {
+                    //TODO make it lighter the validate function 
                     final name = _nameController.text.trim();
                     final phone = _phoneNumberController.text.trim();
                     final password = _passwordController.text;
@@ -81,6 +80,7 @@ class SignupPage extends StatelessWidget {
                         password.length < 6 ||
                         name.length < 5 ||
                         !RegExp(r'[!@#\$&*~]').hasMatch(password) ||
+                        //@ password must at least have one special character 
                         confirmPassword.isEmpty) {
                       Get.snackbar(
                         "Missing Information",
@@ -106,20 +106,17 @@ class SignupPage extends StatelessWidget {
                       );
                       return;
                     }
-                    //! if all felids and passwords match still i need to handle data base shit
+                    //
                     var api = DioConsumer(Dio());
                     Userrepo(api).signUpUser(
                         userName: name,
                         number: phone,
                         password: password,
                         latLang: {
-                          //! EDIT THIS SHIT LATER
+                          //! EDIT THIS SHIT LATER what should i do else ?
                           "lat": 33.53680665392176,
                           "lon": 36.198938818542835,
                         });
-                    //@ middleware thing in order to make the shit works
-                    userPref?.setBool('isLoggedIn', true);
-                    //! only if the status code is 200
                   },
                 ),
 

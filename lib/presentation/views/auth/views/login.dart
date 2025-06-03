@@ -84,18 +84,14 @@ class LoginPage extends StatelessWidget {
                       );
                       return;
                     }
-                    //! if all felids and passwords match still i need to handle data base shit
+                    //! if all felids and passwords match still i need to handle data base shit .
                     var api = DioConsumer(Dio());
                     Userrepo(api).loginUser(
-                        number: _numberController.text,
-                        password: _passwordController.text);
-                    //@ middleware 
-                    userPref?.setBool('isLoggedIn', true);
-                    //! only if the status code is 200 
-                    Get.off(() => const HomeScreenNavigator());
+                      number: _numberController.text,
+                      password: _passwordController.text,
+                    );
                   },
                 ),
-                //! navigating to signup
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

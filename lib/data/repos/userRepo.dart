@@ -5,6 +5,7 @@ import 'package:easyrent/core/services/api/errors/exceptions.dart';
 import 'package:easyrent/data/models/user_model.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
+import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,7 +19,6 @@ class Userrepo {
   Future<Either<String, User>> loginUser(
       {required String number, required String password}) async {
     try {
-      //chang to post and the endpoint also
       final response = await api.post(
         EndPoints.Login,
         data: {
@@ -26,23 +26,17 @@ class Userrepo {
           ApiKey.password: password,
         },
       );
-//! save Token       idk if i should save it in the User
-      saveToken(response['token']);
-//! Call Profile
-/*
-  * if the request dosent return the info i need about the user in the login/signup response
-  * ask for Profile info
-*/
-// final profileResponse = await api.get(
-//   EndPoints.fetchAllProperties,
-// );
-
-      //! making new User
+      if (response.statusCode == 200) {
+        debug.i("Status Code is ${response.statusCode}");
+        userPref?.setBool('isLoggedIn', true);
+        Get.off(() => const HomeScreenNavigator());
+        saveToken(response['token']);
+      }
       debug.i("User Created");
-      //! HOW TO ACCESS USER GLOBALLY
       final user = User.fromJson(response);
       return Right(user);
     } on ServerException catch (e) {
+      debug.e("Exception $e");
       return Left(e.errorModel.message);
     }
   }
@@ -55,7 +49,6 @@ class Userrepo {
     required Map<String, double> latLang,
   }) async {
     try {
-
       final response = await api.post(
         EndPoints.registerUser,
         data: {
@@ -66,17 +59,16 @@ class Userrepo {
         },
       );
       if (response.statusCode == 200) {
-        debug.t(response);
         debug.i("Status Code is ${response.statusCode}");
-
-        Get.off(() => const HomeScreenNavigator());
         saveToken(response['token']);
+        userPref?.setBool('isLoggedIn', true);
+        Get.off(() => const HomeScreenNavigator());
       }
+      debug.i("New User Created ");
       final user = User.fromJson(response);
-      debug.i("New User Created");
       return Right(user);
     } on ServerException catch (e) {
-      debug.i("NIGGER Balls");
+      debug.e("Exception $e");
       return Left(e.errorModel.message);
     }
   }
@@ -87,10 +79,18 @@ class Userrepo {
       final response = await api.post(
         EndPoints.Logout,
       );
-      deleteToken();
+      if (response.statusCode == 200) {
+        debug.i("Status Code is ${response.statusCode}");
+        userPref?.setBool('isLoggedIn', false);
+        Get.off(() => LoginPage());
+        deleteToken();
+      }
       debug.t("User Logged out ");
-      return Right('YOUre Out ');
+      // i need to remove the User 
+      return const Right('User Logged Out');
     } on ServerException catch (e) {
+      debug.e("Exception $e");
+
       return Left(e.errorModel.message);
     }
   }
@@ -107,5 +107,5 @@ Future<void> deleteToken() async {
   await prefs.remove('token');
 }
 
-// what to save about user
+// what to save about user . 
 // token , user name, theme , language , role . just

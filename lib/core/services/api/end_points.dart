@@ -1,7 +1,7 @@
 class EndPoints {
   static String baseUrl = "http://localhost:3000";
   static String Login = "/auth/login";
-  static String Logout = "/logOut";
+  static String Logout = "auth/logout";
   static String registerUser = "/user/register";
   static String verifyCode = "/user/verify///!code";
 
