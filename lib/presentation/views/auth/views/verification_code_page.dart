@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:easyrent/presentation/navigation/navigator.dart';
-import 'package:easyrent/presentation/views/auth/widgets/button.dart';
+import 'package:easyrent/core/utils/button.dart';
 import 'package:easyrent/presentation/views/auth/widgets/empty_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';

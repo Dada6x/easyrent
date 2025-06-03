@@ -5,7 +5,7 @@ import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/data/repos/userRepo.dart';
 import 'package:easyrent/presentation/views/auth/views/forget_password.dart';
 import 'package:easyrent/presentation/views/auth/views/signup.dart';
-import 'package:easyrent/presentation/views/auth/widgets/button.dart';
+import 'package:easyrent/core/utils/button.dart';
 import 'package:easyrent/presentation/views/auth/widgets/empty_search_bar.dart';
 import 'package:easyrent/presentation/views/auth/widgets/greeting.dart';
 import 'package:easyrent/core/utils/textFields.dart';
