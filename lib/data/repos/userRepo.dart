@@ -15,8 +15,10 @@ class Userrepo {
   final ApiConsumer api;
 
   //!-----------------------login---------------------------------->
-  Future<Either<String, User>> loginUser(
-      {required String number, required String password}) async {
+  Future<Either<String, User>> loginUser({
+    required String number,
+    required String password,
+  }) async {
     try {
       final response = await api.post(
         EndPoints.Login,
@@ -26,16 +28,25 @@ class Userrepo {
         },
       );
       if (response.statusCode == 200) {
-        debug.i("Status Code is ${response.statusCode}");
+        debug.i("User Logged In");
         userPref?.setBool('isLoggedIn', true);
-        saveToken(response['token']);
+        final token = response['accessToken'];
+        await saveToken(token);
         Get.off(() => const HomeScreenNavigator());
+        //! ###################################### Fetch full user profile
+        final profileResponse = await api.get(
+          EndPoints.me,
+        );
+        if (profileResponse.statusCode == 200) {
+          debug.w("New User Created !");
+          final user = User.fromJson(profileResponse);
+          //! ##########
+          return Right(user);
+        }
+        //! ######################################
       }
-      debug.i("User Created");
-      final user = User.fromJson(response);
-      return Right(user);
+      return const Left('Unexpected error');
     } on ServerException catch (e) {
-      debug.e("Exception $e");
       return Left(e.errorModel.message);
     }
   }
@@ -58,19 +69,32 @@ class Userrepo {
         },
       );
       if (response.statusCode == 200) {
-        debug.i("Status Code is ${response.statusCode}");
-        saveToken(response['token']);
+        debug.i("User Logged In");
         userPref?.setBool('isLoggedIn', true);
+        final token = response['accessToken'];
+        await saveToken(token);
         Get.off(() => const HomeScreenNavigator());
+        //! ######################################         //@ Fetch full user profile
+        final profileResponse = await api.get(
+          EndPoints.me,
+        );
+        if (profileResponse.statusCode == 200) {
+          debug.w("New User Created !");
+          final user = User.fromJson(profileResponse);
+          //! ##########
+          return Right(user);
+        }
+        //! ######################################
       }
-      debug.i("New User Created ");
-      final user = User.fromJson(response);
-      return Right(user);
+      return const Left('Unexpected error');
     } on ServerException catch (e) {
       debug.e("Exception $e");
       return Left(e.errorModel.message);
     }
   }
+
+//! i need to make an Fetch User when the app initialized after we know that he has an token in the device
+//! maybe store some Data in the sharedPref as username or image Url. and everyTime the app is loaded .
 
 //!-----------------------Log OUt ---------------------------------->
   Future<Either<String, String>> logoutUser() async {
@@ -97,12 +121,14 @@ class Userrepo {
 Future<void> saveToken(String token) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setString('token', token);
+  debug.i("Token Saved");
 }
 
 Future<void> deleteToken() async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.remove('token');
+  debug.i("Token Deleted ");
 }
 
-// what to save about user . 
+// what to save about user .
 // token , user name, theme , language , role . just

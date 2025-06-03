@@ -272,7 +272,6 @@ class PropertyDetailsPage extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  const CustomDivider(),
                   //! property Price
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8.h),
