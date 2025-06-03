@@ -67,8 +67,8 @@ class SignupPage extends StatelessWidget {
                 //! Register BUTTON :O
                 CustomeButton(
                   hint: "Register",
-                  function: () {
-                    //TODO make it lighter the validate function 
+                  function: () async {
+                    //TODO make it lighter the validate function
                     final name = _nameController.text.trim();
                     final phone = _phoneNumberController.text.trim();
                     final password = _passwordController.text;
@@ -80,7 +80,7 @@ class SignupPage extends StatelessWidget {
                         password.length < 6 ||
                         name.length < 5 ||
                         !RegExp(r'[!@#\$&*~]').hasMatch(password) ||
-                        //@ password must at least have one special character 
+                        //@ password must at least have one special character
                         confirmPassword.isEmpty) {
                       Get.snackbar(
                         "Missing Information",

@@ -103,7 +103,7 @@ class FilterBottomSheet extends StatelessWidget {
               children: [
                 Expanded(
                     child:
-                        CustomeButton(hint: "Apply Filters", function: () {}))
+                        CustomeButton(hint: "Apply Filters", function: () async{}))
               ],
             ),
 

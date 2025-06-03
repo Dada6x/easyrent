@@ -144,7 +144,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                 SizedBox(height: 30.h),
                 CustomeButton(
                     hint: "Verify",
-                    function: () {
+                    function: () async{
                       if (_pinController.text.length == 4) {
                         _verifyCode(_pinController.text);
                       } else {

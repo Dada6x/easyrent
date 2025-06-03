@@ -3,11 +3,11 @@ import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomeButton extends StatelessWidget {
+class CustomeButton extends StatefulWidget {
   final String hint;
-  final Function function;
+  final Future<void> Function()? function;
   final double? width;
-  final double? borderRadius; // new optional radius parameter
+  final double? borderRadius;
 
   const CustomeButton({
     super.key,
@@ -18,24 +18,45 @@ class CustomeButton extends StatelessWidget {
   });
 
   @override
+  State<CustomeButton> createState() => _CustomeButtonState();
+}
+
+class _CustomeButtonState extends State<CustomeButton> {
+  bool isLoading = false;
+
+  void _handleTap() async {
+    setState(() => isLoading = true);
+    if (widget.function != null) await widget.function!();
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() => isLoading = false);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 30.h, bottom: 20.h),
       child: SizedBox(
-        width: width ?? double.infinity,
+        width: widget.width ?? double.infinity,
         height: 52.h,
         child: ElevatedButton(
-          onPressed: () {
-            function();
-          },
+          onPressed: isLoading ? null : _handleTap,
           style: ElevatedButton.styleFrom(
             backgroundColor: primaryBlue,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius ?? 12.r),
+              borderRadius: BorderRadius.circular(widget.borderRadius ?? 12.r),
             ),
           ),
-          child:
-              Text(hint, style: AppTextStyles.h18semi.copyWith(color: white)),
+          child: isLoading
+              ? SizedBox(
+                  width: 24.w,
+                  height: 24.w,
+                  child: const CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 2,
+                  ),
+                )
+              : Text(widget.hint,
+                  style: AppTextStyles.h18semi.copyWith(color: white)),
         ),
       ),
     );
