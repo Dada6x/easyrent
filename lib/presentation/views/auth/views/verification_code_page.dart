@@ -1,4 +1,9 @@
 import 'dart:async';
+import 'package:dio/dio.dart';
+import 'package:easyrent/core/services/api/api_consumer.dart';
+import 'package:easyrent/core/services/api/end_points.dart';
+import 'package:easyrent/core/services/api/errors/exceptions.dart';
+import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/core/utils/button.dart';
 import 'package:easyrent/presentation/views/auth/widgets/empty_search_bar.dart';
@@ -29,7 +34,23 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
   @override
   void initState() {
     super.initState();
+    getCode();
     _startTimer();
+  }
+
+  Future<void> getCode() async {
+    try {
+      final response = await Dio().get(
+        EndPoints.verifyCode,
+      );
+      if (response.statusCode == 200) {
+        debug.i("Status Code is ${response.statusCode}");
+        // final code = response['code'];
+        // if the code the user enter is the same as the code of the api Let him enter and Send Verification Code 
+      }
+    } on ServerException catch (e) {
+      debug.e("Exception $e");
+    }
   }
 
   void _startTimer() {
@@ -64,6 +85,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
       await Future.delayed(const Duration(milliseconds: 800));
 
       if (mounted) {
+        userPref?.setBool('isLoggedIn', true);
         Get.off(() => const HomeScreenNavigator());
       }
     } else {
@@ -144,7 +166,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                 SizedBox(height: 30.h),
                 CustomeButton(
                     hint: "Verify",
-                    function: () async{
+                    function: () async {
                       if (_pinController.text.length == 4) {
                         _verifyCode(_pinController.text);
                       } else {

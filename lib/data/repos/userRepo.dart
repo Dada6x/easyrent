@@ -6,6 +6,7 @@ import 'package:easyrent/data/models/user_model.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
+import 'package:easyrent/presentation/views/auth/views/verification_code_page.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -69,11 +70,11 @@ class Userrepo {
         },
       );
       if (response.statusCode == 200) {
-        debug.i("User Logged In");
-        userPref?.setBool('isLoggedIn', true);
+        // userPref?.setBool('isLoggedIn', true);
         final token = response['accessToken'];
         await saveToken(token);
-        Get.off(() => const HomeScreenNavigator());
+        Get.off(() => const VerificationCodePage());
+        // it has to go to the verification  code page and then when its verify
         //! ######################################         //@ Fetch full user profile
         final profileResponse = await api.get(
           EndPoints.me,
