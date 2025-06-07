@@ -61,34 +61,35 @@ class LoginPage extends StatelessWidget {
                 ),
                 //@ LOGIN BUTTON :O
                 CustomeButton(
-                  // isLoading: true,
+                  //todo fix this long if else shit
                   hint: "login",
                   function: () async {
-                    final phone = _numberController.text.trim();
-                    final password = _passwordController.text;
-                    if (phone.isEmpty ||
-                        password.isEmpty ||
-                        _numberController.text.length != 10 ||
-                        password.length < 6 ||
-                        !RegExp(r'[!@#\$&*~]').hasMatch(password)) {
-                      Get.snackbar(
-                        "Missing Information",
-                        "All fields are required",
-                        snackStyle: SnackStyle.FLOATING,
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: red,
-                        colorText: white,
-                        margin: EdgeInsets.all(12.w),
-                        borderRadius: 8.r,
-                      );
-                      return;
-                    }
-                    //! if all felids and passwords match still i need to handle data base shit .
-                    var api = DioConsumer(Dio());
-                    Userrepo(api).loginUser(
-                      number: _numberController.text,
-                      password: _passwordController.text,
-                    );
+                    nigga();
+                    // final phone = _numberController.text.trim();
+                    // final password = _passwordController.text;
+                    // if (phone.isEmpty ||
+                    //     password.isEmpty ||
+                    //     _numberController.text.length != 10 ||
+                    //     password.length < 6 ||
+                    //     !RegExp(r'[!@#\$&*~]').hasMatch(password)) {
+                    //   Get.snackbar(
+                    //     "Missing Information",
+                    //     "All fields are required",
+                    //     snackStyle: SnackStyle.FLOATING,
+                    //     snackPosition: SnackPosition.BOTTOM,
+                    //     backgroundColor: red,
+                    //     colorText: white,
+                    //     margin: EdgeInsets.all(12.w),
+                    //     borderRadius: 8.r,
+                    //   );
+                    //   return;
+                    // }
+                    // //! if all felids and passwords match still i need to handle data base shit .
+                    // var api = DioConsumer(Dio());
+                    // Userrepo(api).loginUser(
+                    //   number: _numberController.text,
+                    //   password: _passwordController.text,
+                    // );
                   },
                 ),
                 Row(
@@ -98,7 +99,7 @@ class LoginPage extends StatelessWidget {
                         style: AppTextStyles.h12regular),
                     TextButton(
                       onPressed: () {
-                        Get.off(() => SignupPage(),
+                        Get.off(() => const SignupPage(),
                             transition: Transition.rightToLeft,
                             curve: Curves.easeInOutCubicEmphasized);
                       },
@@ -111,6 +112,34 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+//!
+  void nigga() async {
+    final phone = _numberController.text.trim();
+    final password = _passwordController.text;
+    if (phone.isEmpty ||
+        password.isEmpty ||
+        _numberController.text.length != 10 ||
+        password.length < 6 ||
+        !RegExp(r'[!@#\$&*~]').hasMatch(password)) {
+      Get.snackbar(
+        "Missing Information",
+        "All fields are required",
+        snackStyle: SnackStyle.FLOATING,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: red,
+        colorText: white,
+        margin: EdgeInsets.all(12.w),
+        borderRadius: 8.r,
+      );
+      return;
+    }
+    var api = DioConsumer(Dio());
+    Userrepo(api).loginUser(
+      number: _numberController.text,
+      password: _passwordController.text,
     );
   }
 }

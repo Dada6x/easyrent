@@ -1,11 +1,12 @@
-import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/data/models/property_model.dart';
+import 'package:easyrent/data/repos/propertiesRepo.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/filterChips.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/home_searchbar.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/home_appbar.dart';
-import 'package:easyrent/presentation/views/property_homepage/widgets/property_card_smoll.dart';
-import 'package:easyrent/presentation/views/property_homepage/widgets/property_card_big.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/horizontal_feed_grid.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/verticle_feed_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -18,15 +19,38 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  List<PropertyModel> propertiesList = [];
+
+  @override
+  void didChangeDependencies() {
+    getProperties();
+    super.didChangeDependencies();
+  }
+
+  Future<void> getProperties() async {
+    propertiesList = await PropertiesRepo.getProperties();
+    //! HEHEEH remove it
+    setState(() {});
+  }
+
+//! refresh shit
   Future<void> _onRefresh() async {
-    // TODO: Add your refresh logic here fetch new data.
-    await Future.delayed(const Duration(seconds: 1)); // Simulated delay
+    //TODO EMIT LOADING INDICATOUR
+    PropertiesRepo.getProperties();
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GestureDetector(
+      body:
+          //  propertiesList.isEmpty
+          //     ? const Center(
+          //         //TODO if for too long give an offline message , or emit offline State
+          //         child: CircularProgressIndicator(),
+          //       )
+          // :
+          GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: SafeArea(
           child: RefreshIndicator(
@@ -69,50 +93,37 @@ class _HomepageState extends State<Homepage> {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 320.h,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 3,
-                            itemBuilder: (context, index) {
-                              return const PropertyCardBig(
-                                imagePath: apartment3,
-                                location: "New York , US",
-                                price: 1920,
-                                rating: 4.5,
-                                title: "Moderincia",
-                              );
-                            },
-                          ),
-                        ),
+                        //! this should take an list of properties to display it the horizontal should at least display 4 or 3
+                        //! this change the vertical search Filter i dont know how to connect them Yet
+                        //! maybe put them togather in the same widget but the filtering must be via state management
+                        HorizontalFeedGrid(properties: propertiesList),
                         SizedBox(height: 12.h),
                         const PropertyFilterChips(),
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: GridView.builder(
-                            shrinkWrap: true,
-                            itemCount: 20,
-                            physics: const NeverScrollableScrollPhysics(),
-                            gridDelegate:
-                                SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 250.w,
-                              mainAxisSpacing: 10.h,
-                              crossAxisSpacing: 8.w,
-                              childAspectRatio: 0.76,
-                            ),
-                            itemBuilder: (context, index) {
-                              return const PropertyCardSmall(
-                                property: {
-                                  "title": "La Grand Maison",
-                                  "location": "Tokyo, Japan",
-                                  "price": 12219,
-                                  "rating": 4.8,
-                                  "image": apartment,
-                                },
-                              );
-                            },
-                          ),
-                        ),
+
+                        FutureBuilder<List<PropertyModel>>(
+                            future: PropertiesRepo.getProperties(),
+                            builder: ((context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else if (snapshot.hasError) {
+                                return Center(
+                                  child: Text(
+                                      "An error occured ${snapshot.error}"),
+                                );
+                              } else if (snapshot.data == null ||
+                                  snapshot.data!.isEmpty) {
+                                return const Center(
+                                  child:
+                                      Text("No products have been added yet"),
+                                );
+                              }
+
+                              return VerticalFeedGrid(
+                                  properties: snapshot.data!);
+                            })),
                       ],
                     ),
                   ),
@@ -125,227 +136,3 @@ class _HomepageState extends State<Homepage> {
     );
   }
 }
-
-/*
-! THE OLDER WITHOUT INDICATOR 
-class Homepage extends StatefulWidget {
-  const Homepage({super.key});
-  @override
-  State<Homepage> createState() => _HomepageState();
-}
-class _HomepageState extends State<Homepage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-              // backgroundColor: Colors.transparent,
-              elevation: 0,
-              pinned: false,
-              title: homePageAppbar()),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.0.r),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.r),
-                    child: const CustomSearchBar(),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.r),
-                    child: Row(
-                      children: [
-                        Text(
-                          "Featured".tr,
-                          style: AppTextStyles.h24semi,
-                        ),
-                        const Spacer(),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "See All".tr,
-                            style: AppTextStyles.h16semi
-                                .copyWith(color: primaryBlue),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 320.h,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 3,
-                      itemBuilder: (context, index) {
-                        return const PropertyCardBig(
-                          imagePath: apartment3,
-                          location: "New York , US",
-                          price: 1920,
-                          rating: 4.5,
-                          title: "Moderincia",
-                        );
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 12.h),
-                  const PropertyFilterChips(),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      itemCount: 20,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 250.w,
-                        mainAxisSpacing: 10.h,
-                        crossAxisSpacing: 8.w,
-                        childAspectRatio: 0.76,
-                      ),
-                      itemBuilder: (context, index) {
-                        return const PropertyCardSmall(
-                          property: {
-                            "title": "La Grand Maison",
-                            "location": "Tokyo, Japan",
-                            "price": 12219,
-                            "rating": 4.8,
-                            "image": apartment,
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-*/
-
-// @ with the refresh indicator but its state
-
-//-------------------------------------------------------->>
-
-/*
-! old code 
-
-import 'package\:easyrent/core/constants/assets.dart';
-import 'package\:easyrent/core/constants/colors.dart';
-import 'package\:easyrent/core/utils/textStyles.dart';
-import 'package\:easyrent/presentation/views/property\_homepage/widgets/filterChips.dart';
-import 'package\:easyrent/presentation/views/property\_homepage/widgets/home\_searchbar.dart';
-import 'package\:easyrent/presentation/views/property\_homepage/widgets/home\_appbar.dart';
-import 'package\:easyrent/presentation/views/property\_homepage/widgets/property\_card\_smoll.dart';
-import 'package\:easyrent/presentation/views/property\_homepage/widgets/property\_card\_big.dart';
-import 'package\:flutter/material.dart';
-import 'package\:flutter\_screenutil/flutter\_screenutil.dart';
-import 'package\:get/get.dart';
-
-class Homepage extends StatelessWidget {
-const Homepage({super.key});
-
-@override
-Widget build(BuildContext context) {
-return Scaffold(
-// backgroundColor: lightPrimary,
-appBar: homePageAppbar(),
-body: SingleChildScrollView(
-child: Padding(
-padding: EdgeInsets.symmetric(horizontal: 15.0.r),
-child: Column(
-children: \[
-Padding(
-padding: EdgeInsets.symmetric(vertical: 10.r),
-child: const CustomSearchBar(),
-),
-
-```
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.r),
-              child: Row(
-                children: [
-                  Text(
-                    "Featured".tr,
-                    style: AppTextStyles.h24semi,
-                  ),
-                  const Spacer(),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "See All".tr,
-                      style: AppTextStyles.h16semi
-                          .copyWith(color: primaryBlue),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ],
-              ),
-            ),
-            //! HORIZONTAL
-            SizedBox(
-              height: 320.h,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return const PropertyCardBig(
-                    imagePath: apartment3,
-                    location: "New York , US",
-                    price: 1920,
-                    rating: 4.5,
-                    title: "Moderincia",
-                  );
-                },
-              ),
-            ),
-            SizedBox(
-              height: 12.h,
-            ),
-            //! CHIPS
-            const PropertyFilterChips(),
-            //! VERTICAL
-            SizedBox(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  itemCount: 20,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 250.w,
-                    mainAxisSpacing: 10.h,
-                    crossAxisSpacing: 8.w,
-                    childAspectRatio: 0.76,
-                  ),
-                  itemBuilder: (context, index) {
-                    return const PropertyCardSmall(
-                      property: {
-                        "title": "La Grand Maison",
-                        "location": "Tokyo, Japan",
-                        "price": 12219,
-                        "rating": 4.8,
-                        "image": apartment,
-                      },
-                    );
-                  },
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ));
-
-
-}}
-
-
-*/

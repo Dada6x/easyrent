@@ -15,6 +15,10 @@ class Userrepo {
   Userrepo(this.api);
   final ApiConsumer api;
 
+// maybe as salma said , i dont need the user object in the application , its nothing dynamicly running or i need to save it or anything ,
+// maybe i chace the name and some thinhs via chace helper from api course , 
+// chahe the name and other things .
+
   //!-----------------------login---------------------------------->
   Future<Either<String, User>> loginUser({
     required String number,
@@ -53,22 +57,23 @@ class Userrepo {
   }
 
 //!-----------------------Sign Up---------------------------------->
-  Future<Either<String, User>> signUpUser({
+// maybe i should delete the either here
+  Future<Either<String, String>> signUpUser({
     required String number,
     required String userName,
     required String password,
     required Map<String, double> latLang,
   }) async {
     try {
-      final response = await api.get(
-        // EndPoints.registerUser,
-        "https://run.mocky.io/v3/22e0a317-53d3-4836-85f4-ee698ef1b1da"
-        // data: {
-        //   ApiKey.phone: number,
-        //   ApiKey.password: password,
-        //   ApiKey.userName: userName,
-        //   ApiKey.pointsDto: latLang,
-        // },
+      final response = await api.post(
+        EndPoints.registerUser,
+        // "https://run.mocky.io/v3/22e0a317-53d3-4836-85f4-ee698ef1b1da"
+        data: {
+          ApiKey.phone: number,
+          ApiKey.password: password,
+          ApiKey.userName: userName,
+          ApiKey.pointsDto: latLang,
+        },
       );
       if (response.statusCode == 200) {
         // userPref?.setBool('isLoggedIn', true);
@@ -110,6 +115,42 @@ class Userrepo {
       }
       debug.t("User Logged out ");
       return const Right('User Logged Out');
+    } on ServerException catch (e) {
+      debug.e("Exception $e");
+      return Left(e.errorModel.message);
+    }
+  }
+
+//!-----------------------Verify Code---------------------------------->
+// ! now i want the state of the application via Bloc
+// emit sucres or false state for the color of the pin codes
+  Future<Either<String, User>> verifyCode({
+    required int code,
+  }) async {
+    try {
+      final response = await api.post(
+        EndPoints.verifyCode,
+        data: {
+          ApiKey.code: code,
+        },
+      );
+      if (response.statusCode == 200) {
+        final token = response.data['accessToken'];
+        await saveToken(token);
+        userPref?.setBool('isLoggedIn', true);
+        Get.off(() => const HomeScreenNavigator());
+
+        // Profile 
+        final profileResponse = await api.get(
+          EndPoints.me,
+        );
+        if (profileResponse.statusCode == 200) {
+          debug.w("New User Created !");
+          final user = User.fromJson(profileResponse);
+          return Right(user);
+        }
+      }
+      return const Left('Unexpected error');
     } on ServerException catch (e) {
       debug.e("Exception $e");
       return Left(e.errorModel.message);

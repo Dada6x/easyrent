@@ -1,67 +1,113 @@
-import 'package:easyrent/data/models/agent_model.dart';
-import 'package:easyrent/data/models/comment_model.dart';
+import 'package:easyrent/data/models/user_model.dart';
 
-class Property {
-  final String title;
-  //!  final List<String> previewImages;
-  final int price;
-  final String genre; // Later you can replace this with an enum.
-  //
-  final List<Map<String, String>> panoramaImages;
-
-  final double ratings;
-  final int reviews;
-  //
-  final int beds;
-  final int baths;
+class PropertyModel {
+  final int id;
+  final int rooms;
+  final int bathrooms;
   final int area;
-  //
-  final Agent agent;
-  final String overview;
-  //! faccelites
-  final List<String> gallery;
-  //location 
-  final double latitude;
-  final double longitude;
-  // location description maybe :D
-  //
-  final List<Comment> comments;
+  final double price;
+  final String state;
+  final String? firstImage;
+  final List<dynamic> favorites;
+  final User user;
+  final Location location;
+  final List<String>? propertyImages;
 
-  Property(
-    this.panoramaImages, {
-    required this.title,
-    required this.price,
-    required this.genre,
-    required this.ratings,
-    required this.reviews,
-    required this.beds,
-    required this.baths,
+  PropertyModel({
+    required this.id,
+    required this.rooms,
+    required this.bathrooms,
     required this.area,
-    required this.overview,
-    required this.gallery,
-    required this.latitude,
-    required this.longitude,
-    required this.agent,
-    required this.comments,
+    required this.price,
+    required this.state,
+    this.firstImage,
+    required this.favorites,
+    required this.user,
+    required this.location,
+    this.propertyImages,
   });
 
-  // factory Property.fromJson(Map<String, dynamic> json) {
-  //   return Property(
-  //     title: json['title'],
-  //     price: json['price'],
-  //     genre: json['genre'],
-  //     ratings: json['ratings'],
-  //     reviews: json['reviews'],
-  //     beds: json['beds'],
-  //     baths: json['baths'],
-  //     area: json['area'],
-  //     overview: json['overview'],
-  //     gallery: List<String>.from(json['gallery']),
-  //     latitude: json['latitude'],
-  //     longitude: json['longitude'],
-  //     agent: Agent.fromJson(json['agent']),
-  //     comments:
-  //         (json['comments'] as List).map((c) => Comment.fromJson(c)).toList(),
-  //   );
+  factory PropertyModel.fromJson(Map<String, dynamic> json) {
+    return PropertyModel(
+      id: json['id'],
+      rooms: json['rooms'],
+      bathrooms: json['bathrooms'],
+      area: json['area'],
+      price: json['price'],
+      state: json['state'],
+      firstImage: json['firstImage'],
+      favorites: List<dynamic>.from(json['favorites']),
+      user: User.fromJson(json['user']),
+      location: Location.fromJson(json['location']),
+      propertyImages: json['propertyImages'] == null
+          ? null
+          : List<String>.from(json['propertyImages']),
+    );
+  }
+  //! STATIC 
+  static List<PropertyModel> propertiesFromSnapshot(List snapshot) {
+    return snapshot.map((data) {
+      return PropertyModel.fromJson(data);
+    }).toList();
+  }
+
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     'id': id,
+  //     'rooms': rooms,
+  //     'bathrooms': bathrooms,
+  //     'area': area,
+  //     'price': price,
+  //     'state': state,
+  //     'firstImage': firstImage,
+  //     'favorites': favorites,
+  //     'user': user.toJson(),
+  //     'location': location.toJson(),
+  //     'propertyImages': propertyImages,
+  //   };
+  // }
+}
+
+class Location {
+  final String country;
+  final String governorate;
+  final String city;
+  final String quarter;
+  final String street;
+  final double lat;
+  final double lon;
+
+  Location({
+    required this.country,
+    required this.governorate,
+    required this.city,
+    required this.quarter,
+    required this.street,
+    required this.lat,
+    required this.lon,
+  });
+
+  factory Location.fromJson(Map<String, dynamic> json) {
+    return Location(
+      country: json['country'],
+      governorate: json['governorate'],
+      city: json['city'],
+      quarter: json['quarter'],
+      street: json['street'],
+      lat: json['lat'].toDouble(),
+      lon: json['lon'].toDouble(),
+    );
+  }
+
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     'country': country,
+  //     'governorate': governorate,
+  //     'city': city,
+  //     'quarter': quarter,
+  //     'street': street,
+  //     'lat': lat,
+  //     'lon': lon,
+  //   };
   // }
 }

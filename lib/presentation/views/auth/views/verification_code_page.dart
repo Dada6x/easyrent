@@ -35,10 +35,11 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
     super.initState();
     _startTimer();
   }
-  //! its working but not clean , also i need to fetch the user at this point 
+  //! its working but not clean , also i need to fetch the user at this point
 
   Future<void> sendVerificationCode() async {
     try {
+      //TODO use the verifyCode Function in the user Repo 
       //TODO ID
       //TODO DIOCONSUMER API SHIT
       final response = await DioConsumer(Dio()).post(
@@ -49,8 +50,8 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
       );
 
       if (response.statusCode == 200) {
-        //! in order to transfer this into another repo i need the emit state of the shit here 
-        // like if status code is 200 emit succses state to the pin codes 
+        //! in order to transfer this into another repo i need the emit state of the shit here
+        // like if status code is 200 emit succses state to the pin codes
         final token = response.data['accessToken'];
         debug.i("$token");
         await saveToken(token);
@@ -66,6 +67,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
           _isCodeValid = false;
         });
       }
+      //TODO add server exceptions
     } catch (e) {
       setState(() {
         _isCodeValid = false;
@@ -98,6 +100,8 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
     if (_canResend) {
       _startTimer();
       // Add resend API call here if needed
+
+//! AAAAAAAAAAAAAAAAAAAAAAAAADDDDDDDDDDDDDDDDDDDDDDD THE RESEND CODE PLEASEEEEEEE
     }
   }
 
@@ -169,7 +173,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                   },
                 ),
                 SizedBox(height: 30.h),
-                //! we can TRASH THE BUTTON COZ ITS NOT USEFUL ACTUALLY  ☝🤓 
+                //! we can TRASH THE BUTTON COZ ITS NOT USEFUL ACTUALLY  ☝🤓
                 CustomeButton(
                   hint: "Verify",
                   function: () async {

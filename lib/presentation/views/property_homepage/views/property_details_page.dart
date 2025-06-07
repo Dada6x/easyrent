@@ -5,7 +5,6 @@ import 'package:easyrent/core/utils/textStyles.dart';
 import 'package:easyrent/data/models/agent_model.dart';
 import 'package:easyrent/data/models/comment_model.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/agent_widget.dart';
-import 'package:easyrent/presentation/views/property_homepage/widgets/comments_section_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/gallery_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/location_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/panorama_page.dart';
@@ -17,6 +16,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:like_button/like_button.dart';
 
 class PropertyDetailsPage extends StatelessWidget {
+  //! this need to be changed
   final List<String> previewImages;
   final List<Map<String, String>> panoramaImages;
   final String title;
