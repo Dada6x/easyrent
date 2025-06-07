@@ -1,30 +1,20 @@
-import 'package:easyrent/data/models/user_model.dart';
-
 class PropertyModel {
   final int id;
   final int rooms;
   final int bathrooms;
-  final int area;
   final double price;
-  final String state;
+  final double area;
   final String? firstImage;
-  final List<dynamic> favorites;
-  final User user;
-  final Location location;
-  final List<String>? propertyImages;
+  final Location? location;
 
   PropertyModel({
     required this.id,
     required this.rooms,
     required this.bathrooms,
-    required this.area,
     required this.price,
-    required this.state,
-    this.firstImage,
-    required this.favorites,
-    required this.user,
+    required this.area,
+    required this.firstImage,
     required this.location,
-    this.propertyImages,
   });
 
   factory PropertyModel.fromJson(Map<String, dynamic> json) {
@@ -32,40 +22,16 @@ class PropertyModel {
       id: json['id'],
       rooms: json['rooms'],
       bathrooms: json['bathrooms'],
-      area: json['area'],
-      price: json['price'],
-      state: json['state'],
+      price: (json['price'] as num).toDouble(),
+      area: (json['area'] as num).toDouble(),
       firstImage: json['firstImage'],
-      favorites: List<dynamic>.from(json['favorites']),
-      user: User.fromJson(json['user']),
-      location: Location.fromJson(json['location']),
-      propertyImages: json['propertyImages'] == null
-          ? null
-          : List<String>.from(json['propertyImages']),
+      location: json['location'] != null ? Location.fromJson(json['location']) : null,
     );
   }
-  //! STATIC 
-  static List<PropertyModel> propertiesFromSnapshot(List snapshot) {
-    return snapshot.map((data) {
-      return PropertyModel.fromJson(data);
-    }).toList();
-  }
 
-  // Map<String, dynamic> toJson() {
-  //   return {
-  //     'id': id,
-  //     'rooms': rooms,
-  //     'bathrooms': bathrooms,
-  //     'area': area,
-  //     'price': price,
-  //     'state': state,
-  //     'firstImage': firstImage,
-  //     'favorites': favorites,
-  //     'user': user.toJson(),
-  //     'location': location.toJson(),
-  //     'propertyImages': propertyImages,
-  //   };
-  // }
+  static List<PropertyModel> propertiesFromSnapshot(List snapshot) {
+    return snapshot.map((e) => PropertyModel.fromJson(e)).toList();
+  }
 }
 
 class Location {

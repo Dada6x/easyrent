@@ -3,7 +3,6 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/app/controller/app_controller.dart';
 import 'package:easyrent/core/utils/error_loading_mssg.dart';
 import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/property_details_page.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +12,19 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class PropertyCardSmall extends StatelessWidget {
-  final Map<String, dynamic> property;
+  final String title;
+  final double rating;
+  final String location;
+  final double price;
+  final String image;
 
-  const PropertyCardSmall({super.key, required this.property});
+  const PropertyCardSmall(
+      {super.key,
+      required this.title,
+      required this.rating,
+      required this.location,
+      required this.price,
+      required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +38,7 @@ class PropertyCardSmall extends StatelessWidget {
             Get.to(
                 transition: Transition.fadeIn,
                 duration: const Duration(milliseconds: 520),
-                PropertyDetailsPage(
+                const PropertyDetailsPage(
                   title: "MODERNISM VILLA",
                   genre: "Villa",
                   ratings: 4.5,
@@ -40,8 +49,8 @@ class PropertyCardSmall extends StatelessWidget {
                   price: 19322,
                   overview:
                       "Consequatur porro impedit alias odio voluptatem qui qui rerum aspernatur. Facere mollitia fugit perferendis deleniti quam neque voluptatem repellendus natus. Omnis ipsum culpa qui minima.",
-                  previewImages: const [apartment, apartment2, japan],
-                  galleryImages: const [
+                  previewImages: [apartment, apartment2, japan],
+                  galleryImages: [
                     apartment3,
                     japan,
                     apartment2,
@@ -52,7 +61,7 @@ class PropertyCardSmall extends StatelessWidget {
                   ],
                   lat: 33.5138,
                   lng: 36.2765,
-                  panoramaImages: const [
+                  panoramaImages: [
                     {'name': 'Living Room', 'imagePath': panorama1},
                     {'name': 'Kitchen', 'imagePath': panorama2},
                     {'name': 'Bedroom', 'imagePath': panorama3},
@@ -84,7 +93,7 @@ class PropertyCardSmall extends StatelessWidget {
                           FancyShimmerImage(
                         height: 140.h,
                         boxFit: BoxFit.cover,
-                        imageUrl: onlineImageUrl,
+                        imageUrl: image,
                         errorWidget: const ErrorLoadingWidget(),
                       ),
                     ),
@@ -104,7 +113,7 @@ class PropertyCardSmall extends StatelessWidget {
                             Icon(Icons.star_rounded, size: 12.r, color: orange),
                             SizedBox(width: 2.w),
                             Text(
-                              "${property["rating"]}",
+                              "$rating",
                               style: AppTextStyles.h10semi.copyWith(
                                 fontSize: 10.sp,
                               ),
@@ -123,21 +132,21 @@ class PropertyCardSmall extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        property["title"],
+                        title,
                         style: AppTextStyles.h16semi,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                       SizedBox(height: 4.h),
                       Text(
-                        property["location"],
+                        location,
                         style: AppTextStyles.h12regular.copyWith(color: grey),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                       SizedBox(height: 4.h),
                       Text(
-                        "\$${property["price"]}",
+                        " ${price.toString()} \$",
                         style:
                             AppTextStyles.h16semi.copyWith(color: primaryBlue),
                         maxLines: 1,

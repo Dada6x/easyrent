@@ -1,5 +1,5 @@
-import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/data/models/property_model.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/filterChips.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/property_card_smoll.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,31 +13,36 @@ class VerticalFeedGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: GridView.builder(
-        shrinkWrap: true,
-        itemCount: 20,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 250.w,
-          mainAxisSpacing: 10.h,
-          crossAxisSpacing: 8.w,
-          childAspectRatio: 0.76,
+    return Column(
+      children: [
+        const PropertyFilterChips(),
+        SizedBox(
+          height: 10.h,
         ),
-        itemBuilder: (context, index) {
-          return const PropertyCardSmall(
-            property: {
-              //TODO add the from list index shit values
-              "title": "La Grand Maison",
-              "location": "Tokyo, Japan",
-              "price": 12219,
-              "rating": 4.8,
-              "image": apartment,
-            },
-          );
-        },
-      ),
+        GridView.builder(
+          shrinkWrap: true,
+          itemCount: properties.length,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 250.w,
+            mainAxisSpacing: 10.h,
+            crossAxisSpacing: 8.w,
+            childAspectRatio: 0.76,
+          ),
+          itemBuilder: (context, index) {
+            final property = properties[index];
+            return PropertyCardSmall(
+              //TODO the small dosent take an map
+              title: "House with ${property.rooms} rooms",
+              location: property.location?.city ?? "Unknown",
+              price: property.price,
+              rating: 4.5, // Hardcoded
+              image: property.firstImage ??
+                  "https://cdn-icons-png.flaticon.com/512/3069/3069173.png",
+            );
+          },
+        ),
+      ],
     );
   }
 }
