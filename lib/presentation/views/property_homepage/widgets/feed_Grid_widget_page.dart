@@ -1,6 +1,8 @@
+import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/data/models/property_model.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/filterChips.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/horizontal_feed_grid.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/property_card_big.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/property_card_smoll.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +18,27 @@ class FeedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const HorizontalFeedGrid(),
+        SizedBox(
+          height: 320.h,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              final property = properties[index];
+
+              return PropertyCardBig(
+                imagePath: property.firstImage ?? apartment,
+                location: property.location?.city ??
+                    "", //TODO see how to handle the location shit
+                price: property.price,
+                rating: 4.5,
+
+                //! need to remove it
+                title: "Moderincia",
+              );
+            },
+          ),
+        ),
         const PropertyFilterChips(),
         SizedBox(
           height: 10.h,
@@ -35,7 +57,9 @@ class FeedPage extends StatelessWidget {
             final property = properties[index];
             return PropertyCardSmall(
               title: "House with ${property.rooms} rooms",
-              location: property.location?.city ?? "Unknown",
+              location:
+                  '${property.location?.city} ${property.location?.street}',
+              //! TODO REFACTOR THE LOCATION SUBLOCATION OR STRET OR SOME SHIT
               price: property.price,
               rating: 4.5, // Hardcoded
               image: property.firstImage ??

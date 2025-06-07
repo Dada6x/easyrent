@@ -7,7 +7,7 @@ import 'package:easyrent/presentation/views/property_homepage/widgets/home_searc
 import 'package:easyrent/presentation/views/property_homepage/widgets/home_appbar.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/horizontal_feed_grid.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/property_card_smoll.dart';
-import 'package:easyrent/presentation/views/property_homepage/widgets/verticle_feed_grid.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/feed_Grid_widget_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
