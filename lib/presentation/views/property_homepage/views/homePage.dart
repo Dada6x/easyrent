@@ -22,6 +22,8 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   late Future<List<PropertyModel>> _propertiesFuture;
 
+
+//! set for init State only this is too much requests 
   @override
   void didChangeDependencies() {
     getProperties();
@@ -93,14 +95,7 @@ class _HomepageState extends State<Homepage> {
                             ],
                           ),
                         ),
-                        //! this should take an list of properties to display it the horizontal should at least display 4 or 3
-                        //! this change the vertical search Filter i dont know how to connect them Yet
-                        //! maybe put them togather in the same widget but the filtering must be via state management
-                        HorizontalFeedGrid(properties: _propertiesFuture),
-
                         SizedBox(height: 12.h),
-
-//! VERTICAL
                         FutureBuilder<List<PropertyModel>>(
                           future: _propertiesFuture,
                           builder: (context, snapshot) {
@@ -108,11 +103,6 @@ class _HomepageState extends State<Homepage> {
                                 ConnectionState.waiting) {
                               return const Center(
                                   child: CircularProgressIndicator());
-                            }
-                            if (snapshot.connectionState ==
-                                ConnectionState.none) {
-                              return const Center(
-                                  child: Text("NIGGA YOURE OFFLINE "));
                             }
                             if (snapshot.hasError) {
                               return Center(
@@ -125,7 +115,7 @@ class _HomepageState extends State<Homepage> {
                                   child: Text("No properties found."));
                             }
                             final properties = snapshot.data!;
-                            return VerticalFeedGrid(
+                            return FeedPage(
                               properties: properties,
                             );
                           },

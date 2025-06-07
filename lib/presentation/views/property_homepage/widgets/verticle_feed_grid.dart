@@ -1,11 +1,12 @@
 import 'package:easyrent/data/models/property_model.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/filterChips.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/horizontal_feed_grid.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/property_card_smoll.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class VerticalFeedGrid extends StatelessWidget {
-  const VerticalFeedGrid({
+class FeedPage extends StatelessWidget {
+  const FeedPage({
     super.key,
     required this.properties,
   });
@@ -15,6 +16,7 @@ class VerticalFeedGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const HorizontalFeedGrid(),
         const PropertyFilterChips(),
         SizedBox(
           height: 10.h,
@@ -32,7 +34,6 @@ class VerticalFeedGrid extends StatelessWidget {
           itemBuilder: (context, index) {
             final property = properties[index];
             return PropertyCardSmall(
-              //TODO the small dosent take an map
               title: "House with ${property.rooms} rooms",
               location: property.location?.city ?? "Unknown",
               price: property.price,
