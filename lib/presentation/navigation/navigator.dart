@@ -1,12 +1,17 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:easyrent/core/app/controller/app_controller.dart';
 import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
+import 'package:easyrent/core/constants/utils/offline_page.dart';
 import 'package:easyrent/presentation/views/profile/view/profile_pages/notifications/views/notifications_drawer.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/homePage.dart';
 import 'package:easyrent/presentation/views/profile/view/profile.dart';
 import 'package:easyrent/presentation/views/search/views/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class HomeScreenNavigator extends StatefulWidget {
   const HomeScreenNavigator({super.key});
@@ -37,46 +42,51 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: ThemeSwitchingArea(
         child: Scaffold(
-          key: HomeScreenNavigator.scaffoldKey,
-          endDrawer: const NotificationsView(),
-          body: _pages[_selectedIndex],
-          bottomNavigationBar: Container(
-            decoration: BoxDecoration(
-              border: Border(
-                top: BorderSide(
-                  color: Theme.of(context).colorScheme.outline,
-                  width: 1.5.r,
+            key: HomeScreenNavigator.scaffoldKey,
+            endDrawer: const NotificationsView(),
+            bottomNavigationBar: Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: Theme.of(context).colorScheme.outline,
+                    width: 1.5.r,
+                  ),
                 ),
               ),
+              child: BottomNavigationBar(
+                currentIndex: _selectedIndex,
+                selectedLabelStyle: AppTextStyles.h12medium,
+                unselectedLabelStyle: AppTextStyles.h12medium,
+                selectedItemColor: primaryBlue,
+                unselectedItemColor: grey,
+                iconSize: 30.r, //!
+                onTap: _onItemTapped,
+                items: const [
+                  BottomNavigationBarItem(
+                      // TODO cant put transilations here
+                      activeIcon: Icon(Icons.home),
+                      icon: Icon(Icons.home_outlined),
+                      label: 'Home'),
+                  BottomNavigationBarItem(
+                      activeIcon: Icon(Icons.search),
+                      icon: Icon(Icons.search),
+                      label: 'Search'),
+                  BottomNavigationBarItem(
+                      activeIcon: Icon(Icons.person),
+                      icon: Icon(Icons.person_outline),
+                      label: 'Profile'),
+                ],
+                elevation: 2,
+                type: BottomNavigationBarType.fixed,
+              ),
             ),
-            child: BottomNavigationBar(
-              currentIndex: _selectedIndex,
-              selectedLabelStyle: AppTextStyles.h12medium,
-              unselectedLabelStyle: AppTextStyles.h12medium,
-              selectedItemColor: primaryBlue,
-              unselectedItemColor: grey,
-              iconSize: 30.r, //!
-              onTap: _onItemTapped,
-              items: const [
-                BottomNavigationBarItem(
-                    // TODO cant put transilations here
-                    activeIcon: Icon(Icons.home),
-                    icon: Icon(Icons.home_outlined),
-                    label: 'Home'),
-                BottomNavigationBarItem(
-                    activeIcon: Icon(Icons.search),
-                    icon: Icon(Icons.search),
-                    label: 'Search'),
-                BottomNavigationBarItem(
-                    activeIcon: Icon(Icons.person),
-                    icon: Icon(Icons.person_outline),
-                    label: 'Profile'),
-              ],
-              elevation: 2,
-              type: BottomNavigationBarType.fixed,
-            ),
-          ),
-        ),
+            body: Obx(() {
+              return !Get.find<AppController>().isOffline.value
+                  ? const Center(
+                      child: OfflinePage(),
+                    )
+                  : _pages[_selectedIndex];
+            })),
       ),
     );
   }

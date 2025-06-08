@@ -1,7 +1,7 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/utils/divider.dart';
-import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/core/constants/utils/divider.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/data/models/agent_model.dart';
 import 'package:easyrent/data/models/comment_model.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/agent_widget.dart';

@@ -1,7 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easyrent/core/app/theme/themes.dart';
-import 'package:easyrent/core/utils/divider.dart';
-import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/core/constants/utils/divider.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

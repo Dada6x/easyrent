@@ -1,7 +1,7 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/utils/divider.dart';
-import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/core/constants/utils/divider.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/profile/view/profile_pages/Faq/view/faq.dart';
 import 'package:easyrent/presentation/views/profile/view/profile_pages/favourite/view/favourite_page.dart';
 import 'package:easyrent/presentation/views/profile/view/profile_pages/friends/invite_friend_page.dart';

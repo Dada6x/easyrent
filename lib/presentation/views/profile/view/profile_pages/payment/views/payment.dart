@@ -1,6 +1,6 @@
 import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/utils/textStyles.dart';
-import 'package:easyrent/core/utils/button.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
+import 'package:easyrent/core/constants/utils/button.dart';
 import 'package:easyrent/presentation/views/profile/view/profile_pages/payment/widgets/creditCard_widget.dart';
 import 'package:easyrent/presentation/views/web_page.dart';
 import 'package:flutter/material.dart';

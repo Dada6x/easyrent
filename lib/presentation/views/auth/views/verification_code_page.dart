@@ -6,14 +6,14 @@ import 'package:easyrent/core/services/api/end_points.dart';
 import 'package:easyrent/data/repos/userRepo.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
-import 'package:easyrent/core/utils/button.dart';
+import 'package:easyrent/core/constants/utils/button.dart';
 import 'package:easyrent/presentation/views/auth/widgets/empty_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 
 class VerificationCodePage extends StatefulWidget {
   const VerificationCodePage({super.key});

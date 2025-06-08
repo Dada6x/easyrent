@@ -1,4 +1,3 @@
-import 'package:easyrent/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,8 +9,8 @@ class ErrorLoadingWidget extends StatelessWidget {
     return Center(
       child: Icon(
         Icons.error,
-        color: grey,
-        size: 28.sp,
+        color: Theme.of(context).colorScheme.outline,
+        size: 32.sp,
       ),
     );
   }

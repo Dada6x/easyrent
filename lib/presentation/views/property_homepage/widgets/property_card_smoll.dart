@@ -1,8 +1,8 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/app/controller/app_controller.dart';
-import 'package:easyrent/core/utils/error_loading_mssg.dart';
-import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/core/constants/utils/error_loading_mssg.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/property_details_page.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
@@ -82,14 +82,6 @@ class PropertyCardSmall extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(16.r)),
                       child:
-                          //# test
-                          // Image.asset(
-                          //   property["image"],
-                          //   height: 140.h,
-                          //   width: double.infinity,
-                          //   fit: BoxFit.cover,
-                          // ),
-
                           FancyShimmerImage(
                         height: 140.h,
                         boxFit: BoxFit.cover,

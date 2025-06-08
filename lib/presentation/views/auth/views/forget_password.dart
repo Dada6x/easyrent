@@ -1,5 +1,5 @@
 import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/auth/views/verification_code_page.dart';
 import 'package:easyrent/presentation/views/auth/widgets/empty_search_bar.dart';
 import 'package:flutter/material.dart';

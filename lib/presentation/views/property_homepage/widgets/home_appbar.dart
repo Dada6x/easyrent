@@ -1,8 +1,7 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -56,6 +55,7 @@ AppBar homePageAppbar() {
       IconButton(
           onPressed: () {
             HomeScreenNavigator.scaffoldKey.currentState?.openEndDrawer();
+         
           },
           icon: Icon(
             Icons.notifications,

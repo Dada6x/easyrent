@@ -1,6 +1,6 @@
 
 import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/utils/textStyles.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/auth/views/login.dart';
 import 'package:flutter/material.dart';

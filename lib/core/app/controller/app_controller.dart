@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
+import 'package:easyrent/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
@@ -18,16 +19,45 @@ class AppController extends GetxController {
 
   // check internet connection
   StreamSubscription? _internetConnectionStreamSubscription;
+
   void _checkInternetConnection() {
+    bool _isFirstCheck = true;
     _internetConnectionStreamSubscription =
         InternetConnection().onStatusChange.listen((event) {
       switch (event) {
         case InternetStatus.connected:
           isOffline.value = true;
-          break;
+          if (_isFirstCheck == true) {
+            _isFirstCheck = false;
+            break;
+          } else {
+            Get.rawSnackbar(
+              message: "You're connected back",
+              margin: const EdgeInsets.all(12),
+              borderRadius: 8,
+              backgroundColor: green,
+              snackPosition: SnackPosition.BOTTOM,
+              duration: const Duration(seconds: 2),
+            );
+            break;
+          }
         case InternetStatus.disconnected:
           isOffline.value = false;
-          break;
+
+          if (_isFirstCheck == true) {
+            _isFirstCheck = false;
+            break;
+          } else {
+            Get.rawSnackbar(
+              message: "No internet connection",
+              margin: const EdgeInsets.all(12),
+              borderRadius: 8,
+              backgroundColor: red,
+              snackPosition: SnackPosition.BOTTOM,
+              duration: const Duration(seconds: 2),
+            );
+            break;
+          }
       }
     });
   }

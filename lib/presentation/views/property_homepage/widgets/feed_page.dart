@@ -1,11 +1,14 @@
 import 'package:easyrent/core/constants/assets.dart';
+import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/data/models/property_model.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/filterChips.dart';
-import 'package:easyrent/presentation/views/property_homepage/widgets/horizontal_feed_grid.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/home_searchbar.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/property_card_big.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/property_card_smoll.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class FeedPage extends StatelessWidget {
   const FeedPage({
@@ -18,6 +21,30 @@ class FeedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.r),
+          child: const CustomSearchBar(),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.r),
+          child: Row(
+            children: [
+              Text(
+                "Featured".tr,
+                style: AppTextStyles.h24semi,
+              ),
+              const Spacer(),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  "See All".tr,
+                  style: AppTextStyles.h16semi.copyWith(color: primaryBlue),
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
+        ),
         SizedBox(
           height: 320.h,
           child: ListView.builder(
