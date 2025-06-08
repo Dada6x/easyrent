@@ -9,7 +9,7 @@ class PropertiesRepo {
     final api = DioConsumer(Dio()); //TODO not like this call the dio
     try {
       final response = await api
-          .get("https://run.mocky.io/v3/fa9cfba5-611c-4fbe-91c4-eb190e5fd8f");
+          .get("https://run.mocky.io/v3/fa9cfba5-611c-4fbe-91c4-eb1f90e5fd8f");
       //todo add the endpoint of the API
       if (response.statusCode == 200) {
         debug.i("Status Code is ${response.statusCode} ");

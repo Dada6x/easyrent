@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 AppBar homePageAppbar() {
   return AppBar(
@@ -18,11 +19,13 @@ AppBar homePageAppbar() {
         CircleAvatar(
           radius: 25.7.r,
           foregroundColor: primaryBlue,
-          child: CircleAvatar(
-            foregroundColor: primaryBlue,
-            radius: 25.r,
-            backgroundColor: primaryBlue,
-            backgroundImage: const AssetImage(avatar),
+          child: Skeletonizer(
+            child: CircleAvatar(
+              foregroundColor: primaryBlue,
+              radius: 25.r,
+              backgroundColor: primaryBlue,
+              backgroundImage: const AssetImage(avatar),
+            ),
           ),
         ),
         SizedBox(width: 12.r),
@@ -37,10 +40,14 @@ AppBar homePageAppbar() {
                 style: AppTextStyles.h12regular,
                 overflow: TextOverflow.ellipsis,
               ),
-              Text(
-                "UserName",
-                style: AppTextStyles.h16medium,
-                overflow: TextOverflow.ellipsis,
+              Skeletonizer(
+                enabled: false,
+                containersColor: grey,
+                child: Text(
+                  "UserName",
+                  style: AppTextStyles.h16medium,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),
@@ -55,7 +62,6 @@ AppBar homePageAppbar() {
       IconButton(
           onPressed: () {
             HomeScreenNavigator.scaffoldKey.currentState?.openEndDrawer();
-         
           },
           icon: Icon(
             Icons.notifications,

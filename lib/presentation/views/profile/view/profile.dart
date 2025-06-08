@@ -19,6 +19,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:motion/motion.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -47,9 +48,11 @@ class Profile extends StatelessWidget {
                   children: [
                     Stack(
                       children: [
-                        CircleAvatar(
-                          radius: 80.r,
-                          backgroundImage: const AssetImage(avatar),
+                        Skeletonizer(
+                          child: CircleAvatar(
+                            radius: 80.r,
+                            backgroundImage: const AssetImage(avatar),
+                          ),
                         ),
                         Positioned(
                           bottom: 1.r,
@@ -127,10 +130,12 @@ class Profile extends StatelessWidget {
                     // image
                     Padding(
                       padding: EdgeInsets.all(8.r),
-                      child: Text(
-                          textAlign: TextAlign.center,
-                          "User Name".tr,
-                          style: AppTextStyles.h24semi),
+                      child: Skeletonizer(
+                        child: Text(
+                            textAlign: TextAlign.center,
+                            "User Name".tr,
+                            style: AppTextStyles.h24semi),
+                      ),
                     ),
                   ],
                 ),
