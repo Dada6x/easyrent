@@ -289,6 +289,7 @@ class _FloatingWidgetState extends State<FloatingWidget>
             fit: BoxFit.contain,
             width: double.infinity,
             height: 250.h,
+            
           ),
         ),
       ),

@@ -1,12 +1,29 @@
 import 'package:dio/dio.dart';
+import 'package:easyrent/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiInterceptor extends Interceptor {
-  @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers['Authorization'] = 'Token  GOES Here'; //! token
-    options.headers['Accept'] = 'application/json';
-    super.onRequest(options, handler);
+  const ApiInterceptor();
+
+  Future<String?> _loadToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('token');
   }
 
-  const ApiInterceptor();
+  @override
+  void onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
+    final token = await _loadToken();
+
+    if (token != null) {
+      options.headers['Authorization'] = 'Bearer $token';
+    } else {
+      options.headers['Authorization'] = 'Null^^';
+      debug.i('No token found in SharedPreferences.');
+    }
+
+    options.headers['Accept'] = 'application/json';
+
+    super.onRequest(options, handler);
+  }
 }

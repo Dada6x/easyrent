@@ -1,7 +1,6 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 import 'package:iconify_flutter_plus/icons/bi.dart';
@@ -37,8 +36,9 @@ class Profile extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 26.r,
+              height: 26.h,
             ),
+            
             Material(
               shadowColor: Colors.transparent,
               child: Motion(
@@ -176,7 +176,7 @@ class Profile extends StatelessWidget {
               leading: Iconify(
                 Bi.calendar2,
                 color: primaryBlue,
-                size: 29.h,
+                size: 29.sp,
               ),
               destination_widget: const MyBooking(),
             ),
@@ -186,7 +186,7 @@ class Profile extends StatelessWidget {
               leading: Iconify(
                 Bi.credit_card_2_back,
                 color: primaryBlue,
-                size: 29.h,
+                size: 29.sp,
               ),
               destination_widget: const PaymentMethod(),
             ),
@@ -196,7 +196,7 @@ class Profile extends StatelessWidget {
                 leading: Iconify(
                   Bi.bookmark_heart,
                   color: primaryBlue,
-                  size: 29.h,
+                  size: 29.sp,
                 ),
                 destination_widget: const MyFavouritePage()),
             const CustomDivider(),
@@ -206,7 +206,7 @@ class Profile extends StatelessWidget {
                 leading: Iconify(
                   Bi.bell,
                   color: primaryBlue,
-                  size: 29.h,
+                  size: 29.sp,
                 ),
                 destination_widget: const NotificationsPage()),
             //! security
@@ -215,7 +215,7 @@ class Profile extends StatelessWidget {
               leading: Iconify(
                 Bi.shield_shaded,
                 color: primaryBlue,
-                size: 29.h,
+                size: 29.sp,
               ),
               destination_widget: const SecurityPage(),
             ),
@@ -225,7 +225,7 @@ class Profile extends StatelessWidget {
                 leading: Iconify(
                   Bi.translate,
                   color: primaryBlue,
-                  size: 29.h,
+                  size: 29.sp,
                 ),
                 destination_widget: const LanguagePage()),
             customListTile(
@@ -234,12 +234,12 @@ class Profile extends StatelessWidget {
                     ? Iconify(
                         Bi.sun_fill,
                         color: primaryBlue,
-                        size: 29.h,
+                        size: 29.sp,
                       )
                     : Iconify(
                         Bi.moon_stars_fill,
                         color: primaryBlue,
-                        size: 29.h,
+                        size: 29.sp,
                       ),
                 destination_widget: const ThemePage()),
             //! FAQ
@@ -248,7 +248,7 @@ class Profile extends StatelessWidget {
                 leading: Iconify(
                   Bi.facebook,
                   color: primaryBlue,
-                  size: 29.h,
+                  size: 29.sp,
                 ),
                 destination_widget: const FAQPage()),
             //! invite Friends
@@ -257,7 +257,7 @@ class Profile extends StatelessWidget {
                 leading: Iconify(
                   Bi.people,
                   color: primaryBlue,
-                  size: 29.h,
+                  size: 29.sp,
                 ),
                 destination_widget: const InviteFriendPage()),
             const CustomDivider(),
