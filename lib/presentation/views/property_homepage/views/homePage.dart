@@ -1,6 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:easyrent/core/constants/utils/error_page.dart';
+import 'package:easyrent/core/services/api/dio_consumer.dart';
 import 'package:easyrent/data/models/property_model.dart';
 import 'package:easyrent/data/repos/propertiesRepo.dart';
+import 'package:easyrent/data/repos/userRepo.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/home_appbar.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/feed_page.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +22,7 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     super.initState();
     getProperties();
+   
   }
 
   Future<void> getProperties() async {

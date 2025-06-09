@@ -174,7 +174,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                 ),
                 SizedBox(height: 30.h),
                 //! we can TRASH THE BUTTON COZ ITS NOT USEFUL ACTUALLY  ☝🤓
-                CustomeButton(
+                CustomButton(
                   hint: "Verify",
                   function: () async {
                     if (_pinController.text.length == 5) {

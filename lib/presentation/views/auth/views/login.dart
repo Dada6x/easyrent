@@ -60,7 +60,7 @@ class LoginPage extends StatelessWidget {
                               .copyWith(color: primaryBlue))),
                 ),
                 //@ LOGIN BUTTON :O
-                CustomeButton(
+                CustomButton(
                   //todo fix this long if else shit
                   hint: "login",
                   function: () async {

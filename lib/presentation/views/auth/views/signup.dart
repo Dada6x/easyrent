@@ -88,7 +88,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
                 //! Register Button
-                CustomeButton(
+                CustomButton(
                   hint: "Register",
                   function: () async {
                     final name = _nameController.text.trim();

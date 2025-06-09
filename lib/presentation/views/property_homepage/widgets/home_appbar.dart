@@ -1,7 +1,9 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
+import 'package:easyrent/data/Session/app_session.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,15 +18,23 @@ AppBar homePageAppbar() {
     elevation: 0,
     title: Row(
       children: [
-        CircleAvatar(
-          radius: 25.7.r,
-          foregroundColor: primaryBlue,
-          child: Skeletonizer(
-            child: CircleAvatar(
-              foregroundColor: primaryBlue,
-              radius: 25.r,
-              backgroundColor: primaryBlue,
-              backgroundImage: const AssetImage(avatar),
+        Skeletonizer(
+          enabled: AppSession().user == null,
+          child: CircleAvatar(
+            radius: 28.r,
+            backgroundColor: Colors.transparent,
+            child: ClipOval(
+              child: AppSession().user?.profileImage != null
+                  ? FancyShimmerImage(
+                      boxFit: BoxFit.cover,
+                      imageUrl: AppSession().user!.profileImage!,
+                      // errorWidget: const Icon(Icons.error)
+                    )
+                  : Image.asset(
+                    width: 60,
+                      avatar,
+                      fit: BoxFit.cover,
+                    ),
             ),
           ),
         ),
@@ -43,10 +53,13 @@ AppBar homePageAppbar() {
               Skeletonizer(
                 enabled: false,
                 containersColor: grey,
-                child: Text(
-                  "UserName",
-                  style: AppTextStyles.h16medium,
-                  overflow: TextOverflow.ellipsis,
+                child: Skeletonizer(
+                  enabled: AppSession().user == null,
+                  child: Text(
+                    AppSession().user?.username ?? "Loading.......",
+                    style: AppTextStyles.h16medium,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
             ],

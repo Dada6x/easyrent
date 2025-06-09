@@ -53,7 +53,7 @@ class PaymentMethod extends StatelessWidget {
             SizedBox(
               height: 350.h,
             ),
-            CustomeButton(
+            CustomButton(
               hint: "Next",
               function: () async {
                 Get.to(() => const StripeWebPage());

@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:easyrent/core/services/api/api_consumer.dart';
 import 'package:easyrent/core/services/api/end_points.dart';
+import 'package:easyrent/core/services/api/errors/error_model.dart';
 import 'package:easyrent/core/services/api/errors/exceptions.dart';
+import 'package:easyrent/data/Session/app_session.dart';
 import 'package:easyrent/data/models/user_model.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
@@ -16,7 +18,7 @@ class Userrepo {
   final ApiConsumer api;
 
 // maybe as salma said , i dont need the user object in the application , its nothing dynamicly running or i need to save it or anything ,
-// maybe i chace the name and some thinhs via chace helper from api course , 
+// maybe i chace the name and some thinhs via chace helper from api course ,
 // chahe the name and other things .
 
   //!-----------------------login---------------------------------->
@@ -26,38 +28,41 @@ class Userrepo {
   }) async {
     try {
       final response = await api.post(
+        // "https://run.mocky.io/v3/5ac6d446-ae34-49cc-8d20-779cb6308bf2",
         EndPoints.Login,
         data: {
           ApiKey.phone: number,
           ApiKey.password: password,
         },
       );
+
       if (response.statusCode == 200) {
-        debug.i("User Logged In");
-        userPref?.setBool('isLoggedIn', true);
-        final token = response['accessToken'];
+        debug.i("User Logged In and status code is ${response.statusCode}");
+        //saving the token
+        final token = response.data['accessToken'];
         await saveToken(token);
-        Get.off(() => const HomeScreenNavigator());
-        //! ###################################### Fetch full user profile
-        final profileResponse = await api.get(
-          EndPoints.me,
+        await userPref?.setBool('isLoggedIn', true);
+        //! fetching Profile data
+        final profileResult = await profile();
+        return profileResult.fold(
+          (e) {
+            debug.e("Failed to fetch profile after login");
+            return const Left("Failed to load profile");
+          },
+          (_) {
+            Get.off(() => const HomeScreenNavigator());
+            return Right(AppSession().user!);
+          },
         );
-        if (profileResponse.statusCode == 200) {
-          debug.w("New User Created !");
-          final user = User.fromJson(profileResponse);
-          //! ##########
-          return Right(user);
-        }
-        //! ######################################
       }
-      return const Left('Unexpected error');
+      return const Left('Unexpected error during login');
     } on ServerException catch (e) {
+      debug.e("Server Exception: ${e.errorModel.message}");
       return Left(e.errorModel.message);
     }
   }
 
 //!-----------------------Sign Up---------------------------------->
-// maybe i should delete the either here
   Future<Either<String, String>> signUpUser({
     required String number,
     required String userName,
@@ -67,7 +72,6 @@ class Userrepo {
     try {
       final response = await api.post(
         EndPoints.registerUser,
-        // "https://run.mocky.io/v3/22e0a317-53d3-4836-85f4-ee698ef1b1da"
         data: {
           ApiKey.phone: number,
           ApiKey.password: password,
@@ -76,20 +80,7 @@ class Userrepo {
         },
       );
       if (response.statusCode == 200) {
-        // userPref?.setBool('isLoggedIn', true);
         Get.off(() => const VerificationCodePage());
-        // it has to go to the verification  code page and then when its verify
-        // //! ######################################         //@ Fetch full user profile
-        // final profileResponse = await api.get(
-        //   EndPoints.me,
-        // );
-        // if (profileResponse.statusCode == 200) {
-        //   debug.w("New User Created !");
-        //   final user = User.fromJson(profileResponse);
-        //   //! ##########
-        //   return Right(user);
-        // }
-        // //! ######################################
       }
       return const Left('Unexpected error');
     } on ServerException catch (e) {
@@ -124,36 +115,61 @@ class Userrepo {
 //!-----------------------Verify Code---------------------------------->
 // ! now i want the state of the application via Bloc
 // emit sucres or false state for the color of the pin codes
-  Future<Either<String, User>> verifyCode({
-    required int code,
-  }) async {
-    try {
-      final response = await api.post(
-        EndPoints.verifyCode,
-        data: {
-          ApiKey.code: code,
-        },
-      );
-      if (response.statusCode == 200) {
-        final token = response.data['accessToken'];
-        await saveToken(token);
-        userPref?.setBool('isLoggedIn', true);
-        Get.off(() => const HomeScreenNavigator());
+  // Future<Either<String, User>> verifyCode({
+  //   required int code,
+  // }) async {
+  //   try {
+  //     final response = await api.post(
+  //       EndPoints.verifyCode,
+  //       data: {
+  //         ApiKey.code: code,
+  //       },
+  //     );
+  //     if (response.statusCode == 200) {
+  //       final token = response.data['accessToken'];
+  //       await saveToken(token);
+  //       userPref?.setBool('isLoggedIn', true);
+  //       Get.off(() => const HomeScreenNavigator());
 
-        // Profile 
-        final profileResponse = await api.get(
-          EndPoints.me,
-        );
-        if (profileResponse.statusCode == 200) {
-          debug.w("New User Created !");
-          final user = User.fromJson(profileResponse);
-          return Right(user);
-        }
+  //       // Profile
+  //       final profileResponse = await api.get(
+  //         EndPoints.me,
+  //       );
+  //       if (profileResponse.statusCode == 200) {
+  //         debug.w("New User Created !");
+  //         final user = User.fromJson(profileResponse);
+  //         return Right(user);
+  //       }
+  //     }
+  //     return const Left('Unexpected error');
+  //   } on ServerException catch (e) {
+  //     debug.e("Exception $e");
+  //     return Left(e.errorModel.message);
+  //   }
+  // }
+
+  Future<Either<ServerException, User>> profile() async {
+    try {
+      final response = await api.get(
+        "https://run.mocky.io/v3/cd9ce080-4a73-44ce-95d1-e16c399fb7fe",// with image
+        // "https://run.mocky.io/v3/f0a9efb6-22af-4047-9198-3f933d8b2076" //with null image 
+      );
+      debug.i("Profile Request ${response.statusCode}");
+      if (response.statusCode == 200) {
+        final user = User.fromJson(response.data);
+        AppSession().user = user;
+        return Right(user); // return user object wrapped in Right
+      } else {
+        return Left(ServerException(
+            errorModel:
+                ErrorModel(response.statusCode, response.errorMessage)));
       }
-      return const Left('Unexpected error');
     } on ServerException catch (e) {
-      debug.e("Exception $e");
-      return Left(e.errorModel.message);
+      debug.e("ServerException: $e");
+      return Left(e);
+    } catch (e) {
+      debug.e("Unexpected exception: $e");
+      return Left(ServerException(errorModel: ErrorModel(4, e.toString())));
     }
   }
 }
@@ -170,6 +186,3 @@ Future<void> deleteToken() async {
   await prefs.remove('token');
   debug.i("Token Deleted ");
 }
-
-// what to save about user .
-// token , user name, theme , language , role . just

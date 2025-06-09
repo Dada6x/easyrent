@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/services/api/dio_consumer.dart';
+import 'package:easyrent/data/repos/userRepo.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/introduction_screen.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +35,7 @@ class _SplashscreenState extends State<Splashscreen>
     );
     Future.delayed(const Duration(seconds: 2), () {
       _controller.forward().whenComplete(() {
-        // ! just the introduction is introduction
+        // ! just the introduction Screens sharedPref
         if (userPref?.getBool("isFirst") == true) {
           Get.offNamed("/login");
         } else {
@@ -40,6 +43,14 @@ class _SplashscreenState extends State<Splashscreen>
         }
       });
     });
+    //! fetch the User Profile During the SplashScreen only if hes Logged in 
+    if (userPref?.getBool("isLoggedIn") == true) {
+      debug.f("User is Logged in so im fetching his Data ");
+      var api = DioConsumer(Dio());
+      Userrepo(api).profile();
+    } else {
+      debug.w("User is Not Logged in so im Not fetching his Data ");
+    }
   }
 
   @override

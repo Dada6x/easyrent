@@ -3,13 +3,13 @@ import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomeButton extends StatefulWidget {
+class CustomButton extends StatefulWidget {
   final String hint;
   final Future<void> Function()? function;
   final double? width;
   final double? borderRadius;
 
-  const CustomeButton({
+  const CustomButton({
     super.key,
     required this.hint,
     required this.function,
@@ -18,10 +18,10 @@ class CustomeButton extends StatefulWidget {
   });
 
   @override
-  State<CustomeButton> createState() => _CustomeButtonState();
+  State<CustomButton> createState() => _CustomButtonState();
 }
 
-class _CustomeButtonState extends State<CustomeButton> {
+class _CustomButtonState extends State<CustomButton> {
   bool isLoading = false;
 
   void _handleTap() async {

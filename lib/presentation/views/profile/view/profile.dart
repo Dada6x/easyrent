@@ -2,6 +2,7 @@ import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/divider.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
+import 'package:easyrent/data/Session/app_session.dart';
 import 'package:easyrent/presentation/views/profile/view/profile_pages/Faq/view/faq.dart';
 import 'package:easyrent/presentation/views/profile/view/profile_pages/favourite/view/favourite_page.dart';
 import 'package:easyrent/presentation/views/profile/view/profile_pages/friends/invite_friend_page.dart';
@@ -14,6 +15,7 @@ import 'package:easyrent/presentation/views/profile/view/profile_pages/theme/the
 import 'package:easyrent/presentation/views/profile/widgets/custome_list_tile.dart';
 import 'package:easyrent/presentation/views/profile/widgets/dialog/logout_dialog.dart';
 import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -49,79 +51,98 @@ class Profile extends StatelessWidget {
                     Stack(
                       children: [
                         Skeletonizer(
+                          enabled: AppSession().user == null,
                           child: CircleAvatar(
-                            radius: 80.r,
-                            backgroundImage: const AssetImage(avatar),
+                            radius: 85.r,
+                            backgroundColor: Colors.transparent,
+                            child: ClipOval(
+                              child: AppSession().user?.profileImage != null
+                                  ? FancyShimmerImage(
+                                      boxFit: BoxFit.cover,
+                                      imageUrl:
+                                          AppSession().user!.profileImage!,
+                                      // errorWidget: const Icon(Icons.error)
+                                    )
+                                  : Image.asset(
+                                      width: 170,
+                                      height: 170,
+                                      avatar,
+                                      fit: BoxFit.cover,
+                                    ),
+                            ),
                           ),
                         ),
-                        Positioned(
-                          bottom: 1.r,
-                          right: -10.r,
-                          height: 49.r,
-                          child: RawMaterialButton(
-                            onPressed: () {
-                              Get.dialog(
-                                AlertDialog(
-                                  title:
-                                      const Center(child: Text('Choose Image')),
-                                  actions: <Widget>[
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        IconButton(
-                                          onPressed: () async {
-                                            Get.back();
-                                            final ImagePicker picker =
-                                                ImagePicker();
-                                            final XFile? image =
-                                                await picker.pickImage(
-                                              source: ImageSource.camera,
-                                            );
-                                            if (image != null) {
-                                              // Handle the selected image from camera
-                                              // You can set it to your CircleAvatar later when you're ready
-                                            }
-                                          },
-                                          icon: const Icon(
-                                            Icons.camera,
-                                            color: primaryBlue,
-                                            semanticLabel: "camera",
+                        Visibility(
+                          visible: AppSession().user != null,
+                          child: Positioned(
+                            bottom: 1.r,
+                            right: -10.r,
+                            height: 49.r,
+                            child: RawMaterialButton(
+                              onPressed: () {
+                                Get.dialog(
+                                  AlertDialog(
+                                    title:
+                                        const Center(child: Text('Choose Image')),
+                                    actions: <Widget>[
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          IconButton(
+                                            onPressed: () async {
+                                              Get.back();
+                                              final ImagePicker picker =
+                                                  ImagePicker();
+                                              final XFile? image =
+                                                  await picker.pickImage(
+                                                source: ImageSource.camera,
+                                              );
+                                              if (image != null) {
+                                                // Handle the selected image from camera
+                                                // You can set it to your CircleAvatar later when you're ready
+                                              }
+                                            },
+                                            icon: const Icon(
+                                              Icons.camera,
+                                              color: primaryBlue,
+                                              semanticLabel: "camera",
+                                            ),
                                           ),
-                                        ),
-                                        IconButton(
-                                          onPressed: () async {
-                                            Get.back();
-                                            final ImagePicker picker =
-                                                ImagePicker();
-                                            final XFile? image =
-                                                await picker.pickImage(
-                                              source: ImageSource.gallery,
-                                            );
-                                            if (image != null) {
-                                              // Handle the selected image from gallery
-                                              // You can set it to your CircleAvatar later when you're ready
-                                            }
-                                          },
-                                          icon: const Icon(
-                                            Icons.image,
-                                            color: primaryBlue,
+                                          IconButton(
+                                            onPressed: () async {
+                                              Get.back();
+                                              final ImagePicker picker =
+                                                  ImagePicker();
+                                              final XFile? image =
+                                                  await picker.pickImage(
+                                                source: ImageSource.gallery,
+                                              );
+                                              if (image != null) {
+                                                // Handle the selected image from gallery
+                                                // You can set it to your CircleAvatar later when you're ready
+                                              }
+                                            },
+                                            icon: const Icon(
+                                              Icons.image,
+                                              color: primaryBlue,
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                            elevation: 2,
-                            fillColor: Theme.of(context).colorScheme.secondary,
-                            padding: EdgeInsets.all(10.r),
-                            shape: const CircleBorder(),
-                            child: Icon(
-                              Icons.camera_alt_outlined,
-                              color: primaryBlue,
-                              size: 28.r,
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                              elevation: 2,
+                              fillColor: Theme.of(context).colorScheme.secondary,
+                              padding: EdgeInsets.all(10.r),
+                              shape: const CircleBorder(),
+                              child: Icon(
+                                Icons.camera_alt_outlined,
+                                color: primaryBlue,
+                                size: 28.r,
+                              ),
                             ),
                           ),
                         ),
@@ -131,9 +152,10 @@ class Profile extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.all(8.r),
                       child: Skeletonizer(
+                        enabled: AppSession().user == null,
                         child: Text(
                             textAlign: TextAlign.center,
-                            "User Name".tr,
+                            AppSession().user?.username ?? "Loading.......",
                             style: AppTextStyles.h24semi),
                       ),
                     ),

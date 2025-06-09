@@ -29,6 +29,7 @@ SharedPreferences? userPref;
 bool isOffline = !Get.find<AppController>().isOffline.value;
 
 void main() async {
+  
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferences.getInstance();
   userPref = await SharedPreferences.getInstance();

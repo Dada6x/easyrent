@@ -107,3 +107,31 @@ class _SearchState extends State<Search> {
     );
   }
 }
+
+    //  FutureBuilder<List<PropertyModel>>(
+    //                       future: _propertiesFuture,
+    //                       builder: (context, snapshot) {
+    //                         if (snapshot.connectionState ==
+    //                             ConnectionState.waiting) {
+    //                           return SizedBox(
+    //                             height:
+    //                                 MediaQuery.of(context).size.height * 0.9.h,
+    //                             child: const Center(
+    //                                 child: CircularProgressIndicator()),
+    //                           );
+    //                         }
+    //                         if (snapshot.hasError) {
+    //                           return const Center(child: ErrorPage());
+    //                         }
+    //                         if (!snapshot.hasData ||
+    //                             snapshot.data == null ||
+    //                             snapshot.data!.isEmpty) {
+    //                           return const Center(
+    //                               child: Text("No properties found."));
+    //                         }
+    //                         final properties = snapshot.data!;
+    //                         return FeedPage(
+    //                           properties: properties,
+    //                         );
+    //                       },
+    //                     ),
