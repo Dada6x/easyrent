@@ -13,6 +13,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
+import 'package:iconify_flutter_plus/icons/akar_icons.dart';
+import 'package:iconify_flutter_plus/icons/carbon.dart';
+import 'package:iconify_flutter_plus/icons/tabler.dart';
 import 'package:like_button/like_button.dart';
 
 class PropertyDetailsPage extends StatelessWidget {
@@ -62,6 +66,15 @@ class PropertyDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FloatingActionButton(
+            child: Iconify(
+              AkarIcons.github_fill,
+              size: 40,
+            ),
+            onPressed: () {}),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -175,10 +188,22 @@ class PropertyDetailsPage extends StatelessWidget {
                     children: [
                       //TODO
                       _featureIcon(
-                          Icons.safety_check, "$beds Beds".tr, context),
-                      _featureIcon(Icons.bathroom, "$baths Baths", context),
+                          Iconify(
+                            Tabler.bed,
+                            color: primaryBlue,
+                            size: 26.r,
+                          ),
+                          "$beds Beds".tr,
+                          context),
                       _featureIcon(
-                          Icons.aspect_ratio_rounded, "$area sqft", context),
+                          Iconify(Tabler.bath, color: primaryBlue, size: 26.r),
+                          "$baths Baths",
+                          context),
+                      _featureIcon(
+                          Iconify(Tabler.arrow_autofit_content,
+                              color: primaryBlue, size: 26.r),
+                          "$area sqft",
+                          context),
                     ],
                   ),
                   SizedBox(
@@ -246,10 +271,7 @@ class PropertyDetailsPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
-                        const Icon(
-                          Icons.location_on,
-                          color: primaryBlue,
-                        ),
+                        const Iconify(Tabler.location,color: primaryBlue,),
                         SizedBox(
                           width: 10.w,
                         ),
@@ -361,21 +383,16 @@ class _Headers extends StatelessWidget {
   }
 }
 
-Widget _featureIcon(IconData icon, String label, BuildContext context) {
+Widget _featureIcon(Iconify icon, String label, BuildContext context) {
   return Row(
     children: [
       Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary,
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: Icon(
-          icon,
-          size: 23.r,
-          color: primaryBlue,
-        ),
-      ),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.secondary,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: icon),
       const SizedBox(
         width: 5,
       ),

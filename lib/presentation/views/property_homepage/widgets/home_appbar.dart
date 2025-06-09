@@ -30,9 +30,9 @@ AppBar homePageAppbar() {
                       imageUrl: AppSession().user!.profileImage!,
                       // errorWidget: const Icon(Icons.error)
                     )
-                  : Image.asset(
-                    width: 60,
-                      avatar,
+                  : SvgPicture.asset(
+                      width: 60,
+                      svgAvatar,
                       fit: BoxFit.cover,
                     ),
             ),

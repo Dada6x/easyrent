@@ -18,7 +18,10 @@ import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
+import 'package:iconify_flutter_plus/icons/bi.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:motion/motion.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -63,10 +66,9 @@ class Profile extends StatelessWidget {
                                           AppSession().user!.profileImage!,
                                       // errorWidget: const Icon(Icons.error)
                                     )
-                                  : Image.asset(
+                                  : SvgPicture.asset(
                                       width: 170,
-                                      height: 170,
-                                      avatar,
+                                      svgAvatar,
                                       fit: BoxFit.cover,
                                     ),
                             ),
@@ -82,8 +84,8 @@ class Profile extends StatelessWidget {
                               onPressed: () {
                                 Get.dialog(
                                   AlertDialog(
-                                    title:
-                                        const Center(child: Text('Choose Image')),
+                                    title: const Center(
+                                        child: Text('Choose Image')),
                                     actions: <Widget>[
                                       Row(
                                         mainAxisAlignment:
@@ -135,7 +137,8 @@ class Profile extends StatelessWidget {
                                 );
                               },
                               elevation: 2,
-                              fillColor: Theme.of(context).colorScheme.secondary,
+                              fillColor:
+                                  Theme.of(context).colorScheme.secondary,
                               padding: EdgeInsets.all(10.r),
                               shape: const CircleBorder(),
                               child: Icon(
@@ -169,50 +172,92 @@ class Profile extends StatelessWidget {
             const CustomDivider(),
             customListTile(
               string: "My Booking".tr,
-              leading: Icons.call_to_action_rounded,
-              destination_widget: MyBooking(),
+              leading: Iconify(
+                Bi.body_text,
+                color: primaryBlue,
+                size: 29.h,
+              ),
+              destination_widget: const MyBooking(),
             ),
             //! payment
             customListTile(
               string: "Payments".tr,
-              leading: Icons.payment,
+              leading: Iconify(
+                Bi.credit_card_2_back,
+                color: primaryBlue,
+                size: 29.h,
+              ),
               destination_widget: const PaymentMethod(),
             ),
             //! favorite Page
             customListTile(
                 string: "My Favorite".tr,
-                leading: Icons.favorite,
+                leading: Iconify(
+                  Bi.bookmark_heart,
+                  color: primaryBlue,
+                  size: 29.h,
+                ),
                 destination_widget: const MyFavouritePage()),
             const CustomDivider(),
             //! Notifications
             customListTile(
                 string: "Notifications".tr,
-                leading: Icons.notifications,
+                leading: Iconify(
+                  Bi.bell,
+                  color: primaryBlue,
+                  size: 29.h,
+                ),
                 destination_widget: const NotificationsPage()),
             //! security
             customListTile(
               string: "Security".tr,
-              leading: Icons.security,
+              leading: Iconify(
+                Bi.shield_shaded,
+                color: primaryBlue,
+                size: 29.h,
+              ),
               destination_widget: const SecurityPage(),
             ),
             //! language
             customListTile(
                 string: "Language".tr,
-                leading: Icons.language,
+                leading: Iconify(
+                  Bi.translate,
+                  color: primaryBlue,
+                  size: 29.h,
+                ),
                 destination_widget: const LanguagePage()),
             customListTile(
                 string: "Themes".tr,
-                leading: Get.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                leading: Get.isDarkMode
+                    ? Iconify(
+                        Bi.sun_fill,
+                        color: primaryBlue,
+                        size: 29.h,
+                      )
+                    : Iconify(
+                        Bi.moon_stars_fill,
+                        color: primaryBlue,
+                        size: 29.h,
+                      ),
                 destination_widget: const ThemePage()),
             //! FAQ
             customListTile(
                 string: "FAQ".tr,
-                leading: Icons.help,
+                leading: Iconify(
+                  Bi.facebook,
+                  color: primaryBlue,
+                  size: 29.h,
+                ),
                 destination_widget: const FAQPage()),
             //! invite Friends
             customListTile(
                 string: "Invite Friends".tr,
-                leading: Icons.people,
+                leading: Iconify(
+                  Bi.people,
+                  color: primaryBlue,
+                  size: 29.h,
+                ),
                 destination_widget: const InviteFriendPage()),
             const CustomDivider(),
             //! LogOut

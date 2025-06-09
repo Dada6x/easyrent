@@ -12,6 +12,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
+import 'package:iconify_flutter_plus/icons/bi.dart';
 
 class HomeScreenNavigator extends StatefulWidget {
   const HomeScreenNavigator({super.key});
@@ -57,23 +59,39 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
                 currentIndex: _selectedIndex,
                 selectedLabelStyle: AppTextStyles.h12medium,
                 unselectedLabelStyle: AppTextStyles.h12medium,
-                selectedItemColor: primaryBlue,
-                unselectedItemColor: grey,
                 iconSize: 30.r, //!
                 onTap: _onItemTapped,
                 items: const [
                   BottomNavigationBarItem(
                       // TODO cant put transilations here
-                      activeIcon: Icon(Icons.home),
-                      icon: Icon(Icons.home_outlined),
+                      activeIcon: Iconify(
+                        Bi.house_fill,
+                        color: primaryBlue,
+                      ),
+                      icon: Iconify(
+                        Bi.house,
+                        color: grey,
+                      ),
                       label: 'Home'),
                   BottomNavigationBarItem(
-                      activeIcon: Icon(Icons.search),
-                      icon: Icon(Icons.search),
+                      activeIcon: Iconify(
+                        Bi.search,
+                        color: primaryBlue,
+                      ),
+                      icon: Iconify(
+                        Bi.search,
+                        color: grey,
+                      ),
                       label: 'Search'),
                   BottomNavigationBarItem(
-                      activeIcon: Icon(Icons.person),
-                      icon: Icon(Icons.person_outline),
+                      activeIcon: Iconify(
+                        Bi.person_fill,
+                        color: primaryBlue,
+                      ),
+                      icon: Iconify(
+                        Bi.person,
+                        color: grey,
+                      ),
                       label: 'Profile'),
                 ],
                 elevation: 2,
@@ -85,7 +103,10 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
                   ? const Center(
                       child: OfflinePage(),
                     )
-                  : _pages[_selectedIndex];
+                  : IndexedStack(
+                      index: _selectedIndex,
+                      children: _pages,
+                    );
             })),
       ),
     );

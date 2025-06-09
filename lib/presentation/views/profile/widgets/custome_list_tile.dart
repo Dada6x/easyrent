@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 
 Widget customListTile({
   required String string,
-  required IconData? leading,
+  required Iconify? leading,
   required Widget destination_widget,
 }) {
   return RawMaterialButton(
@@ -19,11 +20,9 @@ Widget customListTile({
           ));
     },
     child: ListTile(
-      leading: Icon(
-        leading,
-        color: primaryBlue,
-        size: 29.r, //!
-      ),
+      leading: leading,
+      iconColor: primaryBlue,
+      
       title: Text(string, style: AppTextStyles.h18medium),
       trailing: Icon(
         Icons.arrow_forward_ios,

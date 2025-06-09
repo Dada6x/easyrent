@@ -12,7 +12,7 @@ class PropertiesRepo {
           .get("https://run.mocky.io/v3/fa9cfba5-611c-4fbe-91c4-eb1f90e5fd8f");
       //todo add the endpoint of the API
       if (response.statusCode == 200) {
-        debug.i("Status Code is ${response.statusCode} ");
+        debug.i("Fetch Properties status code  ${response.statusCode} ");
         var responseData = response.data;
         List tempList = [];
         for (var v in responseData) {

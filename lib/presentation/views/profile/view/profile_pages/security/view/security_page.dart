@@ -4,6 +4,8 @@ import 'package:easyrent/presentation/views/profile/widgets/custome_list_tile.da
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
+import 'package:iconify_flutter_plus/icons/bi.dart';
 
 class SecurityPage extends StatelessWidget {
   const SecurityPage({super.key});
@@ -16,11 +18,11 @@ class SecurityPage extends StatelessWidget {
         children: [
           customListTile(
               string: 'Change Password'.tr,
-              leading: Icons.password,
+              leading: Iconify(Bi.pass),
               destination_widget: const ThemePage()),
           customListTile(
             string: 'Change Phone Number'.tr,
-            leading: Icons.numbers,
+            leading: Iconify(Bi.safe),
             destination_widget: const ThemePage(),
           ),
           const CustomDivider()

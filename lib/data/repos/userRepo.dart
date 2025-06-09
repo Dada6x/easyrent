@@ -17,9 +17,6 @@ class Userrepo {
   Userrepo(this.api);
   final ApiConsumer api;
 
-// maybe as salma said , i dont need the user object in the application , its nothing dynamicly running or i need to save it or anything ,
-// maybe i chace the name and some thinhs via chace helper from api course ,
-// chahe the name and other things .
 
   //!-----------------------login---------------------------------->
   Future<Either<String, User>> loginUser({
@@ -28,8 +25,8 @@ class Userrepo {
   }) async {
     try {
       final response = await api.post(
-        // "https://run.mocky.io/v3/5ac6d446-ae34-49cc-8d20-779cb6308bf2",
         EndPoints.Login,
+        // "https://run.mocky.io/v3/cd9ce080-4a73-44ce-95d1-e16c399fb7fe", // with image
         data: {
           ApiKey.phone: number,
           ApiKey.password: password,
@@ -37,7 +34,7 @@ class Userrepo {
       );
 
       if (response.statusCode == 200) {
-        debug.i("User Logged In and status code is ${response.statusCode}");
+        debug.f("User Logged In ${response.statusCode}");
         //saving the token
         final token = response.data['accessToken'];
         await saveToken(token);
@@ -151,14 +148,14 @@ class Userrepo {
   Future<Either<ServerException, User>> profile() async {
     try {
       final response = await api.get(
-        "https://run.mocky.io/v3/cd9ce080-4a73-44ce-95d1-e16c399fb7fe",// with image
-        // "https://run.mocky.io/v3/f0a9efb6-22af-4047-9198-3f933d8b2076" //with null image 
+        // "https://run.mocky.io/v3/cd9ce080-4a73-44ce-95d1-e16c399fb7fe", // with image
+        "https://run.mocky.io/v3/f0a9efb6-22af-4047-9198-3f933d8b2076" //with null image
       );
       debug.i("Profile Request ${response.statusCode}");
       if (response.statusCode == 200) {
         final user = User.fromJson(response.data);
         AppSession().user = user;
-        return Right(user); // return user object wrapped in Right
+        return Right(user);
       } else {
         return Left(ServerException(
             errorModel:

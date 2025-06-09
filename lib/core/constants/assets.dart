@@ -53,7 +53,9 @@ const onlineImageUrl =
     "https://images.unsplash.com/photo-1600585154340-be6161a56a0c";
 
 //!-----------SVG ----------------------
+const svgAvatar = "assets/images/svg/undraw_young-man-avatar_wgbd.svg";
 const intro1 = "assets/images/svg/property.svg";
+const error = "assets/images/svg/undraw_hot-air-balloon_6knx.svg";
 const intro2 = "assets/images/svg/interview.svg";
 const intro3 = "assets/images/svg/payment.svg";
 const intro4 = "assets/images/svg/houseapproved.svg";
