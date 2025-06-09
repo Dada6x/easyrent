@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'dart:ui';
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:easyrent/core/app/theme/themes.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
@@ -21,14 +24,14 @@ class AppController extends GetxController {
   StreamSubscription? _internetConnectionStreamSubscription;
 
   void _checkInternetConnection() {
-    bool _isFirstCheck = true;
+    bool isFirstCheck = true;
     _internetConnectionStreamSubscription =
         InternetConnection().onStatusChange.listen((event) {
       switch (event) {
         case InternetStatus.connected:
           isOffline.value = true;
-          if (_isFirstCheck == true) {
-            _isFirstCheck = false;
+          if (isFirstCheck == true) {
+            isFirstCheck = false;
             break;
           } else {
             Get.rawSnackbar(
@@ -44,8 +47,8 @@ class AppController extends GetxController {
         case InternetStatus.disconnected:
           isOffline.value = false;
 
-          if (_isFirstCheck == true) {
-            _isFirstCheck = false;
+          if (isFirstCheck == true) {
+            isFirstCheck = false;
             break;
           } else {
             Get.rawSnackbar(
@@ -60,6 +63,21 @@ class AppController extends GetxController {
           }
       }
     });
+  }
+
+  void toggleTheme(BuildContext context) async {
+    final themeSwitcher = ThemeSwitcher.of(context);
+    final brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
+    final isLight = brightness == Brightness.light;
+    final newTheme = isLight ? Themes().darkMode : Themes().lightMode;
+    if (userPref!.getBool('isDarkTheme') != isLight) {
+      await userPref!.setBool('isDarkTheme', isLight);
+    }
+    isDarkMode.value = isLight;
+    themeSwitcher.changeTheme(
+      theme: newTheme,
+      isReversed: isLight,
+    );
   }
 
   @override

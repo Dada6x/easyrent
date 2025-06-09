@@ -1,11 +1,5 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:easyrent/core/app/controller/app_controller.dart';
-import 'package:easyrent/core/app/language/locale.dart';
-import 'package:easyrent/core/app/middleware/middelware.dart';
-import 'package:easyrent/core/app/theme/themes.dart';
-import 'package:easyrent/presentation/navigation/navigator.dart';
-import 'package:easyrent/presentation/navigation/splachScreen.dart';
-import 'package:easyrent/presentation/views/auth/views/login.dart';
+import 'package:easyrent/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +7,13 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:motion/motion.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:easyrent/core/app/controller/app_controller.dart';
+import 'package:easyrent/core/app/language/locale.dart';
+import 'package:easyrent/core/app/middleware/middelware.dart';
+import 'package:easyrent/core/app/theme/themes.dart';
+import 'package:easyrent/presentation/navigation/navigator.dart';
+import 'package:easyrent/presentation/navigation/splachScreen.dart';
+import 'package:easyrent/presentation/views/auth/views/login.dart';
 
 //! FOR DEBUGGING must erase it after the end of the application
 
@@ -29,21 +30,23 @@ SharedPreferences? userPref;
 bool isOffline = !Get.find<AppController>().isOffline.value;
 
 void main() async {
-  
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferences.getInstance();
   userPref = await SharedPreferences.getInstance();
+  bool isDarkTheme = userPref?.getBool('isDarkTheme') ?? false;
+
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: primaryBlue,
+      
     ),
   );
   // the payment Card gyroscope 3D shi
   await Motion.instance.initialize();
-  Motion.instance.setUpdateInterval(120.fps);
+  Motion.instance.setUpdateInterval(60.fps);
   runApp(ScreenUtilInit(
-    designSize: const Size(430, 932), // design ratio in Figma
+    designSize: const Size(430, 932),
     minTextAdapt: true,
     splitScreenMode: true,
     builder: (context, child) {
@@ -51,9 +54,11 @@ void main() async {
       debug.i("is the Application Offline : $isOffline");
       debug.d("application Started !!");
       return ThemeProvider(
-        initTheme: Themes().lightMode,
+        duration: const Duration(milliseconds: 700),
+        initTheme: isDarkTheme ? Themes().darkMode : Themes().lightMode,
         builder: (_, theme) {
           return GetMaterialApp(
+            onInit: () {},
             debugShowCheckedModeBanner: false,
             theme: theme,
             translations: MyLocale(),
@@ -62,7 +67,7 @@ void main() async {
             getPages: [
               GetPage(
                 name: '/',
-                page: () => const Splashscreen(),
+                page: () => const SplashScreen(),
               ),
               GetPage(name: '/login', page: () => LoginPage(), middlewares: [
                 MiddlewareAuth(),

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:easyrent/core/services/api/api_consumer.dart';
 import 'package:easyrent/core/services/api/dio_consumer.dart';
 import 'package:easyrent/core/services/api/end_points.dart';
 import 'package:easyrent/data/repos/userRepo.dart';
@@ -39,7 +38,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
 
   Future<void> sendVerificationCode() async {
     try {
-      //TODO use the verifyCode Function in the user Repo 
+      //TODO use the verifyCode Function in the user Repo
       //TODO ID
       //TODO DIOCONSUMER API SHIT
       final response = await DioConsumer(Dio()).post(
@@ -72,9 +71,8 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
       setState(() {
         _isCodeValid = false;
       });
-      Get.snackbar(
-        "Error",
-        "Invalid or expired verification code",
+      Get.rawSnackbar(
+        title: "Invalid or expired verification code",
         snackPosition: SnackPosition.BOTTOM,
       );
     }

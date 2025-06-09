@@ -19,6 +19,8 @@ AppBar homePageAppbar() {
     title: Row(
       children: [
         Skeletonizer(
+          ignorePointers: false,
+          ignoreContainers: false,
           enabled: AppSession().user == null,
           child: CircleAvatar(
             radius: 28.r,
@@ -28,12 +30,12 @@ AppBar homePageAppbar() {
                   ? FancyShimmerImage(
                       boxFit: BoxFit.cover,
                       imageUrl: AppSession().user!.profileImage!,
-                      // errorWidget: const Icon(Icons.error)
+                      errorWidget: const Icon(Icons.error)
                     )
-                  : SvgPicture.asset(
-                      width: 60,
-                      svgAvatar,
-                      fit: BoxFit.cover,
+                  : Image.asset(
+                      width: 56.w,
+                      avatar2,
+                      fit: BoxFit.contain,
                     ),
             ),
           ),

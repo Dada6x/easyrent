@@ -5,7 +5,7 @@ class MyFavouritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(8.0), child: const Text("fav Page"));
+    return const Padding(
+        padding: EdgeInsets.all(8.0), child: Text("fav Page"));
   }
 }

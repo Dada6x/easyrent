@@ -7,17 +7,16 @@ import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/introduction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 
-class Splashscreen extends StatefulWidget {
-  const Splashscreen({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<Splashscreen> createState() => _SplashscreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashscreenState extends State<Splashscreen>
+class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -43,7 +42,7 @@ class _SplashscreenState extends State<Splashscreen>
         }
       });
     });
-    //! fetch the User Profile During the SplashScreen only if hes Logged in 
+    //! fetch the User Profile During the SplashScreen only if hes Logged in
     if (userPref?.getBool("isLoggedIn") == true) {
       debug.f("User is Logged in so im fetching his Data ");
       var api = DioConsumer(Dio());

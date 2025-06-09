@@ -43,6 +43,7 @@ const paypal = "assets/icons/Paypal.png";
 const masterCard = "assets/icons/MasterCard.png";
 const googlePay = "assets/icons/GooglePay.png";
 const chip = "assets/icons/Chip.png";
+const avatar2 = "assets/images/avatar2.png";
 //!-----------animations----------------------
 const easyRent = "assets/animations/EeasyRent.json";
 //!-----------Panoramas ----------------------

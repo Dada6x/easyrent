@@ -1,59 +1,67 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/app/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import 'package:easyrent/core/app/controller/app_controller.dart';
+import 'package:easyrent/core/constants/colors.dart';
 
-class Theme_languageRow extends StatelessWidget {
-  const Theme_languageRow({super.key});
+class ThemeLanguageRow extends StatelessWidget {
+  const ThemeLanguageRow({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      children: [
+        ThemeToggleButton(),
+        LanguageToggleButton(),
+      ],
+    );
+  }
+}
+
+class LanguageToggleButton extends StatelessWidget {
+  const LanguageToggleButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     final AppController appController = Get.find<AppController>();
+    return IconButton(
+      onPressed: () {
+        appController.isArabic.value = !appController.isArabic.value;
+        appController.changeLang(appController.isArabic.value ? 'en' : 'ar');
+      },
+      icon: const Icon(Icons.translate, color: primaryBlue),
+    );
+  }
+}
 
-    return Row(
-      children: [
-        RepaintBoundary(
-          child: ThemeSwitcher(
-            clipper: const ThemeSwitcherCircleClipper(),
-            builder: (context) {
-              return IconButton(
-                icon: Icon(
-                  color: Theme.of(context).colorScheme.primary,
-                  ThemeModelInheritedNotifier.of(context).theme.brightness ==
-                          Brightness.light
-                      ? Icons.dark_mode
-                      : Icons.light_mode,
-                ),
-                onPressed: () {
-                  var brightness =
-                      ThemeModelInheritedNotifier.of(context).theme.brightness;
-                  ThemeSwitcher.of(context).changeTheme(
-                    theme: brightness == Brightness.light
-                        ? Themes().darkMode
-                        : Themes().lightMode,
-                    isReversed: brightness == Brightness.light,
-                  );
-                },
-              );
-            },
-          ),
-        ),
-        IconButton(
-            onPressed: () {
-              appController.isArabic.value = !appController.isArabic.value;
-              appController.isArabic.value
-                  ? appController.changeLang("en")
-                  : appController.changeLang("ar");
-            },
-            icon: const Icon(
-              Icons.translate,
-              color: primaryBlue,
-            ))
-      ],
+class ThemeToggleButton extends StatefulWidget {
+  const ThemeToggleButton({super.key});
+
+  @override
+  State<ThemeToggleButton> createState() => _ThemeToggleButtonState();
+}
+
+class _ThemeToggleButtonState extends State<ThemeToggleButton> {
+  @override
+  Widget build(BuildContext context) {
+    final AppController appController = Get.find<AppController>();
+
+    return RepaintBoundary(
+      child: ThemeSwitcher(
+        clipper: const ThemeSwitcherCircleClipper(),
+        builder: (context) {
+          final brightness =
+              ThemeModelInheritedNotifier.of(context).theme.brightness;
+          final isLight = brightness == Brightness.light;
+          return IconButton(
+            icon: Icon(
+              isLight ? Icons.dark_mode : Icons.light_mode,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            onPressed: () => appController.toggleTheme(context),
+          );
+        },
+      ),
     );
   }
 }

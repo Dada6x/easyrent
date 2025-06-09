@@ -4,7 +4,6 @@ import 'package:easyrent/presentation/views/profile/view/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 
 Widget customListTile({

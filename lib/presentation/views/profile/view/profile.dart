@@ -1,3 +1,13 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
+import 'package:iconify_flutter_plus/icons/bi.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:motion/motion.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/divider.dart';
@@ -15,16 +25,6 @@ import 'package:easyrent/presentation/views/profile/view/profile_pages/theme/the
 import 'package:easyrent/presentation/views/profile/widgets/custome_list_tile.dart';
 import 'package:easyrent/presentation/views/profile/widgets/dialog/logout_dialog.dart';
 import 'package:easyrent/presentation/views/profile/widgets/profileappbar.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
-import 'package:iconify_flutter_plus/icons/bi.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:motion/motion.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -56,7 +56,7 @@ class Profile extends StatelessWidget {
                         Skeletonizer(
                           enabled: AppSession().user == null,
                           child: CircleAvatar(
-                            radius: 85.r,
+                            radius: 85.sp,
                             backgroundColor: Colors.transparent,
                             child: ClipOval(
                               child: AppSession().user?.profileImage != null
@@ -66,9 +66,9 @@ class Profile extends StatelessWidget {
                                           AppSession().user!.profileImage!,
                                       // errorWidget: const Icon(Icons.error)
                                     )
-                                  : SvgPicture.asset(
-                                      width: 170,
-                                      svgAvatar,
+                                  : Image.asset(
+                                      width: 170.sp,
+                                      avatar2,
                                       fit: BoxFit.cover,
                                     ),
                             ),
@@ -77,10 +77,11 @@ class Profile extends StatelessWidget {
                         Visibility(
                           visible: AppSession().user != null,
                           child: Positioned(
-                            bottom: 1.r,
-                            right: -10.r,
-                            height: 49.r,
+                            bottom: 1.h,
+                            right: -10.w,
+                            height: 49.h,
                             child: RawMaterialButton(
+                              
                               onPressed: () {
                                 Get.dialog(
                                   AlertDialog(
@@ -144,7 +145,7 @@ class Profile extends StatelessWidget {
                               child: Icon(
                                 Icons.camera_alt_outlined,
                                 color: primaryBlue,
-                                size: 28.r,
+                                size: 28.sp,
                               ),
                             ),
                           ),
@@ -173,7 +174,7 @@ class Profile extends StatelessWidget {
             customListTile(
               string: "My Booking".tr,
               leading: Iconify(
-                Bi.body_text,
+                Bi.calendar2,
                 color: primaryBlue,
                 size: 29.h,
               ),

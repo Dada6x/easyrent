@@ -1,3 +1,11 @@
+import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
+import 'package:iconify_flutter_plus/icons/akar_icons.dart';
+import 'package:iconify_flutter_plus/icons/tabler.dart';
+import 'package:like_button/like_button.dart';
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/divider.dart';
@@ -8,16 +16,6 @@ import 'package:easyrent/presentation/views/property_homepage/widgets/agent_widg
 import 'package:easyrent/presentation/views/property_homepage/widgets/gallery_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/location_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/panorama_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:card_swiper/card_swiper.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
-import 'package:iconify_flutter_plus/icons/akar_icons.dart';
-import 'package:iconify_flutter_plus/icons/carbon.dart';
-import 'package:iconify_flutter_plus/icons/tabler.dart';
-import 'package:like_button/like_button.dart';
 
 class PropertyDetailsPage extends StatelessWidget {
   //! this need to be changed
@@ -69,7 +67,7 @@ class PropertyDetailsPage extends StatelessWidget {
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FloatingActionButton(
-            child: Iconify(
+            child: const Iconify(
               AkarIcons.github_fill,
               size: 40,
             ),

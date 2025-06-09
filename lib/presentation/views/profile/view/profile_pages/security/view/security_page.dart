@@ -18,11 +18,11 @@ class SecurityPage extends StatelessWidget {
         children: [
           customListTile(
               string: 'Change Password'.tr,
-              leading: Iconify(Bi.pass),
+              leading: const Iconify(Bi.pass),
               destination_widget: const ThemePage()),
           customListTile(
             string: 'Change Phone Number'.tr,
-            leading: Iconify(Bi.safe),
+            leading: const Iconify(Bi.safe),
             destination_widget: const ThemePage(),
           ),
           const CustomDivider()

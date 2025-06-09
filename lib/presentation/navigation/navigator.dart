@@ -58,39 +58,47 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
               child: BottomNavigationBar(
                 currentIndex: _selectedIndex,
                 selectedLabelStyle: AppTextStyles.h12medium,
+                showSelectedLabels: true,
+                fixedColor: primaryBlue,
+
                 unselectedLabelStyle: AppTextStyles.h12medium,
                 iconSize: 30.r, //!
                 onTap: _onItemTapped,
-                items: const [
+                items: [
                   BottomNavigationBarItem(
-                      // TODO cant put transilations here
                       activeIcon: Iconify(
                         Bi.house_fill,
                         color: primaryBlue,
+                        size: 30.sp,
                       ),
                       icon: Iconify(
                         Bi.house,
                         color: grey,
+                        size: 30.sp,
                       ),
                       label: 'Home'),
                   BottomNavigationBarItem(
                       activeIcon: Iconify(
                         Bi.search,
                         color: primaryBlue,
+                        size: 30.sp,
                       ),
                       icon: Iconify(
                         Bi.search,
                         color: grey,
+                        size: 30.sp,
                       ),
                       label: 'Search'),
                   BottomNavigationBarItem(
                       activeIcon: Iconify(
                         Bi.person_fill,
                         color: primaryBlue,
+                        size: 30.sp,
                       ),
                       icon: Iconify(
                         Bi.person,
                         color: grey,
+                        size: 30.sp,
                       ),
                       label: 'Profile'),
                 ],

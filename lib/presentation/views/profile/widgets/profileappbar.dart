@@ -21,7 +21,7 @@ AppBar profileAppbar() {
         padding: EdgeInsets.all(8.0.r),
         child: Row(
           children: [
-            const Theme_languageRow(),
+            const ThemeLanguageRow(),
             IconButton(
                 onPressed: () {
                   HomeScreenNavigator.scaffoldKey.currentState?.openEndDrawer();
