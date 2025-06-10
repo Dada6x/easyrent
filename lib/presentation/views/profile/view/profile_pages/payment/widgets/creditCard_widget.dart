@@ -1,8 +1,10 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
+import 'package:easyrent/data/Session/app_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class CreditCardWidget extends StatelessWidget {
   const CreditCardWidget({super.key});
@@ -62,7 +64,7 @@ class CreditCardWidget extends StatelessWidget {
             ),
             SizedBox(height: 20.h),
             Text(
-              '**** **** **** 1234',
+              '**** **** **** ****',
               style: TextStyle(
                 color: white,
                 fontSize: 25.sp,
@@ -93,16 +95,17 @@ class CreditCardWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Image.asset(
-                  masterCard,
-                  height: 30.h,
-                ),
+                // Image.asset(
+                //   masterCard,
+                //   height: 30.h,
+                // ),
+                // Iconify(FlatColorIcons.google)
               ],
             ),
             const Spacer(),
             Text(
               //! take the name of the Use
-              'Abuzer Firdousi',
+              AppSession().user?.username ?? "Loading.......",
               style: AppTextStyles.h20medium.copyWith(
                 fontFamily: "Courier",
                 color: white,

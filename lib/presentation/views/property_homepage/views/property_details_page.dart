@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 import 'package:iconify_flutter_plus/icons/akar_icons.dart';
+import 'package:iconify_flutter_plus/icons/ph.dart';
 import 'package:iconify_flutter_plus/icons/tabler.dart';
 import 'package:like_button/like_button.dart';
 import 'package:easyrent/core/constants/assets.dart';
@@ -184,17 +185,16 @@ class PropertyDetailsPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      //TODO
                       _featureIcon(
                           Iconify(
-                            Tabler.bed,
+                            Ph.bed,
                             color: primaryBlue,
                             size: 26.r,
                           ),
                           "$beds Beds".tr,
                           context),
                       _featureIcon(
-                          Iconify(Tabler.bath, color: primaryBlue, size: 26.r),
+                          Iconify(Ph.bathtub, color: primaryBlue, size: 26.r),
                           "$baths Baths",
                           context),
                       _featureIcon(

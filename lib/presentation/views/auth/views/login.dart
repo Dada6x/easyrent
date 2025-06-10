@@ -64,32 +64,7 @@ class LoginPage extends StatelessWidget {
                   //todo fix this long if else shit
                   hint: "login",
                   function: () async {
-                    nigga();
-                    // final phone = _numberController.text.trim();
-                    // final password = _passwordController.text;
-                    // if (phone.isEmpty ||
-                    //     password.isEmpty ||
-                    //     _numberController.text.length != 10 ||
-                    //     password.length < 6 ||
-                    //     !RegExp(r'[!@#\$&*~]').hasMatch(password)) {
-                    //   Get.snackbar(
-                    //     "Missing Information",
-                    //     "All fields are required",
-                    //     snackStyle: SnackStyle.FLOATING,
-                    //     snackPosition: SnackPosition.BOTTOM,
-                    //     backgroundColor: red,
-                    //     colorText: white,
-                    //     margin: EdgeInsets.all(12.w),
-                    //     borderRadius: 8.r,
-                    //   );
-                    //   return;
-                    // }
-                    // //! if all felids and passwords match still i need to handle data base shit .
-                    // var api = DioConsumer(Dio());
-                    // Userrepo(api).loginUser(
-                    //   number: _numberController.text,
-                    //   password: _passwordController.text,
-                    // );
+                    userLogin();
                   },
                 ),
                 Row(
@@ -116,7 +91,7 @@ class LoginPage extends StatelessWidget {
   }
 
 //!
-  void nigga() async {
+  void userLogin() async {
     final phone = _numberController.text.trim();
     final password = _passwordController.text;
     if (phone.isEmpty ||

@@ -243,10 +243,11 @@ class Profile extends StatelessWidget {
                       ),
                 destination_widget: const ThemePage()),
             //! FAQ
+            
             customListTile(
                 string: "FAQ".tr,
                 leading: Iconify(
-                  Bi.facebook,
+                  Bi.question_circle,
                   color: primaryBlue,
                   size: 29.sp,
                 ),
