@@ -1,27 +1,75 @@
-import 'package:easyrent/presentation/views/profile/view/profile_pages/favourite/widget/property_card_favourite.dart';
+import 'package:easyrent/core/constants/utils/pages/error_page.dart';
+import 'package:easyrent/core/constants/utils/pages/nodata.dart';
+import 'package:easyrent/data/models/favourite_model.dart';
+import 'package:easyrent/data/repos/propertiesRepo.dart';
+import 'package:easyrent/main.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/favourite/widget/property_widget_card_favourite.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MyFavouritePage extends StatelessWidget {
+class MyFavouritePage extends StatefulWidget {
   const MyFavouritePage({super.key});
 
+  @override
+  State<MyFavouritePage> createState() => _MyFavouritePageState();
+}
 
+late Future<List<FavoritePropertyModel>> _propertiesFuture;
+
+class _MyFavouritePageState extends State<MyFavouritePage> {
+  @override
+  void initState() {
+    super.initState();
+    _propertiesFuture = PropertiesRepo.getFavoriteProperties();
+  }
+
+  // fav page list empty -> prop Repo ->getfavourite fetch ⟶ return list to the Model ⟶the list is now full we display it in the builder
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.all(15.0.r),
-        child: ListView.builder(
-            itemCount: 5,
-            itemBuilder: (ctx, index) {
-              return const PropertyCardFavourite(
-                title: "title",
-                location: "location",
-                imagePath: " ",
-                area: 50.1,
-                numberOfBaths: 2,
-                numberOfBeds: 7,
+      padding: EdgeInsets.all(15.0.r),
+      child: Column(
+        children: [
+          FutureBuilder<List<FavoritePropertyModel>>(
+            future: _propertiesFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.9.h,
+                  child: const Center(child: CircularProgressIndicator()),
+                );
+              }
+              if (snapshot.hasError) {
+                debug.i(snapshot.error);
+                return const Center(child: ErrorPage());
+              }
+              if (!snapshot.hasData) {
+                return const Center(child: noDataPage());
+              }
+              final properties = snapshot.data!;
+              return Expanded(
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: properties.length,
+                  itemBuilder: (context, index) {
+                    final property = properties[index];
+                    return PropertyCardFavourite(
+                      imagePath: property.property?.propertyImage ?? "",
+                      location: property.property?.location?.city ?? "unKnown",
+                      area: property.property!.area ?? 0,
+                      numberOfBaths: property.property?.bathrooms ?? 0,
+                      numberOfBeds: property.property?.floorNumber ?? 0,
+                      title: "Fav TItle ",
+                      prioretyScore: property.property?.priorityScore ?? 0,
+                    );
+                  },
+                ),
               );
-            }));
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,15 +1,68 @@
 import 'package:dio/dio.dart';
 import 'package:easyrent/core/services/api/dio_consumer.dart';
+import 'package:easyrent/core/services/api/end_points.dart';
 import 'package:easyrent/core/services/api/errors/exceptions.dart';
+import 'package:easyrent/data/models/favourite_model.dart';
 import 'package:easyrent/data/models/property_model.dart';
 import 'package:easyrent/main.dart';
 
 class PropertiesRepo {
+  //!------------------------ get all properties:(homePage)----------------------------->
   static Future<List<PropertyModel>> getProperties() async {
     final api = DioConsumer(Dio()); //TODO not like this call the dio
     try {
       final response = await api
           .get("https://run.mocky.io/v3/fa9cfba5-611c-4fbe-91c4-eb1f90e5fd8f");
+      //todo add the endpoint of the API
+      if (response.statusCode == 200) {
+        debug.i("Fetch Properties status code  ${response.statusCode} ");
+        var responseData = response.data;
+        List tempList = [];
+        for (var v in responseData) {
+          debug.e(v);
+          tempList.add(v);
+        }
+        return PropertyModel.propertiesFromSnapshot(tempList);
+      }
+      return [];
+    } on ServerException catch (e) {
+      debug.e("Exception $e");
+      return [];
+    }
+  }
+
+//!------------------------ get Favorite properties------------------------------->
+  static Future<List<FavoritePropertyModel>> getFavoriteProperties() async {
+    final api = DioConsumer(Dio());
+    try {
+      final response = await api
+          .get("https://run.mocky.io/v3/1ae42e8e-c236-4b6f-bd9b-07f8460fd350");
+      //todo add the endpoint of the API
+      if (response.statusCode == 200) {
+        debug.t(
+            "Fetch Favorite Properties status code  ${response.statusCode} ");
+        var responseData = response.data;
+        List tempList = [];
+        for (var v in responseData) {
+          debug.w(v);
+          tempList.add(v);
+        }
+        return FavoritePropertyModel.favoritePropertiesFromSnapshot(tempList);
+      }
+      return [];
+    } on ServerException catch (e) {
+      debug.e("Exception $e");
+      return [];
+    }
+  }
+
+//!------------------------ get Properties Details ------------------------------->
+  static Future<List<PropertyModel>> propertyDetailsById(int id) async {
+    final api = DioConsumer(Dio());
+    try {
+      final response = await api.get(
+          // EndPoints.favourite,
+          "https://run.mocky.io/v3/fa9cfba5-611c-4fbe-91c4-eb1f90e5fd8f");
       //todo add the endpoint of the API
       if (response.statusCode == 200) {
         debug.i("Fetch Properties status code  ${response.statusCode} ");

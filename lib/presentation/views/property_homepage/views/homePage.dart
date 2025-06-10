@@ -2,6 +2,7 @@ import 'package:easyrent/core/constants/utils/pages/error_page.dart';
 import 'package:easyrent/core/constants/utils/pages/nodata.dart';
 import 'package:easyrent/data/models/property_model.dart';
 import 'package:easyrent/data/repos/propertiesRepo.dart';
+import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/home_appbar.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/feed_page.dart';
 import 'package:flutter/material.dart';
@@ -72,6 +73,7 @@ class _HomepageState extends State<Homepage> {
                               return const Center(child: ErrorPage());
                             }
                             if (!snapshot.hasData) {
+                              debug.i(snapshot.error);
                               return const Center(child: noDataPage());
                             }
                             final properties = snapshot.data!;

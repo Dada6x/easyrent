@@ -4,7 +4,7 @@ class EndPoints {
   static String Logout = "auth/logout";
   static String registerUser = "/user/register";
   static String verifyCode = "/user/verify///!code";
-
+  static String favourite = "/favorite";
   static String me = "/auth/me";
   static String tokenTime = "/auth/tokenTime";
 

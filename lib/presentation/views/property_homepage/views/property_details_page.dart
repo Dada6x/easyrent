@@ -12,7 +12,6 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/divider.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/data/models/agent_model.dart';
-import 'package:easyrent/data/models/comment_model.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/agent_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/gallery_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/location_widget.dart';
@@ -37,12 +36,6 @@ class PropertyDetailsPage extends StatelessWidget {
   final double lat;
   //@ for every property agent and couple of Comments ??
   final agent = const Agent("Quinten nolds ", "Owner", avatar);
-  final comment = const Comment(
-    "charlottie Hanilin ",
-    "Et asperiores dolorem dolor est rerum quis possimus. Quos ullam et ea nostrum eos possimus. Dolores excepturi quis enim.",
-    "10/8/2025",
-    avatar,
-  );
 
   const PropertyDetailsPage({
     super.key,
@@ -269,7 +262,10 @@ class PropertyDetailsPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
-                        const Iconify(Tabler.location,color: primaryBlue,),
+                        const Iconify(
+                          Tabler.location,
+                          color: primaryBlue,
+                        ),
                         SizedBox(
                           width: 10.w,
                         ),

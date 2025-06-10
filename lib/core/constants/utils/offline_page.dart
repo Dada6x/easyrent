@@ -1,4 +1,7 @@
+import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
@@ -8,25 +11,41 @@ class OfflinePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(20.r),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          SizedBox(
+            height: 80.h,
+          ),
           Lottie.asset(
             Get.isDarkMode
-                ? "assets/animations/dinofordarktheme.json"
-                : "assets/animations/dinolightmode.json",
+                ? "assets/animations/dinodark.json"
+                : "assets/animations/dinoLight.json",
           ),
-          //TODO make the Clouds the primary Color and fix the terrain color
           const SizedBox(
             height: 30,
           ),
-          const Center(
+          Center(
               child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 50),
-            child: Text(
-                " You're Offline , Make Sure to be connected to internet "),
-          ))
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                            text: "You're ", style: AppTextStyles.h16medium),
+                        TextSpan(
+                            text: "Offline",
+                            style: AppTextStyles.h16medium
+                                .copyWith(color: red) // Make 'Offline' red
+                            ),
+                        TextSpan(
+                            text:
+                                ", Make Sure to be  connected to internet then try again .",
+                            style: AppTextStyles.h16medium),
+                      ],
+                    ),
+                  )))
         ],
       ),
     );

@@ -81,18 +81,11 @@ class PropertyWidgetSearch extends StatelessWidget {
                   child: Stack(
                     children: [
                       //# test
-                      // Image.asset(
-                      //   imagePath,
-                      //   height: 120.h,
-                      //   width: 120.w,
-                      //   fit: BoxFit.cover,
-                      // ),
-
                       FancyShimmerImage(
                         height: 120.h,
                         width: 120.w,
                         boxFit: BoxFit.cover,
-                        imageUrl: onlineImageUrl,
+                        imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
                         errorWidget: const ErrorLoadingWidget(),
                       ),
                       Positioned(

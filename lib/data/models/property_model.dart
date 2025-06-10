@@ -32,6 +32,7 @@ class PropertyModel {
   static List<PropertyModel> propertiesFromSnapshot(List snapshot) {
     return snapshot.map((e) => PropertyModel.fromJson(e)).toList();
   }
+
 }
 
 class Location {
@@ -65,15 +66,5 @@ class Location {
     );
   }
 
-  // Map<String, dynamic> toJson() {
-  //   return {
-  //     'country': country,
-  //     'governorate': governorate,
-  //     'city': city,
-  //     'quarter': quarter,
-  //     'street': street,
-  //     'lat': lat,
-  //     'lon': lon,
-  //   };
-  // }
+
 }
