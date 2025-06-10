@@ -16,7 +16,7 @@ class OfflinePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            height: 80.h,
+            height: 100.h,
           ),
           Lottie.asset(
             Get.isDarkMode

@@ -13,16 +13,17 @@ import 'package:skeletonizer/skeletonizer.dart';
 class PropertyCardBig extends StatelessWidget {
   final String imagePath;
   final String title;
-  final String location;
+  final String city;
+  final String streetName;
   final double price;
   final double rating;
   const PropertyCardBig(
       {super.key,
       required this.imagePath,
       required this.title,
-      required this.location,
+      required this.city,
       required this.price,
-      required this.rating});
+      required this.rating, required this.streetName});
 
   @override
   Widget build(BuildContext context) {
@@ -119,12 +120,28 @@ class PropertyCardBig extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: 4.h),
-                            Text(
-                              location,
-                              style: AppTextStyles.h16regular.copyWith(
-                                color: white,
-                                fontSize: 14.sp,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  city,
+                                  style: AppTextStyles.h16regular.copyWith(
+                                    color: white,
+                                    fontSize: 14.sp,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10.w,
+                                ),
+                                Text(
+                                  streetName,
+                                  style: AppTextStyles.h16regular.copyWith(
+                                    color: white,
+                                    fontSize: 14.sp,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
                             ),
                             SizedBox(height: 8.h),
                             Text(

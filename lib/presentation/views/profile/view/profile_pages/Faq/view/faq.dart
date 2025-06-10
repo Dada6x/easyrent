@@ -9,25 +9,28 @@ class FAQPage extends StatelessWidget {
     return ListView(
       children: const [
         FAQItem(
-          question: "Why isn't my device displayed on the computer?",
-          answer: 'idk man se the help center ',
-        ),
+            question:
+                "How do I list a property for sale or rent on your platform?",
+            answer:
+                '   To list a property, simply sign up for an account, go to your dashboard, and click "Add Property." Fill in the required details (location, price, amenities, photos, etc.), and submit for review. Once approved, your listing will go live and be visible to potential buyers or renters.'),
         FAQItem(
-          question:
-              "Why does Windows tell me I don't have access permission after I change the access password?",
-          answer:
-              "Windows remembers the passwords of devices you've connected to before. If you can't access your device after changing the password, try the following:\n"
-              "1. Change the device's display name. This will allow the computer to rediscover the device.\n"
-              "2. Restart the computer and try again.",
-        ),
+            question:
+                "What fees are involved when buying or renting through your app?",
+            answer:
+                "   For buyers/renters, our platform is free to use. For sellers/landlords, we charge a small commission (or a flat fee) upon a successful transaction. Exact pricing details can be found in our "
+                "Pricing"
+                " section or during the listing process."),
         FAQItem(
-          question:
-              "Why does Windows tell me to check my spelling or tell me there is a network error?",
-          answer: "NIgga shut the fuck up ",
-        ),
+            question: "How can I verify if a property listing is genuine?",
+            answer:
+                "   We verify listings through a multi-step process, including agent/license checks and manual reviews. Look for the "
+                "Verified"
+                " badge on listings. Additionally, we encourage users to report suspicious posts via the "
+                "Report Listing"
+                " button for further investigation."),
         FAQItem(
           question: "Would You Rather ....",
-          answer: "Yeah amma do it ",
+          answer: "Yeah amma do it",
         ),
       ],
     );

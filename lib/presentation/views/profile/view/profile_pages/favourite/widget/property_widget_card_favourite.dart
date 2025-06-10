@@ -1,7 +1,3 @@
-import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/app/controller/app_controller.dart';
-import 'package:easyrent/core/constants/utils/error_loading_mssg.dart';
-import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,31 +7,39 @@ import 'package:iconify_flutter_plus/icons/ph.dart';
 import 'package:iconify_flutter_plus/icons/tabler.dart';
 import 'package:like_button/like_button.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:easyrent/core/app/controller/app_controller.dart';
+import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/constants/utils/error_loading_mssg.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 
-class PropertyCardFavourite extends StatelessWidget {
+class PropertyCardFavorite extends StatelessWidget {
   final String title;
-  final String location;
+  final String city;
   final String imagePath;
   final int numberOfBeds;
   final int numberOfBaths;
+  final String quarter;
   final double area;
-  final int prioretyScore;
+  final int priorityScore;
 
-  const PropertyCardFavourite({
+  const PropertyCardFavorite({
     super.key,
     required this.title,
-    required this.location,
+    required this.city,
     required this.imagePath,
     required this.numberOfBeds,
     required this.numberOfBaths,
     required this.area,
-    required this.prioretyScore,
+    required this.priorityScore,
+    required this.quarter,
   });
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       return Skeletonizer(
+        ignoreContainers: false,
+        ignorePointers: false,
         enabled: !Get.find<AppController>().isOffline.value,
         enableSwitchAnimation: true,
         child: SizedBox(
@@ -47,6 +51,7 @@ class PropertyCardFavourite extends StatelessWidget {
             ),
             child: Row(
               children: [
+                //! image
                 ClipRRect(
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(16),
@@ -64,6 +69,7 @@ class PropertyCardFavourite extends StatelessWidget {
                     ],
                   ),
                 ),
+                //! details
                 Expanded(
                   child: Padding(
                     padding:
@@ -73,26 +79,47 @@ class PropertyCardFavourite extends StatelessWidget {
                       children: [
                         Text(title, style: AppTextStyles.h18semi),
                         SizedBox(height: 4.h),
-                        Text(
-                          location,
-                          style: AppTextStyles.h14regular.copyWith(color: grey),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                        //! LOCATION
+                        Row(
+                          children: [
+                            //! quarter
+                            Text(
+                              quarter,
+                              style: AppTextStyles.h14regular
+                                  .copyWith(color: grey),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(
+                              width: 8.w,
+                            ),
+                            //! city
+                            Text(
+                              city,
+                              style: AppTextStyles.h14regular
+                                  .copyWith(color: grey),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
                         ),
                         SizedBox(height: 10.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            //! Bath
                             _FeaturesIcon(
                               number: numberOfBaths,
                               icon: Iconify(Ph.bathtub,
                                   color: primaryBlue, size: 20.sp),
                             ),
+                            //! Beds/Rooms
                             _FeaturesIcon(
                               number: numberOfBeds,
                               icon: Iconify(Ph.bed,
                                   color: primaryBlue, size: 20.sp),
                             ),
+                            //! Area
                             _FeaturesIcon(
                               number: area.toInt(),
                               icon: Iconify(Tabler.arrow_autofit_content,
@@ -104,11 +131,13 @@ class PropertyCardFavourite extends StatelessWidget {
                     ),
                   ),
                 ),
+                //! likeButton
                 Padding(
                   padding: EdgeInsets.only(right: 12.w),
                   child: LikeButton(
                     isLiked: true,
-                    likeCount: prioretyScore,
+                    //! priorityScore
+                    likeCount: priorityScore,
                     countPostion: CountPostion.bottom,
                   ),
                 ),

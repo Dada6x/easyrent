@@ -1,4 +1,5 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:easyrent/core/app/notifications/notifications.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,6 +33,7 @@ bool isOffline = !Get.find<AppController>().isOffline.value;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferences.getInstance();
+  await NotificationsService().initNotification();
   userPref = await SharedPreferences.getInstance();
   bool isDarkTheme = userPref?.getBool('isDarkTheme') ?? false;
 
@@ -39,7 +41,6 @@ void main() async {
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       systemNavigationBarColor: primaryBlue,
-      
     ),
   );
   // the payment Card gyroscope 3D shi

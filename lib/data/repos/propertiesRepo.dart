@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:easyrent/core/services/api/dio_consumer.dart';
-import 'package:easyrent/core/services/api/end_points.dart';
 import 'package:easyrent/core/services/api/errors/exceptions.dart';
 import 'package:easyrent/data/models/favourite_model.dart';
 import 'package:easyrent/data/models/property_model.dart';

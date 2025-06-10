@@ -49,6 +49,7 @@ dependencies:
   image_picker: ^1.1.2
   lottie: any
   motion: ^2.0.1
+  flutter_local_notifications: ^19.0.0
   panorama_viewer: ^2.0.4
   iconify_flutter_plus: ^1.0.4
 # https://andronasef.github.io/iconify_flutter/

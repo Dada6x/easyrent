@@ -1,3 +1,4 @@
+import 'package:easyrent/core/app/notifications/notifications.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/divider.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
@@ -41,7 +42,12 @@ class NotificationsPage extends StatelessWidget {
           SizedBox(
             height: 15.h,
           ),
-          const CustomDivider()
+          const CustomDivider(),
+          IconButton(
+              onPressed: () {
+                NotificationsService().showNotification(title: "Helloo",body: "PAY THE RENT NIGGA2");
+              },
+              icon: const Icon(Icons.message))
         ],
       ),
     );

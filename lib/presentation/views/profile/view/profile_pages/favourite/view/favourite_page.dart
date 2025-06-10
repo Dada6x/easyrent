@@ -54,14 +54,15 @@ class _MyFavouritePageState extends State<MyFavouritePage> {
                   itemCount: properties.length,
                   itemBuilder: (context, index) {
                     final property = properties[index];
-                    return PropertyCardFavourite(
+                    return PropertyCardFavorite(
                       imagePath: property.property?.propertyImage ?? "",
-                      location: property.property?.location?.city ?? "unKnown",
+                      city: property.property?.location?.city ?? "unKnown",
+                      quarter: property.property?.location?.quarter ?? "",
                       area: property.property!.area ?? 0,
                       numberOfBaths: property.property?.bathrooms ?? 0,
                       numberOfBeds: property.property?.floorNumber ?? 0,
                       title: "Fav TItle ",
-                      prioretyScore: property.property?.priorityScore ?? 0,
+                      priorityScore: property.property?.priorityScore ?? 0,
                     );
                   },
                 ),

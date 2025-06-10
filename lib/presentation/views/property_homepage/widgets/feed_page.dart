@@ -55,8 +55,8 @@ class FeedPage extends StatelessWidget {
 
               return PropertyCardBig(
                 imagePath: property.firstImage ?? apartment,
-                location: property.location?.city ??
-                    "", //TODO see how to handle the location shit
+                city: property.location?.city ?? "",
+                streetName: property.location?.street ?? "",
                 price: property.price,
                 rating: 4.5,
 
