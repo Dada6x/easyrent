@@ -1,4 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:easyrent/data/models/property_model.dart';
+import 'package:easyrent/data/repos/propertiesRepo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -39,6 +41,15 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
       _selectedIndex = index;
     });
   }
+
+  // late Future<List<PropertyModel>> _propertiesFuture;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _propertiesFuture = PropertiesRepo.getProperties();
+  // }
+
 
   @override
   Widget build(BuildContext context) {

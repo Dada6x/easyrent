@@ -8,8 +8,13 @@ import 'package:easyrent/presentation/views/property_homepage/widgets/feed_page.
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// ignore: must_be_immutable
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
+
+  static List<PropertyModel> niggas(List<PropertyModel> snapshot) {
+    return [];
+  }
 
   @override
   State<Homepage> createState() => _HomepageState();
