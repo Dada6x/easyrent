@@ -1,6 +1,4 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:easyrent/data/models/property_model.dart';
-import 'package:easyrent/data/repos/propertiesRepo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -30,7 +28,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const Homepage(),
+    Homepage(),
     const Maps(),
     const Search(),
     const Profile(),
@@ -49,7 +47,6 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
   //   super.initState();
   //   _propertiesFuture = PropertiesRepo.getProperties();
   // }
-
 
   @override
   Widget build(BuildContext context) {

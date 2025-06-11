@@ -1,6 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easyrent/core/app/notifications/notificationsApi.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/presentation/views/property_homepage/controller/propertiy_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,6 +53,7 @@ void main() async {
     splitScreenMode: true,
     builder: (context, child) {
       Get.put(AppController());
+      Get.put(PropertiesController());
       debug.i("is the Application Offline : $isOffline");
       debug.d("application Started !!");
       return ThemeProvider(

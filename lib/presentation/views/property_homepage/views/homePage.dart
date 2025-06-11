@@ -1,44 +1,18 @@
-import 'package:easyrent/core/constants/utils/pages/error_page.dart';
-import 'package:easyrent/core/constants/utils/pages/nodata.dart';
-import 'package:easyrent/data/models/property_model.dart';
-import 'package:easyrent/data/repos/propertiesRepo.dart';
-import 'package:easyrent/main.dart';
-import 'package:easyrent/presentation/views/property_homepage/widgets/home_appbar.dart';
-import 'package:easyrent/presentation/views/property_homepage/widgets/feed_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:easyrent/core/constants/utils/pages/error_page.dart';
+import 'package:easyrent/core/constants/utils/pages/nodata.dart';
+import 'package:easyrent/presentation/views/property_homepage/controller/propertiy_controller.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/feed_page.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/home_appbar.dart';
 
 // ignore: must_be_immutable
-class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+class Homepage extends StatelessWidget {
+  Homepage({super.key});
 
-  static List<PropertyModel> niggas(List<PropertyModel> snapshot) {
-    return [];
-  }
-
-  @override
-  State<Homepage> createState() => _HomepageState();
-}
-
-class _HomepageState extends State<Homepage> {
-  late Future<List<PropertyModel>> _propertiesFuture;
-  @override
-  void initState() {
-    super.initState();
-    _propertiesFuture = PropertiesRepo.getProperties();
-  }
-
-  Future<void> getProperties() async {
-    _propertiesFuture = PropertiesRepo.getProperties();
-    setState(() {});
-  }
-
-  Future<void> _onRefresh() async {
-    setState(() {
-      _propertiesFuture = PropertiesRepo.getProperties();
-    });
-    await Future.delayed(const Duration(seconds: 1));
-  }
+  final PropertiesController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +21,7 @@ class _HomepageState extends State<Homepage> {
         onTap: () => FocusScope.of(context).unfocus(),
         child: SafeArea(
           child: RefreshIndicator(
-            onRefresh: _onRefresh,
+            onRefresh: controller.refreshProperties,
             child: CustomScrollView(
               physics: const AlwaysScrollableScrollPhysics(), // required
               slivers: [
@@ -62,31 +36,19 @@ class _HomepageState extends State<Homepage> {
                     child: Column(
                       children: [
                         SizedBox(height: 12.h),
-                        FutureBuilder<List<PropertyModel>>(
-                          future: _propertiesFuture,
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.9.h,
-                                child: const Center(
-                                    child: CircularProgressIndicator()),
-                              );
-                            }
-                            if (snapshot.hasError) {
-                              return const Center(child: ErrorPage());
-                            }
-                            if (!snapshot.hasData) {
-                              debug.i(snapshot.error);
-                              return const Center(child: noDataPage());
-                            }
-                            final properties = snapshot.data!;
-                            return FeedPage(
-                              properties: properties,
-                            );
-                          },
-                        ),
+                        Obx(() {
+                          if (controller.isLoading.value) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
+                          if (controller.hasError.value) {
+                            return const ErrorPage();
+                          }
+                          if (controller.properties.isEmpty) {
+                            return const noDataPage();
+                          }
+                          return FeedPage(properties: controller.properties);
+                        }),
                       ],
                     ),
                   ),
