@@ -1,9 +1,4 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:easyrent/core/app/controller/app_controller.dart';
-import 'package:easyrent/core/constants/assets.dart';
-import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/constants/utils/error_loading_mssg.dart';
-import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -11,8 +6,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:easyrent/core/constants/assets.dart';
+import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/constants/utils/error_loading_mssg.dart';
+import 'package:easyrent/core/constants/utils/pages/error_page.dart';
+import 'package:easyrent/core/constants/utils/pages/nodata.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/data/models/property_model.dart';
 import 'package:easyrent/data/repos/propertiesRepo.dart';
+import 'package:easyrent/main.dart';
 
 class Maps extends StatefulWidget {
   const Maps({super.key});
@@ -35,9 +37,7 @@ class _MapsState extends State<Maps> {
   void _goToProperty(PropertyModel property) {
     if (property.location != null) {
       _mapController.move(
-        LatLng(property.location!.lat, property.location!.lon),
-        10
-      );
+          LatLng(property.location!.lat, property.location!.lon), 11);
     }
   }
 
@@ -52,11 +52,16 @@ class _MapsState extends State<Maps> {
           }
 
           if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+            debug.i(snapshot.error);
+            return const Center(child: ErrorPage());
           }
 
+          if (!snapshot.hasData) {
+            debug.i(snapshot.error);
+            return const Center(child: noDataPage());
+          }
+          debug.i("Map Being working ");
           final properties = snapshot.data ?? [];
-
           return Stack(
             children: [
               //! GestureDetector just for map
@@ -71,6 +76,9 @@ class _MapsState extends State<Maps> {
                 child: FlutterMap(
                   mapController: _mapController,
                   options: MapOptions(
+                    keepAlive: false,
+                    maxZoom: 19,
+
                     initialCenter: properties.isNotEmpty
                         ? LatLng(properties.first.location!.lat,
                             properties.first.location!.lon)
@@ -79,6 +87,7 @@ class _MapsState extends State<Maps> {
                   ),
                   children: [
                     TileLayer(
+
                       urlTemplate:
                           'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                       subdomains: const ['a', 'b', 'c'],
@@ -88,8 +97,8 @@ class _MapsState extends State<Maps> {
                           .where((p) => p.location != null)
                           .map(
                             (property) => Marker(
-                              width: 40.w,
-                              height: 40.h,
+                              width: 30.w,
+                              height: 30.h,
                               point: LatLng(
                                 property.location!.lat,
                                 property.location!.lon,
@@ -101,10 +110,20 @@ class _MapsState extends State<Maps> {
                                     _isSwiperVisible = true;
                                   });
                                 },
-                                child: Icon(
-                                  Icons.circle,
-                                  size: 30.r,
-                                  color: primaryBlue,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: primaryBlue.withOpacity(
+                                        0.15), // Light translucent background
+                                    shape: BoxShape
+                                        .circle, // or BoxShape.rectangle with borderRadius
+                                    border: Border.all(
+                                        color: primaryBlue, width: 1.5),
+                                  ),
+                                  child: Icon(
+                                    Icons.circle,
+                                    size: 24.r,
+                                    color: primaryBlue,
+                                  ),
                                 ),
                               ),
                             ),
@@ -115,6 +134,15 @@ class _MapsState extends State<Maps> {
                 ),
               ),
 
+              if (!_isSwiperVisible)
+                Positioned(
+                  bottom: 95.h,
+                  right: 25.w,
+                  child: FloatingActionButton.small(
+                    child: const Icon(Icons.keyboard_arrow_up),
+                    onPressed: () => setState(() => _isSwiperVisible = true),
+                  ),
+                ),
               //! Zoom buttons
               Positioned(
                 top: 60.h,
@@ -232,7 +260,7 @@ class _MapsState extends State<Maps> {
                                 child: Container(
                                   padding: EdgeInsets.all(12.w),
                                   decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.6),
+                                    color: black.withOpacity(0.6),
                                   ),
                                   child: Column(
                                     crossAxisAlignment:

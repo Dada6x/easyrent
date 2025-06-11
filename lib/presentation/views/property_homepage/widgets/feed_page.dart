@@ -2,6 +2,7 @@ import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/data/models/property_model.dart';
+import 'package:easyrent/presentation/views/property_homepage/views/seeall.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/filterChips.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/home_searchbar.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/property_card_big.dart';
@@ -35,7 +36,11 @@ class FeedPage extends StatelessWidget {
               ),
               const Spacer(),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => SeeAll(
+                        propertiesList: properties,
+                      ));
+                },
                 child: Text(
                   "See All".tr,
                   style: AppTextStyles.h16semi.copyWith(color: primaryBlue),
@@ -86,11 +91,9 @@ class FeedPage extends StatelessWidget {
               title: "House with ${property.rooms} rooms",
               location:
                   '${property.location?.city} ${property.location?.street}',
-              //! TODO REFACTOR THE LOCATION SUBLOCATION OR STRET OR SOME SHIT
               price: property.price,
               rating: 4.5, // Hardcoded
-              image: property.firstImage ??
-                  "https://cdn-icons-png.flaticon.com/512/3069/3069173.png",
+              image: property.firstImage ?? apartment2,
             );
           },
         ),
