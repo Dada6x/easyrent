@@ -1,12 +1,4 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:easyrent/core/app/controller/app_controller.dart';
-import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/constants/utils/textStyles.dart';
-import 'package:easyrent/core/constants/utils/offline_page.dart';
-import 'package:easyrent/presentation/views/profile/view/profile_pages/notifications/views/notifications_drawer.dart';
-import 'package:easyrent/presentation/views/property_homepage/views/homePage.dart';
-import 'package:easyrent/presentation/views/profile/view/profile.dart';
-import 'package:easyrent/presentation/views/search/views/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,6 +6,15 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 import 'package:iconify_flutter_plus/icons/bi.dart';
+import 'package:easyrent/core/app/controller/app_controller.dart';
+import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/constants/utils/offline_page.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
+import 'package:easyrent/presentation/views/map/maps.dart';
+import 'package:easyrent/presentation/views/profile/view/profile.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/notifications/views/notifications_drawer.dart';
+import 'package:easyrent/presentation/views/property_homepage/views/homePage.dart';
+import 'package:easyrent/presentation/views/search/views/search_page.dart';
 
 class HomeScreenNavigator extends StatefulWidget {
   const HomeScreenNavigator({super.key});
@@ -28,6 +29,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
 
   final List<Widget> _pages = [
     const Homepage(),
+    const Maps(),
     const Search(),
     const Profile(),
   ];
@@ -77,6 +79,18 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
                         size: 30.sp,
                       ),
                       label: 'Home'),
+                  BottomNavigationBarItem(
+                      activeIcon: Iconify(
+                        Bi.map_fill,
+                        color: primaryBlue,
+                        size: 30.sp,
+                      ),
+                      icon: Iconify(
+                        Bi.map,
+                        color: grey,
+                        size: 30.sp,
+                      ),
+                      label: 'maps'),
                   BottomNavigationBarItem(
                       activeIcon: Iconify(
                         Bi.search,

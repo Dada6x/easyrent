@@ -14,7 +14,7 @@ import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/data/models/agent_model.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/agent_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/gallery_widget.dart';
-import 'package:easyrent/presentation/views/property_homepage/widgets/location_widget.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/map_location_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/panorama_page.dart';
 
 class PropertyDetailsPage extends StatelessWidget {

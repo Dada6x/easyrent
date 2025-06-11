@@ -266,6 +266,10 @@ class Profile extends StatelessWidget {
             customListRedTile("Logout".tr, Icons.logout, () {
               showDeleteDialog(context);
             }),
+             Padding(
+              padding: EdgeInsets.all(8.0.r),
+              child:  Text("Version 1.1o",style: AppTextStyles.h12light.copyWith(color: primaryBlue),),
+            )
           ],
         ),
       ),

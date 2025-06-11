@@ -30,6 +30,7 @@ class PropertiesRepo {
     }
   }
 
+
 //!------------------------ get Favorite properties------------------------------->
   static Future<List<FavoritePropertyModel>> getFavoriteProperties() async {
     final api = DioConsumer(Dio());
