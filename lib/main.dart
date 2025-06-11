@@ -1,5 +1,5 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:easyrent/core/app/notifications/notifications.dart';
+import 'package:easyrent/core/app/notifications/notificationsApi.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

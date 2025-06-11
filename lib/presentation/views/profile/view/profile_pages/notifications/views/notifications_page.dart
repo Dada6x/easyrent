@@ -1,4 +1,4 @@
-import 'package:easyrent/core/app/notifications/notifications.dart';
+import 'package:easyrent/core/app/notifications/notificationsApi.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/divider.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
@@ -44,10 +44,22 @@ class NotificationsPage extends StatelessWidget {
           ),
           const CustomDivider(),
           IconButton(
-              onPressed: () {
-                NotificationsService().showNotification(title: "Helloo",body: "PAY THE RENT NIGGA2");
+              onPressed: () async{
+                await NotificationsService().showNotification(
+                  id: 12,
+                  title: "Hello HELLOO ",
+                  body: "Velit dolorum iste distinctio ratione tempore.",
+                );
               },
-              icon: const Icon(Icons.message))
+              icon: const Icon(Icons.message)),
+              
+                 IconButton(
+                  onPressed: () async {
+                    await NotificationsService().showNotification(
+                        title: "habit name here ", body: "Check this out !!!");
+                  },
+                  icon: const Icon(Icons.notifications),
+                ),
         ],
       ),
     );

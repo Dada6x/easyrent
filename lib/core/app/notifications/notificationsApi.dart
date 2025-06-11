@@ -10,51 +10,50 @@ class NotificationsService {
 
   final FlutterLocalNotificationsPlugin notificationsPlugin =
       FlutterLocalNotificationsPlugin();
-
   bool _isInitialized = false;
 
+  bool get isInitialized => _isInitialized;
+
+  //! Initialize Notifications
   Future<void> initNotification() async {
     if (_isInitialized) return;
 
+    // Android Initialization
     const AndroidInitializationSettings initSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings("@mipmap/ic_launcher");
 
     const InitializationSettings initSettings =
         InitializationSettings(android: initSettingsAndroid);
 
     await notificationsPlugin.initialize(initSettings);
-
-    // Request permissions for Android 13+
-    await notificationsPlugin.resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>();
-
     _isInitialized = true;
   }
 
-  NotificationDetails _notificationDetails() {
+  //! Notification Details Setup
+  NotificationDetails notificationDetails() {
     return const NotificationDetails(
       android: AndroidNotificationDetails(
-        'basic_channel_id',
-        'Basic Notifications',
-        channelDescription: 'Simple test notifications',
+        'daily_channel_id',
+        'Daily Notifications',
+        channelDescription:
+            'This channel handles daily scheduled notifications.',
         importance: Importance.max,
         priority: Priority.high,
         playSound: true,
         enableVibration: true,
+        ongoing: false,
+        autoCancel: true,
+        visibility: NotificationVisibility.public,
       ),
     );
   }
 
+  //! Show Instant Notification
   Future<void> showNotification({
     int id = 0,
     String? title,
     String? body,
   }) async {
-    await notificationsPlugin.show(
-      id,
-      title,
-      body,
-      _notificationDetails(),
-    );
+    await notificationsPlugin.show(id, title, body, notificationDetails());
   }
 }

@@ -6,7 +6,7 @@ class InviteFriendPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
-      children: [Text("INVITE YOU BITCH ASS FRIENDS NIGGA")],
+      children: [Text("INVITE YOU frinds")],
     );
   }
 }
