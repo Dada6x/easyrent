@@ -1,3 +1,4 @@
+import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/error_loading_mssg.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
@@ -50,19 +51,19 @@ class GalleryWidget extends StatelessWidget {
   }
 }
 
-void viewImage(String image) {
+void viewImage(String imageUrl) {
   Get.to(() => Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: black,
         appBar: AppBar(
-          backgroundColor: Colors.black,
-          iconTheme: const IconThemeData(color: Colors.white),
+          backgroundColor: black,
+          iconTheme: const IconThemeData(color: white),
           elevation: 0,
         ),
         body: Center(
           child: PhotoView(
-            imageProvider: AssetImage(image),
+            imageProvider: NetworkImage(imageUrl), // 🔥 Use NetworkImage here
             backgroundDecoration: const BoxDecoration(
-              color: Colors.black,
+              color: black,
             ),
             minScale: PhotoViewComputedScale.contained,
             maxScale: PhotoViewComputedScale.covered * 2,

@@ -62,10 +62,10 @@ class PropertiesRepo {
     try {
       final response = await api.get(
           // EndPoints.favourite,
-          "https://run.mocky.io/v3/8fda9fa1-90cb-4071-94da-31a79a757897");
+          "https://run.mocky.io/v3/d1f40a97-b320-4f37-b971-16134922a910");
       //todo add the endpoint of the API
       if (response.statusCode == 200) {
-        debug.i("Fetch Properties status code  ${response.statusCode} ");
+        debug.i("Fetch Details of property with id $id , status code ${response.statusCode} ");
         var responseData = response.data;
 
         debug.i(responseData);
@@ -80,3 +80,6 @@ class PropertiesRepo {
 
   const PropertiesRepo();
 }
+
+
+// https://images.unsplash.com/photo-1519678767534-29483894b34d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dhttps://images.unsplash.com/photo-1519678767534-29483894b34d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
