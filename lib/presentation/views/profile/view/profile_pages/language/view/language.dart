@@ -1,7 +1,4 @@
-import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/app/controller/app_controller.dart';
 import 'package:easyrent/core/constants/utils/divider.dart';
-import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,39 +8,98 @@ class LanguagePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppController appController = Get.find<AppController>();
-
     return Padding(
       padding: EdgeInsets.all(8.0.r),
       child: Column(
         children: [
           ListTile(
-            shape: ContinuousRectangleBorder(
-                borderRadius: BorderRadius.circular(20.r),
-                side: BorderSide(
-                  color: Theme.of(context).colorScheme.outline,
-                )),
+            leading: Text(
+              "🇺🇸",
+              style: TextStyle(fontSize: 25.sp),
+            ),
             onTap: () {
-              appController.isArabic.value = !appController.isArabic.value;
-              appController.isArabic.value
-                  ? appController.changeLang("en")
-                  : appController.changeLang("ar");
+              Get.updateLocale(const Locale('en'));
             },
-            tileColor: Theme.of(context).colorScheme.secondary,
-            leading: const Icon(
-              Icons.translate,
-              color: primaryBlue,
-            ),
-            title: Text(
-              // textAlign: TextAlign.center,
-              "English".tr,
-              style: AppTextStyles.h18regular,
-            ),
+            title: Text('English'.tr),
           ),
-          SizedBox(
-            height: 10.h,
+
+          ListTile(
+            leading: Text(
+              "🇸🇦",
+              style: TextStyle(fontSize: 25.sp),
+            ),
+            onTap: () {
+              Get.updateLocale(const Locale('ar'));
+            },
+            title: Text('Arabic'.tr),
           ),
-          const CustomDivider()
+
+          ListTile(
+            leading: Text(
+              "🇫🇷",
+              style: TextStyle(fontSize: 25.sp),
+            ),
+            onTap: () {
+              Get.updateLocale(const Locale('fr'));
+            },
+            title: Text('French'.tr),
+          ),
+          //!
+          ListTile(
+            leading: Text(
+              "🇪🇸",
+              style: TextStyle(fontSize: 25.sp),
+            ),
+            onTap: () {
+              Get.updateLocale(const Locale('es'));
+            },
+            title: Text('Spanish'.tr),
+          ),
+          //!
+          ListTile(
+            leading: Text(
+              "🇯🇵",
+              style: TextStyle(fontSize: 25.sp),
+            ),
+            onTap: () {
+              Get.updateLocale(const Locale('ja'));
+            },
+            title: Text('Japanese'.tr),
+          ),
+
+          ListTile(
+            leading: Text(
+              "🇷🇺",
+              style: TextStyle(fontSize: 25.sp),
+            ),
+            onTap: () {
+              Get.updateLocale(const Locale('ru'));
+            },
+            title: Text('Russian'.tr),
+          ),
+          ListTile(
+            leading: Text(
+              "🇹🇷",
+              style: TextStyle(fontSize: 25.sp),
+            ),
+            onTap: () {
+              Get.updateLocale(const Locale('de'));
+            },
+            title: Text('Turkish'.tr),
+          ),
+          ListTile(
+            leading: Text(
+              "🇩🇪",
+              style: TextStyle(fontSize: 25.sp),
+            ),
+            onTap: () {
+              Get.updateLocale(const Locale('tr'));
+            },
+            title: Text('German'.tr),
+          ),
+          SizedBox(height: 10.h),
+
+          const CustomDivider(),
         ],
       ),
     );

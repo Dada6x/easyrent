@@ -38,7 +38,7 @@ class Profile extends StatelessWidget {
             SizedBox(
               height: 26.h,
             ),
-            
+
             Material(
               shadowColor: Colors.transparent,
               child: Motion(
@@ -81,7 +81,6 @@ class Profile extends StatelessWidget {
                             right: -10.w,
                             height: 49.h,
                             child: RawMaterialButton(
-                              
                               onPressed: () {
                                 Get.dialog(
                                   AlertDialog(
@@ -243,7 +242,7 @@ class Profile extends StatelessWidget {
                       ),
                 destination_widget: const ThemePage()),
             //! FAQ
-            
+
             customListTile(
                 string: "FAQ".tr,
                 leading: Iconify(
@@ -266,9 +265,12 @@ class Profile extends StatelessWidget {
             customListRedTile("Logout".tr, Icons.logout, () {
               showDeleteDialog(context);
             }),
-             Padding(
+            Padding(
               padding: EdgeInsets.all(8.0.r),
-              child:  Text("Version 1.1o",style: AppTextStyles.h12light.copyWith(color: primaryBlue),),
+              child: Text(
+                "Version 1.1o",
+                style: AppTextStyles.h12light.copyWith(color: primaryBlue),
+              ),
             )
           ],
         ),

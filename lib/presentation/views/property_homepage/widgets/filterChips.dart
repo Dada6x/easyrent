@@ -12,20 +12,19 @@ class PropertyFilterChips extends StatefulWidget {
 }
 
 class _PropertyFilterChipsState extends State<PropertyFilterChips> {
-  final List<String> filters = [
-    'All'.tr,
-    'House'.tr,
-    'Villa'.tr,
-    'Apartments'.tr,
-    'Lands'.tr,
-    'Other'.tr
-  ];
-  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+  int selectedIndex = 0;
+    final List<String> filters = [
+      'All'.tr,
+      'House'.tr,
+      'Villa'.tr,
+      'Apartments'.tr,
+      'Lands'.tr,
+      'Other'.tr
+    ];
     return Visibility(
-      // visible: Get.find<AppController>().isOffline.value,
       child: SizedBox(
         height: 48.h,
         child: ListView.builder(

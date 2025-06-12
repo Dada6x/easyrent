@@ -37,6 +37,10 @@ class _MapsState extends State<Maps> {
     }
   }
 
+
+
+  
+
   final controller = Get.find<PropertiesController>();
 
   @override
@@ -197,9 +201,7 @@ class _MapsState extends State<Maps> {
             bottom: _isSwiperVisible ? 280.h : 20.h,
             right: 20.w,
             child: FloatingActionButton(
-              onPressed: () {
-                // Your go-to-location logic
-              },
+              onPressed:(){},
               child: const Icon(
                 Icons.my_location,
               ),

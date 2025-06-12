@@ -86,7 +86,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
                         color: grey,
                         size: 30.sp,
                       ),
-                      label: 'Home'),
+                      label: 'Home'.tr),
                   BottomNavigationBarItem(
                       activeIcon: Iconify(
                         Bi.map_fill,
@@ -98,7 +98,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
                         color: grey,
                         size: 30.sp,
                       ),
-                      label: 'maps'),
+                      label: 'Map'.tr),
                   BottomNavigationBarItem(
                       activeIcon: Iconify(
                         Bi.search,
@@ -110,7 +110,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
                         color: grey,
                         size: 30.sp,
                       ),
-                      label: 'Search'),
+                      label: 'Search'.tr),
                   BottomNavigationBarItem(
                       activeIcon: Iconify(
                         Bi.person_fill,
@@ -122,7 +122,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
                         color: grey,
                         size: 30.sp,
                       ),
-                      label: 'Profile'),
+                      label: 'Profile'.tr),
                 ],
                 elevation: 2,
                 type: BottomNavigationBarType.fixed,
