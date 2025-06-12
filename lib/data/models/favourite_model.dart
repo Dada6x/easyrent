@@ -2,14 +2,14 @@ import 'package:easyrent/data/models/propertyModel.dart';
 
 class FavoritePropertyModel {
   int? favoriteId;
-  Property? property;
+  PropertyModel? property;
 
   FavoritePropertyModel({this.favoriteId, this.property});
 
   FavoritePropertyModel.fromJson(Map<String, dynamic> json) {
     favoriteId = json['id'];
     property = json['property'] != null
-        ? new Property.fromJson(json['property'])
+        ? new PropertyModel.fromJson(json['property'])
         : null;
   }
 
@@ -18,4 +18,3 @@ class FavoritePropertyModel {
     return snapshot.map((e) => FavoritePropertyModel.fromJson(e)).toList();
   }
 }
-

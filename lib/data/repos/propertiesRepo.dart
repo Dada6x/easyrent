@@ -3,6 +3,7 @@ import 'package:easyrent/core/services/api/dio_consumer.dart';
 import 'package:easyrent/core/services/api/errors/exceptions.dart';
 import 'package:easyrent/data/models/favourite_model.dart';
 import 'package:easyrent/data/models/outer_property_model.dart';
+import 'package:easyrent/data/models/propertyModel.dart';
 import 'package:easyrent/main.dart';
 
 class PropertiesRepo {
@@ -56,27 +57,24 @@ class PropertiesRepo {
   }
 
 //!------------------------ get Properties Details ------------------------------->
-  static Future<List<OuterPropertyModel>> propertyDetailsById(int id) async {
+  static Future<PropertyModel> propertyDetailsById(int id) async {
     final api = DioConsumer(Dio());
     try {
       final response = await api.get(
           // EndPoints.favourite,
-          "https://run.mocky.io/v3/fa9cfba5-611c-4fbe-91c4-eb1f90e5fd8f");
+          "https://run.mocky.io/v3/0579100b-0ed3-4401-b19f-44772da1cc98");
       //todo add the endpoint of the API
       if (response.statusCode == 200) {
         debug.i("Fetch Properties status code  ${response.statusCode} ");
         var responseData = response.data;
-        List tempList = [];
-        for (var v in responseData) {
-          debug.e(v);
-          tempList.add(v);
-        }
-        return OuterPropertyModel.propertiesFromSnapshot(tempList);
+
+        debug.i(responseData);
+        return PropertyModel.fromJson(responseData);
       }
-      return [];
+      return PropertyModel.fromJson({});
     } on ServerException catch (e) {
       debug.e("Exception $e");
-      return [];
+      return PropertyModel.fromJson({});
     }
   }
 

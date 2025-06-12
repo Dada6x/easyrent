@@ -1,4 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:easyrent/data/models/propertyModel.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/agent_widget.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -6,67 +9,24 @@ import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 import 'package:iconify_flutter_plus/icons/ph.dart';
 import 'package:iconify_flutter_plus/icons/tabler.dart';
 import 'package:like_button/like_button.dart';
-import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/divider.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
-import 'package:easyrent/data/models/agent_model.dart';
-import 'package:easyrent/presentation/views/property_homepage/widgets/agent_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/gallery_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/map_location_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/panorama_page.dart';
 
 class PropertyDetailsPage extends StatelessWidget {
-  //! this need to be changed
-  final List<String> previewImages;
-  final List<Map<String, String>> panoramaImages;
-  final String title;
-  final int price;
-  final String genre; //! should be enum
-  final double ratings;
-  final int reviews;
-  final int beds;
-  final int baths;
-  final int area;
-  final String overview;
-  final List<String> galleryImages;
-  // facilities //!enums
-  final double lng;
-  final double lat;
-  //@ for every property agent and couple of Comments ??
-  final agent = const Agent("Quinten nolds ", "Owner", avatar);
+  final PropertyModel property;
 
   const PropertyDetailsPage({
     super.key,
-    required this.title,
-    required this.genre,
-    required this.ratings,
-    required this.reviews,
-    required this.beds,
-    required this.baths,
-    required this.area,
-    required this.overview,
-    required this.previewImages,
-    required this.price,
-    required this.galleryImages,
-    required this.lng,
-    required this.lat,
-    required this.panoramaImages,
+    required this.property,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: Padding(
-      //   padding: const EdgeInsets.all(8.0),
-      //   child: FloatingActionButton(
-      //     shape: const OvalBorder(),
-      //       child: const Iconify(
-      //         AkarIcons.github_fill,
-      //         size: 40,
-      //       ),
-      //       onPressed: () {}),
-      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -77,10 +37,10 @@ class PropertyDetailsPage extends StatelessWidget {
                   height: 450.h,
                   width: double.infinity,
                   child: Swiper(
-                    itemCount: previewImages.length,
-                    itemBuilder: (context, index) => Image.asset(
-                      previewImages[index],
-                      fit: BoxFit.cover,
+                    itemCount: property.propertyImages!.length,
+                    itemBuilder: (context, index) => FancyShimmerImage(
+                      imageUrl: property.propertyImages![index],
+                      boxFit: BoxFit.cover,
                     ),
                     pagination: SwiperPagination(
                       builder: ConnectedDotsPagination(
@@ -101,20 +61,7 @@ class PropertyDetailsPage extends StatelessWidget {
                         Get.back();
                       }),
                       const Spacer(),
-                      const LikeButton(
-                          // onTap: (){
-                          // },
-                          //$ if yall wanted an counter
-                          // likeCount: 5,
-                          // countPostion: CountPostion.left,
-                          // countBuilder: (likeCount, isLiked, text) {
-                          //   return Text(
-                          //     likeCount.toString(),
-                          //     style:
-                          //         AppTextStyles.h16regular.copyWith(color: white),
-                          //   );
-                          // },
-                          ), //
+                      const LikeButton(), //
                       _circleButton(Icons.share, () {}),
                       SizedBox(width: 12.w),
                     ],
@@ -132,13 +79,15 @@ class PropertyDetailsPage extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        title,
+                        property.title ?? "",
                         style: AppTextStyles.h24semi,
                       ),
                       const Spacer(),
+                      //! property Panorama Images
                       IconButton(
                           onPressed: () {
-                            Get.to(PanoramaPage(rooms: panoramaImages));
+                            Get.to(PanoramaPage(
+                                rooms: property.panoramaImages ?? [{}]));
                           },
                           icon: Icon(
                             Icons.panorama_horizontal_select,
@@ -148,7 +97,7 @@ class PropertyDetailsPage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 8.h),
-                  //! property genre and rating
+                  //! property Type and rating
                   Row(
                     children: [
                       Container(
@@ -158,7 +107,8 @@ class PropertyDetailsPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: Text(
-                            genre,
+                            //! type
+                            property.propertyType ?? "",
                             style: AppTextStyles.h10semi.copyWith(
                                 color: Theme.of(context).colorScheme.primary),
                           )),
@@ -168,7 +118,8 @@ class PropertyDetailsPage extends StatelessWidget {
                         size: 25.r,
                       ),
                       Text(
-                        "$ratings ($reviews reviews)",
+                        //! rating and reviews
+                        "${property.priorityScore} (${property.viewCount} reviews)",
                         style: AppTextStyles.h14medium.copyWith(color: grey),
                       )
                     ],
@@ -184,19 +135,19 @@ class PropertyDetailsPage extends StatelessWidget {
                             color: Theme.of(context).colorScheme.primary,
                             size: 26.r,
                           ),
-                          "$beds Beds".tr,
+                          "${property.rooms} Beds".tr,
                           context),
                       _featureIcon(
                           Iconify(Ph.bathtub,
                               color: Theme.of(context).colorScheme.primary,
                               size: 26.r),
-                          "$baths Baths",
+                          "${property.bathrooms}Baths",
                           context),
                       _featureIcon(
                           Iconify(Tabler.arrow_autofit_content,
                               color: Theme.of(context).colorScheme.primary,
                               size: 26.r),
-                          "$area sqft",
+                          "${property.area} sqft",
                           context),
                     ],
                   ),
@@ -207,17 +158,17 @@ class PropertyDetailsPage extends StatelessWidget {
 
                   //! Agent Widget
                   _Headers(text: "Agent".tr),
-                  AgentWidget(
-                    agentImage: agent.avatar,
-                    agentName: agent.name,
-                    agentRole: agent.role,
-                  ),
+                  // AgentWidget(
+                  //   agentImage: property.,
+                  //   agentName: agent.name,
+                  //   agentRole: agent.role,
+                  // ),
                   //! Overview
                   _Headers(text: "Overview".tr),
                   Padding(
                     padding: EdgeInsets.all(8.0.r),
                     child: Text(
-                      overview,
+                      property.description ?? "",
                       style: AppTextStyles.h16medium.copyWith(color: grey),
                     ),
                   ),
@@ -257,7 +208,7 @@ class PropertyDetailsPage extends StatelessWidget {
                   const CustomDivider(),
 
                   _Headers(text: "Gallery".tr),
-                  GalleryWidget(images: galleryImages),
+                  GalleryWidget(images: property.propertyImages ?? []),
                   _Headers(text: "Location".tr),
                   //! Location
                   const CustomDivider(),
@@ -273,16 +224,18 @@ class PropertyDetailsPage extends StatelessWidget {
                         SizedBox(
                           width: 10.w,
                         ),
-                        const Text(
-                          "Grand City St., New York,United States ",
-                          overflow: TextOverflow.clip,
+                        Text(
+                          "${property.location!.country} ,${property.location!.city} ,${property.location!.quarter},${property.location!.street}",
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     ),
                   ),
                   SizedBox(
                     height: 300.h,
-                    child: CurrentLocationMap(latitude: lat, longitude: lng),
+                    child: CurrentLocationMap(
+                        latitude: property.location!.lat,
+                        longitude: property.location!.lon),
                   ),
                   //! COMMENTS
                   SizedBox(
@@ -306,7 +259,7 @@ class PropertyDetailsPage extends StatelessWidget {
                                   AppTextStyles.h12medium.copyWith(color: grey),
                             ),
                             Text(
-                              "\$$price",
+                              "\$${property.price}",
                               style: AppTextStyles.h24extrabold.copyWith(
                                   color: Theme.of(context).colorScheme.primary),
                             )

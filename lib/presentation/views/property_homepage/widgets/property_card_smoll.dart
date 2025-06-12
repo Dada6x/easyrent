@@ -34,38 +34,38 @@ class PropertyCardSmall extends StatelessWidget {
         containersColor: Theme.of(context).colorScheme.onTertiary,
         child: RawMaterialButton(
           onPressed: () {
-            Get.to(
-                transition: Transition.fadeIn,
-                duration: const Duration(milliseconds: 520),
-                const PropertyDetailsPage(
-                  title: "MODERNISM VILLA",
-                  genre: "Villa",
-                  ratings: 4.5,
-                  reviews: 1221,
-                  beds: 3,
-                  baths: 4,
-                  area: 2000,
-                  price: 19322,
-                  overview:
-                      "Consequatur porro impedit alias odio voluptatem qui qui rerum aspernatur. Facere mollitia fugit perferendis deleniti quam neque voluptatem repellendus natus. Omnis ipsum culpa qui minima.",
-                  previewImages: [apartment, apartment2, japan],
-                  galleryImages: [
-                    apartment3,
-                    japan,
-                    apartment2,
-                    japan,
-                    apartment,
-                    japan,
-                    apartment
-                  ],
-                  lat: 33.5138,
-                  lng: 36.2765,
-                  panoramaImages: [
-                    {'name': 'Living Room', 'imagePath': panorama1},
-                    {'name': 'Kitchen', 'imagePath': panorama2},
-                    {'name': 'Bedroom', 'imagePath': panorama3},
-                  ],
-                ));
+            // Get.to(
+            //     transition: Transition.fadeIn,
+            //     duration: const Duration(milliseconds: 520),
+            //     const PropertyDetailsPage(
+            //       title: "MODERNISM VILLA",
+            //       genre: "Villa",
+            //       ratings: 4.5,
+            //       reviews: 1221,
+            //       beds: 3,
+            //       baths: 4,
+            //       area: 2000,
+            //       price: 19322,
+            //       overview:
+            //           "Consequatur porro impedit alias odio voluptatem qui qui rerum aspernatur. Facere mollitia fugit perferendis deleniti quam neque voluptatem repellendus natus. Omnis ipsum culpa qui minima.",
+            //       previewImages: [apartment, apartment2, japan],
+            //       galleryImages: [
+            //         apartment3,
+            //         japan,
+            //         apartment2,
+            //         japan,
+            //         apartment,
+            //         japan,
+            //         apartment
+            //       ],
+            //       lat: 33.5138,
+            //       lng: 36.2765,
+            //       panoramaImages: [
+            //         {'name': 'Living Room', 'imagePath': panorama1},
+            //         {'name': 'Kitchen', 'imagePath': panorama2},
+            //         {'name': 'Bedroom', 'imagePath': panorama3},
+            //       ],
+            //     ));
           },
           child: Card(
             color: Theme.of(context).colorScheme.secondary,

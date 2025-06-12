@@ -1,6 +1,6 @@
 import 'location_model.dart';
 
-class Property {
+class PropertyModel {
   int? rooms;
   int? bathrooms;
   double? area;
@@ -19,42 +19,43 @@ class Property {
   bool? isForRent;
   String? state;
   String? propertyImage;
-  Null propertyImages;
-  Null panoramaImages;
+  List<String>? propertyImages;
+  List<Map<String, String>>? panoramaImages;
   int? voteScore;
   int? viewCount;
   int? priorityScore;
   String? createdAt;
   String? updatedAt;
 
-  Property(
-      {this.rooms,
-      this.bathrooms,
-      this.area,
-      this.isFloor,
-      this.floorNumber,
-      this.hasGarage,
-      this.hasGarden,
-      this.propertyType,
-      this.heatingType,
-      this.flooringType,
-      this.id,
-      this.title,
-      this.description,
-      this.price,
-      this.location,
-      this.isForRent,
-      this.state,
-      this.propertyImage,
-      this.propertyImages,
-      this.panoramaImages,
-      this.voteScore,
-      this.viewCount,
-      this.priorityScore,
-      this.createdAt,
-      this.updatedAt});
+  PropertyModel({
+    this.rooms,
+    this.bathrooms,
+    this.area,
+    this.isFloor,
+    this.floorNumber,
+    this.hasGarage,
+    this.hasGarden,
+    this.propertyType,
+    this.heatingType,
+    this.flooringType,
+    this.id,
+    this.title,
+    this.description,
+    this.price,
+    this.location,
+    this.isForRent,
+    this.state,
+    this.propertyImage,
+    this.propertyImages,
+    this.panoramaImages,
+    this.voteScore,
+    this.viewCount,
+    this.priorityScore,
+    this.createdAt,
+    this.updatedAt,
+  });
 
-  Property.fromJson(Map<String, dynamic> json) {
+  PropertyModel.fromJson(Map<String, dynamic> json) {
     rooms = json['rooms'];
     bathrooms = json['bathrooms'];
     area = json['area'] != null ? (json['area'] as num).toDouble() : null;
@@ -69,13 +70,23 @@ class Property {
     title = json['title'];
     description = json['description'];
     price = json['price'];
-    location =
-        json['location'] != null ? Location.fromJson(json['location']) : null;
+    location = json['location'] != null
+        ? Location.fromJson(json['location'])
+        : null;
     isForRent = json['isForRent'];
     state = json['state'];
     propertyImage = json['propertyImage'];
-    propertyImages = json['propertyImages'];
-    panoramaImages = json['panoramaImages'];
+
+    // 🔧 Fix: Safely convert List<dynamic> to List<String>
+    propertyImages = (json['propertyImages'] as List?)
+        ?.map((e) => e.toString())
+        .toList();
+
+    // 🔧 Fix: Safely convert List<dynamic> to List<Map<String, String>>
+    panoramaImages = (json['panoramaImages'] as List?)
+        ?.map((e) => Map<String, String>.from(e as Map))
+        .toList();
+
     voteScore = json['voteScore'];
     viewCount = json['viewCount'];
     priorityScore = json['priorityScore'];

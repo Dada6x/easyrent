@@ -36,7 +36,7 @@ class _PanoramaPageState extends State<PanoramaPage> {
               child: PanoramaViewer(
                 maxZoom: 3,
                 sensitivity: 1.5,
-                child: Image.asset(currentRoom['imagePath']!),
+                child: Image.network(currentRoom['url']!),
               ),
             ),
             Positioned(
@@ -57,7 +57,7 @@ class _PanoramaPageState extends State<PanoramaPage> {
                   Expanded(
                     child: Center(
                       child: Text(
-                        currentRoom['name']!,
+                        currentRoom['title'] ?? "unknown ",
                         style: AppTextStyles.h20regular.copyWith(color: white),
                       ),
                     ),
@@ -79,7 +79,8 @@ class _PanoramaPageState extends State<PanoramaPage> {
                       side: const BorderSide(color: white)),
                 ),
                 child: Text("Next Room".tr,
-                    style: AppTextStyles.h20semi.copyWith(color: Theme.of(context).colorScheme.primary)),
+                    style: AppTextStyles.h20semi.copyWith(
+                        color: Theme.of(context).colorScheme.primary)),
               ),
             ),
           ],

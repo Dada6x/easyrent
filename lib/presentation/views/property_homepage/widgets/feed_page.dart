@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:easyrent/core/constants/assets.dart';
-import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/data/models/outer_property_model.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/seeall.dart';
@@ -7,9 +9,6 @@ import 'package:easyrent/presentation/views/property_homepage/widgets/filterChip
 import 'package:easyrent/presentation/views/property_homepage/widgets/home_searchbar.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/property_card_big.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/property_card_smoll.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class FeedPage extends StatelessWidget {
   const FeedPage({
@@ -60,6 +59,7 @@ class FeedPage extends StatelessWidget {
               final property = properties[index];
 
               return PropertyCardBig(
+                id: property.id,
                 imagePath: property.firstImage ?? apartment,
                 city: property.location?.city ?? "",
                 streetName: property.location?.street ?? "",
