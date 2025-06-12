@@ -1,3 +1,4 @@
+import 'package:easyrent/data/repos/propertiesRepo.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +17,7 @@ class PropertyCardSmall extends StatelessWidget {
   final String location;
   final double price;
   final String image;
+  final int id;
 
   const PropertyCardSmall(
       {super.key,
@@ -23,7 +25,8 @@ class PropertyCardSmall extends StatelessWidget {
       required this.rating,
       required this.location,
       required this.price,
-      required this.image});
+      required this.image,
+      required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -33,39 +36,12 @@ class PropertyCardSmall extends StatelessWidget {
         enableSwitchAnimation: true,
         containersColor: Theme.of(context).colorScheme.onTertiary,
         child: RawMaterialButton(
-          onPressed: () {
-            // Get.to(
-            //     transition: Transition.fadeIn,
-            //     duration: const Duration(milliseconds: 520),
-            //     const PropertyDetailsPage(
-            //       title: "MODERNISM VILLA",
-            //       genre: "Villa",
-            //       ratings: 4.5,
-            //       reviews: 1221,
-            //       beds: 3,
-            //       baths: 4,
-            //       area: 2000,
-            //       price: 19322,
-            //       overview:
-            //           "Consequatur porro impedit alias odio voluptatem qui qui rerum aspernatur. Facere mollitia fugit perferendis deleniti quam neque voluptatem repellendus natus. Omnis ipsum culpa qui minima.",
-            //       previewImages: [apartment, apartment2, japan],
-            //       galleryImages: [
-            //         apartment3,
-            //         japan,
-            //         apartment2,
-            //         japan,
-            //         apartment,
-            //         japan,
-            //         apartment
-            //       ],
-            //       lat: 33.5138,
-            //       lng: 36.2765,
-            //       panoramaImages: [
-            //         {'name': 'Living Room', 'imagePath': panorama1},
-            //         {'name': 'Kitchen', 'imagePath': panorama2},
-            //         {'name': 'Bedroom', 'imagePath': panorama3},
-            //       ],
-            //     ));
+          onPressed: () async {
+            final property = await PropertiesRepo.propertyDetailsById(id);
+            Get.to(
+              () => PropertyDetailsPage(property: property),
+              duration: const Duration(milliseconds: 600),
+            );
           },
           child: Card(
             color: Theme.of(context).colorScheme.secondary,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/data/models/outer_property_model.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/seeall.dart';
@@ -59,13 +58,14 @@ class FeedPage extends StatelessWidget {
               final property = properties[index];
 
               return PropertyCardBig(
+                //TODO do the null safety shit
                 id: property.id,
-                imagePath: property.firstImage ?? apartment,
-                city: property.location?.city ?? "",
-                streetName: property.location?.street ?? "",
+                imagePath: property.firstImage!,
+                city: property.location!.city,
+                streetName: property.location!.street,
                 price: property.price,
                 rating: 4.5,
-                title: property.location?.country ?? "",
+                title: property.location!.country,
               );
             },
           ),
@@ -87,12 +87,14 @@ class FeedPage extends StatelessWidget {
           itemBuilder: (context, index) {
             final property = properties[index];
             return PropertyCardSmall(
+              //TODO do the null safety shit
+              id: property.id,
               title: "House with ${property.rooms} rooms",
               location:
                   '${property.location?.city} ${property.location?.street}',
               price: property.price,
               rating: 4.5, // Hardcoded
-              image: property.firstImage ?? apartment2,
+              image: property.firstImage!,
             );
           },
         ),

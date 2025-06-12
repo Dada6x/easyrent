@@ -62,7 +62,7 @@ class PropertiesRepo {
     try {
       final response = await api.get(
           // EndPoints.favourite,
-          "https://run.mocky.io/v3/0579100b-0ed3-4401-b19f-44772da1cc98");
+          "https://run.mocky.io/v3/8fda9fa1-90cb-4071-94da-31a79a757897");
       //todo add the endpoint of the API
       if (response.statusCode == 200) {
         debug.i("Fetch Properties status code  ${response.statusCode} ");

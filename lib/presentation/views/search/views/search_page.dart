@@ -2,11 +2,10 @@ import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/filterChips.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/home_searchbar.dart';
-import 'package:easyrent/presentation/views/search/widgets/property_widget_search.dart';
+import 'package:easyrent/presentation/views/search/widgets/property_widget_search_card.dart';
 import 'package:easyrent/presentation/views/search/widgets/search_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -83,7 +82,8 @@ class _SearchState extends State<Search> {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
-                  return const PropertyWidgetSearch(
+                  return const PropertyWidgetSearchCard(
+                    id: 1,
                     title: 'Lucky Lake Apartments',
                     location: 'Tokyo, Japan',
                     imagePath: apartment,

@@ -1,69 +1,44 @@
 import 'package:bounce/bounce.dart';
-import 'package:easyrent/core/constants/assets.dart';
-import 'package:easyrent/core/constants/colors.dart';
-import 'package:easyrent/core/app/controller/app_controller.dart';
-import 'package:easyrent/core/constants/utils/error_loading_mssg.dart';
-import 'package:easyrent/core/constants/utils/textStyles.dart';
-import 'package:easyrent/presentation/views/property_homepage/views/property_details_page.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
-// import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:easyrent/core/app/controller/app_controller.dart';
+import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/constants/utils/error_loading_mssg.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
+import 'package:easyrent/data/repos/propertiesRepo.dart';
+import 'package:easyrent/presentation/views/property_homepage/views/property_details_page.dart';
 
-class PropertyWidgetSearch extends StatelessWidget {
+class PropertyWidgetSearchCard extends StatelessWidget {
   final String title;
   final String location;
   final String imagePath;
   final double rating;
   final int price;
-  const PropertyWidgetSearch(
+  final int id;
+  const PropertyWidgetSearchCard(
       {super.key,
       required this.title,
       required this.location,
       required this.imagePath,
       required this.price,
-      required this.rating});
+      required this.rating,
+      required this.id});
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       return Bounce(
-        onTapUp: (p0) {
-           SystemSound.play(SystemSoundType.click);
-          // Get.to(
-          //   const PropertyDetailsPage(
-          //     title: "MODERNISM VILLA",
-          //     genre: "Villa",
-          //     ratings: 4.5,
-          //     reviews: 1221,
-          //     beds: 3,
-          //     baths: 4,
-          //     area: 2000,
-          //     price: 19322,
-          //     overview:
-          //         "Consequatur porro impedit alias odio voluptatem qui qui rerum aspernatur. Facere mollitia fugit perferendis deleniti quam neque voluptatem repellendus natus. Omnis ipsum culpa qui minima.",
-          //     previewImages: [apartment, apartment2, japan],
-          //     galleryImages: [
-          //       apartment3,
-          //       japan,
-          //       apartment2,
-          //       japan,
-          //       apartment,
-          //       japan,
-          //       apartment
-          //     ],
-          //     lat: 33.5138,
-          //     lng: 36.2765,
-          //     panoramaImages: [
-          //       {'name': 'Living Room', 'imagePath': panorama1},
-          //       {'name': 'Kitchen', 'imagePath': panorama2},
-          //       {'name': 'Bedroom', 'imagePath': panorama3},
-          //     ],
-          //   ),
-          // );
+        onTapUp: (p0) async {
+          SystemSound.play(SystemSoundType.click);
+          final property = await PropertiesRepo.propertyDetailsById(id);
+          Get.to(
+            () => PropertyDetailsPage(property: property),
+            duration: const Duration(milliseconds: 600),
+          );
         },
         child: Skeletonizer(
           enabled: !Get.find<AppController>().isOffline.value,
@@ -83,12 +58,11 @@ class PropertyWidgetSearch extends StatelessWidget {
                   ),
                   child: Stack(
                     children: [
-                      //# test
                       FancyShimmerImage(
                         height: 120.h,
                         width: 120.w,
                         boxFit: BoxFit.cover,
-                        imageUrl: "",
+                        imageUrl: imagePath,
                         errorWidget: const ErrorLoadingWidget(),
                       ),
                       Positioned(
@@ -145,8 +119,8 @@ class PropertyWidgetSearch extends StatelessWidget {
                       Text(
                         textAlign: TextAlign.end,
                         "\$$price",
-                        style:
-                            AppTextStyles.h18semi.copyWith(color: Theme.of(context).colorScheme.primary),
+                        style: AppTextStyles.h18semi.copyWith(
+                            color: Theme.of(context).colorScheme.primary),
                       ),
                     ],
                   ),

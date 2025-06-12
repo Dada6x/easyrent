@@ -1,6 +1,4 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:easyrent/data/models/propertyModel.dart';
-import 'package:easyrent/presentation/views/property_homepage/widgets/agent_widget.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +9,9 @@ import 'package:iconify_flutter_plus/icons/tabler.dart';
 import 'package:like_button/like_button.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/divider.dart';
+import 'package:easyrent/core/constants/utils/error_loading_mssg.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
+import 'package:easyrent/data/models/propertyModel.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/gallery_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/map_location_widget.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/panorama_page.dart';
@@ -41,6 +41,7 @@ class PropertyDetailsPage extends StatelessWidget {
                     itemBuilder: (context, index) => FancyShimmerImage(
                       imageUrl: property.propertyImages![index],
                       boxFit: BoxFit.cover,
+                      errorWidget: const ErrorLoadingWidget(),
                     ),
                     pagination: SwiperPagination(
                       builder: ConnectedDotsPagination(
@@ -141,10 +142,10 @@ class PropertyDetailsPage extends StatelessWidget {
                           Iconify(Ph.bathtub,
                               color: Theme.of(context).colorScheme.primary,
                               size: 26.r),
-                          "${property.bathrooms}Baths",
+                          "${property.bathrooms} Baths",
                           context),
                       _featureIcon(
-                          Iconify(Tabler.arrow_autofit_content,
+                          Iconify(Tabler.space,
                               color: Theme.of(context).colorScheme.primary,
                               size: 26.r),
                           "${property.area} sqft",
