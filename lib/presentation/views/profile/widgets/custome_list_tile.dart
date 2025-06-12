@@ -1,3 +1,4 @@
+import 'package:bounce/bounce.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/profile/view/profile.dart';
@@ -11,8 +12,9 @@ Widget customListTile({
   required Iconify? leading,
   required Widget destination_widget,
 }) {
-  return RawMaterialButton(
-    onPressed: () {
+  return Bounce(
+    tiltAngle: 0.9,
+    onTapUp: (p0) {
       Get.to(() => Scaffold_page(
             title: string,
             widget: destination_widget,
@@ -21,7 +23,6 @@ Widget customListTile({
     child: ListTile(
       leading: leading,
       iconColor: primaryBlue,
-      
       title: Text(string, style: AppTextStyles.h18medium),
       trailing: Icon(
         Icons.arrow_forward_ios,

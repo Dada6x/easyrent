@@ -1,3 +1,4 @@
+import 'package:bounce/bounce.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/core/constants/utils/button.dart';
@@ -28,23 +29,26 @@ class PaymentMethod extends StatelessWidget {
             SizedBox(
               height: 30.h,
             ),
-            Center(
-              child: Motion.elevated(
-                  elevation: 90,
-                  shadow: true,
-                  translation: true,
-                  glare: false,
-                  borderRadius: BorderRadius.circular(25),
-                  child: const CreditCardWidget()),
+            Bounce(
+              onTap: () {},
+              child: Center(
+                child: Motion.elevated(
+                    elevation: 90,
+                    shadow: true,
+                    translation: true,
+                    glare: false,
+                    borderRadius: BorderRadius.circular(25),
+                    child: const CreditCardWidget()),
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(right: 10.w),
               child: SizedBox(
-                height: 20.h,
+                height: 29.h,
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    "move Your Phone !",
+                    "move Your Phone !\n tap on the card ",
                     style: AppTextStyles.h10light.copyWith(color: primaryBlue),
                   ),
                 ),

@@ -1,4 +1,6 @@
+import 'package:bounce/bounce.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/property_homepage/controller/propertiy_controller.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +38,6 @@ class _MapsState extends State<Maps> {
           LatLng(property.location!.lat, property.location!.lon), 11);
     }
   }
-
-
-
-  
 
   final controller = Get.find<PropertiesController>();
 
@@ -129,6 +127,7 @@ class _MapsState extends State<Maps> {
               bottom: 95.h,
               right: 25.w,
               child: FloatingActionButton.small(
+                shape: const OvalBorder(),
                 child: const Icon(Icons.keyboard_arrow_up),
                 onPressed: () => setState(() => _isSwiperVisible = true),
               ),
@@ -201,7 +200,7 @@ class _MapsState extends State<Maps> {
             bottom: _isSwiperVisible ? 280.h : 20.h,
             right: 20.w,
             child: FloatingActionButton(
-              onPressed:(){},
+              onPressed: () {},
               child: const Icon(
                 Icons.my_location,
               ),
@@ -217,6 +216,44 @@ class _MapsState extends State<Maps> {
             right: 0,
             height: 250.h,
             child: Swiper(
+              //! the Card
+              onTap: (index) {
+                debug.i(properties[index].id);
+                //! depening on this You Can GO SEE the DETAILS BY INDEX
+
+                // Get.to(
+                //     transition: Transition.fadeIn,
+                //     duration: const Duration(milliseconds: 520),
+                //     const PropertyDetailsPage(
+                //       title: "MODERNISM VILLA",
+                //       genre: "Villa",
+                //       ratings: 4.5,
+                //       reviews: 1221,
+                //       beds: 3,
+                //       baths: 4,
+                //       area: 2000,
+                //       price: 19322,
+                //       overview:
+                //           "Consequatur porro impedit alias odio voluptatem qui qui rerum aspernatur. Facere mollitia fugit perferendis deleniti quam neque voluptatem repellendus natus. Omnis ipsum culpa qui minima.",
+                //       previewImages: [apartment, apartment2, japan],
+                //       galleryImages: [
+                //         apartment3,
+                //         japan,
+                //         apartment2,
+                //         japan,
+                //         apartment,
+                //         japan,
+                //         apartment
+                //       ],
+                //       lat: 33.5138,
+                //       lng: 36.2765,
+                //       panoramaImages: [
+                //         {'name': 'Living Room', 'imagePath': panorama1},
+                //         {'name': 'Kitchen', 'imagePath': panorama2},
+                //         {'name': 'Bedroom', 'imagePath': panorama3},
+                //       ],
+                //     ));
+              },
               itemCount: properties.length,
               viewportFraction: 0.85,
               scale: 0.95,
@@ -227,52 +264,55 @@ class _MapsState extends State<Maps> {
                 final property = properties[index];
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.w),
-                  child: Material(
-                    elevation: 4,
-                    borderRadius: BorderRadius.circular(15.r),
-                    child: ClipRRect(
+                  child: Bounce(
+                    onTapUp: (p0) {},
+                    child: Material(
+                      elevation: 4,
                       borderRadius: BorderRadius.circular(15.r),
-                      child: Stack(
-                        children: [
-                          Positioned.fill(
-                            child: FancyShimmerImage(
-                              imageUrl: property.firstImage ?? apartment,
-                              boxFit: BoxFit.cover,
-                              errorWidget: const ErrorLoadingWidget(),
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              padding: EdgeInsets.all(12.w),
-                              decoration: BoxDecoration(
-                                color: black.withOpacity(0.6),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15.r),
+                        child: Stack(
+                          children: [
+                            Positioned.fill(
+                              child: FancyShimmerImage(
+                                imageUrl: property.firstImage ?? apartment,
+                                boxFit: BoxFit.cover,
+                                errorWidget: const ErrorLoadingWidget(),
                               ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text('\$${property.price}/mo',
-                                      style: AppTextStyles.h18bold
-                                          .copyWith(color: primaryBlue)),
-                                  Text(
-                                    '${property.rooms} bds · ${property.bathrooms} ba · ${property.area} sqft',
-                                    style: AppTextStyles.h14medium.copyWith(
-                                      color: Colors.white70,
-                                    ),
-                                  ),
-                                  Text(
-                                      '${property.location?.city}, ${property.location?.street}',
-                                      style: AppTextStyles.h12light.copyWith(
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              left: 0,
+                              right: 0,
+                              child: Container(
+                                padding: EdgeInsets.all(12.w),
+                                decoration: BoxDecoration(
+                                  color: black.withOpacity(0.6),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text('\$${property.price}/mo',
+                                        style: AppTextStyles.h18bold
+                                            .copyWith(color: primaryBlue)),
+                                    Text(
+                                      '${property.rooms} bds · ${property.bathrooms} ba · ${property.area} sqft',
+                                      style: AppTextStyles.h14medium.copyWith(
                                         color: Colors.white70,
-                                      )),
-                                ],
+                                      ),
+                                    ),
+                                    Text(
+                                        '${property.location?.city}, ${property.location?.street}',
+                                        style: AppTextStyles.h12light.copyWith(
+                                          color: Colors.white70,
+                                        )),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

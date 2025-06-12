@@ -61,6 +61,7 @@ class PropertyDetailsPage extends StatelessWidget {
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FloatingActionButton(
+          shape: const OvalBorder(),
             child: const Iconify(
               AkarIcons.github_fill,
               size: 40,

@@ -1,3 +1,4 @@
+import 'package:bounce/bounce.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,111 +38,114 @@ class PropertyCardFavorite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return Skeletonizer(
-        ignoreContainers: false,
-        ignorePointers: false,
-        enabled: !Get.find<AppController>().isOffline.value,
-        enableSwitchAnimation: true,
-        child: SizedBox(
-          child: Container(
-            margin: EdgeInsets.only(right: 12.w, bottom: 16.h),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-            child: Row(
-              children: [
-                //! image
-                ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    bottomLeft: Radius.circular(16),
-                  ),
-                  child: Stack(
-                    children: [
-                      FancyShimmerImage(
-                        height: 120.h,
-                        width: 120.w,
-                        boxFit: BoxFit.cover,
-                        imageUrl: imagePath,
-                        errorWidget: const ErrorLoadingWidget(),
-                      ),
-                    ],
-                  ),
-                ),
-                //! details
-                Expanded(
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+      return Bounce(
+        onTapUp: (p0) {},
+        child: Skeletonizer(
+          ignoreContainers: false,
+          ignorePointers: false,
+          enabled: !Get.find<AppController>().isOffline.value,
+          enableSwitchAnimation: true,
+          child: SizedBox(
+            child: Container(
+              margin: EdgeInsets.only(right: 12.w, bottom: 16.h),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+              child: Row(
+                children: [
+                  //! image
+                  ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      bottomLeft: Radius.circular(16),
+                    ),
+                    child: Stack(
                       children: [
-                        Text(title, style: AppTextStyles.h18semi),
-                        SizedBox(height: 4.h),
-                        //! LOCATION
-                        Row(
-                          children: [
-                            //! quarter
-                            Text(
-                              quarter,
-                              style: AppTextStyles.h14regular
-                                  .copyWith(color: grey),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            SizedBox(
-                              width: 8.w,
-                            ),
-                            //! city
-                            Text(
-                              city,
-                              style: AppTextStyles.h14regular
-                                  .copyWith(color: grey),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            //! Bath
-                            _FeaturesIcon(
-                              number: numberOfBaths,
-                              icon: Iconify(Ph.bathtub,
-                                  color: primaryBlue, size: 20.sp),
-                            ),
-                            //! Beds/Rooms
-                            _FeaturesIcon(
-                              number: numberOfBeds,
-                              icon: Iconify(Ph.bed,
-                                  color: primaryBlue, size: 20.sp),
-                            ),
-                            //! Area
-                            _FeaturesIcon(
-                              number: area.toInt(),
-                              icon: Iconify(Tabler.arrow_autofit_content,
-                                  color: primaryBlue, size: 20.sp),
-                            ),
-                          ],
+                        FancyShimmerImage(
+                          height: 120.h,
+                          width: 120.w,
+                          boxFit: BoxFit.cover,
+                          imageUrl: imagePath,
+                          errorWidget: const ErrorLoadingWidget(),
                         ),
                       ],
                     ),
                   ),
-                ),
-                //! likeButton
-                Padding(
-                  padding: EdgeInsets.only(right: 12.w),
-                  child: LikeButton(
-                    isLiked: true,
-                    //! priorityScore
-                    likeCount: priorityScore,
-                    countPostion: CountPostion.bottom,
+                  //! details
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 12.w, vertical: 12.h),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(title, style: AppTextStyles.h18semi),
+                          SizedBox(height: 4.h),
+                          //! LOCATION
+                          Row(
+                            children: [
+                              //! quarter
+                              Text(
+                                quarter,
+                                style: AppTextStyles.h14regular
+                                    .copyWith(color: grey),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              SizedBox(
+                                width: 8.w,
+                              ),
+                              //! city
+                              Text(
+                                city,
+                                style: AppTextStyles.h14regular
+                                    .copyWith(color: grey),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              //! Bath
+                              _FeaturesIcon(
+                                number: numberOfBaths,
+                                icon: Iconify(Ph.bathtub,
+                                    color: primaryBlue, size: 20.sp),
+                              ),
+                              //! Beds/Rooms
+                              _FeaturesIcon(
+                                number: numberOfBeds,
+                                icon: Iconify(Ph.bed,
+                                    color: primaryBlue, size: 20.sp),
+                              ),
+                              //! Area
+                              _FeaturesIcon(
+                                number: area.toInt(),
+                                icon: Iconify(Tabler.arrow_autofit_content,
+                                    color: primaryBlue, size: 20.sp),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                  //! likeButton
+                  Padding(
+                    padding: EdgeInsets.only(right: 12.w),
+                    child: LikeButton(
+                      isLiked: true,
+                      //! priorityScore
+                      likeCount: priorityScore,
+                      countPostion: CountPostion.bottom,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
