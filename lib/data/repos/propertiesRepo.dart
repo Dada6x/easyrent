@@ -2,12 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:easyrent/core/services/api/dio_consumer.dart';
 import 'package:easyrent/core/services/api/errors/exceptions.dart';
 import 'package:easyrent/data/models/favourite_model.dart';
-import 'package:easyrent/data/models/property_model.dart';
+import 'package:easyrent/data/models/outer_property_model.dart';
 import 'package:easyrent/main.dart';
 
 class PropertiesRepo {
   //!------------------------ get all properties:(homePage)----------------------------->
-  static Future<List<PropertyModel>> getProperties() async {
+  static Future<List<OuterPropertyModel>> getProperties() async {
     final api = DioConsumer(Dio()); //TODO not like this call the dio
     try {
       final response = await api
@@ -21,7 +21,7 @@ class PropertiesRepo {
           debug.e(v);
           tempList.add(v);
         }
-        return PropertyModel.propertiesFromSnapshot(tempList);
+        return OuterPropertyModel.propertiesFromSnapshot(tempList);
       }
       return [];
     } on ServerException catch (e) {
@@ -29,7 +29,6 @@ class PropertiesRepo {
       return [];
     }
   }
-
 
 //!------------------------ get Favorite properties------------------------------->
   static Future<List<FavoritePropertyModel>> getFavoriteProperties() async {
@@ -57,7 +56,7 @@ class PropertiesRepo {
   }
 
 //!------------------------ get Properties Details ------------------------------->
-  static Future<List<PropertyModel>> propertyDetailsById(int id) async {
+  static Future<List<OuterPropertyModel>> propertyDetailsById(int id) async {
     final api = DioConsumer(Dio());
     try {
       final response = await api.get(
@@ -72,7 +71,7 @@ class PropertiesRepo {
           debug.e(v);
           tempList.add(v);
         }
-        return PropertyModel.propertiesFromSnapshot(tempList);
+        return OuterPropertyModel.propertiesFromSnapshot(tempList);
       }
       return [];
     } on ServerException catch (e) {

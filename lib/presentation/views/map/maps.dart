@@ -13,7 +13,7 @@ import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/error_loading_mssg.dart';
 import 'package:easyrent/core/constants/utils/pages/error_page.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
-import 'package:easyrent/data/models/property_model.dart';
+import 'package:easyrent/data/models/outer_property_model.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/property_homepage/controller/propertiy_controller.dart';
 
@@ -39,7 +39,7 @@ class _MapsState extends State<Maps> {
     super.dispose();
   }
 
-  void _goToProperty(PropertyModel property) {
+  void _goToProperty(OuterPropertyModel property) {
     if (property.location != null) {
       _mapController.move(
           LatLng(property.location!.lat, property.location!.lon), 11);

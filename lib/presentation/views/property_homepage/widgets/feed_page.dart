@@ -1,7 +1,7 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
-import 'package:easyrent/data/models/property_model.dart';
+import 'package:easyrent/data/models/outer_property_model.dart';
 import 'package:easyrent/presentation/views/property_homepage/views/seeall.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/filterChips.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/home_searchbar.dart';
@@ -16,7 +16,7 @@ class FeedPage extends StatelessWidget {
     super.key,
     required this.properties,
   });
-  final List<PropertyModel> properties;
+  final List<OuterPropertyModel> properties;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,8 @@ class FeedPage extends StatelessWidget {
                 },
                 child: Text(
                   "See All".tr,
-                  style: AppTextStyles.h16semi.copyWith(color: Theme.of(context).colorScheme.primary),
+                  style: AppTextStyles.h16semi
+                      .copyWith(color: Theme.of(context).colorScheme.primary),
                 ),
               ),
               const SizedBox(height: 20),
@@ -64,9 +65,7 @@ class FeedPage extends StatelessWidget {
                 streetName: property.location?.street ?? "",
                 price: property.price,
                 rating: 4.5,
-
-                //! need to remove it
-                title: "Moderincia",
+                title: property.location?.country ?? "",
               );
             },
           ),
