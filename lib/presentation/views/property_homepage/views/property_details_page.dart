@@ -409,7 +409,7 @@ class ConnectedDotsPagination extends SwiperPlugin {
   ConnectedDotsPagination({
     this.dotSize = 8.0,
     this.activeWidth = 24.0,
-    this.activeColor = primaryBlue,
+    this.activeColor = blue,
     this.inactiveColor = grey,
   });
 

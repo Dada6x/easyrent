@@ -29,8 +29,8 @@ AppBar profileAppbar() {
                 },
                 icon: Icon(Icons.notifications,
                     size: 30.r,
-                    color: Color(userPref?.getInt('primaryColor') ??
-                        primaryBlue.value))),
+                    color:
+                        Color(userPref?.getInt('primaryColor') ?? blue.value))),
           ],
         ),
       )

@@ -38,12 +38,12 @@ void main() async {
   userPref = await SharedPreferences.getInstance();
   bool isDarkTheme = userPref?.getBool('isDarkTheme') ?? false;
   int? savedColor = userPref?.getInt('primaryColor');
-  Color primaryColor = savedColor != null ? Color(savedColor) : primaryBlue;
+  Color primaryColor = savedColor != null ? Color(savedColor) : blue;
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      systemNavigationBarColor: primaryBlue,
+      systemNavigationBarColor: blue,
     ),
   );
   // the payment Card gyroscope 3D shi

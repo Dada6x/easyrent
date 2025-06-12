@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // primary colors!
-const primaryBlue = Color(0xFF0061FF);
+const blue = Color(0xFF0061FF);
 const red = Color(0xFFF75555);
 const green = Color(0xFF4CD964);
 const orange = Colors.orange;
@@ -18,7 +18,8 @@ const darkBorder = Color(0xFF0F1A2D);
 const darkSecondary = Color(0xFF0D1116);
 const darkBackground = Color(0xFF0D0D0D);
 
-// const darkPrimary2 = Color(0xFF131313); // for containers
 // other
 const shimmerContainer = Color.fromARGB(255, 72, 71, 71);
 const lightshimerContainer = Color.fromARGB(255, 231, 232, 238);
+
+const purple = Color(0xFF8A56F9);

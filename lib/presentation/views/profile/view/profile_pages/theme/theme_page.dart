@@ -24,7 +24,7 @@ class ThemePage extends StatelessWidget {
             context,
             title: 'Light Mode',
             icon: Icons.light_mode,
-            color: primaryBlue,
+            color: blue,
             theme: themes.lightMode,
             selected: currentTheme.brightness == Brightness.light,
           ),
@@ -33,7 +33,7 @@ class ThemePage extends StatelessWidget {
             context,
             title: 'Dark Mode',
             icon: Icons.dark_mode,
-            color: primaryBlue,
+            color: blue,
             theme: themes.darkMode,
             selected: currentTheme.brightness == Brightness.dark,
           ),
@@ -73,12 +73,25 @@ class ThemePage extends StatelessWidget {
               ),
             ),
           ),
+          _buildThemeTile(
+            context,
+            title: 'Purple',
+            icon: Icons.circle,
+            color: purple,
+            theme: currentTheme.copyWith(
+              colorScheme: currentTheme.colorScheme.copyWith(
+                primary: purple,
+                secondary: purple.withOpacity(0.08),
+              ),
+            ),
+          ),
           SizedBox(height: 10.h),
           const CustomDivider(),
         ],
       ),
     );
   }
+
 
   Widget _buildThemeTile(
     BuildContext context, {

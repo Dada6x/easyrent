@@ -38,7 +38,7 @@ class ForgetPasswordPage extends StatelessWidget {
                   fillColor: Theme.of(context).colorScheme.secondary,
                   filled: true,
                   prefixIcon: const Icon(Icons.phone),
-                  prefixIconColor: primaryBlue,
+                  prefixIconColor: blue,
                   labelText: "Phone Number".tr,
                   labelStyle: AppTextStyles.h20regular.copyWith(color: grey),
                   enabledBorder: OutlineInputBorder(
@@ -63,7 +63,7 @@ class ForgetPasswordPage extends StatelessWidget {
                     Get.to(() => const VerificationCodePage());
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryBlue,
+                    backgroundColor: blue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.r),
                     ),

@@ -8,6 +8,7 @@ class EndPoints {
   static String me = "/auth/me";
   static String tokenTime = "/auth/tokenTime";
 
+  static String openstreetmap="https://tile.openstreetmap.org/{z}/{x}/{y}.png";
   static String fetchAllProperties = "/getAllPropereties";
 
   // static String getUserData(id) {

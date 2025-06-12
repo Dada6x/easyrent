@@ -13,7 +13,7 @@ class AppController extends GetxController {
   RxBool isDarkMode = false.obs;
   RxBool isArabic = true.obs;
   RxBool isOffline = true.obs;
-  final Rx<Color> primaryColor = primaryBlue.obs;
+  final Rx<Color> primaryColor = blue.obs;
 
   Future<void> loadPrimaryColor() async {
     final colorValue = userPref?.getInt('primaryColor');
@@ -83,7 +83,7 @@ class AppController extends GetxController {
     final brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     final isLight = brightness == Brightness.light;
     final colorValue = userPref?.getInt('primaryColor');
-    final primary = colorValue != null ? Color(colorValue) : primaryBlue;
+    final primary = colorValue != null ? Color(colorValue) : blue;
     final newTheme = isLight
         ? Themes().darkMode.copyWith(
               colorScheme:

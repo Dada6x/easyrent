@@ -1,5 +1,6 @@
 import 'package:bounce/bounce.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:easyrent/core/services/api/end_points.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -82,8 +83,7 @@ class _MapsState extends State<Maps> {
               ),
               children: [
                 TileLayer(
-                  urlTemplate:
-                      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                  urlTemplate: EndPoints.openstreetmap,
                   subdomains: const ['a', 'b', 'c'],
                 ),
                 MarkerLayer(
@@ -106,12 +106,17 @@ class _MapsState extends State<Maps> {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.primary.withOpacity(
-                                    0.15), // Light translucent background
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primary
+                                    .withOpacity(
+                                        0.15), // Light translucent background
                                 shape: BoxShape
                                     .circle, // or BoxShape.rectangle with borderRadius
-                                border:
-                                    Border.all(color: Theme.of(context).colorScheme.primary, width: 1.5),
+                                border: Border.all(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    width: 1.5),
                               ),
                               child: Icon(
                                 Icons.circle,
@@ -302,8 +307,10 @@ class _MapsState extends State<Maps> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Text('\$${property.price}/mo',
-                                        style: AppTextStyles.h18bold
-                                            .copyWith(color: Theme.of(context).colorScheme.primary)),
+                                        style: AppTextStyles.h18bold.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary)),
                                     Text(
                                       '${property.rooms} bds · ${property.bathrooms} ba · ${property.area} sqft',
                                       style: AppTextStyles.h14medium.copyWith(

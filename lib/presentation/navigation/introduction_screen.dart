@@ -9,9 +9,9 @@ import 'package:get/get.dart';
 
 const items = [
   white,
-  primaryBlue,
+  blue,
   white,
-  primaryBlue,
+  blue,
 ];
 const images = [
   intro1,
@@ -95,7 +95,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                             fontSize: 18.sp,
                             fontFamily: "Rubik",
                             fontWeight: FontWeight.w600,
-                            color: i % 2 == 0 ? primaryBlue : Colors.white,
+                            color: i % 2 == 0 ? blue : Colors.white,
                           ),
                         ),
                       ),
@@ -167,9 +167,8 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                                 fontSize: 18.5.sp,
                                 fontFamily: "Rubik",
                                 // fontWeight: FontWeight.w8,
-                                color: colorIndex % 2 == 0
-                                    ? primaryBlue
-                                    : Colors.white,
+                                color:
+                                    colorIndex % 2 == 0 ? blue : Colors.white,
                               ),
                             ),
                           ),
@@ -289,7 +288,6 @@ class _FloatingWidgetState extends State<FloatingWidget>
             fit: BoxFit.contain,
             width: double.infinity,
             height: 250.h,
-            
           ),
         ),
       ),

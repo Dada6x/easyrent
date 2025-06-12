@@ -103,7 +103,7 @@ class CreditCardWidget extends StatelessWidget {
             const Spacer(),
             Skeletonizer(
               effect: const ShimmerEffect(
-                  baseColor: primaryBlue, highlightColor: Colors.blueAccent),
+                  baseColor: blue, highlightColor: Colors.blueAccent),
               enabled: !Get.find<AppController>().isOffline.value,
               child: Text(
                 //! take the name of the Use

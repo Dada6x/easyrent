@@ -1,5 +1,5 @@
 import 'package:easyrent/core/constants/utils/pages/error_page.dart';
-import 'package:easyrent/core/constants/utils/pages/nodata.dart';
+import 'package:easyrent/core/constants/utils/pages/nodata_page.dart';
 import 'package:easyrent/data/models/favourite_model.dart';
 import 'package:easyrent/data/repos/propertiesRepo.dart';
 import 'package:easyrent/main.dart';

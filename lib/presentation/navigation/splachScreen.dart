@@ -95,7 +95,7 @@ class _SplashScreenState extends State<SplashScreen>
                 final radius = screenSize.longestSide * 1.5 * _animation.value;
                 return ClipPath(
                     clipper: CircleRevealClipper(radius),
-                    child: Container(color: primaryBlue));
+                    child: Container(color: blue));
               },
             ),
             Center(

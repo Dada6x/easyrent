@@ -9,7 +9,7 @@ class Themes {
     ],
     fontFamily: "Rubik",
     colorScheme: ColorScheme.light(
-      primary: primaryBlue,
+      primary: blue,
       surface: Colors.grey.shade50,
       secondary: lightSecondary,
       outline: lightBorder,
@@ -24,23 +24,11 @@ class Themes {
     ],
     fontFamily: "Rubik",
     colorScheme: const ColorScheme.dark(
-        primary: primaryBlue,
+        primary: blue,
         surface: darkBackground,
         secondary: darkSecondary,
         outline: darkBorder,
         // for shimmer effect
         onTertiary: shimmerContainer),
-  );
-  final ThemeData softLightMode = ThemeData(
-    extensions: const [
-      SkeletonizerConfigData(),
-    ],
-    fontFamily: "Rubik",
-    colorScheme: const ColorScheme.dark(
-      primary: red, // Soft terra-cotta/orange-brown
-      surface: darkBackground,
-      secondary: darkSecondary,
-      outline: darkBorder, // Warm gray border
-    ),
   );
 }

@@ -204,7 +204,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                         children: [
                           const Icon(
                             Icons.timer,
-                            color: primaryBlue,
+                            color: blue,
                           ),
                           SizedBox(width: 10.w),
                           Text(
@@ -212,7 +212,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                                 ? "Resend Code"
                                 : "Resend in 00:${_remainingTime.toString().padLeft(2, '0')}",
                             style: AppTextStyles.h14regular.copyWith(
-                              color: _canResend ? primaryBlue : grey,
+                              color: _canResend ? blue : grey,
                             ),
                           ),
                         ],

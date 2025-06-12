@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:easyrent/core/constants/utils/pages/error_page.dart';
-import 'package:easyrent/core/constants/utils/pages/nodata.dart';
+import 'package:easyrent/core/constants/utils/pages/nodata_page.dart';
 import 'package:easyrent/presentation/views/property_homepage/controller/propertiy_controller.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/feed_page.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/home_appbar.dart';
