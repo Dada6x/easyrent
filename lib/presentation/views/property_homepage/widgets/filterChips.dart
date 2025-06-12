@@ -11,11 +11,11 @@ class PropertyFilterChips extends StatefulWidget {
   State<PropertyFilterChips> createState() => _PropertyFilterChipsState();
 }
 
-class _PropertyFilterChipsState extends State<PropertyFilterChips> {
+int selectedIndex = 0;
 
+class _PropertyFilterChipsState extends State<PropertyFilterChips> {
   @override
   Widget build(BuildContext context) {
-  int selectedIndex = 0;
     final List<String> filters = [
       'All'.tr,
       'House'.tr,
@@ -38,7 +38,7 @@ class _PropertyFilterChipsState extends State<PropertyFilterChips> {
                 showCheckmark: false,
                 label: Text(filters[index], style: AppTextStyles.h14regular),
                 selected: isSelected,
-                selectedColor: primaryBlue,
+                selectedColor: Theme.of(context).colorScheme.primary,
                 backgroundColor: Theme.of(context).colorScheme.secondary,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.r),

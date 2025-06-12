@@ -1,5 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:easyrent/core/app/controller/app_controller.dart';
 import 'package:easyrent/core/app/theme/themes.dart';
+import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/divider.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:flutter/material.dart';
@@ -11,52 +13,110 @@ class ThemePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themes = Themes();
+    final currentTheme = ThemeModelInheritedNotifier.of(context).theme;
+
     return Padding(
       padding: EdgeInsets.all(8.0.r),
       child: Column(
         children: [
-          RepaintBoundary(
-            child: ThemeSwitcher(
-              builder: (context) {
-                return ListTile(
-                  shape: ContinuousRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.r),
-                      side: BorderSide(
-                        color: Theme.of(context).colorScheme.outline,
-                      )),
-                  onTap: () {
-                    var brightness = ThemeModelInheritedNotifier.of(context)
-                        .theme
-                        .brightness;
-                    ThemeSwitcher.of(context).changeTheme(
-                      theme: brightness == Brightness.light
-                          ? Themes().darkMode
-                          : Themes().lightMode,
-                      isReversed: brightness == Brightness.light,
-                    );
-                    //!
-                  },
-                  tileColor: Theme.of(context).colorScheme.secondary,
-                  leading: Icon(
-                    color: Theme.of(context).colorScheme.primary,
-                    ThemeModelInheritedNotifier.of(context).theme.brightness ==
-                            Brightness.light
-                        ? Icons.dark_mode
-                        : Icons.light_mode,
-                  ),
-                  title: Text(
-                    Get.isDarkMode ? "Light Mode".tr : "Dark Mode".tr,
-                    style: AppTextStyles.h18regular,
-                  ),
-                );
-              },
+          _buildThemeTile(
+            context,
+            title: 'Light Mode',
+            icon: Icons.light_mode,
+            color: primaryBlue,
+            theme: themes.lightMode,
+            selected: currentTheme.brightness == Brightness.light,
+          ),
+          SizedBox(height: 10.h),
+          _buildThemeTile(
+            context,
+            title: 'Dark Mode',
+            icon: Icons.dark_mode,
+            color: primaryBlue,
+            theme: themes.darkMode,
+            selected: currentTheme.brightness == Brightness.dark,
+          ),
+          SizedBox(height: 10.h),
+          const CustomDivider(),
+          const Text("Custoom primary Color"),
+          _buildThemeTile(
+            context,
+            title: 'Red',
+            icon: Icons.circle,
+            color: red,
+            theme: currentTheme.copyWith(
+              colorScheme: currentTheme.colorScheme.copyWith(
+                primary: red,
+              ),
             ),
           ),
-          SizedBox(
-            height: 10.h,
+          _buildThemeTile(
+            context,
+            title: 'Green',
+            icon: Icons.circle,
+            color: green,
+            theme: currentTheme.copyWith(
+              colorScheme: currentTheme.colorScheme.copyWith(
+                primary: green,
+              ),
+            ),
           ),
-          const CustomDivider()
+          _buildThemeTile(
+            context,
+            title: 'Grey',
+            icon: Icons.circle,
+            color: grey,
+            theme: currentTheme.copyWith(
+              colorScheme: currentTheme.colorScheme.copyWith(
+                primary: grey,
+              ),
+            ),
+          ),
+          SizedBox(height: 10.h),
+          const CustomDivider(),
         ],
+      ),
+    );
+  }
+
+  Widget _buildThemeTile(
+    BuildContext context, {
+    required String title,
+    required IconData icon,
+    required Color color,
+    required ThemeData theme,
+    bool selected = false,
+  }) {
+    return RepaintBoundary(
+      child: ThemeSwitcher(
+        builder: (context) {
+          return ListTile(
+            onTap: () {
+              // Change the theme
+              ThemeSwitcher.of(context).changeTheme(
+                theme: theme,
+                isReversed: false,
+              );
+
+              // Save the selected primary color using AppController
+              final appController = Get.find<AppController>();
+              appController.setPrimaryColor(color);
+            },
+            tileColor: selected
+                ? Theme.of(context).colorScheme.secondary.withOpacity(0.3)
+                : Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+            leading: CircleAvatar(
+              radius: 18.sp,
+              backgroundColor: color,
+              child: Icon(icon, color: Colors.white, size: 18.sp),
+            ),
+            title: Text(
+              title.tr,
+              style: AppTextStyles.h18regular,
+            ),
+          );
+        },
       ),
     );
   }

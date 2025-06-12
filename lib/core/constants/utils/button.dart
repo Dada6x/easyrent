@@ -41,7 +41,7 @@ class _CustomButtonState extends State<CustomButton> {
         child: ElevatedButton(
           onPressed: isLoading ? null : _handleTap,
           style: ElevatedButton.styleFrom(
-            backgroundColor: primaryBlue,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius ?? 12.r),
             ),

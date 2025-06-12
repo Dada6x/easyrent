@@ -49,7 +49,7 @@ class PaymentMethod extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: Text(
                     "move Your Phone !\n tap on the card ",
-                    style: AppTextStyles.h10light.copyWith(color: primaryBlue),
+                    style: AppTextStyles.h10light.copyWith(color: Theme.of(context).colorScheme.primary),
                   ),
                 ),
               ),

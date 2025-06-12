@@ -1,7 +1,5 @@
 import 'package:bounce/bounce.dart';
 import 'package:card_swiper/card_swiper.dart';
-import 'package:easyrent/main.dart';
-import 'package:easyrent/presentation/views/property_homepage/controller/propertiy_controller.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -15,6 +13,8 @@ import 'package:easyrent/core/constants/utils/error_loading_mssg.dart';
 import 'package:easyrent/core/constants/utils/pages/error_page.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/data/models/property_model.dart';
+import 'package:easyrent/main.dart';
+import 'package:easyrent/presentation/views/property_homepage/controller/propertiy_controller.dart';
 
 class Maps extends StatefulWidget {
   const Maps({super.key});
@@ -30,6 +30,12 @@ class _MapsState extends State<Maps> {
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _mapController.dispose();
+    super.dispose();
   }
 
   void _goToProperty(PropertyModel property) {
@@ -100,17 +106,17 @@ class _MapsState extends State<Maps> {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                color: primaryBlue.withOpacity(
+                                color: Theme.of(context).colorScheme.primary.withOpacity(
                                     0.15), // Light translucent background
                                 shape: BoxShape
                                     .circle, // or BoxShape.rectangle with borderRadius
                                 border:
-                                    Border.all(color: primaryBlue, width: 1.5),
+                                    Border.all(color: Theme.of(context).colorScheme.primary, width: 1.5),
                               ),
                               child: Icon(
                                 Icons.circle,
                                 size: 24.r,
-                                color: primaryBlue,
+                                color: Theme.of(context).colorScheme.primary,
                               ),
                             ),
                           ),
@@ -127,6 +133,7 @@ class _MapsState extends State<Maps> {
               bottom: 95.h,
               right: 25.w,
               child: FloatingActionButton.small(
+                backgroundColor: Theme.of(context).colorScheme.primary,
                 shape: const OvalBorder(),
                 child: const Icon(Icons.keyboard_arrow_up),
                 onPressed: () => setState(() => _isSwiperVisible = true),
@@ -140,7 +147,7 @@ class _MapsState extends State<Maps> {
               height: 140.h,
               width: 56.w,
               decoration: BoxDecoration(
-                color: primaryBlue,
+                color: Theme.of(context).colorScheme.primary,
                 borderRadius: BorderRadius.circular(16.r),
                 boxShadow: const [
                   BoxShadow(
@@ -200,6 +207,7 @@ class _MapsState extends State<Maps> {
             bottom: _isSwiperVisible ? 280.h : 20.h,
             right: 20.w,
             child: FloatingActionButton(
+              backgroundColor: Theme.of(context).colorScheme.primary,
               onPressed: () {},
               child: const Icon(
                 Icons.my_location,
@@ -295,7 +303,7 @@ class _MapsState extends State<Maps> {
                                   children: [
                                     Text('\$${property.price}/mo',
                                         style: AppTextStyles.h18bold
-                                            .copyWith(color: primaryBlue)),
+                                            .copyWith(color: Theme.of(context).colorScheme.primary)),
                                     Text(
                                       '${property.rooms} bds · ${property.bathrooms} ba · ${property.area} sqft',
                                       style: AppTextStyles.h14medium.copyWith(

@@ -2,7 +2,6 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:easyrent/core/app/controller/app_controller.dart';
-import 'package:easyrent/core/constants/colors.dart';
 
 class ThemeLanguageRow extends StatelessWidget {
   const ThemeLanguageRow({super.key});
@@ -29,7 +28,7 @@ class LanguageToggleButton extends StatelessWidget {
         appController.isArabic.value = !appController.isArabic.value;
         appController.changeLang(appController.isArabic.value ? 'en' : 'ar');
       },
-      icon: const Icon(Icons.translate, color: primaryBlue),
+      icon:  Icon(Icons.translate, color: Theme.of(context).colorScheme.primary),
     );
   }
 }

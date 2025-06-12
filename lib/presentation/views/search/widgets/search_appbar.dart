@@ -1,6 +1,7 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
+import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,8 +18,7 @@ AppBar searchAppbar() {
     title: Row(
       children: [
         Flexible(
-          child: SvgPicture.asset(
-              width: 30.w, height: 35.h, searchHouse),
+          child: SvgPicture.asset(width: 30.w, height: 35.h, searchHouse),
         ),
         SizedBox(
           width: 12.w,
@@ -33,11 +33,10 @@ AppBar searchAppbar() {
             onPressed: () {
               HomeScreenNavigator.scaffoldKey.currentState?.openEndDrawer();
             },
-            icon: Icon(
-              Icons.notifications,
-              size: 30.r,
-              color: primaryBlue,
-            )),
+            icon: Icon(Icons.notifications,
+                size: 30.r,
+                color: Color(
+                    userPref?.getInt('primaryColor') ?? primaryBlue.value))),
       )
     ],
   );

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/core/services/api/dio_consumer.dart';
 import 'package:easyrent/data/repos/userRepo.dart';
 import 'package:easyrent/main.dart';
@@ -20,18 +21,39 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+  late Animation<double> _textOpacityAnimation;
+  late Animation<Offset> _textSlideAnimation;
 
   @override
   void initState() {
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 1120),
+      duration: const Duration(milliseconds: 1500),
       vsync: this,
     );
+
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
+
+    // Text animations
+    _textOpacityAnimation =
+        Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.5, 1.0, curve: Curves.easeIn),
+    ));
+
+    _textSlideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.5),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
+      ),
+    );
+
     Future.delayed(const Duration(seconds: 2), () {
       _controller.forward().whenComplete(() {
         // ! just the introduction Screens sharedPref
@@ -42,6 +64,7 @@ class _SplashScreenState extends State<SplashScreen>
         }
       });
     });
+
     //! fetch the User Profile During the SplashScreen only if hes Logged in
     if (userPref?.getBool("isLoggedIn") == true) {
       debug.f("User is Logged in so im fetching his Data ");
@@ -75,7 +98,37 @@ class _SplashScreenState extends State<SplashScreen>
                     child: Container(color: primaryBlue));
               },
             ),
-            Center(child: Lottie.asset(easyRent)),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Lottie.asset(easyRent),
+                  const SizedBox(height: 20),
+                  AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, child) {
+                      return SlideTransition(
+                        position: _textSlideAnimation,
+                        child: Opacity(
+                          opacity: _textOpacityAnimation.value,
+                          child: Text("Find your Ideal Home",
+                              style: AppTextStyles.h24medium.copyWith(
+                                color: white,
+                                shadows: [
+                                  Shadow(
+                                    blurRadius: 10,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: const Offset(2, 2),
+                                  ),
+                                ],
+                              )),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -100,7 +153,3 @@ class CircleRevealClipper extends CustomClipper<Path> {
   bool shouldReclip(CircleRevealClipper oldClipper) =>
       radius != oldClipper.radius;
 }
-
-// ctrl + Q SideBar items (version ,search , notes and todos )
-// ctrl + E search in project (files )
-// ctrl + R change Projects

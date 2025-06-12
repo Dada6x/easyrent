@@ -13,7 +13,6 @@ Widget customListTile({
   required Widget destination_widget,
 }) {
   return Bounce(
-    tiltAngle: 0.9,
     onTapUp: (p0) {
       Get.to(() => Scaffold_page(
             title: string,
@@ -22,7 +21,7 @@ Widget customListTile({
     },
     child: ListTile(
       leading: leading,
-      iconColor: primaryBlue,
+      iconColor: grey,
       title: Text(string, style: AppTextStyles.h18medium),
       trailing: Icon(
         Icons.arrow_forward_ios,

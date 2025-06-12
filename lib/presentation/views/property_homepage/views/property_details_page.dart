@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
-import 'package:iconify_flutter_plus/icons/akar_icons.dart';
 import 'package:iconify_flutter_plus/icons/ph.dart';
 import 'package:iconify_flutter_plus/icons/tabler.dart';
 import 'package:like_button/like_button.dart';
@@ -58,16 +57,16 @@ class PropertyDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: FloatingActionButton(
-          shape: const OvalBorder(),
-            child: const Iconify(
-              AkarIcons.github_fill,
-              size: 40,
-            ),
-            onPressed: () {}),
-      ),
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.all(8.0),
+      //   child: FloatingActionButton(
+      //     shape: const OvalBorder(),
+      //       child: const Iconify(
+      //         AkarIcons.github_fill,
+      //         size: 40,
+      //       ),
+      //       onPressed: () {}),
+      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -85,7 +84,7 @@ class PropertyDetailsPage extends StatelessWidget {
                     ),
                     pagination: SwiperPagination(
                       builder: ConnectedDotsPagination(
-                        activeColor: primaryBlue,
+                        activeColor: Theme.of(context).colorScheme.primary,
                         inactiveColor: Colors.white60,
                       ),
                     ),
@@ -143,7 +142,7 @@ class PropertyDetailsPage extends StatelessWidget {
                           },
                           icon: Icon(
                             Icons.panorama_horizontal_select,
-                            color: primaryBlue,
+                            color: Theme.of(context).colorScheme.primary,
                             size: 28.r,
                           ))
                     ],
@@ -160,8 +159,8 @@ class PropertyDetailsPage extends StatelessWidget {
                           ),
                           child: Text(
                             genre,
-                            style: AppTextStyles.h10semi
-                                .copyWith(color: primaryBlue),
+                            style: AppTextStyles.h10semi.copyWith(
+                                color: Theme.of(context).colorScheme.primary),
                           )),
                       Icon(
                         Icons.star_rounded,
@@ -182,18 +181,21 @@ class PropertyDetailsPage extends StatelessWidget {
                       _featureIcon(
                           Iconify(
                             Ph.bed,
-                            color: primaryBlue,
+                            color: Theme.of(context).colorScheme.primary,
                             size: 26.r,
                           ),
                           "$beds Beds".tr,
                           context),
                       _featureIcon(
-                          Iconify(Ph.bathtub, color: primaryBlue, size: 26.r),
+                          Iconify(Ph.bathtub,
+                              color: Theme.of(context).colorScheme.primary,
+                              size: 26.r),
                           "$baths Baths",
                           context),
                       _featureIcon(
                           Iconify(Tabler.arrow_autofit_content,
-                              color: primaryBlue, size: 26.r),
+                              color: Theme.of(context).colorScheme.primary,
+                              size: 26.r),
                           "$area sqft",
                           context),
                     ],
@@ -241,7 +243,8 @@ class PropertyDetailsPage extends StatelessWidget {
                             backgroundColor:
                                 Theme.of(context).colorScheme.secondary,
                             child: Icon(Icons.star,
-                                size: 30.r, color: primaryBlue),
+                                size: 30.r,
+                                color: Theme.of(context).colorScheme.primary),
                           ),
                           SizedBox(height: 8.h),
                           Text('Label $index',
@@ -263,9 +266,9 @@ class PropertyDetailsPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
-                        const Iconify(
+                        Iconify(
                           Tabler.location,
-                          color: primaryBlue,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                         SizedBox(
                           width: 10.w,
@@ -304,8 +307,8 @@ class PropertyDetailsPage extends StatelessWidget {
                             ),
                             Text(
                               "\$$price",
-                              style: AppTextStyles.h24extrabold
-                                  .copyWith(color: primaryBlue),
+                              style: AppTextStyles.h24extrabold.copyWith(
+                                  color: Theme.of(context).colorScheme.primary),
                             )
                           ],
                         ),
@@ -319,7 +322,8 @@ class PropertyDetailsPage extends StatelessWidget {
                             child: TextButton(
                               style: TextButton.styleFrom(
                                 elevation: 1,
-                                backgroundColor: primaryBlue,
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.primary,
                               ),
                               onPressed: () {},
                               child: Text(

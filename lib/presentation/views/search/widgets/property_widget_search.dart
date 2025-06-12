@@ -146,7 +146,7 @@ class PropertyWidgetSearch extends StatelessWidget {
                         textAlign: TextAlign.end,
                         "\$$price",
                         style:
-                            AppTextStyles.h18semi.copyWith(color: primaryBlue),
+                            AppTextStyles.h18semi.copyWith(color: Theme.of(context).colorScheme.primary),
                       ),
                     ],
                   ),

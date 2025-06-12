@@ -26,7 +26,7 @@ class NotificationsView extends StatelessWidget {
             centerTitle: true,
             title: Text(
               "Notifications ",
-              style: AppTextStyles.h18regular.copyWith(color: primaryBlue),
+              style: AppTextStyles.h18regular.copyWith(color: Theme.of(context).colorScheme.primary),
             ),
           ),
           body: Padding(

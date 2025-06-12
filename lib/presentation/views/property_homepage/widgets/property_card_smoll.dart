@@ -137,8 +137,8 @@ class PropertyCardSmall extends StatelessWidget {
                       SizedBox(height: 4.h),
                       Text(
                         " ${price.toString()} \$",
-                        style:
-                            AppTextStyles.h16semi.copyWith(color: primaryBlue),
+                        style: AppTextStyles.h16semi.copyWith(
+                            color: Theme.of(context).colorScheme.primary),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),

@@ -35,7 +35,7 @@ class NotificationsPage extends StatelessWidget {
                 // For now, this does nothing
               },
               inactiveThumbColor: grey,
-              activeColor: primaryBlue,
+              activeColor: Theme.of(context).colorScheme.primary,
               inactiveTrackColor: Theme.of(context).colorScheme.secondary,
             ),
           ),

@@ -1,7 +1,10 @@
+import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
+import 'package:iconify_flutter_plus/icons/mdi.dart';
 
 class LanguagePage extends StatelessWidget {
   const LanguagePage({super.key});
@@ -96,6 +99,20 @@ class LanguagePage extends StatelessWidget {
               Get.updateLocale(const Locale('tr'));
             },
             title: Text('German'.tr),
+          ),
+          ListTile(
+            // leading: Text(
+            //   "🇩🇪",
+            //   style: TextStyle(fontSize: 25.sp),
+            // ),
+            leading: const Iconify(
+              Mdi.microsoft_minecraft,
+              color: green,
+            ),
+            onTap: () {
+              Get.updateLocale(const Locale('mc'));
+            },
+            title: Text('Minecraft'.tr),
           ),
           SizedBox(height: 10.h),
 

@@ -17,7 +17,7 @@ class CurrentLocationMap extends StatelessWidget {
         mapController: MapController(),
         options: MapOptions(
           initialCenter: LatLng(latitude, longitude),
-          initialZoom: 14,
+          initialZoom: 15,
         ),
         children: [
           TileLayer(
@@ -29,10 +29,24 @@ class CurrentLocationMap extends StatelessWidget {
             markers: [
               Marker(
                 point: LatLng(latitude, longitude),
-                width: 40.w,
-                height: 40.h,
+                width: 36.w,
+                height: 36.h,
                 child:
-                    const Icon(Icons.location_on, color: primaryBlue, size: 40),
+                    Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.primary.withOpacity(
+                                    0.15), // Light translucent background
+                                shape: BoxShape
+                                    .circle, // or BoxShape.rectangle with borderRadius
+                                border:
+                                    Border.all(color: Theme.of(context).colorScheme.primary, width: 1.5),
+                              ),
+                              child: Icon(
+                                Icons.circle,
+                                size: 28.r,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
               ),
             ],
           ),

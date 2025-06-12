@@ -57,7 +57,7 @@ class LoginPage extends StatelessWidget {
                       },
                       child: Text('Forgot Password?',
                           style: AppTextStyles.h14regular
-                              .copyWith(color: primaryBlue))),
+                              .copyWith(color: Theme.of(context).colorScheme.primary))),
                 ),
                 //@ LOGIN BUTTON :O
                 CustomButton(

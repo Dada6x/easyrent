@@ -114,19 +114,19 @@ class PropertyCardFavorite extends StatelessWidget {
                               _FeaturesIcon(
                                 number: numberOfBaths,
                                 icon: Iconify(Ph.bathtub,
-                                    color: primaryBlue, size: 20.sp),
+                                    color: Theme.of(context).colorScheme.primary, size: 20.sp),
                               ),
                               //! Beds/Rooms
                               _FeaturesIcon(
                                 number: numberOfBeds,
                                 icon: Iconify(Ph.bed,
-                                    color: primaryBlue, size: 20.sp),
+                                    color: Theme.of(context).colorScheme.primary, size: 20.sp),
                               ),
                               //! Area
                               _FeaturesIcon(
                                 number: area.toInt(),
                                 icon: Iconify(Tabler.arrow_autofit_content,
-                                    color: primaryBlue, size: 20.sp),
+                                    color: Theme.of(context).colorScheme.primary, size: 20.sp),
                               ),
                             ],
                           ),

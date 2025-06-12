@@ -91,7 +91,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
               filled: true,
               counterText: "",
               prefixIcon: widget.icon,
-              prefixIconColor: primaryBlue,
+              prefixIconColor: Theme.of(context).colorScheme.primary,
               labelText: widget.hint.tr,
               labelStyle: AppTextStyles.h20regular.copyWith(color: grey),
               suffixIcon: widget.isPassword

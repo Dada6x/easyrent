@@ -21,7 +21,7 @@ class FAQItem extends StatelessWidget {
       child: ExpansionTile(
         expandedAlignment: Alignment.center,
         maintainState: false,
-        collapsedIconColor: primaryBlue,
+        collapsedIconColor: Theme.of(context).colorScheme.primary,
         collapsedShape: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide(
@@ -32,7 +32,7 @@ class FAQItem extends StatelessWidget {
             borderSide: BorderSide(
               color: Theme.of(context).colorScheme.outline,
             )),
-        textColor: primaryBlue,
+        textColor: Theme.of(context).colorScheme.primary,
         backgroundColor: Theme.of(context).colorScheme.secondary,
         collapsedBackgroundColor: Theme.of(context).colorScheme.secondary,
         expansionAnimationStyle: AnimationStyle(curve: Curves.easeIn),

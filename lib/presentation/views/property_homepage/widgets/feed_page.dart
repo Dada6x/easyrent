@@ -43,7 +43,7 @@ class FeedPage extends StatelessWidget {
                 },
                 child: Text(
                   "See All".tr,
-                  style: AppTextStyles.h16semi.copyWith(color: primaryBlue),
+                  style: AppTextStyles.h16semi.copyWith(color: Theme.of(context).colorScheme.primary),
                 ),
               ),
               const SizedBox(height: 20),

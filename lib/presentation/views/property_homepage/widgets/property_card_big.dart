@@ -152,7 +152,7 @@ class PropertyCardBig extends StatelessWidget {
                             Text(
                               '\$$price',
                               style: TextStyle(
-                                color: primaryBlue,
+                                color: Theme.of(context).colorScheme.primary,
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.bold,
                               ),

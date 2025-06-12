@@ -33,11 +33,11 @@ class AgentWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             IconButton(
-              icon: Icon(Icons.chat, size: 25.r, color: primaryBlue),
+              icon: Icon(Icons.chat, size: 25.r, color: Theme.of(context).colorScheme.primary),
               onPressed: () {},
             ),
             IconButton(
-              icon: Icon(Icons.phone_enabled, size: 25.r, color: primaryBlue),
+              icon: Icon(Icons.phone_enabled, size: 25.r, color: Theme.of(context).colorScheme.primary),
               onPressed: () {
               
               },

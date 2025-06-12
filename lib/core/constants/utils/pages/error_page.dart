@@ -21,6 +21,10 @@ class ErrorPage extends StatelessWidget {
               fit: BoxFit.contain,
               width: double.infinity,
               height: 220.h,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.primary,
+                BlendMode.srcIn,
+              ),
             ),
             const SizedBox(height: 20),
             Padding(

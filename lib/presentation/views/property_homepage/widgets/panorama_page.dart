@@ -79,7 +79,7 @@ class _PanoramaPageState extends State<PanoramaPage> {
                       side: const BorderSide(color: white)),
                 ),
                 child: Text("Next Room".tr,
-                    style: AppTextStyles.h20semi.copyWith(color: primaryBlue)),
+                    style: AppTextStyles.h20semi.copyWith(color: Theme.of(context).colorScheme.primary)),
               ),
             ),
           ],

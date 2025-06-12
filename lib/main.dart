@@ -37,6 +37,8 @@ void main() async {
   await NotificationsService().initNotification();
   userPref = await SharedPreferences.getInstance();
   bool isDarkTheme = userPref?.getBool('isDarkTheme') ?? false;
+  int? savedColor = userPref?.getInt('primaryColor');
+  Color primaryColor = savedColor != null ? Color(savedColor) : primaryBlue;
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -58,7 +60,18 @@ void main() async {
       debug.d("application Started !!");
       return ThemeProvider(
         duration: const Duration(milliseconds: 700),
-        initTheme: isDarkTheme ? Themes().darkMode : Themes().lightMode,
+        initTheme: isDarkTheme
+            ? Themes().darkMode.copyWith(
+                colorScheme: Themes()
+                    .darkMode
+                    .colorScheme
+                    .copyWith(primary: primaryColor))
+            : Themes().lightMode.copyWith(
+                  colorScheme: Themes()
+                      .lightMode
+                      .colorScheme
+                      .copyWith(primary: primaryColor),
+                ),
         builder: (_, theme) {
           return GetMaterialApp(
             onInit: () {},

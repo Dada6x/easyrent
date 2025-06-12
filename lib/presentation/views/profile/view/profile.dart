@@ -8,7 +8,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:motion/motion.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:easyrent/core/constants/assets.dart';
-import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/divider.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/data/Session/app_session.dart';
@@ -107,9 +106,9 @@ class Profile extends StatelessWidget {
                                                   // You can set it to your CircleAvatar later when you're ready
                                                 }
                                               },
-                                              icon: const Icon(
+                                              icon:  Icon(
                                                 Icons.camera,
-                                                color: primaryBlue,
+                                                color: Theme.of(context).colorScheme.primary,
                                                 semanticLabel: "camera",
                                               ),
                                             ),
@@ -127,9 +126,9 @@ class Profile extends StatelessWidget {
                                                   // You can set it to your CircleAvatar later when you're ready
                                                 }
                                               },
-                                              icon: const Icon(
+                                              icon:  Icon(
                                                 Icons.image,
-                                                color: primaryBlue,
+                                                color: Theme.of(context).colorScheme.primary,
                                               ),
                                             ),
                                           ],
@@ -145,7 +144,7 @@ class Profile extends StatelessWidget {
                                 shape: const CircleBorder(),
                                 child: Icon(
                                   Icons.camera_alt_outlined,
-                                  color: primaryBlue,
+                                  color: Theme.of(context).colorScheme.primary,
                                   size: 28.sp,
                                 ),
                               ),
@@ -177,7 +176,7 @@ class Profile extends StatelessWidget {
               string: "My Booking".tr,
               leading: Iconify(
                 Bi.calendar2,
-                color: primaryBlue,
+                color: Theme.of(context).colorScheme.primary,
                 size: 29.sp,
               ),
               destination_widget: const MyBooking(),
@@ -187,7 +186,7 @@ class Profile extends StatelessWidget {
               string: "Payments".tr,
               leading: Iconify(
                 Bi.credit_card_2_back,
-                color: primaryBlue,
+                color: Theme.of(context).colorScheme.primary,
                 size: 29.sp,
               ),
               destination_widget: const PaymentMethod(),
@@ -197,7 +196,7 @@ class Profile extends StatelessWidget {
                 string: "My Favorite".tr,
                 leading: Iconify(
                   Bi.bookmark_heart,
-                  color: primaryBlue,
+                  color: Theme.of(context).colorScheme.primary,
                   size: 29.sp,
                 ),
                 destination_widget: const MyFavouritePage()),
@@ -207,7 +206,7 @@ class Profile extends StatelessWidget {
                 string: "Notifications".tr,
                 leading: Iconify(
                   Bi.bell,
-                  color: primaryBlue,
+                  color: Theme.of(context).colorScheme.primary,
                   size: 29.sp,
                 ),
                 destination_widget: const NotificationsPage()),
@@ -216,7 +215,7 @@ class Profile extends StatelessWidget {
               string: "Security".tr,
               leading: Iconify(
                 Bi.shield_shaded,
-                color: primaryBlue,
+                color: Theme.of(context).colorScheme.primary,
                 size: 29.sp,
               ),
               destination_widget: const SecurityPage(),
@@ -226,7 +225,7 @@ class Profile extends StatelessWidget {
                 string: "Language".tr,
                 leading: Iconify(
                   Bi.translate,
-                  color: primaryBlue,
+                  color: Theme.of(context).colorScheme.primary,
                   size: 29.sp,
                 ),
                 destination_widget: const LanguagePage()),
@@ -235,12 +234,12 @@ class Profile extends StatelessWidget {
                 leading: Get.isDarkMode
                     ? Iconify(
                         Bi.sun_fill,
-                        color: primaryBlue,
+                        color: Theme.of(context).colorScheme.primary,
                         size: 29.sp,
                       )
                     : Iconify(
                         Bi.moon_stars_fill,
-                        color: primaryBlue,
+                        color: Theme.of(context).colorScheme.primary,
                         size: 29.sp,
                       ),
                 destination_widget: const ThemePage()),
@@ -250,7 +249,7 @@ class Profile extends StatelessWidget {
                 string: "FAQ".tr,
                 leading: Iconify(
                   Bi.question_circle,
-                  color: primaryBlue,
+                  color: Theme.of(context).colorScheme.primary,
                   size: 29.sp,
                 ),
                 destination_widget: const FAQPage()),
@@ -259,7 +258,7 @@ class Profile extends StatelessWidget {
                 string: "Invite Friends".tr,
                 leading: Iconify(
                   Bi.people,
-                  color: primaryBlue,
+                  color: Theme.of(context).colorScheme.primary,
                   size: 29.sp,
                 ),
                 destination_widget: const InviteFriendPage()),
@@ -272,7 +271,7 @@ class Profile extends StatelessWidget {
               padding: EdgeInsets.all(8.0.r),
               child: Text(
                 "Version 1.1o",
-                style: AppTextStyles.h12light.copyWith(color: primaryBlue),
+                style: AppTextStyles.h12light.copyWith(color: Theme.of(context).colorScheme.primary),
               ),
             )
           ],

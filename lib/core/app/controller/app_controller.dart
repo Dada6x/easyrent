@@ -13,6 +13,19 @@ class AppController extends GetxController {
   RxBool isDarkMode = false.obs;
   RxBool isArabic = true.obs;
   RxBool isOffline = true.obs;
+  final Rx<Color> primaryColor = primaryBlue.obs;
+
+  Future<void> loadPrimaryColor() async {
+    final colorValue = userPref?.getInt('primaryColor');
+    if (colorValue != null) {
+      primaryColor.value = Color(colorValue);
+    }
+  }
+
+  Future<void> setPrimaryColor(Color color) async {
+    primaryColor.value = color;
+    await userPref?.setInt('primaryColor', color.value);
+  }
 
   // change language
   void changeLang(String codeLang) {
@@ -69,7 +82,17 @@ class AppController extends GetxController {
     final themeSwitcher = ThemeSwitcher.of(context);
     final brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     final isLight = brightness == Brightness.light;
-    final newTheme = isLight ? Themes().darkMode : Themes().lightMode;
+    final colorValue = userPref?.getInt('primaryColor');
+    final primary = colorValue != null ? Color(colorValue) : primaryBlue;
+    final newTheme = isLight
+        ? Themes().darkMode.copyWith(
+              colorScheme:
+                  Themes().darkMode.colorScheme.copyWith(primary: primary),
+            )
+        : Themes().lightMode.copyWith(
+              colorScheme:
+                  Themes().lightMode.colorScheme.copyWith(primary: primary),
+            );
     if (userPref!.getBool('isDarkTheme') != isLight) {
       await userPref!.setBool('isDarkTheme', isLight);
     }
@@ -84,6 +107,7 @@ class AppController extends GetxController {
   void onInit() {
     super.onInit();
     _checkInternetConnection();
+    loadPrimaryColor();
   }
 
   @override

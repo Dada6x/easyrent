@@ -69,7 +69,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
                 currentIndex: _selectedIndex,
                 selectedLabelStyle: AppTextStyles.h12medium,
                 showSelectedLabels: true,
-                fixedColor: primaryBlue,
+                fixedColor: Theme.of(context).colorScheme.primary,
 
                 unselectedLabelStyle: AppTextStyles.h12medium,
                 iconSize: 30.r, //!
@@ -78,7 +78,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
                   BottomNavigationBarItem(
                       activeIcon: Iconify(
                         Bi.house_fill,
-                        color: primaryBlue,
+                        color: Theme.of(context).colorScheme.primary,
                         size: 30.sp,
                       ),
                       icon: Iconify(
@@ -90,7 +90,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
                   BottomNavigationBarItem(
                       activeIcon: Iconify(
                         Bi.map_fill,
-                        color: primaryBlue,
+                        color: Theme.of(context).colorScheme.primary,
                         size: 30.sp,
                       ),
                       icon: Iconify(
@@ -102,7 +102,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
                   BottomNavigationBarItem(
                       activeIcon: Iconify(
                         Bi.search,
-                        color: primaryBlue,
+                        color: Theme.of(context).colorScheme.primary,
                         size: 30.sp,
                       ),
                       icon: Iconify(
@@ -114,7 +114,7 @@ class _HomeScreenNavigatorState extends State<HomeScreenNavigator> {
                   BottomNavigationBarItem(
                       activeIcon: Iconify(
                         Bi.person_fill,
-                        color: primaryBlue,
+                        color: Theme.of(context).colorScheme.primary,
                         size: 30.sp,
                       ),
                       icon: Iconify(
