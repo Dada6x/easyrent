@@ -12,7 +12,7 @@ class PropertiesRepo {
     final api = DioConsumer(Dio()); //TODO not like this call the dio
     try {
       final response = await api
-          .get("https://run.mocky.io/v3/fa9cfba5-611c-4fbe-91c4-eb1f90e5fd8f");
+          .get("https://run.mocky.io/v3/06eeedb-9415-4aa9-86df-a32d8b3aaaad");
       //todo add the endpoint of the API
       if (response.statusCode == 200) {
         debug.i("Fetch Properties status code  ${response.statusCode} ");
@@ -62,6 +62,7 @@ class PropertiesRepo {
     try {
       final response = await api.get(
           // EndPoints.favourite,
+          //https://run.mocky.io/v3/68b6b726-0e71-429e-b67b-d011c2b99f4c  //! with no garden or
           "https://run.mocky.io/v3/d1f40a97-b320-4f37-b971-16134922a910");
       //todo add the endpoint of the API
       if (response.statusCode == 200) {

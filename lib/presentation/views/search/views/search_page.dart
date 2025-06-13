@@ -1,11 +1,10 @@
-import 'package:easyrent/core/constants/assets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/filterChips.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/home_searchbar.dart';
 import 'package:easyrent/presentation/views/search/widgets/property_widget_search_card.dart';
 import 'package:easyrent/presentation/views/search/widgets/search_appbar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -57,7 +56,7 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: searchAppbar(),
+      appBar: searchAppbar(context),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: CustomScrollView(
@@ -86,7 +85,8 @@ class _SearchState extends State<Search> {
                     id: 1,
                     title: 'Lucky Lake Apartments',
                     location: 'Tokyo, Japan',
-                    imagePath: apartment,
+                    imagePath:
+                        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                     price: 5000,
                     rating: 4.3,
                   );

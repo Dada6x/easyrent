@@ -39,7 +39,7 @@ class ThemePage extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
           const CustomDivider(),
-          const Text("Custoom primary Color"),
+          const Text("Custom primary Color"),
           _buildThemeTile(
             context,
             title: 'Red',
@@ -81,7 +81,6 @@ class ThemePage extends StatelessWidget {
             theme: currentTheme.copyWith(
               colorScheme: currentTheme.colorScheme.copyWith(
                 primary: purple,
-                secondary: purple.withOpacity(0.08),
               ),
             ),
           ),
@@ -91,7 +90,6 @@ class ThemePage extends StatelessWidget {
       ),
     );
   }
-
 
   Widget _buildThemeTile(
     BuildContext context, {

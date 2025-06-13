@@ -1,11 +1,11 @@
 import 'location_model.dart';
 
 class OuterPropertyModel {
-  final int id;
-  final int rooms;
-  final int bathrooms;
-  final double price;
-  final double area;
+  final int? id;
+  final int? rooms;
+  final int? bathrooms;
+  final double? price;
+  final double? area;
   final String? firstImage;
   final Location? location;
 

@@ -25,12 +25,12 @@ class SeeAll extends StatelessWidget {
         itemBuilder: (context, index) {
           final property = propertiesList[index];
           return PropertyCardSmall(
-            id: property.id,
+            id: property.id!,
             title: "House with ${property.rooms} rooms",
             location: '${property.location?.city} ${property.location?.street}',
-            price: property.price,
+            price: property.price!,
             rating: 4.5, // Hardcoded
-            image: property.firstImage ?? apartment2,
+            image: property.firstImage!,
           );
         },
       ),

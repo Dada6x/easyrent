@@ -1,8 +1,8 @@
+import 'package:easyrent/core/constants/assets.dart';
+import 'package:easyrent/core/constants/svgColorReplacer.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:easyrent/core/constants/utils/button.dart';
 
 class InviteFriendPage extends StatelessWidget {
@@ -16,10 +16,11 @@ class InviteFriendPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              "assets/images/svg/inviteFriends.svg",
-              height: 220.h,
-            ),
+            ThemedSvgReplacer(
+                assetPath: invite,
+                themeColor: Theme.of(context).colorScheme.primary,
+                height: 220.h,
+                width: double.infinity),
             SizedBox(height: 32.h),
             Text("Invite Your Friends", style: AppTextStyles.h32medium),
             SizedBox(height: 16.h),

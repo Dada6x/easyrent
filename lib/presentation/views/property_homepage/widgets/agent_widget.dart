@@ -1,5 +1,7 @@
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/constants/utils/error_loading_mssg.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,10 +19,16 @@ class AgentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        radius: 23.r,
-        backgroundImage: AssetImage(agentImage),
+        radius: 23.sp,
+        backgroundColor: Colors.transparent,
+        child: ClipOval(
+            child: FancyShimmerImage(
+          boxFit: BoxFit.cover,
+          imageUrl: agentImage,
+          errorWidget: const ErrorLoadingWidget()
+        )),
       ),
-      title: Text(//TODO its overflowing 
+      title: Text(
         agentName,
         style: AppTextStyles.h18semi,
       ),
@@ -33,14 +41,14 @@ class AgentWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             IconButton(
-              icon: Icon(Icons.chat, size: 25.r, color: Theme.of(context).colorScheme.primary),
+              icon: Icon(Icons.chat,
+                  size: 25.r, color: Theme.of(context).colorScheme.primary),
               onPressed: () {},
             ),
             IconButton(
-              icon: Icon(Icons.phone_enabled, size: 25.r, color: Theme.of(context).colorScheme.primary),
-              onPressed: () {
-              
-              },
+              icon: Icon(Icons.phone_enabled,
+                  size: 25.r, color: Theme.of(context).colorScheme.primary),
+              onPressed: () {},
             ),
           ],
         ),

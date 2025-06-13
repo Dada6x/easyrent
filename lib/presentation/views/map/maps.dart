@@ -1,6 +1,5 @@
 import 'package:bounce/bounce.dart';
 import 'package:card_swiper/card_swiper.dart';
-import 'package:easyrent/core/services/api/end_points.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -8,11 +7,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:easyrent/core/constants/assets.dart';
+
 import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/error_loading_mssg.dart';
 import 'package:easyrent/core/constants/utils/pages/error_page.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
+import 'package:easyrent/core/services/api/end_points.dart';
 import 'package:easyrent/data/models/outer_property_model.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/views/property_homepage/controller/propertiy_controller.dart';
@@ -42,7 +42,7 @@ class _MapsState extends State<Maps> {
   void _goToProperty(OuterPropertyModel property) {
     if (property.location != null) {
       _mapController.move(
-          LatLng(property.location!.lat, property.location!.lon), 11);
+          LatLng(property.location!.lat!, property.location!.lon!), 11);
     }
   }
 
@@ -55,7 +55,7 @@ class _MapsState extends State<Maps> {
         return const Center(child: CircularProgressIndicator());
       }
       if (controller.hasError.value) {
-        return const ErrorPage();
+        return const Center(child: ErrorPage());
       }
       final properties = controller.properties;
 
@@ -76,8 +76,8 @@ class _MapsState extends State<Maps> {
                 keepAlive: false,
                 maxZoom: 19,
                 initialCenter: properties.isNotEmpty
-                    ? LatLng(properties.first.location!.lat,
-                        properties.first.location!.lon)
+                    ? LatLng(properties.first.location!.lat!,
+                        properties.first.location!.lon!)
                     : const LatLng(30.0444, 31.2357),
                 initialZoom: 13,
               ),
@@ -94,8 +94,8 @@ class _MapsState extends State<Maps> {
                           width: 30.w,
                           height: 30.h,
                           point: LatLng(
-                            property.location!.lat,
-                            property.location!.lon,
+                            property.location!.lat!,
+                            property.location!.lon!,
                           ),
                           child: GestureDetector(
                             onTap: () {
@@ -288,7 +288,7 @@ class _MapsState extends State<Maps> {
                           children: [
                             Positioned.fill(
                               child: FancyShimmerImage(
-                                imageUrl: property.firstImage ?? apartment,
+                                imageUrl: property.firstImage!,
                                 boxFit: BoxFit.cover,
                                 errorWidget: const ErrorLoadingWidget(),
                               ),

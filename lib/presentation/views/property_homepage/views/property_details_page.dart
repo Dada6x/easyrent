@@ -1,5 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:easyrent/core/app/controller/app_controller.dart';
+import 'package:easyrent/core/constants/assets.dart';
+import 'package:easyrent/presentation/views/property_homepage/widgets/agent_widget.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,8 +34,11 @@ class PropertyDetailsPage extends StatelessWidget {
       return Scaffold(
         body: SingleChildScrollView(
           child: Skeletonizer(
+            // ignoreContainers: true,
+
             enabled: !Get.find<AppController>().isOffline.value,
             enableSwitchAnimation: true,
+            // effect: ShimmerEffect(),
             containersColor: Theme.of(context).colorScheme.onTertiary,
             child: Column(
               children: [
@@ -61,8 +66,8 @@ class PropertyDetailsPage extends StatelessWidget {
                     ),
                     //! share buttons and favorite
                     Padding(
-                      padding: const EdgeInsets.only(
-                          top: 60, left: 15, right: 15), 
+                      padding:
+                          const EdgeInsets.only(top: 60, left: 15, right: 15),
                       child: Row(
                         children: [
                           _circleButton(Icons.arrow_back, () {
@@ -84,55 +89,50 @@ class PropertyDetailsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       //! property title
-                      Row(
-                        children: [
-                          Text(
-                            property.title ?? "",
-                            style: AppTextStyles.h24semi,
-                          ),
-                          const Spacer(),
-                          //! property Panorama Images
-                          IconButton(
-                              onPressed: () {
-                                Get.to(PanoramaPage(
-                                    rooms: property.panoramaImages ?? [{}]));
-                              },
-                              icon: Icon(
-                                Icons.panorama_horizontal_select,
-                                color: Theme.of(context).colorScheme.primary,
-                                size: 28.r,
-                              ))
-                        ],
+                      Text(
+                        property.title ?? "",
+                        style: AppTextStyles.h24semi,
                       ),
                       SizedBox(height: 8.h),
                       //! property Type and rating
-                      Row(
-                        children: [
-                          Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.secondary,
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Text(
-                                //! type
-                                property.propertyType ?? "",
-                                style: AppTextStyles.h10semi.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
-                              )),
-                          Icon(
-                            Icons.star_rounded,
-                            color: orange,
-                            size: 25.r,
-                          ),
-                          Text(
-                            //! rating and reviews
-                            "${property.priorityScore} (${property.viewCount} reviews )",
-                            style:
-                                AppTextStyles.h14medium.copyWith(color: grey),
-                          )
-                        ],
+                      Padding(
+                        padding: EdgeInsets.all(5.0.sp),
+                        child: Row(
+                          children: [
+                            Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Text(
+                                  //! type
+                                  property.propertyType ?? "",
+                                  style: AppTextStyles.h10semi.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
+                                )),
+                            SizedBox(
+                              width: 18.w,
+                            ),
+                            Icon(
+                              Icons.star_rounded,
+                              color: orange,
+                              size: 25.r,
+                            ),
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                            Text(
+                              //! rating and reviews
+                              "${property.priorityScore} (${property.viewCount} reviews )",
+                              style:
+                                  AppTextStyles.h14medium.copyWith(color: grey),
+                            )
+                          ],
+                        ),
                       ),
                       SizedBox(height: 16.h),
                       //! beds and baths and area
@@ -167,11 +167,11 @@ class PropertyDetailsPage extends StatelessWidget {
                       const CustomDivider(),
                       //! Agent Widget
                       _Headers(text: "Agent".tr),
-                      // AgentWidget(
-                      //   agentImage: property.,
-                      //   agentName: agent.name,
-                      //   agentRole: agent.role,
-                      // ),
+                      const AgentWidget(
+                        agentImage: avatar2,
+                        agentName: "Yahea Dada",
+                        agentRole: "+96380817760",
+                      ),
                       //! Overview
                       _Headers(text: "Overview".tr),
                       Padding(
@@ -181,7 +181,51 @@ class PropertyDetailsPage extends StatelessWidget {
                           style: AppTextStyles.h16medium.copyWith(color: grey),
                         ),
                       ),
+
                       const CustomDivider(),
+                      //! Panorama View
+                      const _Headers(text: "Panorama View"),
+                      SizedBox(height: 10.h),
+                      Container(
+                        height: 200.h,
+                        width: double.infinity,
+                        margin: EdgeInsets.symmetric(horizontal: 8.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.r),
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(12.r),
+                          onTap: () {
+                            Get.to(PanoramaPage(
+                                rooms: property.panoramaImages ?? [{}]));
+                          },
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.panorama_horizontal_select,
+                                    size: 40.r,
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                                SizedBox(height: 8.h),
+                                Text(
+                                  "View Property in 360°",
+                                  style: AppTextStyles.h16semi.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      const CustomDivider(),
+
                       Padding(
                         padding: EdgeInsets.only(top: 10.h),
                         child: Text(
@@ -190,33 +234,38 @@ class PropertyDetailsPage extends StatelessWidget {
                         ),
                       ),
 
-                      //!Facilities
-                      GridView.count(
-                        crossAxisCount: 4,
-                        shrinkWrap: true,
-                        physics:
-                            const NeverScrollableScrollPhysics(), // Prevent nested scroll
-                        children: List.generate(8, (index) {
-                          return Column(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              CircleAvatar(
-                                backgroundColor:
-                                    Theme.of(context).colorScheme.secondary,
-                                child: Icon(Icons.star,
-                                    size: 30.r,
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
-                              ),
-                              SizedBox(height: 8.h),
-                              Text('Label $index',
-                                  style: const TextStyle(fontSize: 14)),
+                              if (property.hasGarage!)
+                                _buildFacility(Icons.garage, 'Garage', context),
+                              if (property.hasGarden!)
+                                _buildFacility(Icons.park, 'Garden', context),
+                              _buildFacility(Icons.home_work,
+                                  property.propertyType!, context),
+                              _buildFacility(Icons.fireplace,
+                                  property.heatingType!, context),
                             ],
-                          );
-                        }),
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              _buildFacility(Icons.texture,
+                                  property.flooringType!, context),
+                              if (property.isFloor!)
+                                _buildFacility(Icons.apartment,
+                                    'Floor ${property.floorNumber}', context),
+                            ],
+                          ),
+                        ],
                       ),
+
                       //! GALLERY
                       const CustomDivider(),
-
                       _Headers(text: "Gallery".tr),
                       GalleryWidget(images: property.propertyImages ?? []),
                       _Headers(text: "Location".tr),
@@ -227,9 +276,11 @@ class PropertyDetailsPage extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            Iconify(
-                              Tabler.location,
-                              color: Theme.of(context).colorScheme.primary,
+                            Skeleton.ignore(
+                              child: Iconify(
+                                Tabler.location,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
                             ),
                             SizedBox(
                               width: 10.w,
@@ -244,8 +295,8 @@ class PropertyDetailsPage extends StatelessWidget {
                       SizedBox(
                         height: 300.h,
                         child: CurrentLocationMap(
-                            latitude: property.location!.lat,
-                            longitude: property.location!.lon),
+                            latitude: property.location!.lat!,
+                            longitude: property.location!.lon!),
                       ),
                       //! COMMENTS
                       SizedBox(
@@ -358,7 +409,7 @@ Widget _featureIcon(Iconify icon, String label, BuildContext context) {
             color: Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(30),
           ),
-          child: icon),
+          child: Skeleton.ignore(child: icon)),
       const SizedBox(
         width: 5,
       ),
@@ -405,4 +456,26 @@ class ConnectedDotsPagination extends SwiperPlugin {
       ),
     );
   }
+}
+
+Widget _buildFacility(IconData icon, String label, BuildContext context) {
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      CircleAvatar(
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        child: Icon(
+          icon,
+          size: 30,
+          color: Theme.of(context).colorScheme.primary,
+        ),
+      ),
+      const SizedBox(height: 8),
+      Text(
+        label,
+        style: const TextStyle(fontSize: 14),
+        textAlign: TextAlign.center,
+      ),
+    ],
+  );
 }

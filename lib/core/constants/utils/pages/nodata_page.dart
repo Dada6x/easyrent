@@ -1,8 +1,9 @@
+import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/constants/svgColorReplacer.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 class noDataPage extends StatelessWidget {
   const noDataPage({super.key});
@@ -15,12 +16,11 @@ class noDataPage extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min, // So the column centers nicely
           children: [
-            SvgPicture.asset(
-              "assets/images/svg/undraw_hiking_9zta.svg",
-              fit: BoxFit.contain,
-              width: double.infinity,
-              height: 220.h,
-            ),
+            ThemedSvgReplacer(
+                assetPath: noData,
+                themeColor: Theme.of(context).colorScheme.primary,
+                height: 220.h,
+                width: double.infinity),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),

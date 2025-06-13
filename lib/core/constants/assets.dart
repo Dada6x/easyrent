@@ -1,11 +1,11 @@
 //! -----------------images-----------------
 const avatar = "assets/images/avatar.png";
 const onBoarding = "assets/images/onboarding.png";
-const newWork = "assets/images/new-york.png";
-const japan = "assets/images/japan.png";
-const apartment = "assets/images/apartment.png";
-const apartment2 = "assets/images/apartment2.png";
-const apartment3 = "assets/images/apartment3.png";
+// const newWork = "assets/images/new-york.png";
+// const japan = "assets/images/japan.png";
+// const apartment = "assets/images/apartment.png";
+// const apartment2 = "assets/images/apartment2.png";
+// const apartment3 = "assets/images/apartment3.png";
 //! -----------icons-------------------------
 const calendar = "assets/icons/calendar.png"; //? profile
 const info = "assets/icons/info.png";
@@ -62,3 +62,5 @@ const intro3 = "assets/images/svg/payment.svg";
 const intro4 = "assets/images/svg/houseapproved.svg";
 const searchHouse = "assets/images/svg/search_house.svg";
 const househome = "assets/images/svg/house.svg";
+const noData = "assets/images/svg/undraw_hiking_9zta.svg";
+const invite = "assets/images/svg/inviteFriends.svg";

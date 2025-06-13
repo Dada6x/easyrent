@@ -1,11 +1,11 @@
 class Location {
-  final String country;
-  final String governorate;
-  final String city;
-  final String quarter;
-  final String street;
-  final double lat;
-  final double lon;
+  final String? country;
+  final String? governorate;
+  final String? city;
+  final String? quarter;
+  final String? street;
+  final double? lat;
+  final double? lon;
 
   Location({
     required this.country,

@@ -7,7 +7,6 @@ import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -70,7 +69,6 @@ AppBar homePageAppbar() {
       ],
     ),
     actions: [
-      Flexible(child: SvgPicture.asset(width: 18.w, height: 28.h, househome)),
       const SizedBox(
         width: 3,
       ),

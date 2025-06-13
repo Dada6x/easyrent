@@ -1,14 +1,14 @@
 import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/constants/svgColorReplacer.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/main.dart';
 import 'package:easyrent/presentation/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-AppBar searchAppbar() {
+AppBar searchAppbar(BuildContext context) {
   return AppBar(
     scrolledUnderElevation: 1.0,
     surfaceTintColor: Colors.transparent,
@@ -18,7 +18,12 @@ AppBar searchAppbar() {
     title: Row(
       children: [
         Flexible(
-          child: SvgPicture.asset(width: 30.w, height: 35.h, searchHouse),
+          child: ThemedSvgReplacer(
+            assetPath: searchHouse,
+            themeColor: Theme.of(context).colorScheme.primary,
+            width: 30.w,
+            height: 35.h,
+          ),
         ),
         SizedBox(
           width: 12.w,

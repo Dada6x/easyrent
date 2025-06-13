@@ -59,13 +59,13 @@ class FeedPage extends StatelessWidget {
 
               return PropertyCardBig(
                 //TODO do the null safety shit
-                id: property.id,
+                id: property.id!,
                 imagePath: property.firstImage!,
-                city: property.location!.city,
-                streetName: property.location!.street,
-                price: property.price,
+                city: property.location!.city!,
+                streetName: property.location!.street!,
+                price: property.price!,
                 rating: 4.5,
-                title: property.location!.country,
+                title: property.location!.country!,
               );
             },
           ),
@@ -88,11 +88,11 @@ class FeedPage extends StatelessWidget {
             final property = properties[index];
             return PropertyCardSmall(
               //TODO do the null safety shit
-              id: property.id,
+              id: property.id!,
               title: "House with ${property.rooms} rooms",
               location:
                   '${property.location?.city} ${property.location?.street}',
-              price: property.price,
+              price: property.price!,
               rating: 4.5, // Hardcoded
               image: property.firstImage!,
             );
