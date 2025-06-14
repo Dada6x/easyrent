@@ -145,9 +145,9 @@ class Userrepo {
   Future<Either<ServerException, User>> profile() async {
     try {
       final response = await api.get(
-        "https://run.mocky.io/v3/cd9ce080-4a73-44ce-95d1-e16c399fb7fe", // with image
-        // "https://run.mocky.io/v3/f0a9efb6-22af-4047-9198-3f933d8b2076" //with null image
-      );
+          // "https://run.mocky.io/v3/cd9ce080-4a73-44ce-95d1-e16c399fb7fe", // with image
+          "https://run.mocky.io/v3/f0a9efb6-22af-4047-9198-3f933d8b2076" //with null image
+          );
       debug.i("Profile Request ${response.statusCode}");
       if (response.statusCode == 200) {
         final user = User.fromJson(response.data);

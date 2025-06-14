@@ -233,7 +233,7 @@ class Profile extends StatelessWidget {
                 string: "Themes".tr,
                 leading: Get.isDarkMode
                     ? Iconify(
-                        Bi.sun_fill,
+                        Bi.paint_bucket,
                         color: Theme.of(context).colorScheme.primary,
                         size: 29.sp,
                       )

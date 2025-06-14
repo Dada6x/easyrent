@@ -21,7 +21,6 @@ class ThemedSvgReplacer extends StatelessWidget {
     required this.width,
   });
 
-  // Convert Flutter Color to uppercase hex string (#RRGGBB)
   String _colorToHex(Color color) {
     return '#${color.value.toRadixString(16).substring(2).toUpperCase()}';
   }
