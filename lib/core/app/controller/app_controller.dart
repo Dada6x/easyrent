@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easyrent/core/app/theme/themes.dart';
 import 'package:easyrent/core/constants/colors.dart';
@@ -48,6 +47,7 @@ class AppController extends GetxController {
             break;
           } else {
             Get.rawSnackbar(
+              
               message: "You're connected back",
               margin: const EdgeInsets.all(12),
               borderRadius: 8,

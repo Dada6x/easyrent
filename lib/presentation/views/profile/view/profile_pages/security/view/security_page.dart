@@ -1,4 +1,3 @@
-import 'package:easyrent/core/constants/colors.dart';
 import 'package:easyrent/core/constants/utils/divider.dart';
 import 'package:easyrent/presentation/views/profile/view/profile_pages/theme/theme_page.dart';
 import 'package:easyrent/presentation/views/profile/widgets/custome_list_tile.dart';

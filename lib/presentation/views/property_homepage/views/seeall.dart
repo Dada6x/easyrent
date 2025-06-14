@@ -1,4 +1,3 @@
-import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/data/models/outer_property_model.dart';
 import 'package:easyrent/presentation/views/auth/widgets/empty_search_bar.dart';
 import 'package:easyrent/presentation/views/property_homepage/widgets/property_card_smoll.dart';

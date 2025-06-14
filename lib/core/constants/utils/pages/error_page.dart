@@ -23,7 +23,7 @@ class ErrorPage extends StatelessWidget {
               themeColor: Theme.of(context)
                   .colorScheme
                   .primary, // The color you want to replace with
-              originalColors: ['#0061FF', '#0061ff'], // Colors to replace
+              originalColors: const ['#0061FF', '#0061ff'], // Colors to replace
             ),
             const SizedBox(height: 20),
             Padding(

@@ -1,3 +1,4 @@
+import 'package:easyrent/test.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -106,9 +107,11 @@ class Profile extends StatelessWidget {
                                                   // You can set it to your CircleAvatar later when you're ready
                                                 }
                                               },
-                                              icon:  Icon(
+                                              icon: Icon(
                                                 Icons.camera,
-                                                color: Theme.of(context).colorScheme.primary,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primary,
                                                 semanticLabel: "camera",
                                               ),
                                             ),
@@ -126,9 +129,11 @@ class Profile extends StatelessWidget {
                                                   // You can set it to your CircleAvatar later when you're ready
                                                 }
                                               },
-                                              icon:  Icon(
+                                              icon: Icon(
                                                 Icons.image,
-                                                color: Theme.of(context).colorScheme.primary,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primary,
                                               ),
                                             ),
                                           ],
@@ -231,17 +236,11 @@ class Profile extends StatelessWidget {
                 destination_widget: const LanguagePage()),
             customListTile(
                 string: "Themes".tr,
-                leading: Get.isDarkMode
-                    ? Iconify(
-                        Bi.paint_bucket,
-                        color: Theme.of(context).colorScheme.primary,
-                        size: 29.sp,
-                      )
-                    : Iconify(
-                        Bi.moon_stars_fill,
-                        color: Theme.of(context).colorScheme.primary,
-                        size: 29.sp,
-                      ),
+                leading: Iconify(
+                  Bi.paint_bucket,
+                  color: Theme.of(context).colorScheme.primary,
+                  size: 29.sp,
+                ),
                 destination_widget: const ThemePage()),
             //! FAQ
 
@@ -262,6 +261,15 @@ class Profile extends StatelessWidget {
                   size: 29.sp,
                 ),
                 destination_widget: const InviteFriendPage()),
+            customListTile(
+              subtitle: "Beta",
+                string: "AI Agent ".tr,
+                leading: Iconify(
+                  Bi.robot,
+                  color: Theme.of(context).colorScheme.primary,
+                  size: 29.sp,
+                ),
+                destination_widget: const Community()),
             const CustomDivider(),
             //! LogOut
             customListRedTile("Logout".tr, Icons.logout, () {
@@ -271,7 +279,8 @@ class Profile extends StatelessWidget {
               padding: EdgeInsets.all(8.0.r),
               child: Text(
                 "Version 1.1o",
-                style: AppTextStyles.h12light.copyWith(color: Theme.of(context).colorScheme.primary),
+                style: AppTextStyles.h12light
+                    .copyWith(color: Theme.of(context).colorScheme.primary),
               ),
             )
           ],
@@ -294,6 +303,10 @@ class Scaffold_page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 1.0,
+        surfaceTintColor: Colors.transparent,
+        forceMaterialTransparency: true,
+        elevation: 0,
         title: Text(title.tr),
       ),
       body: widget,

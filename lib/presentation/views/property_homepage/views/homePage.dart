@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:easyrent/core/constants/utils/pages/error_page.dart';
 import 'package:easyrent/core/constants/utils/pages/nodata_page.dart';
 import 'package:easyrent/presentation/views/property_homepage/controller/propertiy_controller.dart';
@@ -33,24 +32,22 @@ class Homepage extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15.0.r),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 12.h),
-                        Obx(() {
-                          if (controller.isLoading.value) {
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          }
-                          if (controller.hasError.value) {
-                            return const ErrorPage();
-                          }
-                          if (controller.properties.isEmpty) {
-                            return const noDataPage();
-                          }
-                          return FeedPage(properties: controller.properties);
-                        }),
-                      ],
-                    ),
+                    child: Obx(() {
+                      if (controller.isLoading.value) {
+                        return SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.8,
+                          child:
+                              const Center(child: CircularProgressIndicator()),
+                        );
+                      }
+                      if (controller.hasError.value) {
+                        return const ErrorPage();
+                      }
+                      if (controller.properties.isEmpty) {
+                        return const noDataPage();
+                      }
+                      return FeedPage(properties: controller.properties);
+                    }),
                   ),
                 ),
               ],

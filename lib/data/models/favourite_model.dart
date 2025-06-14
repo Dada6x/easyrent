@@ -9,7 +9,7 @@ class FavoritePropertyModel {
   FavoritePropertyModel.fromJson(Map<String, dynamic> json) {
     favoriteId = json['id'];
     property = json['property'] != null
-        ? new PropertyModel.fromJson(json['property'])
+        ? PropertyModel.fromJson(json['property'])
         : null;
   }
 

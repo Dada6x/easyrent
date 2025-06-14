@@ -117,13 +117,10 @@ class ThemePage extends StatelessWidget {
         builder: (context) {
           return ListTile(
             onTap: () {
-              // Change the theme
               ThemeSwitcher.of(context).changeTheme(
                 theme: theme,
                 isReversed: false,
               );
-
-              // Save the selected primary color using AppController
               final appController = Get.find<AppController>();
               appController.setPrimaryColor(color);
             },
@@ -156,7 +153,6 @@ class MiniPhonePreview extends StatelessWidget {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        // Make sizes relative to available space
         final width = constraints.maxWidth;
         final height = constraints.maxHeight;
 
@@ -168,22 +164,21 @@ class MiniPhonePreview extends StatelessWidget {
             color: colorScheme.surface,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.3),
+                color: black.withOpacity(0.3),
                 blurRadius: 6,
                 offset: const Offset(0, 2),
               ),
             ],
-            border: Border.all(color: Colors.black, width: 1.2.w),
+            border: Border.all(color: black.withOpacity(0.7), width: 1.2.w),
           ),
           child: Column(
             children: [
-              // Status bar
               Container(
                 height: height * 0.03,
                 decoration: BoxDecoration(
                   color: colorScheme.primary.withOpacity(0.8),
                   borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(20.r)),
+                      BorderRadius.vertical(top: Radius.circular(23.r)),
                 ),
               ),
 
