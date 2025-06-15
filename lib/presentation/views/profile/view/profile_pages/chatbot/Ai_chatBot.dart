@@ -1,23 +1,22 @@
-import 'package:easyrent/core/constants/assets.dart';
-import 'package:easyrent/core/constants/utils/textStyles.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 import 'package:iconify_flutter_plus/icons/ph.dart';
 import 'package:uuid/uuid.dart';
-import 'package:dio/dio.dart';
-
+import 'package:easyrent/core/constants/assets.dart';
 import 'package:easyrent/core/constants/colors.dart';
+import 'package:easyrent/core/constants/utils/textStyles.dart';
 
-class Community extends StatefulWidget {
-  const Community({super.key});
+class Ai_ChatBot extends StatefulWidget {
+  const Ai_ChatBot({super.key});
 
   @override
-  State<Community> createState() => _ChatPageState();
+  State<Ai_ChatBot> createState() => _ChatPageState();
 }
 
-class _ChatPageState extends State<Community> {
+class _ChatPageState extends State<Ai_ChatBot> {
   final messageController = TextEditingController();
   final List<types.Message> _messages = [];
 

@@ -223,7 +223,6 @@ https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=2080&auto=fo
 https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 
 
-//insides
 https://images.unsplash.com/photo-1523755231516-e43fd2e8dca5?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 https://images.unsplash.com/photo-1505691723518-36a5ac3be353?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 https://images.unsplash.com/photo-1501127122-f385ca6ddd9d?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
@@ -231,4 +230,36 @@ https://images.unsplash.com/photo-1505015920881-0f83c2f7c95e?q=80&w=1974&auto=fo
 https://images.unsplash.com/photo-1556020685-ae41abfc9365?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 
+// Get.to(
+                //     transition: Transition.fadeIn,
+                //     duration: const Duration(milliseconds: 520),
+                //     const PropertyDetailsPage(
+                //       title: "MODERNISM VILLA",
+                //       genre: "Villa",
+                //       ratings: 4.5,
+                //       reviews: 1221,
+                //       beds: 3,
+                //       baths: 4,
+                //       area: 2000,
+                //       price: 19322,
+                //       overview:
+                //           "Consequatur porro impedit alias odio voluptatem qui qui rerum aspernatur. Facere mollitia fugit perferendis deleniti quam neque voluptatem repellendus natus. Omnis ipsum culpa qui minima.",
+                //       previewImages: [apartment, apartment2, japan],
+                //       galleryImages: [
+                //         apartment3,
+                //         japan,
+                //         apartment2,
+                //         japan,
+                //         apartment,
+                //         japan,
+                //         apartment
+                //       ],
+                //       lat: 33.5138,
+                //       lng: 36.2765,
+                //       panoramaImages: [
+                //         {'name': 'Living Room', 'imagePath': panorama1},
+                //         {'name': 'Kitchen', 'imagePath': panorama2},
+                //         {'name': 'Bedroom', 'imagePath': panorama3},
+                //       ],
+                //     ));
 */

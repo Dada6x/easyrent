@@ -1,4 +1,3 @@
-import 'package:easyrent/test.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +12,7 @@ import 'package:easyrent/core/constants/utils/divider.dart';
 import 'package:easyrent/core/constants/utils/textStyles.dart';
 import 'package:easyrent/data/Session/app_session.dart';
 import 'package:easyrent/presentation/views/profile/view/profile_pages/Faq/view/faq.dart';
+import 'package:easyrent/presentation/views/profile/view/profile_pages/chatbot/Ai_chatBot.dart';
 import 'package:easyrent/presentation/views/profile/view/profile_pages/favourite/view/favourite_page.dart';
 import 'package:easyrent/presentation/views/profile/view/profile_pages/friends/invite_friend_page.dart';
 import 'package:easyrent/presentation/views/profile/view/profile_pages/language/view/language.dart';
@@ -262,14 +262,14 @@ class Profile extends StatelessWidget {
                 ),
                 destination_widget: const InviteFriendPage()),
             customListTile(
-              subtitle: "Beta",
+                subtitle: "Beta",
                 string: "AI Agent ".tr,
                 leading: Iconify(
                   Bi.robot,
                   color: Theme.of(context).colorScheme.primary,
                   size: 29.sp,
                 ),
-                destination_widget: const Community()),
+                destination_widget: const Ai_ChatBot()),
             const CustomDivider(),
             //! LogOut
             customListRedTile("Logout".tr, Icons.logout, () {
